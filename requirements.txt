@@ -1,0 +1,9 @@
+bcolz == 1.1.2
+h5py == 2.7.1
+matplotlib == 2.1.1
+pandas == 0.22.0
+pillow == 5.0.0
+tables == 3.4.2
+
+http://download.pytorch.org/whl/cu90/torch-0.3.1-cp36-cp36m-linux_x86_64.whl
+torchvision
