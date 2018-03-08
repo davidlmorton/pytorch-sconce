@@ -3,6 +3,9 @@ class DataGenerator:
 
     def __init__(self, data_loader):
         self.data_loader = data_loader
+        self.reset()
+
+    def reset(self):
         self._iterator = iter(self.data_loader)
 
     @property
@@ -30,5 +33,5 @@ class DataGenerator:
         try:
             return self._iterator.next()
         except StopIteration:
-            self._iterator = iter(self.data_loader)
+            self.reset()
             return self._iterator.next()
