@@ -3,6 +3,8 @@ from sconce.data_generator import DataGenerator
 
 
 class TestDataGenerator(MNISTTest):
+    num_test_samples = 3
+
     def test_iterates_forever(self):
         dg = DataGenerator(data_loader=self.test_data_loader)
         count = 0

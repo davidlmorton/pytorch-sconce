@@ -24,15 +24,21 @@ class MNISTTest(unittest.TestCase):
         'pin_memory': True,
         'shuffle': True,
     }
+    num_test_samples = 10_000
+    num_training_samples = 60_000
 
     def setUp(self):
-        mnist_training_dataset = datasets.MNIST(self.data_location,
+        training_dataset = datasets.MNIST(self.data_location,
             train=True, download=True,
             transform=self.transform_training_data_fn)
-        self.training_data_loader = DataLoader(mnist_training_dataset,
+        training_subset = dataset.Subset(training_dataset,
+                indices=range(self.num_training_samples))
+        self.training_data_loader = DataLoader(training_subset,
                 **self.data_loader_kwargs_training)
 
-        mnist_test_dataset = datasets.FashionMNIST(self.data_location,
+        test_dataset = datasets.FashionMNIST(self.data_location,
             train=False, transform=self.transform_training_data_fn)
-        self.test_data_loader = DataLoader(mnist_test_dataset,
+        test_subset = dataset.Subset(test_dataset,
+                indices=range(self.num_test_samples))
+        self.test_data_loader = DataLoader(test_subset,
                 **self.data_loader_kwargs_test)
