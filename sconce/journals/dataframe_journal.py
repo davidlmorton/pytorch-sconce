@@ -8,7 +8,7 @@ import re
 
 class DataframeJournal(Journal):
     def __init__(self, df=None, metadata=None,
-            blacklist=['._[xy]_in', '._[xy]_out']):
+            blacklist=['._inputs', '._outputs']):
         if metadata is None:
             metadata = {}
             metadata['created_at'] = pd.Timestamp.now()
