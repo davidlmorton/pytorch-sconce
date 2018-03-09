@@ -76,13 +76,13 @@ class DataframeJournal(Journal):
         df = self.df.loc[skip_first:]
 
         ax = plt.subplot2grid((4, 1), (0, 0), rowspan=3, fig=fig)
-        training_loss = df.training_total_loss.rolling(smooth_window,
+        training_loss = df['training_loss'].rolling(smooth_window,
                 min_periods=1, center=True).mean()
         training_loss.plot(ax=ax, color='mediumseagreen',
                            logy=logscale_loss,
                            label='Training Loss')
 
-        test_loss = df.test_total_loss.rolling(smooth_window,
+        test_loss = df['test_loss'].rolling(smooth_window,
                 min_periods=1, center=True).mean()
         test_loss.plot(ax=ax, color='tomato',
                 logy=logscale_loss,
@@ -91,7 +91,7 @@ class DataframeJournal(Journal):
         ax.legend()
 
         ax = plt.subplot2grid((4, 1), (3, 0), fig=fig)
-        df.learning_rate.plot(ax=ax, color='dodgerblue',
+        df['learning_rate'].plot(ax=ax, color='dodgerblue',
                               logy=logscale_learning_rate,
                               label='Learning Rate')
         ax.legend()
@@ -104,7 +104,7 @@ class DataframeJournal(Journal):
             fig = plt.figure(**kwargs)
             ax = fig.add_subplot(1, 1, 1)
 
-        ax.loglog(self.df.learning_rate, self.df.training_total_loss)
+        ax.loglog(self.df['learning_rate'], self.df['training_loss'])
         ax.set_xlabel('Learning Rate (logscale)')
         ax.set_ylabel('Loss (logscale)')
         ax.set_title('Learning Rate Survey')
