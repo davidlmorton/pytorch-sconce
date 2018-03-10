@@ -17,9 +17,7 @@ class TestBasicAutoencoder(MNISTTest):
 
     def test_full_run(self):
         RANDOM_SEED = 1
-
         torch.manual_seed(RANDOM_SEED)
-        torch.cuda.manual_seed(RANDOM_SEED)
 
         model = BasicAutoencoder(image_height=28, image_width=28,
                 hidden_size=200, latent_size=100)
@@ -27,6 +25,7 @@ class TestBasicAutoencoder(MNISTTest):
         test_generator = DataGenerator(self.test_data_loader)
 
         if torch.cuda.is_available():
+            torch.cuda.manual_seed(RANDOM_SEED)
             model.cuda()
             training_generator.cuda()
             test_generator.cuda()

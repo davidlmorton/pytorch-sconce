@@ -15,9 +15,7 @@ import torch
 class TestBasicClassifier(MNISTTest):
     def test_full_run(self):
         RANDOM_SEED = 1
-
         torch.manual_seed(RANDOM_SEED)
-        torch.cuda.manual_seed(RANDOM_SEED)
 
         keys =      ('out_channels', 'stride', 'padding', 'kernel_size')
         values = ( # ==============  ========  =========  =============
@@ -40,12 +38,12 @@ class TestBasicClassifier(MNISTTest):
                     convolutional_layers=convolutional_layers,
                     dropouts=[0.4, 0.8],
                     fully_connected_sizes=[100, 100])
-        model.cuda()
 
         training_generator = DataGenerator(self.training_data_loader)
         test_generator = DataGenerator(self.test_data_loader)
 
         if torch.cuda.is_available():
+            torch.cuda.manual_seed(RANDOM_SEED)
             model.cuda()
             training_generator.cuda()
             test_generator.cuda()
