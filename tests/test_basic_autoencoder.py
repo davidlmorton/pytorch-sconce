@@ -12,6 +12,9 @@ import torch
 
 
 class TestBasicAutoencoder(MNISTTest):
+    num_training_samples = 10_000
+    num_test_samples = 1_000
+
     def test_full_run(self):
         RANDOM_SEED = 1
 
@@ -19,7 +22,7 @@ class TestBasicAutoencoder(MNISTTest):
         torch.cuda.manual_seed(RANDOM_SEED)
 
         model = BasicAutoencoder(image_height=28, image_width=28,
-                hidden_size=200, latent_size=2)
+                hidden_size=200, latent_size=100)
         training_generator = DataGenerator(self.training_data_loader)
         test_generator = DataGenerator(self.test_data_loader)
 
@@ -29,13 +32,13 @@ class TestBasicAutoencoder(MNISTTest):
             test_generator.cuda()
 
         optimizer = optim.SGD(model.parameters(), lr=1e-4,
-                momentum=0.9, weight_decay=1e-4)
+                momentum=0.9, weight_decay=1e-6)
 
         trainer = AutoencoderTrainer(model=model, optimizer=optimizer,
                 training_data_generator=training_generator,
                 test_data_generator=test_generator)
 
-        survey_journal = trainer.survey_learning_rate(
+        survey_journal = trainer.survey_learning_rate(num_epochs=0.1,
                 min_learning_rate=1e-1, max_learning_rate=1e3)
         survey_journal.plot_learning_rate_survey()
 
@@ -43,9 +46,9 @@ class TestBasicAutoencoder(MNISTTest):
         trainer.plot_latent_space()
 
         rate_controller = CosineRateController(max_learning_rate=2)
-        trainer.train(num_epochs=8, rate_controller=rate_controller)
+        trainer.train(num_epochs=1, rate_controller=rate_controller)
 
-        trainer.multi_train(num_cycles=4, rate_controller=rate_controller)
+        trainer.multi_train(num_cycles=2, rate_controller=rate_controller)
         trainer.journal.plot()
 
         test_journal = trainer.test()
