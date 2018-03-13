@@ -1,10 +1,12 @@
-from sconce.progress_monitors.base import ProgressMonitor
+from sconce.monitors.base import Monitor
 from sconce.utils import Progbar
 from torch.autograd import Variable
 
 
-class StdoutProgressMonitor(ProgressMonitor):
-    def __init__(self, metric_names, progbar_kwargs={}):
+class StdoutMonitor(Monitor):
+    def __init__(self, metric_names, progbar_kwargs={},
+            name='stdout_monitor'):
+        super().__init__(name=name)
         self._metric_names = metric_names
         self._progbar_kwargs = progbar_kwargs
         self._progress_bar = None

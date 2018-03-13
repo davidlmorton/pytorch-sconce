@@ -1,14 +1,16 @@
 from matplotlib import pyplot as plt
-from sconce.journals.base import Journal
+from sconce.monitors.base import Monitor
 from torch.autograd import Variable
 
 import pandas as pd
 import re
 
 
-class DataframeJournal(Journal):
+class DataframeMonitor(Monitor):
     def __init__(self, df=None, metadata=None,
-            blacklist=['._inputs', '._outputs']):
+            blacklist=['._inputs', '._outputs'],
+            name='dataframe_monitor'):
+        super().__init__(name=name)
         if metadata is None:
             metadata = {}
             metadata['created_at'] = pd.Timestamp.now()
@@ -25,7 +27,7 @@ class DataframeJournal(Journal):
                 return True
         return False
 
-    def record_step(self, data):
+    def step(self, data):
         data['timestamp'] = pd.Timestamp.now()
         for k, v in data.items():
             if self.is_blacklisted(k):

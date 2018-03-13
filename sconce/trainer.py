@@ -1,4 +1,4 @@
-from sconce import journals, progress_monitors, rate_controllers
+from sconce import monitors, rate_controllers
 
 import math
 import numpy as np
@@ -8,23 +8,18 @@ import torch
 
 class Trainer:
     def __init__(self, *, model, training_data_generator, test_data_generator,
-                 optimizer, journal=None, progress_monitor=None,
-                 rate_controller=None):
+                 optimizer, monitor=None, rate_controller=None):
         self.model = model
 
         self.training_data_generator = training_data_generator
 
         self.test_data_generator = test_data_generator
 
-        if journal is None:
-            journal = journals.DataframeJournal()
-        self.journal = journal
-
-        if progress_monitor is None:
+        if monitor is None:
             metric_names = {'training_loss': 'loss', 'test_loss': 'val_loss'}
-            progress_monitor = progress_monitors.StdoutProgressMonitor(
-                    metric_names=metric_names)
-        self.progress_monitor = progress_monitor
+            stdout_monitor = monitors.StdoutMonitor(metric_names=metric_names)
+            monitor = monitors.DataframeMonitor() + stdout_monitor
+        self.monitor = monitor
 
         if rate_controller is None:
             rate_controller = rate_controllers.CosineRateController(
@@ -59,24 +54,20 @@ class Trainer:
     def load_model_state(self, filename):
         self.model.load_state_dict(torch.load(filename))
 
-    def train(self, *, num_epochs, journal=None, progress_monitor=None,
+    def train(self, *, num_epochs, monitor=None,
             rate_controller=None):
-        if journal is None:
-            journal = self.journal
-        if progress_monitor is None:
-            progress_monitor = self.progress_monitor
+        if monitor is None:
+            monitor = self.monitor
         if rate_controller is None:
             rate_controller = self.rate_controller
 
         num_steps = math.ceil(num_epochs * len(self.training_data_generator))
         return self._train(num_steps=num_steps,
-                journal=journal,
-                progress_monitor=progress_monitor,
+                monitor=monitor,
                 rate_controller=rate_controller)
 
-    def _train(self, *, num_steps, rate_controller,
-            journal, progress_monitor):
-        progress_monitor.start_session(num_steps)
+    def _train(self, *, num_steps, rate_controller, monitor):
+        monitor.start_session(num_steps)
         rate_controller.start_session(num_steps)
 
         iterations_since_test = self.train_to_test_ratio
@@ -98,10 +89,10 @@ class Trainer:
                     **training_step_dict,
                     **test_step_dict}
 
-            journal.record_step(step_data)
-            progress_monitor.step(step_data)
+            monitor.step(step_data)
+        monitor.end_session()
 
-        return journal
+        return monitor
 
     def _update_learning_rate(self, new_learning_rate):
         for param_group in self.optimizer.param_groups:
@@ -137,25 +128,22 @@ class Trainer:
         step_dict = self._do_step(inputs, targets, train=False)
         return {f'test_{k}': v for k, v in step_dict.items()}
 
-    def test(self, *, journal=None, progress_monitor=None):
-        if journal is None:
-            journal = journals.DataframeJournal()
-
-        if progress_monitor is None:
+    def test(self, *, monitor=None):
+        if monitor is None:
             metric_names = {'test_loss': 'loss'}
-            progress_monitor = progress_monitors.StdoutProgressMonitor(
-                    metric_names=metric_names)
+            stdout_monitor = monitors.StdoutMonitor(metric_names=metric_names)
+            monitor = monitors.DataframeMonitor() + stdout_monitor
 
         num_steps = len(self.training_data_generator)
-        progress_monitor.start_session(num_steps)
+        monitor.start_session(num_steps)
 
         for i in range(num_steps):
             step_data = self._do_test_step()
 
-            journal.record_step(step_data)
-            progress_monitor.step(step_data)
+            monitor.step(step_data)
+        monitor.end_session()
 
-        return journal
+        return monitor
 
     def multi_train(self, *, num_cycles, cycle_len=1,
             cycle_multiplier=2.0, **kwargs):
@@ -167,16 +155,13 @@ class Trainer:
     def survey_learning_rate(self, *, num_epochs=1.0,
             min_learning_rate=1e-12,
             max_learning_rate=10,
-            journal=None,
-            progress_monitor=None,
+            monitor=None,
             rate_controller_class=rate_controllers.ExponentialRateController):
-        if journal is None:
-            journal = journals.DataframeJournal()
 
-        if progress_monitor is None:
-            metric_names = {'training_loss': 'loss'}
-            progress_monitor = progress_monitors.StdoutProgressMonitor(
-                    metric_names=metric_names)
+        if monitor is None:
+            metric_names = {'test_loss': 'loss'}
+            stdout_monitor = monitors.StdoutMonitor(metric_names=metric_names)
+            monitor = monitors.DataframeMonitor() + stdout_monitor
 
         filename = self.save_model_state()
 
@@ -184,13 +169,12 @@ class Trainer:
                 min_learning_rate=min_learning_rate,
                 max_learning_rate=max_learning_rate)
         self.train(num_epochs=num_epochs,
-                journal=journal,
-                progress_monitor=progress_monitor,
+                monitor=monitor,
                 rate_controller=rate_controller)
 
         self.load_model_state(filename)
 
-        return journal
+        return monitor
 
     @property
     def num_trainable_parameters(self):

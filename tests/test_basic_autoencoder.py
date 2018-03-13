@@ -34,9 +34,9 @@ class TestBasicAutoencoder(MNISTTest):
                 training_data_generator=training_generator,
                 test_data_generator=test_generator)
 
-        survey_journal = trainer.survey_learning_rate(num_epochs=0.1,
+        survey_monitor = trainer.survey_learning_rate(num_epochs=0.1,
                 min_learning_rate=1e-1, max_learning_rate=1e3)
-        survey_journal.plot_learning_rate_survey()
+        survey_monitor.dataframe_monitor.plot_learning_rate_survey()
 
         trainer.plot_input_output_pairs()
         trainer.plot_latent_space()
@@ -45,8 +45,8 @@ class TestBasicAutoencoder(MNISTTest):
         trainer.train(num_epochs=1, rate_controller=rate_controller)
 
         trainer.multi_train(num_cycles=2, rate_controller=rate_controller)
-        trainer.journal.plot()
+        trainer.monitor.dataframe_monitor.plot()
 
-        test_journal = trainer.test()
-        test_loss = test_journal.df['test_loss'].mean()
+        test_monitor = trainer.test()
+        test_loss = test_monitor.dataframe_monitor.df['test_loss'].mean()
         self.assertTrue(test_loss < 0.21)
