@@ -1,8 +1,13 @@
-from .basic_trainer import BasicTrainer
+from abc import ABC
+from sconce.trainer import Trainer
+
 from matplotlib import pyplot as plt
 
 
-class AutoencoderTrainer(BasicTrainer):
+__all__ = ['AutoencoderMixin', 'AutoencoderTrainer']
+
+
+class AutoencoderMixin(ABC):
     def plot_input_output_pairs(self, title='A Sampling of Autoencoder Results',
         num_cols=10, figsize=(15, 3.2)):
         inputs, targets = self.test_data_generator.next()
@@ -46,3 +51,7 @@ class AutoencoderTrainer(BasicTrainer):
                         c=targets.cpu().data.numpy(), alpha=0.4)
         plt.colorbar()
         return fig
+
+
+class AutoencoderTrainer(Trainer, AutoencoderMixin):
+    pass

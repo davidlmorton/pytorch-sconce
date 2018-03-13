@@ -36,8 +36,8 @@ class MNISTTest(unittest.TestCase):
         self.training_data_loader = DataLoader(training_subset,
                 **self.data_loader_kwargs_training)
 
-        test_dataset = datasets.FashionMNIST(self.data_location,
-            train=False, transform=self.transform_training_data_fn)
+        test_dataset = datasets.MNIST(self.data_location,
+            train=False, transform=self.transform_test_data_fn)
         test_subset = dataset.Subset(test_dataset,
                 indices=range(self.num_test_samples))
         self.test_data_loader = DataLoader(test_subset,

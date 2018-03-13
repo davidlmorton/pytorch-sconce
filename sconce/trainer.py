@@ -6,7 +6,7 @@ import tempfile
 import torch
 
 
-class BasicTrainer:
+class Trainer:
     def __init__(self, *, model, training_data_generator, test_data_generator,
                  optimizer, journal=None, progress_monitor=None,
                  rate_controller=None):
