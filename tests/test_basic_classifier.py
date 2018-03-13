@@ -58,6 +58,6 @@ class TestBasicClassifier(MNISTTest):
                 max_learning_rate=1e-1,
                 min_learning_rate=3e-2)
         trainer.train(num_epochs=3, rate_controller=rate_controller)
-        trainer.journal.plot(skip_first=30, smooth_window=5);
+        trainer.monitor.dataframe_monitor.plot(skip_first=30, smooth_window=5)
 
         self.assertTrue(trainer.get_classification_accuracy() > 0.95)
