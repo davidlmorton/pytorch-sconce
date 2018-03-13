@@ -1,6 +1,3 @@
-import matplotlib
-matplotlib.use('Agg')  # noqa
-
 from .base import MNISTTest
 from sconce.data_generator import DataGenerator
 from sconce.rate_controllers import CosineRateController
