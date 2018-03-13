@@ -1,8 +1,13 @@
-from .basic_trainer import BasicTrainer
+from abc import ABC
+from sconce.trainer import Trainer
+
 import numpy as np
 
 
-class ClassifierTrainer(BasicTrainer):
+__all__ = ['ClassifierMixin', 'ClassifierTrainer']
+
+
+class ClassifierMixin(ABC):
     def get_classification_accuracy(self):
         num_correct = 0
         self.test_data_generator.reset()
@@ -19,3 +24,7 @@ class ClassifierTrainer(BasicTrainer):
 
     def plot_misclassified_samples(self, true_label):
         pass
+
+
+class ClassifierTrainer(Trainer, ClassifierMixin):
+    pass
