@@ -159,7 +159,8 @@ class Trainer:
             min_learning_rate=1e-12,
             max_learning_rate=10,
             monitor=None,
-            rate_controller_class=rate_controllers.ExponentialRateController):
+            rate_controller_class=rate_controllers.ExponentialRateController,
+            **rate_controller_kwargs):
 
         if monitor is None:
             metric_names = {'test_loss': 'loss'}
@@ -170,7 +171,8 @@ class Trainer:
 
         rate_controller = rate_controller_class(
                 min_learning_rate=min_learning_rate,
-                max_learning_rate=max_learning_rate)
+                max_learning_rate=max_learning_rate,
+                **rate_controller_kwargs)
         self.train(num_epochs=num_epochs,
                 monitor=monitor,
                 rate_controller=rate_controller)
