@@ -76,6 +76,9 @@ class Trainer:
         for i in range(num_steps):
             new_learning_rate = rate_controller.new_learning_rate(
                     step=i, data=step_data)
+            if new_learning_rate is None:
+                break
+
             self._update_learning_rate(new_learning_rate)
 
             training_step_dict = self._do_training_step()
