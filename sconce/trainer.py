@@ -163,7 +163,7 @@ class Trainer:
             **rate_controller_kwargs):
 
         if monitor is None:
-            metric_names = {'test_loss': 'loss'}
+            metric_names = {'training_loss': 'loss'}
             stdout_monitor = monitors.StdoutMonitor(metric_names=metric_names)
             monitor = monitors.DataframeMonitor() + stdout_monitor
 
