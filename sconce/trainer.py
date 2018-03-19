@@ -26,8 +26,8 @@ class Trainer:
                     max_learning_rate=1e-4)
         self.rate_controller = rate_controller
 
-        self.train_to_test_ratio = (len(training_data_generator) //
-                                    len(test_data_generator))
+        self.test_to_train_ratio = (len(test_data_generator) /
+                                    len(training_data_generator))
 
         self.optimizer = optimizer
 
@@ -55,22 +55,26 @@ class Trainer:
         self.model.load_state_dict(torch.load(filename))
 
     def train(self, *, num_epochs, monitor=None,
-            rate_controller=None):
+            rate_controller=None, test_to_train_ratio=None):
         if monitor is None:
             monitor = self.monitor
         if rate_controller is None:
             rate_controller = self.rate_controller
+        if test_to_train_ratio is None:
+            test_to_train_ratio = self.test_to_train_ratio
 
         num_steps = math.ceil(num_epochs * len(self.training_data_generator))
         return self._train(num_steps=num_steps,
                 monitor=monitor,
-                rate_controller=rate_controller)
+                rate_controller=rate_controller,
+                test_to_train_ratio=test_to_train_ratio)
 
-    def _train(self, *, num_steps, rate_controller, monitor):
+    def _train(self, *, num_steps, rate_controller, monitor,
+            test_to_train_ratio):
         monitor.start_session(num_steps)
         rate_controller.start_session(num_steps)
 
-        iterations_since_test = self.train_to_test_ratio
+        iterations_since_test = 0
 
         step_data = {}
         for i in range(num_steps):
@@ -84,13 +88,16 @@ class Trainer:
             training_step_dict = self._do_training_step()
 
             iterations_since_test += 1
-            if iterations_since_test >= self.train_to_test_ratio:
+            if (1 / iterations_since_test) <= test_to_train_ratio:
                 test_step_dict = self._do_test_step()
                 iterations_since_test = 0
 
-            step_data = {'learning_rate': new_learning_rate,
-                    **training_step_dict,
-                    **test_step_dict}
+                step_data = {'learning_rate': new_learning_rate,
+                        **training_step_dict,
+                        **test_step_dict}
+            else:
+                step_data = {'learning_rate': new_learning_rate,
+                        **training_step_dict}
 
             monitor.step(step_data)
         monitor.end_session()
@@ -175,7 +182,8 @@ class Trainer:
                 **rate_controller_kwargs)
         self.train(num_epochs=num_epochs,
                 monitor=monitor,
-                rate_controller=rate_controller)
+                rate_controller=rate_controller,
+                test_to_train_ratio=0)
 
         self.load_model_state(filename)
 

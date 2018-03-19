@@ -21,8 +21,9 @@ class StdoutMonitor(Monitor):
 
         values = []
         for key, name in self._metric_names.items():
-            value = data[key]
-            if isinstance(value, Variable):
-                value = value.data[0]
-            values.append((name, value))
+            if key in data.keys():
+                value = data[key]
+                if isinstance(value, Variable):
+                    value = value.data[0]
+                values.append((name, value))
         self._progress_bar.add(1, values)

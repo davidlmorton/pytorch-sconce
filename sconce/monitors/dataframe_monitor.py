@@ -16,10 +16,11 @@ class DataframeMonitor(Monitor):
             metadata['created_at'] = pd.Timestamp.now()
         self.metadata = metadata
 
-        self._buffered_data = {}
+        self._buffered_data = []
         self._df = df
         self._blacklist = blacklist
         self._blacklist_regexps = [re.compile(x) for x in blacklist]
+        self.step_num = 0
 
     def is_blacklisted(self, key):
         for regex in self._blacklist_regexps:
@@ -28,7 +29,10 @@ class DataframeMonitor(Monitor):
         return False
 
     def step(self, data):
+        data['step'] = self.step_num
         data['timestamp'] = pd.Timestamp.now()
+
+        formatted_data = {}
         for k, v in data.items():
             if self.is_blacklisted(k):
                 continue
@@ -36,21 +40,21 @@ class DataframeMonitor(Monitor):
             if isinstance(v, Variable):
                 v = v.data[0]
 
-            if k in self._buffered_data:
-                self._buffered_data[k].append(v)
-            else:
-                self._buffered_data[k] = [v]
+            formatted_data[k] = v
+
+        self._buffered_data.append(formatted_data)
+        self.step_num += 1
 
     @property
     def df(self):
         if self._buffered_data:
-            buffered_df = pd.DataFrame.from_dict(self._buffered_data)
-            self._buffered_data = {}
+            buffered_df = pd.DataFrame(self._buffered_data).set_index('step')
+            self._buffered_data = []
 
             if self._df is None:
                 self._df = buffered_df
             else:
-                self._df = pd.concat([self._df, buffered_df], ignore_index=True)
+                self._df = pd.concat([self._df, buffered_df])
 
         return self._df
 
@@ -84,11 +88,12 @@ class DataframeMonitor(Monitor):
                            logy=logscale_loss,
                            label='Training Loss')
 
-        test_loss = df['test_loss'].rolling(smooth_window,
-                min_periods=1, center=True).mean()
-        test_loss.plot(ax=ax, color='tomato',
-                logy=logscale_loss,
-                label='Test Loss')
+        if 'test_loss' in df:
+            test_loss = df['test_loss'].rolling(smooth_window,
+                    min_periods=1, center=True).mean()
+            test_loss.interpolate().plot(ax=ax, color='tomato',
+                    logy=logscale_loss,
+                    label='Test Loss')
         ax.set_title(title)
         ax.legend()
 
