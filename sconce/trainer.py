@@ -124,7 +124,13 @@ class Trainer:
     def _do_step(self, inputs, targets, train):
         run_dict = self._run_model(inputs, targets, train=train)
         loss_dict = self.model.calculate_loss(**run_dict)
-        return {**loss_dict, **run_dict}
+
+        if hasattr(self.model, 'calculate_metrics'):
+            metrics_dict = self.model.calculate_metrics(**run_dict,
+                    **loss_dict)
+            return {**metrics_dict, **loss_dict, **run_dict}
+        else:
+            return {**loss_dict, **run_dict}
 
     def _run_model(self, inputs, targets, train):
         self.model.train(train)
