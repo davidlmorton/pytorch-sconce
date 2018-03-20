@@ -1,6 +1,8 @@
 from torch import nn
 from torch.nn import functional as F
 
+import numpy as np
+
 
 class ConvolutionalLayer(nn.Module):
     def __init__(self, *, in_channels, out_channels,
@@ -101,3 +103,10 @@ class BasicClassifier(nn.Module):
 
     def calculate_loss(self, targets, outputs, **kwargs):
         return {'loss': F.nll_loss(input=outputs, target=targets)}
+
+    def calculate_metrics(self, targets, outputs, **kwargs):
+        y_out = np.argmax(outputs.cpu().data.numpy(), axis=1)
+        y_in = targets.cpu().data.numpy()
+        num_correct = (y_out - y_in == 0).sum()
+        classification_accuracy = num_correct / len(y_in)
+        return {'classification_accuracy': classification_accuracy}
