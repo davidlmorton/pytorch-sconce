@@ -11,11 +11,11 @@ class TestRingbufferMonitor(unittest.TestCase):
         rb = RingbufferMonitor(capacity=(len(r1) + len(r2)))
         for r in np.concatenate([r1, r2]):
             # always returns None until buffer is filled up
-            self.assertIs(None, rb.value_distribution_is_moving)
+            self.assertIs(None, rb.movement_index)
 
             rb.step(data={'training_loss': r})
 
-        self.assertTrue(rb.value_distribution_is_moving)
+        self.assertTrue(rb.movement_index > 2)
 
     def test_is_moving_false(self):
         r1 = np.random.randn(1000) + 50
@@ -25,4 +25,4 @@ class TestRingbufferMonitor(unittest.TestCase):
         for r in np.concatenate([r1, r2]):
             rb.step(data={'training_loss': r})
 
-        self.assertFalse(rb.value_distribution_is_moving)
+        self.assertTrue(rb.movement_index < 0.2)

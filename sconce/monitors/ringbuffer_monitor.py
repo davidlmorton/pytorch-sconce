@@ -41,14 +41,15 @@ class RingbufferMonitor(Monitor):
         return np.array(self.value_buffer).std(*args, **kwargs)
 
     @property
-    def value_distribution_is_moving(self):
+    def movement_index(self):
         steps = self.step_buffer
         if len(steps) < self.capacity:
             # not enough information gathered yet to say...
             return None
         else:
-            mid_step = (steps[-1] - steps[0]) // 2
-            midpoint = np.argmax(steps >= mid_step)
+            step_difference = (steps[-1] - steps[0])
+            midpoint = np.argmax(steps >=
+                    steps[0] + (step_difference // 2))
 
             values = np.array(self.value_buffer)
 
@@ -57,4 +58,4 @@ class RingbufferMonitor(Monitor):
 
             d = (np.abs(first.mean() - last.mean()) /
                     (2 * np.sqrt(first.std() * last.std())))
-            return d > 1.0
+            return d
