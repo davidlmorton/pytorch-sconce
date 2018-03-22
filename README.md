@@ -3,9 +3,9 @@ A library for training pytorch models
 
 ## Installation
 
-Because Pytorch still has no packages up on pypi, you'll need to go [here](http://pytorch.org/) to install it first.
+Because Pytorch still has no packages up on pypi, you'll need to go to [http://pytorch.org](http://pytorch.org) to install it first.
 
-Then you can install torchvision like so:
+Then you'll need to install torchvision:
 ```
 pip install torchvision
 ```
