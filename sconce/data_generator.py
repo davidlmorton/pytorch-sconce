@@ -1,4 +1,10 @@
 from torch.autograd import Variable
+from torch.utils import data
+from torchvision import datasets, transforms
+
+import os
+import tempfile
+import numpy as np
 
 
 class DataGenerator:
@@ -74,3 +80,41 @@ class DataGenerator:
             self.reset()
             inputs, targets = self._iterator.next()
         return self.preprocess(inputs, targets)
+
+    @classmethod
+    def from_pytorch(cls,
+            batch_size=500,
+            data_location=None,
+            num_workers=1,
+            pin_memory=True,
+            shuffle=True,
+            train=True,
+            fraction=1.0,
+            transform=transforms.ToTensor(),
+            dataset_class=datasets.MNIST):
+        assert(fraction > 0.0)
+        assert(fraction <= 1.0)
+
+        if data_location is None:
+            data_location = os.path.join(tempfile.gettempdir(),
+                    dataset_class.__class__.__name__)
+
+        dataset = dataset_class(data_location,
+                train=train,
+                download=True,
+                transform=transform)
+        indices = [int(x) for x in np.linspace(
+                start=0,
+                stop=len(dataset) - 1,
+                num=int(len(dataset) * fraction))]
+        subset = data.dataset.Subset(dataset, indices=indices)
+        return cls.from_dataset(subset,
+                batch_size=batch_size,
+                num_workers=num_workers,
+                pin_memory=pin_memory,
+                shuffle=shuffle)
+
+    @classmethod
+    def from_dataset(cls, dataset, **kwargs):
+        data_loader = data.DataLoader(dataset, **kwargs)
+        return cls(data_loader)
