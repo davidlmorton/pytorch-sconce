@@ -1,4 +1,3 @@
-from .base import MNISTTest
 from sconce.data_generator import DataGenerator
 from sconce.rate_controllers import CosineRateController
 from sconce.trainer import Trainer
@@ -6,20 +5,18 @@ from sconce.models import BasicAutoencoder
 from torch import optim
 
 import torch
+import unittest
 
 
-class TestTrainer(MNISTTest):
-    num_training_samples = 10_000
-    num_test_samples = 1_000
-
+class TestTrainer(unittest.TestCase):
     def test_full_run(self):
         RANDOM_SEED = 1
         torch.manual_seed(RANDOM_SEED)
 
         model = BasicAutoencoder(image_height=28, image_width=28,
                 hidden_size=200, latent_size=100)
-        training_generator = DataGenerator(self.training_data_loader)
-        test_generator = DataGenerator(self.test_data_loader)
+        training_generator = DataGenerator.from_pytorch(fraction=1 / 6)
+        test_generator = DataGenerator.from_pytorch(train=False, fraction=0.1)
 
         if torch.cuda.is_available():
             torch.cuda.manual_seed(RANDOM_SEED)

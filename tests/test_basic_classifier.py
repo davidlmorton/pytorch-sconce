@@ -1,5 +1,4 @@
 # flake8: noqa
-from .base import MNISTTest
 from sconce.data_generator import DataGenerator
 from sconce.rate_controllers import CosineRateController
 from sconce.trainers import ClassifierTrainer
@@ -7,9 +6,10 @@ from sconce.models import basic_classifier as bc
 from torch import optim
 
 import torch
+import unittest
 
 
-class TestBasicClassifier(MNISTTest):
+class TestBasicClassifier(unittest.TestCase):
     def test_full_run(self):
         RANDOM_SEED = 1
         torch.manual_seed(RANDOM_SEED)
@@ -36,8 +36,8 @@ class TestBasicClassifier(MNISTTest):
                     dropouts=[0.4, 0.8],
                     fully_connected_sizes=[100, 100])
 
-        training_generator = DataGenerator(self.training_data_loader)
-        test_generator = DataGenerator(self.test_data_loader)
+        training_generator = DataGenerator.from_pytorch()
+        test_generator = DataGenerator.from_pytorch(train=False)
 
         if torch.cuda.is_available():
             torch.cuda.manual_seed(RANDOM_SEED)
