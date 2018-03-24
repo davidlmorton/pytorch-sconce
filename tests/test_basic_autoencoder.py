@@ -41,7 +41,7 @@ class TestBasicAutoencoder(unittest.TestCase):
         rate_controller = CosineRateController(max_learning_rate=2)
         trainer.train(num_epochs=1, rate_controller=rate_controller)
 
-        trainer.multi_train(num_cycles=2, rate_controller=rate_controller)
+        trainer.multi_train(num_cycles=4, rate_controller=rate_controller)
         trainer.monitor.dataframe_monitor.plot()
 
         test_monitor = trainer.test()

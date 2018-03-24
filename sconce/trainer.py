@@ -161,12 +161,12 @@ class Trainer:
 
         return monitor
 
-    def multi_train(self, *, num_cycles, cycle_len=1,
+    def multi_train(self, *, num_cycles, cycle_length=1,
             cycle_multiplier=2.0, **kwargs):
-        for cycle in range(1, num_cycles + 1):
-            scale_factor = cycle * cycle_multiplier
-            num_epochs = cycle_len * scale_factor
-            self.train(num_epochs=num_epochs, **kwargs)
+        this_cycle_length = cycle_length
+        for i in range(num_cycles):
+            self.train(num_epochs=this_cycle_length, **kwargs)
+            this_cycle_length *= cycle_multiplier
 
     def survey_learning_rate(self, *, num_epochs=1.0,
             min_learning_rate=1e-12,
