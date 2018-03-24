@@ -97,7 +97,7 @@ class DataGenerator:
 
         if data_location is None:
             data_location = os.path.join(tempfile.gettempdir(),
-                    dataset_class.__class__.__name__)
+                    dataset_class.__name__)
 
         dataset = dataset_class(data_location,
                 train=train,
