@@ -95,6 +95,7 @@ class DataframeMonitor(Monitor):
                     logy=logscale_loss,
                     label='Test Loss')
         ax.set_title(title)
+        ax.grid(axis='y')
         ax.legend()
 
         ax = plt.subplot2grid((4, 1), (3, 0), fig=fig)
