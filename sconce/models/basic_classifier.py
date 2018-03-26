@@ -2,6 +2,7 @@ from torch import nn
 from torch.nn import functional as F
 
 import numpy as np
+import yaml
 
 
 class ConvolutionalLayer(nn.Module):
@@ -62,32 +63,62 @@ class FullyConnectedLayer(nn.Module):
 
 
 class BasicClassifier(nn.Module):
-    def __init__(self, image_height, image_width, convolutional_layers,
-            fully_connected_sizes=[100, 200],
-            dropouts=[0.30, 0.60],
+    def __init__(self, image_height, image_width, image_channels,
+            convolutional_layer_kwargs,
+            fully_connected_layer_kwargs,
             num_categories=10):
         super().__init__()
 
-        self.convolutional_layers = nn.ModuleList(convolutional_layers)
-
+        in_channels = image_channels
         h = image_height
         w = image_width
-        for layer in convolutional_layers:
+        convolutional_layers = []
+        for kwargs in convolutional_layer_kwargs:
+            layer = ConvolutionalLayer(in_channels=in_channels, **kwargs)
+            convolutional_layers.append(layer)
+            in_channels = kwargs['out_channels']
             h = layer.out_height(h)
             w = layer.out_width(w)
-            num_channels = layer.out_channels
 
-        fc_size = fully_connected_sizes[0]
-        fc_layers = [FullyConnectedLayer(in_size=w * h * num_channels,
-            out_size=fc_size, dropout=dropouts[0], activation=nn.ReLU())]
-        for size, dropout in zip(fully_connected_sizes[1:], dropouts[1:]):
-            fc_layers.append(FullyConnectedLayer(in_size=fc_size,
-                out_size=size, dropout=dropout, activation=nn.ReLU()))
-            fc_size = size
+        self.convolutional_layers = nn.ModuleList(convolutional_layers)
+
+        fc_layers = []
+        num_channels = in_channels
+        fc_size = w * h * num_channels
+        for kwargs in fully_connected_layer_kwargs:
+            layer = FullyConnectedLayer(in_size=fc_size,
+                activation=nn.ReLU(), **kwargs)
+            fc_layers.append(layer)
+            fc_size = kwargs['out_size']
         self.fully_connected_layers = nn.ModuleList(fc_layers)
 
         self.final_layer = FullyConnectedLayer(fc_size,
                 num_categories, nn.LogSoftmax(dim=-1))
+
+    @classmethod
+    def new_from_yaml_filename(cls, yaml_filename):
+        yaml_file = open(yaml_filename)
+        return cls.new_from_yaml_file(yaml_file)
+
+    @classmethod
+    def new_from_yaml_file(cls, yaml_file):
+        yaml_data = yaml.load(yaml_file)
+
+        convolutional_layer_kwargs = []
+        keys = yaml_data.pop('convolutional_layer_attributes')
+        for values in yaml_data.pop('convolutional_layer_values'):
+            kwargs = dict(zip(keys, values))
+            convolutional_layer_kwargs.append(kwargs)
+
+        fully_connected_layer_kwargs = []
+        keys = yaml_data.pop('fully_connected_layer_attributes')
+        for values in yaml_data.pop('fully_connected_layer_values'):
+            kwargs = dict(zip(keys, values))
+            fully_connected_layer_kwargs.append(kwargs)
+
+        return cls(convolutional_layer_kwargs=convolutional_layer_kwargs,
+                fully_connected_layer_kwargs=fully_connected_layer_kwargs,
+                **yaml_data)
 
     def forward(self, inputs, **kwargs):
         x = inputs
