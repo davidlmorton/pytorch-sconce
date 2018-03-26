@@ -2,6 +2,7 @@ from sconce.monitors.base import Monitor
 from torch.autograd import Variable
 import losswise
 
+
 class LosswiseMonitor(Monitor):
     def __init__(self, api_key, tag,
             params={},
