@@ -107,12 +107,14 @@ class DataframeMonitor(Monitor):
         plt.tight_layout()
         return fig
 
-    def plot_learning_rate_survey(self, ax=None, **kwargs):
+    def plot_learning_rate_survey(self, ax=None, figure_kwargs={},
+            **plot_kwargs):
         if ax is None:
-            fig = plt.figure(**kwargs)
+            fig = plt.figure(**figure_kwargs)
             ax = fig.add_subplot(1, 1, 1)
 
-        ax.loglog(self.df['learning_rate'], self.df['training_loss'])
+        ax.loglog(self.df['learning_rate'], self.df['training_loss'],
+                **plot_kwargs)
         ax.set_xlabel('Learning Rate (logscale)')
         ax.set_ylabel('Loss (logscale)')
         ax.set_title('Learning Rate Survey')
