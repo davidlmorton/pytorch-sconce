@@ -2,8 +2,10 @@ from matplotlib import pyplot as plt
 from sconce.monitors.base import Monitor
 from torch.autograd import Variable
 
+import matplotlib.patheffects as path_effects
 import pandas as pd
 import re
+import stringcase
 
 
 class DataframeMonitor(Monitor):
@@ -73,36 +75,65 @@ class DataframeMonitor(Monitor):
 
     def plot(self, title="Training History", figsize=(15, 5),
                     skip_first=100, smooth_window=50,
-                    logscale_learning_rate=False,
-                    logscale_loss=False,
+                    metrics=['loss'],
+                    test_color='tomato',
+                    training_color='mediumseagreen',
+                    learning_rate_color='dodgerblue',
                     fig=None):
         if fig is None:
             fig = plt.figure(figsize=figsize)
+            metrics_ax = plt.subplot2grid((4, 1), (0, 0), rowspan=3, fig=fig)
+            lr_ax = plt.subplot2grid((4, 1), (3, 0), fig=fig)
+        else:
+            metrics_ax = fig.axes[0]
+            lr_ax = fig.axes[1]
 
         df = self.df.loc[skip_first:]
 
-        ax = plt.subplot2grid((4, 1), (0, 0), rowspan=3, fig=fig)
-        training_loss = df['training_loss'].rolling(smooth_window,
-                min_periods=1, center=True).mean()
-        training_loss.plot(ax=ax, color='mediumseagreen',
-                           logy=logscale_loss,
-                           label='Training Loss')
+        for i, metric in enumerate(metrics):
+            training_df = df['training_%s' % metric]
+            training_df.interpolate().plot(ax=metrics_ax,
+                    color=training_color, label='', alpha=0.35)
 
-        if 'test_loss' in df:
-            test_loss = df['test_loss'].rolling(smooth_window,
-                    min_periods=1, center=True).mean()
-            test_loss.interpolate().plot(ax=ax, color='tomato',
-                    logy=logscale_loss,
-                    label='Test Loss')
-        ax.set_title(title)
-        ax.grid(axis='y')
-        ax.legend()
+            test_key = 'test_%s' % metric
+            if test_key in df:
+                test_df = df[test_key]
+                test_df.interpolate().plot(ax=metrics_ax,
+                        color=test_color, label='', alpha=0.35)
 
-        ax = plt.subplot2grid((4, 1), (3, 0), fig=fig)
-        df['learning_rate'].plot(ax=ax, color='dodgerblue',
-                              logy=logscale_learning_rate,
-                              label='Learning Rate')
-        ax.legend()
+            training_smooth_df = training_df.rolling(smooth_window,
+                    min_periods=1).mean()
+            my_path_effects = [
+                    path_effects.SimpleLineShadow(offset=(0, 0),
+                        linewidth=5, alpha=0.2),
+                    path_effects.SimpleLineShadow(linewidth=5, alpha=0.2),
+                    path_effects.Normal()]
+            training_smooth_df.interpolate().plot(ax=metrics_ax, linewidth=4,
+                    color=training_color, path_effects=my_path_effects,
+                    label='Training')
+
+            if test_key in df:
+                test_smooth_df = test_df.rolling(smooth_window,
+                        min_periods=1).mean()
+                test_smooth_df.interpolate().plot(ax=metrics_ax, linewidth=3,
+                        color=test_color, path_effects=my_path_effects,
+                        label='Test')
+
+            metrics_ax.set_ylabel(stringcase.titlecase(metric))
+            if i == 0:
+                metrics_ax.grid(axis='y')
+                if len(metrics) == 2:
+                    metrics_ax.legend(loc='center right')
+                    metrics_ax = metrics_ax.twinx()
+                else:
+                    metrics_ax.legend(loc='best')
+
+        metrics_ax.set_title(title)
+
+        df['learning_rate'].plot(ax=lr_ax, color=learning_rate_color,
+                linewidth=3)
+        max_lr = df['learning_rate'].max()
+        lr_ax.set_ylabel(f'Learning Rate\n[max={max_lr}]')
 
         plt.tight_layout()
         return fig
