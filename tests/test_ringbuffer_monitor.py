@@ -9,11 +9,11 @@ class TestRingbufferMonitor(unittest.TestCase):
         r2 = np.random.randn(1000) + 40
 
         rb = RingbufferMonitor(capacity=(len(r1) + len(r2)))
-        for r in np.concatenate([r1, r2]):
+        for i, r in enumerate(np.concatenate([r1, r2])):
             # always returns None until buffer is filled up
             self.assertIs(None, rb.movement_index)
 
-            rb.step(data={'training_loss': r})
+            rb.write(data={'training_loss': r}, step=i)
 
         self.assertTrue(rb.movement_index > 2)
 
@@ -22,7 +22,7 @@ class TestRingbufferMonitor(unittest.TestCase):
         r2 = np.random.randn(1000) + 50
 
         rb = RingbufferMonitor(capacity=(len(r1) + len(r2)))
-        for r in np.concatenate([r1, r2]):
-            rb.step(data={'training_loss': r})
+        for i, r in enumerate(np.concatenate([r1, r2])):
+            rb.write(data={'training_loss': r}, step=i)
 
         self.assertTrue(rb.movement_index < 0.2)

@@ -11,7 +11,7 @@ class TestCompositeMonitor(unittest.TestCase):
         self.assertTrue(composite_monitor.foo is monitor_foo)
         self.assertTrue(composite_monitor.bar is monitor_bar)
 
-        composite_monitor.step(data={'a': -1, 'b': -1})
+        composite_monitor.write(data={'a': -1, 'b': -1}, step=1)
         self.assertEqual(composite_monitor.foo.df.a.iloc[-1], -1)
         self.assertEqual(composite_monitor.foo.df.b.iloc[-1], -1)
         self.assertEqual(composite_monitor.bar.df.a.iloc[-1], -1)
@@ -33,7 +33,7 @@ class TestCompositeMonitor(unittest.TestCase):
         self.assertTrue(nested.bar is monitor_bar)
         self.assertTrue(nested.baz is monitor_baz)
 
-        nested.step(data={'a': -1, 'b': -1})
+        nested.write(data={'a': -1, 'b': -1}, step=1)
         self.assertEqual(nested.foo.df.a.iloc[-1], -1)
         self.assertEqual(nested.foo.df.b.iloc[-1], -1)
         self.assertEqual(nested.bar.df.a.iloc[-1], -1)

@@ -99,7 +99,7 @@ class Trainer:
                 step_data = {'learning_rate': new_learning_rate,
                         **training_step_dict}
 
-            monitor.step(step_data)
+            monitor.write(data=step_data, step=step)
         monitor.end_session()
 
         return monitor
@@ -153,10 +153,10 @@ class Trainer:
         num_steps = len(self.training_data_generator)
         monitor.start_session(num_steps)
 
-        for i in range(num_steps):
+        for step in range(1, num_steps + 1):
             step_data = self._do_test_step()
 
-            monitor.step(step_data)
+            monitor.write(data=step_data, step=step)
         monitor.end_session()
 
         return monitor

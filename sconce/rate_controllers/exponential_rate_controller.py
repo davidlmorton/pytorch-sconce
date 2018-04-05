@@ -30,12 +30,12 @@ class ExponentialRateController(RateController):
         if self.learning_rates is None:
             raise RuntimeError("You must call 'start_session' before calling "
                     "'new_learning_rate'")
-        if step >= len(self.learning_rates):
-            raise RuntimeError(f"Argument step={step}, should not equal "
-                    f"or exceed num_steps={len(self.learning_rates)}")
+        if step > len(self.learning_rates):
+            raise RuntimeError(f"Argument step={step}, should not "
+                    f"exceed num_steps={len(self.learning_rates)}")
 
         if self.should_continue(data):
-            new_learning_rate = self.learning_rates[step]
+            new_learning_rate = self.learning_rates[step - 1]
             return new_learning_rate
         else:
             return None

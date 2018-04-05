@@ -1,6 +1,8 @@
 from sconce.monitors.base import Monitor
 from torch.autograd import Variable
+
 import losswise
+import math
 
 
 class LosswiseMonitor(Monitor):
@@ -31,18 +33,17 @@ class LosswiseMonitor(Monitor):
         for tracker in max_graphs:
             self._graphs[tracker] = self._session.graph(tracker, kind='max')
 
-        self.step_num = 0
+        self.previous_session_steps = 0
+        self.last_step = 0
 
-    def start_session(self, num_steps):
-        pass
+    def start_session(self, num_steps, **kwargs):
+        self.previous_session_steps += self.last_step
 
     @property
     def _graph_descriptions(self):
         return {**self._min_graphs, **self._max_graphs}
 
-    def step(self, data):
-        self.step_num += 1
-
+    def write(self, data, step):
         for tracker, metrics in self._graph_descriptions.items():
             graph = self._graphs[tracker]
 
@@ -53,4 +54,5 @@ class LosswiseMonitor(Monitor):
                     if isinstance(value, Variable):
                         value = value.data[0]
                     values[key] = value
-            graph.append(self.step_num, values)
+            graph.append(step + self.previous_session_steps, values)
+        self.last_step = math.ceil(step)
