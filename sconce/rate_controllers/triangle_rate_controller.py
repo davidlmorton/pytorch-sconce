@@ -16,7 +16,9 @@ class TriangleRateController(RateController):
         self.learning_rates = None
 
     def start_session(self, num_steps):
+        # all fractions round up (instead of truncate)
         rise_steps = -(-num_steps // 2)
+
         rising_rates = np.linspace(self.min_learning_rate,
                                 self.max_learning_rate,
                                 rise_steps)
