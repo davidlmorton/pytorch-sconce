@@ -135,7 +135,8 @@ class DataframeMonitor(Monitor):
 
         metrics_ax.set_title(title)
 
-        df['learning_rate'].plot(ax=lr_ax, color=learning_rate_color,
+        df['learning_rate'].fillna(method='backfill').plot(ax=lr_ax,
+                color=learning_rate_color,
                 linewidth=3)
         max_lr = df['learning_rate'].max()
         lr_ax.set_ylabel(f'Learning Rate\n[max={max_lr}]')
@@ -149,8 +150,9 @@ class DataframeMonitor(Monitor):
             fig = plt.figure(**figure_kwargs)
             ax = fig.add_subplot(1, 1, 1)
 
-        ax.loglog(self.df['learning_rate'], self.df['training_loss'],
-                **plot_kwargs)
+        df = self.df.groupby(
+                self.df['learning_rate'].fillna(method='backfill')).mean()
+        ax.loglog(df['learning_rate'], df['training_loss'], **plot_kwargs)
         ax.set_xlabel('Learning Rate (logscale)')
         ax.set_ylabel('Loss (logscale)')
         ax.set_title('Learning Rate Survey')
