@@ -3,14 +3,6 @@ A library for training pytorch models
 
 ## Installation
 
-Because Pytorch still has no packages up on pypi, you'll need to go to [http://pytorch.org](http://pytorch.org) to install it first.
-
-Then you'll need to install torchvision:
-```
-pip install torchvision
-```
-
-Finally install sconce like this:
 ```
 pip install pytorch-sconce
 ```
