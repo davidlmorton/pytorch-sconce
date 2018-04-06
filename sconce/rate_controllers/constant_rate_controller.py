@@ -36,7 +36,7 @@ class ConstantRateController(RateController):
 
     def new_learning_rate(self, step, data):
         if self.monitor is not None:
-            self.monitor.step(data)
+            self.monitor.write(data=data, step=step)
             movement_index = self.monitor.movement_index
             if movement_index is not None:
                 if movement_index < self.movement_threshold:

@@ -1,65 +1,9 @@
+from .layers import FullyConnectedLayer, Convolution2dLayer
 from torch import nn
 from torch.nn import functional as F
 
 import numpy as np
 import yaml
-
-
-class ConvolutionalLayer(nn.Module):
-    def __init__(self, *, in_channels, out_channels,
-            stride=2, kernel_size=3, padding=1):
-        super().__init__()
-
-        def make_tuple(i):
-            if isinstance(i, int):
-                return (i, i)
-            else:
-                return i
-
-        self.stride = make_tuple(stride)
-        self.kernel_size = make_tuple(kernel_size)
-        self.padding = make_tuple(padding)
-        self.out_channels = out_channels
-
-        self.bn = nn.BatchNorm2d(num_features=in_channels)
-        self.conv = nn.Conv2d(in_channels=in_channels,
-                out_channels=out_channels,
-                stride=self.stride,
-                kernel_size=self.kernel_size,
-                padding=self.padding)
-        self.relu = nn.ReLU()
-
-    def out_height(self, in_height):
-        numerator = (in_height + 2 * self.padding[0] -
-                (self.kernel_size[0] - 1) - 1)
-        return (numerator // self.stride[0]) + 1
-
-    def out_width(self, in_width):
-        numerator = (in_width + 2 * self.padding[1] -
-                (self.kernel_size[1] - 1) - 1)
-        return (numerator // self.stride[1]) + 1
-
-    def forward(self, x_in):
-        x = self.bn(x_in)
-        x = self.conv(x)
-        x = self.relu(x)
-        return x
-
-
-class FullyConnectedLayer(nn.Module):
-    def __init__(self, in_size, out_size, activation, dropout=0.0):
-        super().__init__()
-        self.bn = nn.BatchNorm1d(in_size)
-        self.fc = nn.Linear(in_size, out_size)
-        self.activation = activation
-        self.dropout = nn.Dropout(dropout)
-
-    def forward(self, x_in):
-        x = self.bn(x_in)
-        x = self.fc(x)
-        x = self.dropout(x)
-        x = self.activation(x)
-        return x
 
 
 class BasicClassifier(nn.Module):
@@ -74,7 +18,7 @@ class BasicClassifier(nn.Module):
         w = image_width
         convolutional_layers = []
         for kwargs in convolutional_layer_kwargs:
-            layer = ConvolutionalLayer(in_channels=in_channels, **kwargs)
+            layer = Convolution2dLayer(in_channels=in_channels, **kwargs)
             convolutional_layers.append(layer)
             in_channels = kwargs['out_channels']
             h = layer.out_height(h)
@@ -93,7 +37,22 @@ class BasicClassifier(nn.Module):
         self.fully_connected_layers = nn.ModuleList(fc_layers)
 
         self.final_layer = FullyConnectedLayer(fc_size,
-                num_categories, nn.LogSoftmax(dim=-1))
+                num_categories,
+                with_batchnorm=False,
+                activation=nn.LogSoftmax(dim=-1))
+
+    @property
+    def layers(self):
+        return ([x for x in self.fully_connected_layers] +
+                [x for x in self.convolutional_layers] + [self.final_layer])
+
+    def freeze_batchnorm_layers(self):
+        for layer in self.layers:
+            layer.freeze_batchnorm()
+
+    def unfreeze_batchnorm_layers(self):
+        for layer in self.layers:
+            layer.unfreeze_batchnorm()
 
     @classmethod
     def new_from_yaml_filename(cls, yaml_filename):

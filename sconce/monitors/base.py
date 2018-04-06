@@ -12,7 +12,7 @@ class Monitor(ABC):
         pass
 
     @abstractmethod
-    def step(self, data):
+    def write(self, data, step):
         pass
 
     def __add__(self, other):
@@ -52,6 +52,6 @@ class CompositeMonitor(Monitor):
         for monitor in self.monitors:
             monitor.end_session()
 
-    def step(self, data):
+    def write(self, data, step):
         for monitor in self.monitors:
-            monitor.step(data)
+            monitor.write(data, step)

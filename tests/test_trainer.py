@@ -10,8 +10,6 @@ import unittest
 
 class TestTrainer(unittest.TestCase):
     def test_full_run(self):
-        RANDOM_SEED = 1
-        torch.manual_seed(RANDOM_SEED)
 
         model = BasicAutoencoder(image_height=28, image_width=28,
                 hidden_size=200, latent_size=100)
@@ -19,7 +17,6 @@ class TestTrainer(unittest.TestCase):
         test_generator = DataGenerator.from_pytorch(train=False, fraction=0.1)
 
         if torch.cuda.is_available():
-            torch.cuda.manual_seed(RANDOM_SEED)
             model.cuda()
             training_generator.cuda()
             test_generator.cuda()

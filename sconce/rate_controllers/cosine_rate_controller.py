@@ -1,6 +1,7 @@
 from sconce.rate_controllers.base import RateController
 
 import math
+import numpy as np
 
 
 class CosineRateController(RateController):
@@ -20,19 +21,17 @@ class CosineRateController(RateController):
 
     def start_session(self, num_steps):
         self.num_steps = num_steps
+        self.progressions = np.linspace(0, 1, num_steps)
 
     def new_learning_rate(self, step, data):
         if self.num_steps is None:
             raise RuntimeError("You must call 'start_session' before calling "
                     "'new_learning_rate'")
-        if step >= self.num_steps:
-            raise RuntimeError(f"Argument step={step}, should not equal "
-                    f"or exceed num_steps={self.num_steps}")
+        if step > self.num_steps:
+            raise RuntimeError(f"Argument step={step}, should not "
+                    f"exceed num_steps={self.num_steps}")
 
-        if self.num_steps > 1:
-            progression = step / (self.num_steps - 1)
-        else:
-            progression = 0.0
+        progression = self.progressions[step - 1]
 
         new_learning_rate = (self.min_learning_rate +
                 (self.max_learning_rate - self.min_learning_rate) *

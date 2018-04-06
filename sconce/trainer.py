@@ -55,7 +55,8 @@ class Trainer:
         self.model.load_state_dict(torch.load(filename))
 
     def train(self, *, num_epochs, monitor=None,
-            rate_controller=None, test_to_train_ratio=None):
+            rate_controller=None, test_to_train_ratio=None,
+            batch_multiplier=1):
         if monitor is None:
             monitor = self.monitor
         if rate_controller is None:
@@ -67,25 +68,29 @@ class Trainer:
         return self._train(num_steps=num_steps,
                 monitor=monitor,
                 rate_controller=rate_controller,
-                test_to_train_ratio=test_to_train_ratio)
+                test_to_train_ratio=test_to_train_ratio,
+                batch_multiplier=batch_multiplier)
 
     def _train(self, *, num_steps, rate_controller, monitor,
-            test_to_train_ratio):
+            test_to_train_ratio, batch_multiplier):
         monitor.start_session(num_steps)
         rate_controller.start_session(num_steps)
 
         iterations_since_test = 0
 
         step_data = {}
-        for i in range(num_steps):
+        for step in range(1, num_steps + 1):
             new_learning_rate = rate_controller.new_learning_rate(
-                    step=i, data=step_data)
+                    step=step, data=step_data)
             if new_learning_rate is None:
                 break
 
             self._update_learning_rate(new_learning_rate)
 
-            training_step_dict = self._do_training_step()
+            training_step_dict = self._do_training_step(
+                    batch_multiplier=batch_multiplier,
+                    monitor=monitor,
+                    step=step)
 
             iterations_since_test += 1
             if (1 / iterations_since_test) <= test_to_train_ratio:
@@ -99,7 +104,7 @@ class Trainer:
                 step_data = {'learning_rate': new_learning_rate,
                         **training_step_dict}
 
-            monitor.step(step_data)
+            monitor.write(data=step_data, step=step)
         monitor.end_session()
 
         return monitor
@@ -109,17 +114,24 @@ class Trainer:
             param_group['lr'] = new_learning_rate
         return new_learning_rate
 
-    def _do_training_step(self):
+    def _do_training_step(self, batch_multiplier, monitor, step):
         self.optimizer.zero_grad()
+        for i in range(1, batch_multiplier + 1):
+            inputs, targets = self.training_data_generator.next()
+            step_dict = self._do_step(inputs, targets, train=True)
 
-        inputs, targets = self.training_data_generator.next()
-        step_dict = self._do_step(inputs, targets, train=True)
-        loss = step_dict['loss']
+            loss = step_dict['loss'] / batch_multiplier
+            loss.backward()
 
-        loss.backward()
+            data = {f'training_{k}': v for k, v in step_dict.items()}
+
+            fraction = i / batch_multiplier
+            if fraction != 1:
+                # final monitor.write per step is done in calling function
+                monitor.write(data=data, step=step - 1 + fraction)
+
         self.optimizer.step()
-
-        return {f'training_{k}': v for k, v in step_dict.items()}
+        return data
 
     def _do_step(self, inputs, targets, train):
         run_dict = self._run_model(inputs, targets, train=train)
@@ -153,10 +165,10 @@ class Trainer:
         num_steps = len(self.training_data_generator)
         monitor.start_session(num_steps)
 
-        for i in range(num_steps):
+        for step in range(1, num_steps + 1):
             step_data = self._do_test_step()
 
-            monitor.step(step_data)
+            monitor.write(data=step_data, step=step)
         monitor.end_session()
 
         return monitor
@@ -172,6 +184,7 @@ class Trainer:
             min_learning_rate=1e-12,
             max_learning_rate=10,
             monitor=None,
+            batch_multiplier=1,
             rate_controller_class=rate_controllers.ExponentialRateController,
             **rate_controller_kwargs):
 
@@ -189,7 +202,8 @@ class Trainer:
         self.train(num_epochs=num_epochs,
                 monitor=monitor,
                 rate_controller=rate_controller,
-                test_to_train_ratio=0)
+                test_to_train_ratio=0,
+                batch_multiplier=batch_multiplier)
 
         self.load_model_state(filename)
 

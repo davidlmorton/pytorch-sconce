@@ -9,16 +9,16 @@ class TestRateControllers(unittest.TestCase):
                 min_learning_rate=0)
 
         with self.assertRaises(RuntimeError):
-            crc.new_learning_rate(step=0, data={})
+            crc.new_learning_rate(step=1, data={})
 
         crc.start_session(num_steps=3)
 
         with self.assertRaises(RuntimeError):
-            crc.new_learning_rate(step=3, data={})
+            crc.new_learning_rate(step=4, data={})
 
         expected_values = (1, 0.5, 0)
-        for step, expected_value in enumerate(expected_values):
-            value = crc.new_learning_rate(step=step, data={})
+        for i, expected_value in enumerate(expected_values):
+            value = crc.new_learning_rate(step=i + 1, data={})
             self.assertAlmostEqual(value, expected_value)
 
     def test_exponential(self):
@@ -27,16 +27,16 @@ class TestRateControllers(unittest.TestCase):
                 max_learning_rate=1)
 
         with self.assertRaises(RuntimeError):
-            erc.new_learning_rate(step=0, data={})
+            erc.new_learning_rate(step=1, data={})
 
         erc.start_session(num_steps=3)
 
         with self.assertRaises(RuntimeError):
-            erc.new_learning_rate(step=3, data={})
+            erc.new_learning_rate(step=4, data={})
 
         expected_values = (0.1, 0.31622777, 1)
-        for step, expected_value in enumerate(expected_values):
-            value = erc.new_learning_rate(step=step, data={})
+        for i, expected_value in enumerate(expected_values):
+            value = erc.new_learning_rate(step=i + 1, data={})
             self.assertAlmostEqual(value, expected_value)
 
     def test_step(self):
@@ -82,11 +82,11 @@ class TestRateControllers(unittest.TestCase):
         controller.start_session(num_steps=num_steps)
 
         with self.assertRaises(RuntimeError):
-            controller.new_learning_rate(step=num_steps, data={})
+            controller.new_learning_rate(step=num_steps + 1, data={})
 
         got = []
-        for step, expected_value in enumerate(expected_values):
-            value = controller.new_learning_rate(step=step, data={})
+        for i, expected_value in enumerate(expected_values):
+            value = controller.new_learning_rate(step=i + 1, data={})
             got.append(value)
         print(f'Got: {got}')
 

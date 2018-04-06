@@ -1,6 +1,7 @@
 from sconce.monitors.base import Monitor
 from torch.autograd import Variable
 
+import math
 import numpy as np
 from numpy_ringbuffer import RingBuffer
 
@@ -13,11 +14,15 @@ class RingbufferMonitor(Monitor):
         self.capacity = capacity
         self.key = key
         self.value_buffer = None
-        self.step_buffer = RingBuffer(capacity=capacity, dtype='uint32')
-        self.step_num = 0
+        self.step_buffer = RingBuffer(capacity=capacity, dtype='float32')
 
-    def step(self, data):
-        self.step_num += 1
+        self.previous_session_steps = 0
+        self.last_step = 0
+
+    def start_session(self, num_steps, **kwargs):
+        self.previous_session_steps += self.last_step
+
+    def write(self, data, step):
         if self.key in data.keys():
             value = data[self.key]
 
@@ -32,7 +37,9 @@ class RingbufferMonitor(Monitor):
                         dtype=dtype)
 
             self.value_buffer.append(value)
-            self.step_buffer.append(self.step_num)
+            self.step_buffer.append(step + self.previous_session_steps)
+
+        self.last_step = math.ceil(step)
 
     def mean(self, *args, **kwargs):
         return np.array(self.value_buffer).mean(*args, **kwargs)

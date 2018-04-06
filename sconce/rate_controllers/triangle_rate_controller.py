@@ -16,7 +16,9 @@ class TriangleRateController(RateController):
         self.learning_rates = None
 
     def start_session(self, num_steps):
+        # all fractions round up (instead of truncate)
         rise_steps = -(-num_steps // 2)
+
         rising_rates = np.linspace(self.min_learning_rate,
                                 self.max_learning_rate,
                                 rise_steps)
@@ -30,8 +32,8 @@ class TriangleRateController(RateController):
         if self.learning_rates is None:
             raise RuntimeError("You must call 'start_session' before calling "
                     "'new_learning_rate'")
-        if step >= len(self.learning_rates):
-            raise RuntimeError(f"Argument step={step}, should not equal "
-                    f"or exceed num_steps={len(self.learning_rates)}")
+        if step > len(self.learning_rates):
+            raise RuntimeError(f"Argument step={step}, should not "
+                    f"exceed num_steps={len(self.learning_rates)}")
 
-        return self.learning_rates[step]
+        return self.learning_rates[step - 1]

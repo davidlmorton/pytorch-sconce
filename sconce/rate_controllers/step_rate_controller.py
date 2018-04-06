@@ -29,8 +29,8 @@ class StepRateController(RateController):
         if self.num_steps is None:
             raise RuntimeError("You must call 'start_session' before calling "
                     "'new_learning_rate'")
-        if step >= self.num_steps:
-            raise RuntimeError(f"Argument step={step}, should not equal "
-                    f"or exceed num_steps={self.num_steps}")
+        if step > self.num_steps:
+            raise RuntimeError(f"Argument step={step}, should not "
+                    f"exceed num_steps={self.num_steps}")
 
-        return self.region_values[self.idxs[step]]
+        return self.region_values[self.idxs[step - 1]]

@@ -2,6 +2,7 @@ from matplotlib import pyplot as plt
 from sconce.monitors.base import Monitor
 from torch.autograd import Variable
 
+import math
 import matplotlib.patheffects as path_effects
 import pandas as pd
 import re
@@ -22,7 +23,11 @@ class DataframeMonitor(Monitor):
         self._df = df
         self._blacklist = blacklist
         self._blacklist_regexps = [re.compile(x) for x in blacklist]
-        self.step_num = 0
+        self.previous_session_steps = 0
+        self.last_step = 0
+
+    def start_session(self, num_steps, **kwargs):
+        self.previous_session_steps += self.last_step
 
     def is_blacklisted(self, key):
         for regex in self._blacklist_regexps:
@@ -30,8 +35,8 @@ class DataframeMonitor(Monitor):
                 return True
         return False
 
-    def step(self, data):
-        data['step'] = self.step_num
+    def write(self, data, step):
+        data['step'] = step + self.previous_session_steps
         data['timestamp'] = pd.Timestamp.now()
 
         formatted_data = {}
@@ -45,7 +50,7 @@ class DataframeMonitor(Monitor):
             formatted_data[k] = v
 
         self._buffered_data.append(formatted_data)
-        self.step_num += 1
+        self.last_step = math.ceil(step)
 
     @property
     def df(self):
@@ -130,7 +135,8 @@ class DataframeMonitor(Monitor):
 
         metrics_ax.set_title(title)
 
-        df['learning_rate'].plot(ax=lr_ax, color=learning_rate_color,
+        df['learning_rate'].fillna(method='backfill').plot(ax=lr_ax,
+                color=learning_rate_color,
                 linewidth=3)
         max_lr = df['learning_rate'].max()
         lr_ax.set_ylabel(f'Learning Rate\n[max={max_lr}]')
@@ -144,8 +150,9 @@ class DataframeMonitor(Monitor):
             fig = plt.figure(**figure_kwargs)
             ax = fig.add_subplot(1, 1, 1)
 
-        ax.loglog(self.df['learning_rate'], self.df['training_loss'],
-                **plot_kwargs)
+        df = self.df.groupby(
+                self.df['learning_rate'].fillna(method='backfill')).mean()
+        ax.loglog(df['learning_rate'], df['training_loss'], **plot_kwargs)
         ax.set_xlabel('Learning Rate (logscale)')
         ax.set_ylabel('Loss (logscale)')
         ax.set_title('Learning Rate Survey')

@@ -14,10 +14,14 @@ class StdoutMonitor(Monitor):
     def start_session(self, num_steps):
         self._progress_bar = Progbar(num_steps, **self._progbar_kwargs)
 
-    def step(self, data):
+    def write(self, data, step):
+        if step != int(step):
+            # don't update for partial steps
+            return
+
         if self._progress_bar is None:
             raise RuntimeError("You must call 'start_session' before "
-                    "calling 'step'")
+                    "calling 'write'")
 
         values = []
         for key, name in self._metric_names.items():

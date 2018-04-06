@@ -3,14 +3,6 @@ A library for training pytorch models
 
 ## Installation
 
-Because Pytorch still has no packages up on pypi, you'll need to go to [http://pytorch.org](http://pytorch.org) to install it first.
-
-Then you'll need to install torchvision:
-```
-pip install torchvision
-```
-
-Finally install sconce like this:
 ```
 pip install pytorch-sconce
 ```
@@ -40,8 +32,6 @@ class TestBasicClassifier(unittest.TestCase):
         return os.path.join(base_path, *relative_path)
 
     def test_full_run_from_yaml(self):
-        RANDOM_SEED = 1
-        torch.manual_seed(RANDOM_SEED)
 
         filename = self._test_file('basic_classifier.yaml')
         model = BasicClassifier.new_from_yaml_filename(filename)
@@ -50,7 +40,6 @@ class TestBasicClassifier(unittest.TestCase):
         test_generator = DataGenerator.from_pytorch(train=False)
 
         if torch.cuda.is_available():
-            torch.cuda.manual_seed(RANDOM_SEED)
             model.cuda()
             training_generator.cuda()
             test_generator.cuda()
