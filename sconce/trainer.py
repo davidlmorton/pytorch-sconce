@@ -182,6 +182,7 @@ class Trainer:
             monitor=None,
             batch_multiplier=1,
             rate_controller_class=rate_controllers.ExponentialRateController,
+            stop_factor=10,
             **rate_controller_kwargs):
 
         if monitor is None:
@@ -194,6 +195,7 @@ class Trainer:
         rate_controller = rate_controller_class(
                 min_learning_rate=min_learning_rate,
                 max_learning_rate=max_learning_rate,
+                stop_factor=stop_factor,
                 **rate_controller_kwargs)
         self.train(num_epochs=num_epochs,
                 monitor=monitor,

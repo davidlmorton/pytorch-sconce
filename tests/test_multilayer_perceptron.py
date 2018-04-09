@@ -66,6 +66,12 @@ class TestMultilayerPerceptron(unittest.TestCase):
             training_data_generator=training_generator,
             test_data_generator=test_generator)
 
+        survey_monitor = trainer.survey_learning_rate(min_learning_rate=1e-4,
+                max_learning_rate=100)
+        max_lr = survey_monitor.dataframe_monitor.df.learning_rate.max()
+        print(f"Max learning rate tried: {max_lr}")
+        self.assertTrue(max_lr < 10)
+
         self.assertTrue(trainer.get_classification_accuracy() < 0.2)
 
         rate_controller = CosineRateController(
