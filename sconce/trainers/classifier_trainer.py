@@ -25,11 +25,23 @@ class ClassifierMixin(ABC):
             this_matrix = sparse.coo_matrix(
                     (np.ones(len(targets)), (y_pred, y_true)),
                     dtype='uint32').toarray()
+
             if matrix is None:
                 matrix = this_matrix
             else:
+                this_matrix, matrix = self._make_same_shape(this_matrix, matrix)
                 matrix += this_matrix
         return matrix
+
+    @staticmethod
+    def _make_same_shape(a, b):
+        rows = max(a.shape[0], b.shape[0])
+        cols = max(a.shape[1], b.shape[1])
+        padded_a = np.pad(a, ((0, rows - a.shape[0]), (0, cols - a.shape[1])),
+            mode='constant', constant_values=0)
+        padded_b = np.pad(b, ((0, rows - b.shape[0]), (0, cols - b.shape[1])),
+            mode='constant', constant_values=0)
+        return padded_a, padded_b
 
     def get_classification_accuracy(self, data_generator=None):
         if data_generator is None:
