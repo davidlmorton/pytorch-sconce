@@ -33,8 +33,8 @@ class MultilayerPerceptron(nn.Module):
 
     @classmethod
     def new_from_yaml_filename(cls, yaml_filename):
-        yaml_file = open(yaml_filename)
-        return cls.new_from_yaml_file(yaml_file)
+        with open(yaml_filename) as yaml_file:
+            return cls.new_from_yaml_file(yaml_file)
 
     @classmethod
     def new_from_yaml_file(cls, yaml_file):
