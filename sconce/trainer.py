@@ -57,6 +57,9 @@ class Trainer:
     def train(self, *, num_epochs, monitor=None,
             rate_controller=None, test_to_train_ratio=None,
             batch_multiplier=1):
+        assert batch_multiplier > 0
+        assert int(batch_multiplier) == batch_multiplier
+
         if monitor is None:
             monitor = self.monitor
         if rate_controller is None:
@@ -65,6 +68,8 @@ class Trainer:
             test_to_train_ratio = self.test_to_train_ratio
 
         num_steps = math.ceil(num_epochs * len(self.training_data_generator))
+        num_steps //= batch_multiplier
+
         return self._train(num_steps=num_steps,
                 monitor=monitor,
                 rate_controller=rate_controller,
