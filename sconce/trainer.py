@@ -57,6 +57,9 @@ class Trainer:
     def train(self, *, num_epochs, monitor=None,
             rate_controller=None, test_to_train_ratio=None,
             batch_multiplier=1):
+        assert batch_multiplier > 0
+        assert int(batch_multiplier) == batch_multiplier
+
         if monitor is None:
             monitor = self.monitor
         if rate_controller is None:
@@ -65,6 +68,8 @@ class Trainer:
             test_to_train_ratio = self.test_to_train_ratio
 
         num_steps = math.ceil(num_epochs * len(self.training_data_generator))
+        num_steps //= batch_multiplier
+
         return self._train(num_steps=num_steps,
                 monitor=monitor,
                 rate_controller=rate_controller,
@@ -87,24 +92,34 @@ class Trainer:
 
             self._update_learning_rate(new_learning_rate)
 
-            training_step_dict = self._do_training_step(
-                    batch_multiplier=batch_multiplier,
-                    monitor=monitor,
-                    step=step)
+            self.optimizer.zero_grad()
+            for i in range(1, batch_multiplier + 1):
+                inputs, targets = self.training_data_generator.next()
+                step_dict = self._do_step(inputs, targets, train=True)
 
-            iterations_since_test += 1
-            if (1 / iterations_since_test) <= test_to_train_ratio:
-                test_step_dict = self._do_test_step()
-                iterations_since_test = 0
+                loss = step_dict['loss'] / batch_multiplier
+                loss.backward()
 
-                step_data = {'learning_rate': new_learning_rate,
-                        **training_step_dict,
-                        **test_step_dict}
-            else:
-                step_data = {'learning_rate': new_learning_rate,
-                        **training_step_dict}
+                training_step_dict = {f'training_{k}': v
+                        for k, v in step_dict.items()}
 
-            monitor.write(data=step_data, step=step)
+                iterations_since_test += 1
+                if (1 / iterations_since_test) <= test_to_train_ratio:
+                    test_step_dict = self._do_test_step()
+                    iterations_since_test = 0
+
+                    monitor_data = {'learning_rate': new_learning_rate,
+                            **training_step_dict,
+                            **test_step_dict}
+                else:
+                    monitor_data = {'learning_rate': new_learning_rate,
+                            **training_step_dict}
+
+                fraction = i / batch_multiplier
+                monitor.write(data=monitor_data, step=step - 1 + fraction)
+
+            self.optimizer.step()
+
         monitor.end_session()
 
         return monitor
@@ -113,25 +128,6 @@ class Trainer:
         for param_group in self.optimizer.param_groups:
             param_group['lr'] = new_learning_rate
         return new_learning_rate
-
-    def _do_training_step(self, batch_multiplier, monitor, step):
-        self.optimizer.zero_grad()
-        for i in range(1, batch_multiplier + 1):
-            inputs, targets = self.training_data_generator.next()
-            step_dict = self._do_step(inputs, targets, train=True)
-
-            loss = step_dict['loss'] / batch_multiplier
-            loss.backward()
-
-            data = {f'training_{k}': v for k, v in step_dict.items()}
-
-            fraction = i / batch_multiplier
-            if fraction != 1:
-                # final monitor.write per step is done in calling function
-                monitor.write(data=data, step=step - 1 + fraction)
-
-        self.optimizer.step()
-        return data
 
     def _do_step(self, inputs, targets, train):
         run_dict = self._run_model(inputs, targets, train=train)

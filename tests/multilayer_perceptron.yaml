@@ -1,0 +1,12 @@
+---
+# Values for MNIST and FashionMNIST
+image_height: 28
+image_width: 28
+image_channels: 1
+num_categories: 10
+
+layer_attributes: ['out_size', 'dropout', 'with_batchnorm']
+layer_values:  [ # ======      =========  ================
+                  [100,        0.4,       true],
+                  [100,        0.8,       true],
+]
