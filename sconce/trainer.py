@@ -83,10 +83,10 @@ class Trainer:
 
         iterations_since_test = 0
 
-        step_data = {}
+        monitor_data = {}
         for step in range(1, num_steps + 1):
             new_learning_rate = rate_controller.new_learning_rate(
-                    step=step, data=step_data)
+                    step=step, data=monitor_data)
             if new_learning_rate is None:
                 break
 
