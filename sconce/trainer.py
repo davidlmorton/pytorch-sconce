@@ -64,7 +64,8 @@ class Trainer:
         if test_to_train_ratio is None:
             test_to_train_ratio = self.test_to_train_ratio
 
-        num_steps = math.ceil(num_epochs * len(self.training_data_generator))
+        num_steps = math.ceil(num_epochs * len(self.training_data_generator)) /\
+                batch_multiplier
         return self._train(num_steps=num_steps,
                 monitor=monitor,
                 rate_controller=rate_controller,
