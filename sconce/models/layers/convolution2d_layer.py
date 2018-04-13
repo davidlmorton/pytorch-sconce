@@ -4,6 +4,8 @@ from torch import nn
 class Convolution2dLayer(nn.Module):
     def __init__(self, *, in_channels, out_channels,
             stride=2, kernel_size=3, padding=1,
+            inplace_activation=False,
+            preactivate=False,
             with_batchnorm=True):
         super().__init__()
 
@@ -17,6 +19,7 @@ class Convolution2dLayer(nn.Module):
         self.kernel_size = make_tuple(kernel_size)
         self.padding = make_tuple(padding)
         self.out_channels = out_channels
+        self.preactivate = preactivate
 
         self.with_batchnorm = with_batchnorm
         if with_batchnorm:
@@ -26,7 +29,7 @@ class Convolution2dLayer(nn.Module):
                 stride=self.stride,
                 kernel_size=self.kernel_size,
                 padding=self.padding)
-        self.relu = nn.ReLU()
+        self.relu = nn.ReLU(inplace=inplace_activation)
 
     def out_height(self, in_height):
         numerator = (in_height + 2 * self.padding[0] -
@@ -38,11 +41,15 @@ class Convolution2dLayer(nn.Module):
                 (self.kernel_size[1] - 1) - 1)
         return (numerator // self.stride[1]) + 1
 
-    def forward(self, x_in):
+    def forward(self, x):
         if self.with_batchnorm:
-            x = self.bn(x_in)
+            x = self.bn(x)
+
+        if self.preactivate:
+            x = self.relu(x)
+            x = self.conv(x)
         else:
-            x = x_in
-        x = self.conv(x)
-        x = self.relu(x)
+            x = self.conv(x)
+            x = self.relu(x)
+
         return x
