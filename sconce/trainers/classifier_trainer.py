@@ -10,44 +10,26 @@ __all__ = ['ClassifierMixin', 'ClassifierTrainer']
 
 
 class ClassifierMixin(ABC):
-    def get_confusion_matrix(self, data_generator=None):
+    def get_confusion_matrix(self, data_generator=None, cache_results=True):
         if data_generator is None:
             data_generator = self.test_data_generator
 
-        matrix = None
-        data_generator.reset()
-        for i in range(len(data_generator)):
-            inputs, targets = data_generator.next()
-            out_dict = self._run_model(inputs, targets, train=False)
-            y_pred = np.argmax(out_dict['outputs'].cpu().data.numpy(), axis=1)
-            y_true = out_dict['targets'].cpu().data.numpy()
+        run_model_results = self._run_model_on_generator(data_generator,
+                cache_results=cache_results)
 
-            this_matrix = sparse.coo_matrix(
-                    (np.ones(len(targets)), (y_pred, y_true)),
-                    dtype='uint32').toarray()
-
-            if matrix is None:
-                matrix = this_matrix
-            else:
-                this_matrix, matrix = self._make_same_shape(this_matrix, matrix)
-                matrix += this_matrix
+        targets = run_model_results['targets']
+        predicted_targets = np.argmax(run_model_results['outputs'], axis=1)
+        matrix = sparse.coo_matrix((np.ones(len(targets)),
+                (predicted_targets, targets)), dtype='uint32').toarray()
         return matrix
 
-    @staticmethod
-    def _make_same_shape(a, b):
-        rows = max(a.shape[0], b.shape[0])
-        cols = max(a.shape[1], b.shape[1])
-        padded_a = np.pad(a, ((0, rows - a.shape[0]), (0, cols - a.shape[1])),
-            mode='constant', constant_values=0)
-        padded_b = np.pad(b, ((0, rows - b.shape[0]), (0, cols - b.shape[1])),
-            mode='constant', constant_values=0)
-        return padded_a, padded_b
-
-    def get_classification_accuracy(self, data_generator=None):
+    def get_classification_accuracy(self, data_generator=None,
+            cache_results=True):
         if data_generator is None:
             data_generator = self.test_data_generator
 
-        matrix = self.get_confusion_matrix(data_generator=data_generator)
+        matrix = self.get_confusion_matrix(data_generator=data_generator,
+                cache_results=cache_results)
         num_correct = np.trace(matrix)
         return num_correct / data_generator.num_samples
 

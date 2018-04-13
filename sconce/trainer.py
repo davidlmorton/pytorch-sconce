@@ -32,6 +32,13 @@ class Trainer:
         self.optimizer = optimizer
 
         self.checkpoint_filename = None
+        self._reset_cache()
+
+    def _reset_cache(self):
+        self._cache_data_generator = None
+        self._inputs = None
+        self._targets = None
+        self._outputs = None
 
     def checkpoint(self, filename=None):
         filename = self.save_model_state(filename=filename)
@@ -78,6 +85,7 @@ class Trainer:
 
     def _train(self, *, num_steps, rate_controller, monitor,
             test_to_train_ratio, batch_multiplier):
+        self._reset_cache()
         monitor.start_session(num_steps)
         rate_controller.start_session(num_steps)
 
@@ -146,6 +154,40 @@ class Trainer:
 
         out_dict = self.model(**in_dict)
         return {**out_dict, **in_dict}
+
+    def _run_model_on_generator(self, data_generator,
+            cache_results=True):
+        if self._cache_data_generator is data_generator:
+            return {'inputs': self._inputs,
+                    'targets': self._targets,
+                    'outputs': self._outputs}
+
+        inputs = []
+        targets = []
+        outputs = []
+
+        data_generator.reset()
+        for x in range(len(data_generator)):
+            i, t = data_generator.next()
+            out_dict = self._run_model(i, t, train=False)
+
+            inputs.append(i.cpu().data.numpy())
+            targets.append(t.cpu().data.numpy())
+            outputs.append(out_dict['outputs'].cpu().data.numpy())
+
+        inputs = np.concatenate(inputs)
+        targets = np.concatenate(targets)
+        outputs = np.concatenate(outputs)
+
+        if cache_results:
+            self._cache_data_generator = data_generator
+            self._inputs = inputs
+            self._targets = targets
+            self._outputs = outputs
+
+        return {'inputs': inputs,
+                'targets': targets,
+                'outputs': outputs}
 
     def _do_test_step(self):
         inputs, targets = self.test_data_generator.next()
