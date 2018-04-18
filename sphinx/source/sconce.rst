@@ -25,8 +25,6 @@ sconce.trainer module
 
 .. automodule:: sconce.trainer
     :members:
-    :undoc-members:
-    :show-inheritance:
 
 sconce.utils module
 -------------------
