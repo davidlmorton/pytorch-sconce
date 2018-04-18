@@ -363,11 +363,13 @@ dictionary with keys {‘inputs’, ‘targets’} instead. See
 <span class="go"> [torch.cuda.LongTensor of size 100 (GPU 0)])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">g</span><span class="o">.</span><span class="n">cuda</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">g</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+<span class="go">(Variable containing:</span>
 <span class="go"> [torch.FloatTensor of size 100x1x28x28],</span>
 <span class="go"> Variable containing:</span>
 <span class="go"> [torch.LongTensor of size 100])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">g</span><span class="o">.</span><span class="n">cuda</span><span class="p">(</span><span class="n">device</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;inputs&#39;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;targets&#39;</span><span class="p">:</span><span class="mi">1</span><span class="p">})</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">g</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+<span class="go">(Variable containing:</span>
 <span class="go"> [torch.cuda.FloatTensor of size 100x1x28x28 (GPU 0)],</span>
 <span class="go"> Variable containing:</span>
 <span class="go"> [torch.cuda.LongTensor of size 100 (GPU 1)])</span>

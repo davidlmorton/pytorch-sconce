@@ -50,11 +50,13 @@ class DataGenerator:
              [torch.cuda.LongTensor of size 100 (GPU 0)])
             >>> g.cuda(False)
             >>> g.next()
+            (Variable containing:
              [torch.FloatTensor of size 100x1x28x28],
              Variable containing:
              [torch.LongTensor of size 100])
             >>> g.cuda(device={'inputs':0, 'targets':1})
             >>> g.next()
+            (Variable containing:
              [torch.cuda.FloatTensor of size 100x1x28x28 (GPU 0)],
              Variable containing:
              [torch.cuda.LongTensor of size 100 (GPU 1)])
