@@ -1,0 +1,476 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>sconce.utils &mdash; Pytorch-Sconce master documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/pytorch_theme.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Pytorch-Sconce
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                master (0.6.0 )
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Package Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../sconce.html">sconce package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../sconce.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../sconce.models.html">sconce.models package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../sconce.models.html#subpackages">Subpackages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../sconce.models.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../sconce.models.html#module-sconce.models.basic_autoencoder">sconce.models.basic_autoencoder module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../sconce.models.html#module-sconce.models.basic_classifier">sconce.models.basic_classifier module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../sconce.models.html#module-sconce.models.convolutional_autoencoder_plus_perceptron">sconce.models.convolutional_autoencoder_plus_perceptron module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../sconce.models.html#module-sconce.models.multilayer_perceptron">sconce.models.multilayer_perceptron module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../sconce.models.html#module-sconce.models.simple_convolutional_autoencoder">sconce.models.simple_convolutional_autoencoder module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../sconce.models.html#module-sconce.models.wide_resnet_image_classifier">sconce.models.wide_resnet_image_classifier module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../sconce.models.html#module-sconce.models">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../sconce.monitors.html">sconce.monitors package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../sconce.monitors.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../sconce.monitors.html#module-sconce.monitors.base">sconce.monitors.base module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../sconce.monitors.html#module-sconce.monitors.dataframe_monitor">sconce.monitors.dataframe_monitor module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../sconce.monitors.html#module-sconce.monitors.losswise_monitor">sconce.monitors.losswise_monitor module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../sconce.monitors.html#module-sconce.monitors.ringbuffer_monitor">sconce.monitors.ringbuffer_monitor module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../sconce.monitors.html#module-sconce.monitors.stdout_monitor">sconce.monitors.stdout_monitor module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../sconce.monitors.html#module-sconce.monitors">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../sconce.rate_controllers.html">sconce.rate_controllers package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../sconce.rate_controllers.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../sconce.rate_controllers.html#module-sconce.rate_controllers.base">sconce.rate_controllers.base module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../sconce.rate_controllers.html#module-sconce.rate_controllers.constant_rate_controller">sconce.rate_controllers.constant_rate_controller module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../sconce.rate_controllers.html#module-sconce.rate_controllers.cosine_rate_controller">sconce.rate_controllers.cosine_rate_controller module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../sconce.rate_controllers.html#module-sconce.rate_controllers.exponential_rate_controller">sconce.rate_controllers.exponential_rate_controller module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../sconce.rate_controllers.html#module-sconce.rate_controllers.linear_rate_controller">sconce.rate_controllers.linear_rate_controller module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../sconce.rate_controllers.html#module-sconce.rate_controllers.step_rate_controller">sconce.rate_controllers.step_rate_controller module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../sconce.rate_controllers.html#module-sconce.rate_controllers.triangle_rate_controller">sconce.rate_controllers.triangle_rate_controller module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../sconce.rate_controllers.html#module-sconce.rate_controllers">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../sconce.trainers.html">sconce.trainers package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../sconce.trainers.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../sconce.trainers.html#module-sconce.trainers.autoencoder_trainer">sconce.trainers.autoencoder_trainer module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../sconce.trainers.html#module-sconce.trainers.classifier_trainer">sconce.trainers.classifier_trainer module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../sconce.trainers.html#module-sconce.trainers">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../sconce.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../sconce.html#module-sconce.data_generator">sconce.data_generator module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../sconce.html#module-sconce.trainer">sconce.trainer module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../sconce.html#module-sconce.utils">sconce.utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../sconce.html#module-sconce">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../sconce.monitors.html">sconce.monitors package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../sconce.monitors.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../sconce.monitors.html#module-sconce.monitors.base">sconce.monitors.base module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../sconce.monitors.html#module-sconce.monitors.dataframe_monitor">sconce.monitors.dataframe_monitor module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../sconce.monitors.html#module-sconce.monitors.losswise_monitor">sconce.monitors.losswise_monitor module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../sconce.monitors.html#module-sconce.monitors.ringbuffer_monitor">sconce.monitors.ringbuffer_monitor module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../sconce.monitors.html#module-sconce.monitors.stdout_monitor">sconce.monitors.stdout_monitor module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../sconce.monitors.html#module-sconce.monitors">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../sconce.trainers.html">sconce.trainers package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../sconce.trainers.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../sconce.trainers.html#module-sconce.trainers.autoencoder_trainer">sconce.trainers.autoencoder_trainer module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../sconce.trainers.html#module-sconce.trainers.classifier_trainer">sconce.trainers.classifier_trainer module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../sconce.trainers.html#module-sconce.trainers">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../sconce.models.html">sconce.models package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../sconce.models.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../sconce.models.layers.html">sconce.models.layers package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../sconce.models.layers.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../sconce.models.layers.html#module-sconce.models.layers.convolution2d_layer">sconce.models.layers.convolution2d_layer module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../sconce.models.layers.html#module-sconce.models.layers.fully_connected_layer">sconce.models.layers.fully_connected_layer module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../sconce.models.layers.html#module-sconce.models.layers">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../sconce.models.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../sconce.models.html#module-sconce.models.basic_autoencoder">sconce.models.basic_autoencoder module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../sconce.models.html#module-sconce.models.basic_classifier">sconce.models.basic_classifier module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../sconce.models.html#module-sconce.models.convolutional_autoencoder_plus_perceptron">sconce.models.convolutional_autoencoder_plus_perceptron module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../sconce.models.html#module-sconce.models.multilayer_perceptron">sconce.models.multilayer_perceptron module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../sconce.models.html#module-sconce.models.simple_convolutional_autoencoder">sconce.models.simple_convolutional_autoencoder module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../sconce.models.html#module-sconce.models.wide_resnet_image_classifier">sconce.models.wide_resnet_image_classifier module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../sconce.models.html#module-sconce.models">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../sconce.models.layers.html">sconce.models.layers package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../sconce.models.layers.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../sconce.models.layers.html#module-sconce.models.layers.convolution2d_layer">sconce.models.layers.convolution2d_layer module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../sconce.models.layers.html#module-sconce.models.layers.fully_connected_layer">sconce.models.layers.fully_connected_layer module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../sconce.models.layers.html#module-sconce.models.layers">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Pytorch-Sconce</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+      <li>sconce.utils</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for sconce.utils</h1><div class="highlight"><pre>
+<span></span><span class="c1"># flake8: noqa</span>
+<span class="c1"># This is taken (unedited) from keras:</span>
+<span class="c1">#   https://github.com/keras-team/keras/blob/master/keras/utils/generic_utils.py#L285-L439</span>
+<span class="c1">#   git sha: e6c3f77</span>
+
+<span class="kn">import</span> <span class="nn">collections</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+
+<div class="viewcode-block" id="Progbar"><a class="viewcode-back" href="../../sconce.html#sconce.utils.Progbar">[docs]</a><span class="k">class</span> <span class="nc">Progbar</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Displays a progress bar.</span>
+<span class="sd">    # Arguments</span>
+<span class="sd">        target: Total number of steps expected, None if unknown.</span>
+<span class="sd">        width: Progress bar width on screen.</span>
+<span class="sd">        verbose: Verbosity mode, 0 (silent), 1 (verbose), 2 (semi-verbose)</span>
+<span class="sd">        stateful_metrics: Iterable of string names of metrics that</span>
+<span class="sd">            should *not* be averaged over time. Metrics in this list</span>
+<span class="sd">            will be displayed as-is. All others will be averaged</span>
+<span class="sd">            by the progbar before display.</span>
+<span class="sd">        interval: Minimum visual progress update interval (in seconds).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">interval</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span>
+                 <span class="n">stateful_metrics</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">target</span> <span class="o">=</span> <span class="n">target</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">width</span> <span class="o">=</span> <span class="n">width</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span> <span class="o">=</span> <span class="n">verbose</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">interval</span> <span class="o">=</span> <span class="n">interval</span>
+        <span class="k">if</span> <span class="n">stateful_metrics</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">stateful_metrics</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">stateful_metrics</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">stateful_metrics</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_dynamic_display</span> <span class="o">=</span> <span class="p">((</span><span class="nb">hasattr</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">,</span> <span class="s1">&#39;isatty&#39;</span><span class="p">)</span> <span class="ow">and</span>
+                                  <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">isatty</span><span class="p">())</span> <span class="ow">or</span>
+                                 <span class="s1">&#39;ipykernel&#39;</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">modules</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_total_width</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_seen_so_far</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_values</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">OrderedDict</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_last_update</span> <span class="o">=</span> <span class="mi">0</span>
+
+<div class="viewcode-block" id="Progbar.update"><a class="viewcode-back" href="../../sconce.html#sconce.utils.Progbar.update">[docs]</a>    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">current</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Updates the progress bar.</span>
+<span class="sd">        # Arguments</span>
+<span class="sd">            current: Index of current step.</span>
+<span class="sd">            values: List of tuples:</span>
+<span class="sd">                `(name, value_for_last_step)`.</span>
+<span class="sd">                If `name` is in `stateful_metrics`,</span>
+<span class="sd">                `value_for_last_step` will be displayed as-is.</span>
+<span class="sd">                Else, an average of the metric over time will be displayed.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">values</span> <span class="o">=</span> <span class="n">values</span> <span class="ow">or</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">values</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">k</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">stateful_metrics</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">k</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_values</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_values</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">v</span> <span class="o">*</span> <span class="p">(</span><span class="n">current</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">_seen_so_far</span><span class="p">),</span>
+                                       <span class="n">current</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">_seen_so_far</span><span class="p">]</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_values</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">+=</span> <span class="n">v</span> <span class="o">*</span> <span class="p">(</span><span class="n">current</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">_seen_so_far</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_values</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">+=</span> <span class="p">(</span><span class="n">current</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">_seen_so_far</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_values</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">v</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_seen_so_far</span> <span class="o">=</span> <span class="n">current</span>
+
+        <span class="n">now</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+        <span class="n">info</span> <span class="o">=</span> <span class="s1">&#39; - </span><span class="si">%.0f</span><span class="s1">s&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">now</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">_start</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">now</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">_last_update</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">interval</span> <span class="ow">and</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">target</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">current</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">target</span><span class="p">):</span>
+                <span class="k">return</span>
+
+            <span class="n">prev_total_width</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_total_width</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dynamic_display</span><span class="p">:</span>
+                <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\b</span><span class="s1">&#39;</span> <span class="o">*</span> <span class="n">prev_total_width</span><span class="p">)</span>
+                <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\r</span><span class="s1">&#39;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">target</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">numdigits</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">target</span><span class="p">)))</span> <span class="o">+</span> <span class="mi">1</span>
+                <span class="n">barstr</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">%%%d</span><span class="s1">d/</span><span class="si">%d</span><span class="s1"> [&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">numdigits</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">target</span><span class="p">)</span>
+                <span class="n">bar</span> <span class="o">=</span> <span class="n">barstr</span> <span class="o">%</span> <span class="n">current</span>
+                <span class="n">prog</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">current</span><span class="p">)</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">target</span>
+                <span class="n">prog_width</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">width</span> <span class="o">*</span> <span class="n">prog</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">prog_width</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="n">bar</span> <span class="o">+=</span> <span class="p">(</span><span class="s1">&#39;=&#39;</span> <span class="o">*</span> <span class="p">(</span><span class="n">prog_width</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
+                    <span class="k">if</span> <span class="n">current</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">target</span><span class="p">:</span>
+                        <span class="n">bar</span> <span class="o">+=</span> <span class="s1">&#39;&gt;&#39;</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">bar</span> <span class="o">+=</span> <span class="s1">&#39;=&#39;</span>
+                <span class="n">bar</span> <span class="o">+=</span> <span class="p">(</span><span class="s1">&#39;.&#39;</span> <span class="o">*</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">width</span> <span class="o">-</span> <span class="n">prog_width</span><span class="p">))</span>
+                <span class="n">bar</span> <span class="o">+=</span> <span class="s1">&#39;]&#39;</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">bar</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">%7d</span><span class="s1">/Unknown&#39;</span> <span class="o">%</span> <span class="n">current</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">_total_width</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">bar</span><span class="p">)</span>
+            <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">bar</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">current</span><span class="p">:</span>
+                <span class="n">time_per_unit</span> <span class="o">=</span> <span class="p">(</span><span class="n">now</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">_start</span><span class="p">)</span> <span class="o">/</span> <span class="n">current</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">time_per_unit</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">target</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">current</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">target</span><span class="p">:</span>
+                <span class="n">eta</span> <span class="o">=</span> <span class="n">time_per_unit</span> <span class="o">*</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">target</span> <span class="o">-</span> <span class="n">current</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">eta</span> <span class="o">&gt;</span> <span class="mi">3600</span><span class="p">:</span>
+                    <span class="n">eta_format</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">%d</span><span class="s1">:</span><span class="si">%02d</span><span class="s1">:</span><span class="si">%02d</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">eta</span> <span class="o">//</span> <span class="mi">3600</span><span class="p">,</span> <span class="p">(</span><span class="n">eta</span> <span class="o">%</span> <span class="mi">3600</span><span class="p">)</span> <span class="o">//</span> <span class="mi">60</span><span class="p">,</span> <span class="n">eta</span> <span class="o">%</span> <span class="mi">60</span><span class="p">)</span>
+                <span class="k">elif</span> <span class="n">eta</span> <span class="o">&gt;</span> <span class="mi">60</span><span class="p">:</span>
+                    <span class="n">eta_format</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">%d</span><span class="s1">:</span><span class="si">%02d</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">eta</span> <span class="o">//</span> <span class="mi">60</span><span class="p">,</span> <span class="n">eta</span> <span class="o">%</span> <span class="mi">60</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">eta_format</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">%d</span><span class="s1">s&#39;</span> <span class="o">%</span> <span class="n">eta</span>
+
+                <span class="n">info</span> <span class="o">=</span> <span class="s1">&#39; - ETA: </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">eta_format</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">time_per_unit</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">:</span>
+                    <span class="n">info</span> <span class="o">+=</span> <span class="s1">&#39; </span><span class="si">%.0f</span><span class="s1">s/step&#39;</span> <span class="o">%</span> <span class="n">time_per_unit</span>
+                <span class="k">elif</span> <span class="n">time_per_unit</span> <span class="o">&gt;=</span> <span class="mf">1e-3</span><span class="p">:</span>
+                    <span class="n">info</span> <span class="o">+=</span> <span class="s1">&#39; </span><span class="si">%.0f</span><span class="s1">ms/step&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">time_per_unit</span> <span class="o">*</span> <span class="mf">1e3</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">info</span> <span class="o">+=</span> <span class="s1">&#39; </span><span class="si">%.0f</span><span class="s1">us/step&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">time_per_unit</span> <span class="o">*</span> <span class="mf">1e6</span><span class="p">)</span>
+
+            <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_values</span><span class="p">:</span>
+                <span class="n">info</span> <span class="o">+=</span> <span class="s1">&#39; - </span><span class="si">%s</span><span class="s1">:&#39;</span> <span class="o">%</span> <span class="n">k</span>
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_values</span><span class="p">[</span><span class="n">k</span><span class="p">],</span> <span class="nb">list</span><span class="p">):</span>
+                    <span class="n">avg</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">_values</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="nb">max</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_values</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="mi">1</span><span class="p">]))</span>
+                    <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">avg</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">1e-3</span><span class="p">:</span>
+                        <span class="n">info</span> <span class="o">+=</span> <span class="s1">&#39; </span><span class="si">%.4f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">avg</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">info</span> <span class="o">+=</span> <span class="s1">&#39; </span><span class="si">%.4e</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">avg</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">info</span> <span class="o">+=</span> <span class="s1">&#39; </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">_values</span><span class="p">[</span><span class="n">k</span><span class="p">]</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">_total_width</span> <span class="o">+=</span> <span class="nb">len</span><span class="p">(</span><span class="n">info</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">prev_total_width</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">_total_width</span><span class="p">:</span>
+                <span class="n">info</span> <span class="o">+=</span> <span class="p">(</span><span class="s1">&#39; &#39;</span> <span class="o">*</span> <span class="p">(</span><span class="n">prev_total_width</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">_total_width</span><span class="p">))</span>
+
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">target</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">current</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">target</span><span class="p">:</span>
+                <span class="n">info</span> <span class="o">+=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
+
+            <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">info</span><span class="p">)</span>
+            <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
+
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">target</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">current</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">target</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_values</span><span class="p">:</span>
+                    <span class="n">info</span> <span class="o">+=</span> <span class="s1">&#39; - </span><span class="si">%s</span><span class="s1">:&#39;</span> <span class="o">%</span> <span class="n">k</span>
+                    <span class="n">avg</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">_values</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="nb">max</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_values</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="mi">1</span><span class="p">]))</span>
+                    <span class="k">if</span> <span class="n">avg</span> <span class="o">&gt;</span> <span class="mf">1e-3</span><span class="p">:</span>
+                        <span class="n">info</span> <span class="o">+=</span> <span class="s1">&#39; </span><span class="si">%.4f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">avg</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">info</span> <span class="o">+=</span> <span class="s1">&#39; </span><span class="si">%.4e</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">avg</span>
+                <span class="n">info</span> <span class="o">+=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
+
+                <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">info</span><span class="p">)</span>
+                <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_last_update</span> <span class="o">=</span> <span class="n">now</span></div>
+
+<div class="viewcode-block" id="Progbar.add"><a class="viewcode-back" href="../../sconce.html#sconce.utils.Progbar.add">[docs]</a>    <span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_seen_so_far</span> <span class="o">+</span> <span class="n">n</span><span class="p">,</span> <span class="n">values</span><span class="p">)</span></div></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Pytorch-Sconce Contributors.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'master',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          
+          SphinxRtdTheme.Navigation.enableSticky();
+          
+      });
+  </script> 
+
+</body>
+</html>

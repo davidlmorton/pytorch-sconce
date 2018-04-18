@@ -1,0 +1,568 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>sconce.trainer &mdash; Pytorch-Sconce master documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/pytorch_theme.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Pytorch-Sconce
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                master (0.6.0 )
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Package Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../sconce.html">sconce package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../sconce.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../sconce.models.html">sconce.models package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../sconce.models.html#subpackages">Subpackages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../sconce.models.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../sconce.models.html#module-sconce.models.basic_autoencoder">sconce.models.basic_autoencoder module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../sconce.models.html#module-sconce.models.basic_classifier">sconce.models.basic_classifier module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../sconce.models.html#module-sconce.models.convolutional_autoencoder_plus_perceptron">sconce.models.convolutional_autoencoder_plus_perceptron module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../sconce.models.html#module-sconce.models.multilayer_perceptron">sconce.models.multilayer_perceptron module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../sconce.models.html#module-sconce.models.simple_convolutional_autoencoder">sconce.models.simple_convolutional_autoencoder module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../sconce.models.html#module-sconce.models.wide_resnet_image_classifier">sconce.models.wide_resnet_image_classifier module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../sconce.models.html#module-sconce.models">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../sconce.monitors.html">sconce.monitors package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../sconce.monitors.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../sconce.monitors.html#module-sconce.monitors.base">sconce.monitors.base module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../sconce.monitors.html#module-sconce.monitors.dataframe_monitor">sconce.monitors.dataframe_monitor module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../sconce.monitors.html#module-sconce.monitors.losswise_monitor">sconce.monitors.losswise_monitor module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../sconce.monitors.html#module-sconce.monitors.ringbuffer_monitor">sconce.monitors.ringbuffer_monitor module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../sconce.monitors.html#module-sconce.monitors.stdout_monitor">sconce.monitors.stdout_monitor module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../sconce.monitors.html#module-sconce.monitors">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../sconce.rate_controllers.html">sconce.rate_controllers package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../sconce.rate_controllers.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../sconce.rate_controllers.html#module-sconce.rate_controllers.base">sconce.rate_controllers.base module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../sconce.rate_controllers.html#module-sconce.rate_controllers.constant_rate_controller">sconce.rate_controllers.constant_rate_controller module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../sconce.rate_controllers.html#module-sconce.rate_controllers.cosine_rate_controller">sconce.rate_controllers.cosine_rate_controller module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../sconce.rate_controllers.html#module-sconce.rate_controllers.exponential_rate_controller">sconce.rate_controllers.exponential_rate_controller module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../sconce.rate_controllers.html#module-sconce.rate_controllers.linear_rate_controller">sconce.rate_controllers.linear_rate_controller module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../sconce.rate_controllers.html#module-sconce.rate_controllers.step_rate_controller">sconce.rate_controllers.step_rate_controller module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../sconce.rate_controllers.html#module-sconce.rate_controllers.triangle_rate_controller">sconce.rate_controllers.triangle_rate_controller module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../sconce.rate_controllers.html#module-sconce.rate_controllers">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../sconce.trainers.html">sconce.trainers package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../sconce.trainers.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../sconce.trainers.html#module-sconce.trainers.autoencoder_trainer">sconce.trainers.autoencoder_trainer module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../sconce.trainers.html#module-sconce.trainers.classifier_trainer">sconce.trainers.classifier_trainer module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../sconce.trainers.html#module-sconce.trainers">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../sconce.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../sconce.html#module-sconce.data_generator">sconce.data_generator module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../sconce.html#module-sconce.trainer">sconce.trainer module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../sconce.html#module-sconce.utils">sconce.utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../sconce.html#module-sconce">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../sconce.monitors.html">sconce.monitors package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../sconce.monitors.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../sconce.monitors.html#module-sconce.monitors.base">sconce.monitors.base module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../sconce.monitors.html#module-sconce.monitors.dataframe_monitor">sconce.monitors.dataframe_monitor module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../sconce.monitors.html#module-sconce.monitors.losswise_monitor">sconce.monitors.losswise_monitor module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../sconce.monitors.html#module-sconce.monitors.ringbuffer_monitor">sconce.monitors.ringbuffer_monitor module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../sconce.monitors.html#module-sconce.monitors.stdout_monitor">sconce.monitors.stdout_monitor module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../sconce.monitors.html#module-sconce.monitors">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../sconce.trainers.html">sconce.trainers package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../sconce.trainers.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../sconce.trainers.html#module-sconce.trainers.autoencoder_trainer">sconce.trainers.autoencoder_trainer module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../sconce.trainers.html#module-sconce.trainers.classifier_trainer">sconce.trainers.classifier_trainer module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../sconce.trainers.html#module-sconce.trainers">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../sconce.models.html">sconce.models package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../sconce.models.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../sconce.models.layers.html">sconce.models.layers package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../sconce.models.layers.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../sconce.models.layers.html#module-sconce.models.layers.convolution2d_layer">sconce.models.layers.convolution2d_layer module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../sconce.models.layers.html#module-sconce.models.layers.fully_connected_layer">sconce.models.layers.fully_connected_layer module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../sconce.models.layers.html#module-sconce.models.layers">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../sconce.models.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../sconce.models.html#module-sconce.models.basic_autoencoder">sconce.models.basic_autoencoder module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../sconce.models.html#module-sconce.models.basic_classifier">sconce.models.basic_classifier module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../sconce.models.html#module-sconce.models.convolutional_autoencoder_plus_perceptron">sconce.models.convolutional_autoencoder_plus_perceptron module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../sconce.models.html#module-sconce.models.multilayer_perceptron">sconce.models.multilayer_perceptron module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../sconce.models.html#module-sconce.models.simple_convolutional_autoencoder">sconce.models.simple_convolutional_autoencoder module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../sconce.models.html#module-sconce.models.wide_resnet_image_classifier">sconce.models.wide_resnet_image_classifier module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../sconce.models.html#module-sconce.models">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../sconce.models.layers.html">sconce.models.layers package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../sconce.models.layers.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../sconce.models.layers.html#module-sconce.models.layers.convolution2d_layer">sconce.models.layers.convolution2d_layer module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../sconce.models.layers.html#module-sconce.models.layers.fully_connected_layer">sconce.models.layers.fully_connected_layer module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../sconce.models.layers.html#module-sconce.models.layers">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Pytorch-Sconce</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+      <li>sconce.trainer</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for sconce.trainer</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">sconce</span> <span class="k">import</span> <span class="n">monitors</span><span class="p">,</span> <span class="n">rate_controllers</span>
+
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">tempfile</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+
+
+<div class="viewcode-block" id="Trainer"><a class="viewcode-back" href="../../sconce.html#sconce.trainer.Trainer">[docs]</a><span class="k">class</span> <span class="nc">Trainer</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">training_data_generator</span><span class="p">,</span> <span class="n">test_data_generator</span><span class="p">,</span>
+                 <span class="n">optimizer</span><span class="p">,</span> <span class="n">monitor</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">rate_controller</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">model</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">training_data_generator</span> <span class="o">=</span> <span class="n">training_data_generator</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">test_data_generator</span> <span class="o">=</span> <span class="n">test_data_generator</span>
+
+        <span class="k">if</span> <span class="n">monitor</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">metric_names</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;training_loss&#39;</span><span class="p">:</span> <span class="s1">&#39;loss&#39;</span><span class="p">,</span> <span class="s1">&#39;test_loss&#39;</span><span class="p">:</span> <span class="s1">&#39;val_loss&#39;</span><span class="p">}</span>
+            <span class="n">stdout_monitor</span> <span class="o">=</span> <span class="n">monitors</span><span class="o">.</span><span class="n">StdoutMonitor</span><span class="p">(</span><span class="n">metric_names</span><span class="o">=</span><span class="n">metric_names</span><span class="p">)</span>
+            <span class="n">monitor</span> <span class="o">=</span> <span class="n">monitors</span><span class="o">.</span><span class="n">DataframeMonitor</span><span class="p">()</span> <span class="o">+</span> <span class="n">stdout_monitor</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">monitor</span> <span class="o">=</span> <span class="n">monitor</span>
+
+        <span class="k">if</span> <span class="n">rate_controller</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">rate_controller</span> <span class="o">=</span> <span class="n">rate_controllers</span><span class="o">.</span><span class="n">CosineRateController</span><span class="p">(</span>
+                    <span class="n">max_learning_rate</span><span class="o">=</span><span class="mf">1e-4</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rate_controller</span> <span class="o">=</span> <span class="n">rate_controller</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">test_to_train_ratio</span> <span class="o">=</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">test_data_generator</span><span class="p">)</span> <span class="o">/</span>
+                                    <span class="nb">len</span><span class="p">(</span><span class="n">training_data_generator</span><span class="p">))</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">optimizer</span> <span class="o">=</span> <span class="n">optimizer</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">checkpoint_filename</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_reset_cache</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">_reset_cache</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_cache_data_generator</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_inputs</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_targets</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_outputs</span> <span class="o">=</span> <span class="kc">None</span>
+
+<div class="viewcode-block" id="Trainer.checkpoint"><a class="viewcode-back" href="../../sconce.html#sconce.trainer.Trainer.checkpoint">[docs]</a>    <span class="k">def</span> <span class="nf">checkpoint</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="n">filename</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">save_model_state</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="n">filename</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">checkpoint_filename</span> <span class="o">=</span> <span class="n">filename</span>
+        <span class="k">return</span> <span class="n">filename</span></div>
+
+<div class="viewcode-block" id="Trainer.save_model_state"><a class="viewcode-back" href="../../sconce.html#sconce.trainer.Trainer.save_model_state">[docs]</a>    <span class="k">def</span> <span class="nf">save_model_state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">filename</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">with</span> <span class="n">tempfile</span><span class="o">.</span><span class="n">NamedTemporaryFile</span><span class="p">()</span> <span class="k">as</span> <span class="n">ofile</span><span class="p">:</span>
+                <span class="n">filename</span> <span class="o">=</span> <span class="n">ofile</span><span class="o">.</span><span class="n">name</span>
+        <span class="n">torch</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">state_dict</span><span class="p">(),</span> <span class="n">filename</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">filename</span></div>
+
+<div class="viewcode-block" id="Trainer.restore"><a class="viewcode-back" href="../../sconce.html#sconce.trainer.Trainer.restore">[docs]</a>    <span class="k">def</span> <span class="nf">restore</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">checkpoint_filename</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;You haven&#39;t checkpointed this trainer&#39;s &quot;</span>
+                    <span class="s2">&quot;model yet!&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">load_model_state</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">checkpoint_filename</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Trainer.load_model_state"><a class="viewcode-back" href="../../sconce.html#sconce.trainer.Trainer.load_model_state">[docs]</a>    <span class="k">def</span> <span class="nf">load_model_state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">load_state_dict</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">filename</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="Trainer.train"><a class="viewcode-back" href="../../sconce.html#sconce.trainer.Trainer.train">[docs]</a>    <span class="k">def</span> <span class="nf">train</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">num_epochs</span><span class="p">,</span> <span class="n">monitor</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="n">rate_controller</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">test_to_train_ratio</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="n">batch_multiplier</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+        <span class="k">assert</span> <span class="n">batch_multiplier</span> <span class="o">&gt;</span> <span class="mi">0</span>
+        <span class="k">assert</span> <span class="nb">int</span><span class="p">(</span><span class="n">batch_multiplier</span><span class="p">)</span> <span class="o">==</span> <span class="n">batch_multiplier</span>
+
+        <span class="k">if</span> <span class="n">monitor</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">monitor</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">monitor</span>
+        <span class="k">if</span> <span class="n">rate_controller</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">rate_controller</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rate_controller</span>
+        <span class="k">if</span> <span class="n">test_to_train_ratio</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">test_to_train_ratio</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">test_to_train_ratio</span>
+
+        <span class="n">num_steps</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">num_epochs</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">training_data_generator</span><span class="p">))</span>
+        <span class="n">num_steps</span> <span class="o">//=</span> <span class="n">batch_multiplier</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_train</span><span class="p">(</span><span class="n">num_steps</span><span class="o">=</span><span class="n">num_steps</span><span class="p">,</span>
+                <span class="n">monitor</span><span class="o">=</span><span class="n">monitor</span><span class="p">,</span>
+                <span class="n">rate_controller</span><span class="o">=</span><span class="n">rate_controller</span><span class="p">,</span>
+                <span class="n">test_to_train_ratio</span><span class="o">=</span><span class="n">test_to_train_ratio</span><span class="p">,</span>
+                <span class="n">batch_multiplier</span><span class="o">=</span><span class="n">batch_multiplier</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">_train</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">num_steps</span><span class="p">,</span> <span class="n">rate_controller</span><span class="p">,</span> <span class="n">monitor</span><span class="p">,</span>
+            <span class="n">test_to_train_ratio</span><span class="p">,</span> <span class="n">batch_multiplier</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_reset_cache</span><span class="p">()</span>
+        <span class="n">monitor</span><span class="o">.</span><span class="n">start_session</span><span class="p">(</span><span class="n">num_steps</span><span class="p">)</span>
+        <span class="n">rate_controller</span><span class="o">.</span><span class="n">start_session</span><span class="p">(</span><span class="n">num_steps</span><span class="p">)</span>
+
+        <span class="n">iterations_since_test</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="n">monitor_data</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">step</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">num_steps</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="n">new_learning_rate</span> <span class="o">=</span> <span class="n">rate_controller</span><span class="o">.</span><span class="n">new_learning_rate</span><span class="p">(</span>
+                    <span class="n">step</span><span class="o">=</span><span class="n">step</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">monitor_data</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">new_learning_rate</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">break</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">_update_learning_rate</span><span class="p">(</span><span class="n">new_learning_rate</span><span class="p">)</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">batch_multiplier</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+                <span class="n">inputs</span><span class="p">,</span> <span class="n">targets</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">training_data_generator</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+                <span class="n">step_dict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_do_step</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">targets</span><span class="p">,</span> <span class="n">train</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+                <span class="n">loss</span> <span class="o">=</span> <span class="n">step_dict</span><span class="p">[</span><span class="s1">&#39;loss&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">batch_multiplier</span>
+                <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+
+                <span class="n">training_step_dict</span> <span class="o">=</span> <span class="p">{</span><span class="n">f</span><span class="s1">&#39;training_</span><span class="si">{k}</span><span class="s1">&#39;</span><span class="p">:</span> <span class="n">v</span>
+                        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">step_dict</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+
+                <span class="n">iterations_since_test</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="k">if</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">iterations_since_test</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">test_to_train_ratio</span><span class="p">:</span>
+                    <span class="n">test_step_dict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_do_test_step</span><span class="p">()</span>
+                    <span class="n">iterations_since_test</span> <span class="o">=</span> <span class="mi">0</span>
+
+                    <span class="n">monitor_data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;learning_rate&#39;</span><span class="p">:</span> <span class="n">new_learning_rate</span><span class="p">,</span>
+                            <span class="o">**</span><span class="n">training_step_dict</span><span class="p">,</span>
+                            <span class="o">**</span><span class="n">test_step_dict</span><span class="p">}</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">monitor_data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;learning_rate&#39;</span><span class="p">:</span> <span class="n">new_learning_rate</span><span class="p">,</span>
+                            <span class="o">**</span><span class="n">training_step_dict</span><span class="p">}</span>
+
+                <span class="n">fraction</span> <span class="o">=</span> <span class="n">i</span> <span class="o">/</span> <span class="n">batch_multiplier</span>
+                <span class="n">monitor</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">monitor_data</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="n">step</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">fraction</span><span class="p">)</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+
+        <span class="n">monitor</span><span class="o">.</span><span class="n">end_session</span><span class="p">()</span>
+
+        <span class="k">return</span> <span class="n">monitor</span>
+
+    <span class="k">def</span> <span class="nf">_update_learning_rate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_learning_rate</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">param_group</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">optimizer</span><span class="o">.</span><span class="n">param_groups</span><span class="p">:</span>
+            <span class="n">param_group</span><span class="p">[</span><span class="s1">&#39;lr&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_learning_rate</span>
+        <span class="k">return</span> <span class="n">new_learning_rate</span>
+
+    <span class="k">def</span> <span class="nf">_do_step</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">targets</span><span class="p">,</span> <span class="n">train</span><span class="p">):</span>
+        <span class="n">run_dict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_run_model</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">targets</span><span class="p">,</span> <span class="n">train</span><span class="o">=</span><span class="n">train</span><span class="p">)</span>
+        <span class="n">loss_dict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">calculate_loss</span><span class="p">(</span><span class="o">**</span><span class="n">run_dict</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="s1">&#39;calculate_metrics&#39;</span><span class="p">):</span>
+            <span class="n">metrics_dict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">calculate_metrics</span><span class="p">(</span><span class="o">**</span><span class="n">run_dict</span><span class="p">,</span>
+                    <span class="o">**</span><span class="n">loss_dict</span><span class="p">)</span>
+            <span class="k">return</span> <span class="p">{</span><span class="o">**</span><span class="n">metrics_dict</span><span class="p">,</span> <span class="o">**</span><span class="n">loss_dict</span><span class="p">,</span> <span class="o">**</span><span class="n">run_dict</span><span class="p">}</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">{</span><span class="o">**</span><span class="n">loss_dict</span><span class="p">,</span> <span class="o">**</span><span class="n">run_dict</span><span class="p">}</span>
+
+    <span class="k">def</span> <span class="nf">_run_model</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">targets</span><span class="p">,</span> <span class="n">train</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">train</span><span class="p">)</span>
+        <span class="n">in_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;inputs&#39;</span><span class="p">:</span> <span class="n">inputs</span><span class="p">,</span> <span class="s1">&#39;targets&#39;</span><span class="p">:</span> <span class="n">targets</span><span class="p">}</span>
+
+        <span class="n">out_dict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">(</span><span class="o">**</span><span class="n">in_dict</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">{</span><span class="o">**</span><span class="n">out_dict</span><span class="p">,</span> <span class="o">**</span><span class="n">in_dict</span><span class="p">}</span>
+
+    <span class="k">def</span> <span class="nf">_run_model_on_generator</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_generator</span><span class="p">,</span>
+            <span class="n">cache_results</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cache_data_generator</span> <span class="ow">is</span> <span class="n">data_generator</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;inputs&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_inputs</span><span class="p">,</span>
+                    <span class="s1">&#39;targets&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_targets</span><span class="p">,</span>
+                    <span class="s1">&#39;outputs&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_outputs</span><span class="p">}</span>
+
+        <span class="n">inputs</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">targets</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">outputs</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="n">data_generator</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data_generator</span><span class="p">)):</span>
+            <span class="n">i</span><span class="p">,</span> <span class="n">t</span> <span class="o">=</span> <span class="n">data_generator</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+            <span class="n">out_dict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_run_model</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">train</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+            <span class="n">inputs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">numpy</span><span class="p">())</span>
+            <span class="n">targets</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">numpy</span><span class="p">())</span>
+            <span class="n">outputs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">out_dict</span><span class="p">[</span><span class="s1">&#39;outputs&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">numpy</span><span class="p">())</span>
+
+        <span class="n">inputs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span>
+        <span class="n">targets</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">targets</span><span class="p">)</span>
+        <span class="n">outputs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">outputs</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">cache_results</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_cache_data_generator</span> <span class="o">=</span> <span class="n">data_generator</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_inputs</span> <span class="o">=</span> <span class="n">inputs</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_targets</span> <span class="o">=</span> <span class="n">targets</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_outputs</span> <span class="o">=</span> <span class="n">outputs</span>
+
+        <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;inputs&#39;</span><span class="p">:</span> <span class="n">inputs</span><span class="p">,</span>
+                <span class="s1">&#39;targets&#39;</span><span class="p">:</span> <span class="n">targets</span><span class="p">,</span>
+                <span class="s1">&#39;outputs&#39;</span><span class="p">:</span> <span class="n">outputs</span><span class="p">}</span>
+
+    <span class="k">def</span> <span class="nf">_do_test_step</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">inputs</span><span class="p">,</span> <span class="n">targets</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">test_data_generator</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+        <span class="n">step_dict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_do_step</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">targets</span><span class="p">,</span> <span class="n">train</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">{</span><span class="n">f</span><span class="s1">&#39;test_</span><span class="si">{k}</span><span class="s1">&#39;</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">step_dict</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+
+<div class="viewcode-block" id="Trainer.test"><a class="viewcode-back" href="../../sconce.html#sconce.trainer.Trainer.test">[docs]</a>    <span class="k">def</span> <span class="nf">test</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">monitor</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">monitor</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">metric_names</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;test_loss&#39;</span><span class="p">:</span> <span class="s1">&#39;loss&#39;</span><span class="p">}</span>
+            <span class="n">stdout_monitor</span> <span class="o">=</span> <span class="n">monitors</span><span class="o">.</span><span class="n">StdoutMonitor</span><span class="p">(</span><span class="n">metric_names</span><span class="o">=</span><span class="n">metric_names</span><span class="p">)</span>
+            <span class="n">monitor</span> <span class="o">=</span> <span class="n">monitors</span><span class="o">.</span><span class="n">DataframeMonitor</span><span class="p">()</span> <span class="o">+</span> <span class="n">stdout_monitor</span>
+
+        <span class="n">num_steps</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">training_data_generator</span><span class="p">)</span>
+        <span class="n">monitor</span><span class="o">.</span><span class="n">start_session</span><span class="p">(</span><span class="n">num_steps</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">step</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">num_steps</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="n">step_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_do_test_step</span><span class="p">()</span>
+
+            <span class="n">monitor</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">step_data</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="n">step</span><span class="p">)</span>
+        <span class="n">monitor</span><span class="o">.</span><span class="n">end_session</span><span class="p">()</span>
+
+        <span class="k">return</span> <span class="n">monitor</span></div>
+
+<div class="viewcode-block" id="Trainer.multi_train"><a class="viewcode-back" href="../../sconce.html#sconce.trainer.Trainer.multi_train">[docs]</a>    <span class="k">def</span> <span class="nf">multi_train</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">num_cycles</span><span class="p">,</span> <span class="n">cycle_length</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+            <span class="n">cycle_multiplier</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">this_cycle_length</span> <span class="o">=</span> <span class="n">cycle_length</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_cycles</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">num_epochs</span><span class="o">=</span><span class="n">this_cycle_length</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+            <span class="n">this_cycle_length</span> <span class="o">*=</span> <span class="n">cycle_multiplier</span></div>
+
+<div class="viewcode-block" id="Trainer.survey_learning_rate"><a class="viewcode-back" href="../../sconce.html#sconce.trainer.Trainer.survey_learning_rate">[docs]</a>    <span class="k">def</span> <span class="nf">survey_learning_rate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">num_epochs</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+            <span class="n">min_learning_rate</span><span class="o">=</span><span class="mf">1e-12</span><span class="p">,</span>
+            <span class="n">max_learning_rate</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+            <span class="n">monitor</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="n">batch_multiplier</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+            <span class="n">rate_controller_class</span><span class="o">=</span><span class="n">rate_controllers</span><span class="o">.</span><span class="n">ExponentialRateController</span><span class="p">,</span>
+            <span class="n">stop_factor</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+            <span class="o">**</span><span class="n">rate_controller_kwargs</span><span class="p">):</span>
+
+        <span class="k">if</span> <span class="n">monitor</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">metric_names</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;training_loss&#39;</span><span class="p">:</span> <span class="s1">&#39;loss&#39;</span><span class="p">}</span>
+            <span class="n">stdout_monitor</span> <span class="o">=</span> <span class="n">monitors</span><span class="o">.</span><span class="n">StdoutMonitor</span><span class="p">(</span><span class="n">metric_names</span><span class="o">=</span><span class="n">metric_names</span><span class="p">)</span>
+            <span class="n">monitor</span> <span class="o">=</span> <span class="n">monitors</span><span class="o">.</span><span class="n">DataframeMonitor</span><span class="p">()</span> <span class="o">+</span> <span class="n">stdout_monitor</span>
+
+        <span class="n">filename</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">save_model_state</span><span class="p">()</span>
+
+        <span class="n">rate_controller</span> <span class="o">=</span> <span class="n">rate_controller_class</span><span class="p">(</span>
+                <span class="n">min_learning_rate</span><span class="o">=</span><span class="n">min_learning_rate</span><span class="p">,</span>
+                <span class="n">max_learning_rate</span><span class="o">=</span><span class="n">max_learning_rate</span><span class="p">,</span>
+                <span class="n">stop_factor</span><span class="o">=</span><span class="n">stop_factor</span><span class="p">,</span>
+                <span class="o">**</span><span class="n">rate_controller_kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">num_epochs</span><span class="o">=</span><span class="n">num_epochs</span><span class="p">,</span>
+                <span class="n">monitor</span><span class="o">=</span><span class="n">monitor</span><span class="p">,</span>
+                <span class="n">rate_controller</span><span class="o">=</span><span class="n">rate_controller</span><span class="p">,</span>
+                <span class="n">test_to_train_ratio</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                <span class="n">batch_multiplier</span><span class="o">=</span><span class="n">batch_multiplier</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">load_model_state</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">monitor</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">num_trainable_parameters</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">model_parameters</span> <span class="o">=</span> <span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">p</span><span class="p">:</span> <span class="n">p</span><span class="o">.</span><span class="n">requires_grad</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">())</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">prod</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">size</span><span class="p">())</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">model_parameters</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">params</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Pytorch-Sconce Contributors.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'master',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          
+          SphinxRtdTheme.Navigation.enableSticky();
+          
+      });
+  </script> 
+
+</body>
+</html>

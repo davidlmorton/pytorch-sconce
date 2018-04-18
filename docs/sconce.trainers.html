@@ -1,0 +1,391 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>sconce.trainers package &mdash; Pytorch-Sconce master documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato" type="text/css" />
+  <link rel="stylesheet" href="_static/css/pytorch_theme.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="sconce.rate_controllers package" href="sconce.rate_controllers.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Pytorch-Sconce
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                master (0.6.0 )
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Package Reference</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="sconce.html">sconce package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="sconce.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="sconce.models.html">sconce.models package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sconce.models.html#subpackages">Subpackages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sconce.models.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sconce.models.html#module-sconce.models.basic_autoencoder">sconce.models.basic_autoencoder module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sconce.models.html#module-sconce.models.basic_classifier">sconce.models.basic_classifier module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sconce.models.html#module-sconce.models.convolutional_autoencoder_plus_perceptron">sconce.models.convolutional_autoencoder_plus_perceptron module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sconce.models.html#module-sconce.models.multilayer_perceptron">sconce.models.multilayer_perceptron module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sconce.models.html#module-sconce.models.simple_convolutional_autoencoder">sconce.models.simple_convolutional_autoencoder module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sconce.models.html#module-sconce.models.wide_resnet_image_classifier">sconce.models.wide_resnet_image_classifier module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sconce.models.html#module-sconce.models">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sconce.monitors.html">sconce.monitors package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sconce.monitors.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sconce.monitors.html#module-sconce.monitors.base">sconce.monitors.base module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sconce.monitors.html#module-sconce.monitors.dataframe_monitor">sconce.monitors.dataframe_monitor module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sconce.monitors.html#module-sconce.monitors.losswise_monitor">sconce.monitors.losswise_monitor module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sconce.monitors.html#module-sconce.monitors.ringbuffer_monitor">sconce.monitors.ringbuffer_monitor module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sconce.monitors.html#module-sconce.monitors.stdout_monitor">sconce.monitors.stdout_monitor module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sconce.monitors.html#module-sconce.monitors">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sconce.rate_controllers.html">sconce.rate_controllers package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sconce.rate_controllers.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sconce.rate_controllers.html#module-sconce.rate_controllers.base">sconce.rate_controllers.base module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sconce.rate_controllers.html#module-sconce.rate_controllers.constant_rate_controller">sconce.rate_controllers.constant_rate_controller module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sconce.rate_controllers.html#module-sconce.rate_controllers.cosine_rate_controller">sconce.rate_controllers.cosine_rate_controller module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sconce.rate_controllers.html#module-sconce.rate_controllers.exponential_rate_controller">sconce.rate_controllers.exponential_rate_controller module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sconce.rate_controllers.html#module-sconce.rate_controllers.linear_rate_controller">sconce.rate_controllers.linear_rate_controller module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sconce.rate_controllers.html#module-sconce.rate_controllers.step_rate_controller">sconce.rate_controllers.step_rate_controller module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sconce.rate_controllers.html#module-sconce.rate_controllers.triangle_rate_controller">sconce.rate_controllers.triangle_rate_controller module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sconce.rate_controllers.html#module-sconce.rate_controllers">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">sconce.trainers package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-sconce.trainers.autoencoder_trainer">sconce.trainers.autoencoder_trainer module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-sconce.trainers.classifier_trainer">sconce.trainers.classifier_trainer module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-sconce.trainers">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="sconce.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sconce.html#module-sconce.data_generator">sconce.data_generator module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sconce.html#module-sconce.trainer">sconce.trainer module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sconce.html#module-sconce.utils">sconce.utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sconce.html#module-sconce">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="sconce.monitors.html">sconce.monitors package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="sconce.monitors.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sconce.monitors.html#module-sconce.monitors.base">sconce.monitors.base module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sconce.monitors.html#module-sconce.monitors.dataframe_monitor">sconce.monitors.dataframe_monitor module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sconce.monitors.html#module-sconce.monitors.losswise_monitor">sconce.monitors.losswise_monitor module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sconce.monitors.html#module-sconce.monitors.ringbuffer_monitor">sconce.monitors.ringbuffer_monitor module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sconce.monitors.html#module-sconce.monitors.stdout_monitor">sconce.monitors.stdout_monitor module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sconce.monitors.html#module-sconce.monitors">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">sconce.trainers package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-sconce.trainers.autoencoder_trainer">sconce.trainers.autoencoder_trainer module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-sconce.trainers.classifier_trainer">sconce.trainers.classifier_trainer module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-sconce.trainers">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="sconce.models.html">sconce.models package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="sconce.models.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="sconce.models.layers.html">sconce.models.layers package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sconce.models.layers.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sconce.models.layers.html#module-sconce.models.layers.convolution2d_layer">sconce.models.layers.convolution2d_layer module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sconce.models.layers.html#module-sconce.models.layers.fully_connected_layer">sconce.models.layers.fully_connected_layer module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sconce.models.layers.html#module-sconce.models.layers">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="sconce.models.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sconce.models.html#module-sconce.models.basic_autoencoder">sconce.models.basic_autoencoder module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sconce.models.html#module-sconce.models.basic_classifier">sconce.models.basic_classifier module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sconce.models.html#module-sconce.models.convolutional_autoencoder_plus_perceptron">sconce.models.convolutional_autoencoder_plus_perceptron module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sconce.models.html#module-sconce.models.multilayer_perceptron">sconce.models.multilayer_perceptron module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sconce.models.html#module-sconce.models.simple_convolutional_autoencoder">sconce.models.simple_convolutional_autoencoder module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sconce.models.html#module-sconce.models.wide_resnet_image_classifier">sconce.models.wide_resnet_image_classifier module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sconce.models.html#module-sconce.models">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="sconce.models.layers.html">sconce.models.layers package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="sconce.models.layers.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sconce.models.layers.html#module-sconce.models.layers.convolution2d_layer">sconce.models.layers.convolution2d_layer module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sconce.models.layers.html#module-sconce.models.layers.fully_connected_layer">sconce.models.layers.fully_connected_layer module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sconce.models.layers.html#module-sconce.models.layers">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Pytorch-Sconce</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="sconce.html">sconce package</a> &raquo;</li>
+        
+      <li>sconce.trainers package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/sconce.trainers.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="sconce-trainers-package">
+<h1>sconce.trainers package<a class="headerlink" href="#sconce-trainers-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-sconce.trainers.autoencoder_trainer">
+<span id="sconce-trainers-autoencoder-trainer-module"></span><h2>sconce.trainers.autoencoder_trainer module<a class="headerlink" href="#module-sconce.trainers.autoencoder_trainer" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="sconce.trainers.autoencoder_trainer.AutoencoderMixin">
+<em class="property">class </em><code class="descclassname">sconce.trainers.autoencoder_trainer.</code><code class="descname">AutoencoderMixin</code><a class="reference internal" href="_modules/sconce/trainers/autoencoder_trainer.html#AutoencoderMixin"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.trainers.autoencoder_trainer.AutoencoderMixin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/abc.html#abc.ABC" title="(in Python v3.6)"><code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></a></p>
+<dl class="method">
+<dt id="sconce.trainers.autoencoder_trainer.AutoencoderMixin.plot_input_output_pairs">
+<code class="descname">plot_input_output_pairs</code><span class="sig-paren">(</span><em>title='A Sampling of Autoencoder Results'</em>, <em>num_cols=10</em>, <em>figsize=(15</em>, <em>3.2)</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/trainers/autoencoder_trainer.html#AutoencoderMixin.plot_input_output_pairs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.trainers.autoencoder_trainer.AutoencoderMixin.plot_input_output_pairs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sconce.trainers.autoencoder_trainer.AutoencoderMixin.plot_latent_space">
+<code class="descname">plot_latent_space</code><span class="sig-paren">(</span><em>title='Latent Representation'</em>, <em>figsize=(8</em>, <em>8)</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/trainers/autoencoder_trainer.html#AutoencoderMixin.plot_latent_space"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.trainers.autoencoder_trainer.AutoencoderMixin.plot_latent_space" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="sconce.trainers.autoencoder_trainer.AutoencoderTrainer">
+<em class="property">class </em><code class="descclassname">sconce.trainers.autoencoder_trainer.</code><code class="descname">AutoencoderTrainer</code><span class="sig-paren">(</span><em>*</em>, <em>model</em>, <em>training_data_generator</em>, <em>test_data_generator</em>, <em>optimizer</em>, <em>monitor=None</em>, <em>rate_controller=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/trainers/autoencoder_trainer.html#AutoencoderTrainer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.trainers.autoencoder_trainer.AutoencoderTrainer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="sconce.html#sconce.trainer.Trainer" title="sconce.trainer.Trainer"><code class="xref py py-class docutils literal notranslate"><span class="pre">sconce.trainer.Trainer</span></code></a>, <a class="reference internal" href="#sconce.trainers.autoencoder_trainer.AutoencoderMixin" title="sconce.trainers.autoencoder_trainer.AutoencoderMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">sconce.trainers.autoencoder_trainer.AutoencoderMixin</span></code></a></p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-sconce.trainers.classifier_trainer">
+<span id="sconce-trainers-classifier-trainer-module"></span><h2>sconce.trainers.classifier_trainer module<a class="headerlink" href="#module-sconce.trainers.classifier_trainer" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="sconce.trainers.classifier_trainer.ClassifierMixin">
+<em class="property">class </em><code class="descclassname">sconce.trainers.classifier_trainer.</code><code class="descname">ClassifierMixin</code><a class="reference internal" href="_modules/sconce/trainers/classifier_trainer.html#ClassifierMixin"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.trainers.classifier_trainer.ClassifierMixin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/abc.html#abc.ABC" title="(in Python v3.6)"><code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></a></p>
+<dl class="method">
+<dt id="sconce.trainers.classifier_trainer.ClassifierMixin.get_classification_accuracy">
+<code class="descname">get_classification_accuracy</code><span class="sig-paren">(</span><em>data_generator=None</em>, <em>cache_results=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/trainers/classifier_trainer.html#ClassifierMixin.get_classification_accuracy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.trainers.classifier_trainer.ClassifierMixin.get_classification_accuracy" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sconce.trainers.classifier_trainer.ClassifierMixin.get_confusion_matrix">
+<code class="descname">get_confusion_matrix</code><span class="sig-paren">(</span><em>data_generator=None</em>, <em>cache_results=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/trainers/classifier_trainer.html#ClassifierMixin.get_confusion_matrix"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.trainers.classifier_trainer.ClassifierMixin.get_confusion_matrix" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sconce.trainers.classifier_trainer.ClassifierMixin.plot_confusion_matrix">
+<code class="descname">plot_confusion_matrix</code><span class="sig-paren">(</span><em>data_generator=None</em>, <em>**heatmap_kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/trainers/classifier_trainer.html#ClassifierMixin.plot_confusion_matrix"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.trainers.classifier_trainer.ClassifierMixin.plot_confusion_matrix" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sconce.trainers.classifier_trainer.ClassifierMixin.plot_samples">
+<code class="descname">plot_samples</code><span class="sig-paren">(</span><em>predicted_label</em>, <em>true_label=None</em>, <em>data_generator=None</em>, <em>sort_by='rising predicted label score'</em>, <em>num_samples=7</em>, <em>num_cols=7</em>, <em>figure_width=15</em>, <em>image_height=3</em>, <em>cache_results=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/trainers/classifier_trainer.html#ClassifierMixin.plot_samples"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.trainers.classifier_trainer.ClassifierMixin.plot_samples" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="sconce.trainers.classifier_trainer.ClassifierTrainer">
+<em class="property">class </em><code class="descclassname">sconce.trainers.classifier_trainer.</code><code class="descname">ClassifierTrainer</code><span class="sig-paren">(</span><em>*</em>, <em>model</em>, <em>training_data_generator</em>, <em>test_data_generator</em>, <em>optimizer</em>, <em>monitor=None</em>, <em>rate_controller=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/trainers/classifier_trainer.html#ClassifierTrainer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.trainers.classifier_trainer.ClassifierTrainer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="sconce.html#sconce.trainer.Trainer" title="sconce.trainer.Trainer"><code class="xref py py-class docutils literal notranslate"><span class="pre">sconce.trainer.Trainer</span></code></a>, <a class="reference internal" href="#sconce.trainers.classifier_trainer.ClassifierMixin" title="sconce.trainers.classifier_trainer.ClassifierMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">sconce.trainers.classifier_trainer.ClassifierMixin</span></code></a></p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-sconce.trainers">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-sconce.trainers" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="sconce.rate_controllers.html" class="btn btn-neutral" title="sconce.rate_controllers package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Pytorch-Sconce Contributors.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'master',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          
+          SphinxRtdTheme.Navigation.enableSticky();
+          
+      });
+  </script> 
+
+</body>
+</html>

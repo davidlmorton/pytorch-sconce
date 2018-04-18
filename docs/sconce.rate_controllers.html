@@ -1,0 +1,498 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>sconce.rate_controllers package &mdash; Pytorch-Sconce master documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato" type="text/css" />
+  <link rel="stylesheet" href="_static/css/pytorch_theme.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="sconce.trainers package" href="sconce.trainers.html" />
+    <link rel="prev" title="sconce.monitors package" href="sconce.monitors.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Pytorch-Sconce
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                master (0.6.0 )
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Package Reference</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="sconce.html">sconce package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="sconce.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="sconce.models.html">sconce.models package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sconce.models.html#subpackages">Subpackages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sconce.models.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sconce.models.html#module-sconce.models.basic_autoencoder">sconce.models.basic_autoencoder module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sconce.models.html#module-sconce.models.basic_classifier">sconce.models.basic_classifier module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sconce.models.html#module-sconce.models.convolutional_autoencoder_plus_perceptron">sconce.models.convolutional_autoencoder_plus_perceptron module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sconce.models.html#module-sconce.models.multilayer_perceptron">sconce.models.multilayer_perceptron module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sconce.models.html#module-sconce.models.simple_convolutional_autoencoder">sconce.models.simple_convolutional_autoencoder module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sconce.models.html#module-sconce.models.wide_resnet_image_classifier">sconce.models.wide_resnet_image_classifier module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sconce.models.html#module-sconce.models">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sconce.monitors.html">sconce.monitors package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sconce.monitors.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sconce.monitors.html#module-sconce.monitors.base">sconce.monitors.base module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sconce.monitors.html#module-sconce.monitors.dataframe_monitor">sconce.monitors.dataframe_monitor module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sconce.monitors.html#module-sconce.monitors.losswise_monitor">sconce.monitors.losswise_monitor module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sconce.monitors.html#module-sconce.monitors.ringbuffer_monitor">sconce.monitors.ringbuffer_monitor module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sconce.monitors.html#module-sconce.monitors.stdout_monitor">sconce.monitors.stdout_monitor module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sconce.monitors.html#module-sconce.monitors">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">sconce.rate_controllers package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-sconce.rate_controllers.base">sconce.rate_controllers.base module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-sconce.rate_controllers.constant_rate_controller">sconce.rate_controllers.constant_rate_controller module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-sconce.rate_controllers.cosine_rate_controller">sconce.rate_controllers.cosine_rate_controller module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-sconce.rate_controllers.exponential_rate_controller">sconce.rate_controllers.exponential_rate_controller module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-sconce.rate_controllers.linear_rate_controller">sconce.rate_controllers.linear_rate_controller module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-sconce.rate_controllers.step_rate_controller">sconce.rate_controllers.step_rate_controller module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-sconce.rate_controllers.triangle_rate_controller">sconce.rate_controllers.triangle_rate_controller module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-sconce.rate_controllers">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sconce.trainers.html">sconce.trainers package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sconce.trainers.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sconce.trainers.html#module-sconce.trainers.autoencoder_trainer">sconce.trainers.autoencoder_trainer module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sconce.trainers.html#module-sconce.trainers.classifier_trainer">sconce.trainers.classifier_trainer module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sconce.trainers.html#module-sconce.trainers">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="sconce.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sconce.html#module-sconce.data_generator">sconce.data_generator module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sconce.html#module-sconce.trainer">sconce.trainer module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sconce.html#module-sconce.utils">sconce.utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sconce.html#module-sconce">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="sconce.monitors.html">sconce.monitors package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="sconce.monitors.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sconce.monitors.html#module-sconce.monitors.base">sconce.monitors.base module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sconce.monitors.html#module-sconce.monitors.dataframe_monitor">sconce.monitors.dataframe_monitor module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sconce.monitors.html#module-sconce.monitors.losswise_monitor">sconce.monitors.losswise_monitor module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sconce.monitors.html#module-sconce.monitors.ringbuffer_monitor">sconce.monitors.ringbuffer_monitor module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sconce.monitors.html#module-sconce.monitors.stdout_monitor">sconce.monitors.stdout_monitor module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sconce.monitors.html#module-sconce.monitors">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="sconce.trainers.html">sconce.trainers package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="sconce.trainers.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sconce.trainers.html#module-sconce.trainers.autoencoder_trainer">sconce.trainers.autoencoder_trainer module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sconce.trainers.html#module-sconce.trainers.classifier_trainer">sconce.trainers.classifier_trainer module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sconce.trainers.html#module-sconce.trainers">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="sconce.models.html">sconce.models package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="sconce.models.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="sconce.models.layers.html">sconce.models.layers package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sconce.models.layers.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sconce.models.layers.html#module-sconce.models.layers.convolution2d_layer">sconce.models.layers.convolution2d_layer module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sconce.models.layers.html#module-sconce.models.layers.fully_connected_layer">sconce.models.layers.fully_connected_layer module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sconce.models.layers.html#module-sconce.models.layers">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="sconce.models.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sconce.models.html#module-sconce.models.basic_autoencoder">sconce.models.basic_autoencoder module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sconce.models.html#module-sconce.models.basic_classifier">sconce.models.basic_classifier module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sconce.models.html#module-sconce.models.convolutional_autoencoder_plus_perceptron">sconce.models.convolutional_autoencoder_plus_perceptron module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sconce.models.html#module-sconce.models.multilayer_perceptron">sconce.models.multilayer_perceptron module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sconce.models.html#module-sconce.models.simple_convolutional_autoencoder">sconce.models.simple_convolutional_autoencoder module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sconce.models.html#module-sconce.models.wide_resnet_image_classifier">sconce.models.wide_resnet_image_classifier module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sconce.models.html#module-sconce.models">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="sconce.models.layers.html">sconce.models.layers package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="sconce.models.layers.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sconce.models.layers.html#module-sconce.models.layers.convolution2d_layer">sconce.models.layers.convolution2d_layer module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sconce.models.layers.html#module-sconce.models.layers.fully_connected_layer">sconce.models.layers.fully_connected_layer module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sconce.models.layers.html#module-sconce.models.layers">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Pytorch-Sconce</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="sconce.html">sconce package</a> &raquo;</li>
+        
+      <li>sconce.rate_controllers package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/sconce.rate_controllers.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="sconce-rate-controllers-package">
+<h1>sconce.rate_controllers package<a class="headerlink" href="#sconce-rate-controllers-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-sconce.rate_controllers.base">
+<span id="sconce-rate-controllers-base-module"></span><h2>sconce.rate_controllers.base module<a class="headerlink" href="#module-sconce.rate_controllers.base" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="sconce.rate_controllers.base.RateController">
+<em class="property">class </em><code class="descclassname">sconce.rate_controllers.base.</code><code class="descname">RateController</code><a class="reference internal" href="_modules/sconce/rate_controllers/base.html#RateController"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.rate_controllers.base.RateController" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/abc.html#abc.ABC" title="(in Python v3.6)"><code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></a></p>
+<dl class="method">
+<dt id="sconce.rate_controllers.base.RateController.new_learning_rate">
+<code class="descname">new_learning_rate</code><span class="sig-paren">(</span><em>step</em>, <em>data</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/rate_controllers/base.html#RateController.new_learning_rate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.rate_controllers.base.RateController.new_learning_rate" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sconce.rate_controllers.base.RateController.start_session">
+<code class="descname">start_session</code><span class="sig-paren">(</span><em>num_steps</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/rate_controllers/base.html#RateController.start_session"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.rate_controllers.base.RateController.start_session" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-sconce.rate_controllers.constant_rate_controller">
+<span id="sconce-rate-controllers-constant-rate-controller-module"></span><h2>sconce.rate_controllers.constant_rate_controller module<a class="headerlink" href="#module-sconce.rate_controllers.constant_rate_controller" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="sconce.rate_controllers.constant_rate_controller.ConstantRateController">
+<em class="property">class </em><code class="descclassname">sconce.rate_controllers.constant_rate_controller.</code><code class="descname">ConstantRateController</code><span class="sig-paren">(</span><em>learning_rate</em>, <em>drop_factor=0.1</em>, <em>movement_key='training_loss'</em>, <em>movement_threshold=0.25</em>, <em>movement_window=None</em>, <em>num_drops=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/rate_controllers/constant_rate_controller.html#ConstantRateController"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.rate_controllers.constant_rate_controller.ConstantRateController" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#sconce.rate_controllers.base.RateController" title="sconce.rate_controllers.base.RateController"><code class="xref py py-class docutils literal notranslate"><span class="pre">sconce.rate_controllers.base.RateController</span></code></a></p>
+<p>A Learning rate that is constant.  It can adjust its learning rate by
+&lt;drop_factor&gt; up to &lt;num_drops&gt; times based on detecting that some
+metric or loss has stopped moving.</p>
+<dl class="method">
+<dt id="sconce.rate_controllers.constant_rate_controller.ConstantRateController.new_learning_rate">
+<code class="descname">new_learning_rate</code><span class="sig-paren">(</span><em>step</em>, <em>data</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/rate_controllers/constant_rate_controller.html#ConstantRateController.new_learning_rate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.rate_controllers.constant_rate_controller.ConstantRateController.new_learning_rate" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sconce.rate_controllers.constant_rate_controller.ConstantRateController.reset_monitor">
+<code class="descname">reset_monitor</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/rate_controllers/constant_rate_controller.html#ConstantRateController.reset_monitor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.rate_controllers.constant_rate_controller.ConstantRateController.reset_monitor" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sconce.rate_controllers.constant_rate_controller.ConstantRateController.start_session">
+<code class="descname">start_session</code><span class="sig-paren">(</span><em>*args</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/rate_controllers/constant_rate_controller.html#ConstantRateController.start_session"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.rate_controllers.constant_rate_controller.ConstantRateController.start_session" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-sconce.rate_controllers.cosine_rate_controller">
+<span id="sconce-rate-controllers-cosine-rate-controller-module"></span><h2>sconce.rate_controllers.cosine_rate_controller module<a class="headerlink" href="#module-sconce.rate_controllers.cosine_rate_controller" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="sconce.rate_controllers.cosine_rate_controller.CosineRateController">
+<em class="property">class </em><code class="descclassname">sconce.rate_controllers.cosine_rate_controller.</code><code class="descname">CosineRateController</code><span class="sig-paren">(</span><em>max_learning_rate</em>, <em>min_learning_rate=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/rate_controllers/cosine_rate_controller.html#CosineRateController"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.rate_controllers.cosine_rate_controller.CosineRateController" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#sconce.rate_controllers.base.RateController" title="sconce.rate_controllers.base.RateController"><code class="xref py py-class docutils literal notranslate"><span class="pre">sconce.rate_controllers.base.RateController</span></code></a></p>
+<p>A learning rate that follows a scaled and shifted cosine function
+from [0, pi/2].  It will begin at &lt;max_learning_rate&gt; and end at
+&lt;min_learning_rate&gt;, after &lt;num_steps&gt;.</p>
+<dl class="method">
+<dt id="sconce.rate_controllers.cosine_rate_controller.CosineRateController.new_learning_rate">
+<code class="descname">new_learning_rate</code><span class="sig-paren">(</span><em>step</em>, <em>data</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/rate_controllers/cosine_rate_controller.html#CosineRateController.new_learning_rate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.rate_controllers.cosine_rate_controller.CosineRateController.new_learning_rate" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sconce.rate_controllers.cosine_rate_controller.CosineRateController.start_session">
+<code class="descname">start_session</code><span class="sig-paren">(</span><em>num_steps</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/rate_controllers/cosine_rate_controller.html#CosineRateController.start_session"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.rate_controllers.cosine_rate_controller.CosineRateController.start_session" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-sconce.rate_controllers.exponential_rate_controller">
+<span id="sconce-rate-controllers-exponential-rate-controller-module"></span><h2>sconce.rate_controllers.exponential_rate_controller module<a class="headerlink" href="#module-sconce.rate_controllers.exponential_rate_controller" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="sconce.rate_controllers.exponential_rate_controller.ExponentialRateController">
+<em class="property">class </em><code class="descclassname">sconce.rate_controllers.exponential_rate_controller.</code><code class="descname">ExponentialRateController</code><span class="sig-paren">(</span><em>min_learning_rate</em>, <em>max_learning_rate</em>, <em>stop_factor=None</em>, <em>loss_key='training_loss'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/rate_controllers/exponential_rate_controller.html#ExponentialRateController"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.rate_controllers.exponential_rate_controller.ExponentialRateController" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#sconce.rate_controllers.base.RateController" title="sconce.rate_controllers.base.RateController"><code class="xref py py-class docutils literal notranslate"><span class="pre">sconce.rate_controllers.base.RateController</span></code></a></p>
+<p>A Learning rate that rises exponentially from &lt;min_learning_rate&gt;
+to &lt;max_learning_rate&gt;, over &lt;num_steps&gt;.</p>
+<dl class="method">
+<dt id="sconce.rate_controllers.exponential_rate_controller.ExponentialRateController.new_learning_rate">
+<code class="descname">new_learning_rate</code><span class="sig-paren">(</span><em>step</em>, <em>data</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/rate_controllers/exponential_rate_controller.html#ExponentialRateController.new_learning_rate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.rate_controllers.exponential_rate_controller.ExponentialRateController.new_learning_rate" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sconce.rate_controllers.exponential_rate_controller.ExponentialRateController.should_continue">
+<code class="descname">should_continue</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/rate_controllers/exponential_rate_controller.html#ExponentialRateController.should_continue"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.rate_controllers.exponential_rate_controller.ExponentialRateController.should_continue" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sconce.rate_controllers.exponential_rate_controller.ExponentialRateController.start_session">
+<code class="descname">start_session</code><span class="sig-paren">(</span><em>num_steps</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/rate_controllers/exponential_rate_controller.html#ExponentialRateController.start_session"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.rate_controllers.exponential_rate_controller.ExponentialRateController.start_session" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-sconce.rate_controllers.linear_rate_controller">
+<span id="sconce-rate-controllers-linear-rate-controller-module"></span><h2>sconce.rate_controllers.linear_rate_controller module<a class="headerlink" href="#module-sconce.rate_controllers.linear_rate_controller" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="sconce.rate_controllers.linear_rate_controller.LinearRateController">
+<em class="property">class </em><code class="descclassname">sconce.rate_controllers.linear_rate_controller.</code><code class="descname">LinearRateController</code><span class="sig-paren">(</span><em>min_learning_rate</em>, <em>max_learning_rate</em>, <em>stop_factor=None</em>, <em>loss_key='training_loss'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/rate_controllers/linear_rate_controller.html#LinearRateController"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.rate_controllers.linear_rate_controller.LinearRateController" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#sconce.rate_controllers.base.RateController" title="sconce.rate_controllers.base.RateController"><code class="xref py py-class docutils literal notranslate"><span class="pre">sconce.rate_controllers.base.RateController</span></code></a></p>
+<p>A Learning rate that rises linearly from &lt;min_learning_rate&gt;
+to &lt;max_learning_rate&gt;, over &lt;num_steps&gt;.</p>
+<dl class="method">
+<dt id="sconce.rate_controllers.linear_rate_controller.LinearRateController.new_learning_rate">
+<code class="descname">new_learning_rate</code><span class="sig-paren">(</span><em>step</em>, <em>data</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/rate_controllers/linear_rate_controller.html#LinearRateController.new_learning_rate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.rate_controllers.linear_rate_controller.LinearRateController.new_learning_rate" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sconce.rate_controllers.linear_rate_controller.LinearRateController.should_continue">
+<code class="descname">should_continue</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/rate_controllers/linear_rate_controller.html#LinearRateController.should_continue"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.rate_controllers.linear_rate_controller.LinearRateController.should_continue" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sconce.rate_controllers.linear_rate_controller.LinearRateController.start_session">
+<code class="descname">start_session</code><span class="sig-paren">(</span><em>num_steps</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/rate_controllers/linear_rate_controller.html#LinearRateController.start_session"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.rate_controllers.linear_rate_controller.LinearRateController.start_session" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-sconce.rate_controllers.step_rate_controller">
+<span id="sconce-rate-controllers-step-rate-controller-module"></span><h2>sconce.rate_controllers.step_rate_controller module<a class="headerlink" href="#module-sconce.rate_controllers.step_rate_controller" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="sconce.rate_controllers.step_rate_controller.StepRateController">
+<em class="property">class </em><code class="descclassname">sconce.rate_controllers.step_rate_controller.</code><code class="descname">StepRateController</code><span class="sig-paren">(</span><em>max_learning_rate</em>, <em>min_learning_rate</em>, <em>num_drops=1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/rate_controllers/step_rate_controller.html#StepRateController"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.rate_controllers.step_rate_controller.StepRateController" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#sconce.rate_controllers.base.RateController" title="sconce.rate_controllers.base.RateController"><code class="xref py py-class docutils literal notranslate"><span class="pre">sconce.rate_controllers.base.RateController</span></code></a></p>
+<p>A Learning Rate that falls in &lt;num_drops&gt; drops from &lt;max_learning_rate&gt; to
+&lt;min_learning_rate&gt; over the course of &lt;num_steps&gt;.  The Learning Rate is
+constant between drops.</p>
+<dl class="method">
+<dt id="sconce.rate_controllers.step_rate_controller.StepRateController.new_learning_rate">
+<code class="descname">new_learning_rate</code><span class="sig-paren">(</span><em>step</em>, <em>data</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/rate_controllers/step_rate_controller.html#StepRateController.new_learning_rate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.rate_controllers.step_rate_controller.StepRateController.new_learning_rate" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sconce.rate_controllers.step_rate_controller.StepRateController.start_session">
+<code class="descname">start_session</code><span class="sig-paren">(</span><em>num_steps</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/rate_controllers/step_rate_controller.html#StepRateController.start_session"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.rate_controllers.step_rate_controller.StepRateController.start_session" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-sconce.rate_controllers.triangle_rate_controller">
+<span id="sconce-rate-controllers-triangle-rate-controller-module"></span><h2>sconce.rate_controllers.triangle_rate_controller module<a class="headerlink" href="#module-sconce.rate_controllers.triangle_rate_controller" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="sconce.rate_controllers.triangle_rate_controller.TriangleRateController">
+<em class="property">class </em><code class="descclassname">sconce.rate_controllers.triangle_rate_controller.</code><code class="descname">TriangleRateController</code><span class="sig-paren">(</span><em>min_learning_rate</em>, <em>max_learning_rate</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/rate_controllers/triangle_rate_controller.html#TriangleRateController"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.rate_controllers.triangle_rate_controller.TriangleRateController" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#sconce.rate_controllers.base.RateController" title="sconce.rate_controllers.base.RateController"><code class="xref py py-class docutils literal notranslate"><span class="pre">sconce.rate_controllers.base.RateController</span></code></a></p>
+<p>A Learning Rate that rises linearly from &lt;min_learning_rate&gt; to
+&lt;max_learning_rate&gt;, over &lt;num_steps&gt;/2 then drops linearly back to
+&lt;min_learning_rate&gt; over the remaining &lt;num_steps&gt;/2.</p>
+<dl class="method">
+<dt id="sconce.rate_controllers.triangle_rate_controller.TriangleRateController.new_learning_rate">
+<code class="descname">new_learning_rate</code><span class="sig-paren">(</span><em>step</em>, <em>data</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/rate_controllers/triangle_rate_controller.html#TriangleRateController.new_learning_rate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.rate_controllers.triangle_rate_controller.TriangleRateController.new_learning_rate" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sconce.rate_controllers.triangle_rate_controller.TriangleRateController.start_session">
+<code class="descname">start_session</code><span class="sig-paren">(</span><em>num_steps</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/rate_controllers/triangle_rate_controller.html#TriangleRateController.start_session"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.rate_controllers.triangle_rate_controller.TriangleRateController.start_session" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-sconce.rate_controllers">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-sconce.rate_controllers" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="sconce.trainers.html" class="btn btn-neutral float-right" title="sconce.trainers package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="sconce.monitors.html" class="btn btn-neutral" title="sconce.monitors package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Pytorch-Sconce Contributors.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'master',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          
+          SphinxRtdTheme.Navigation.enableSticky();
+          
+      });
+  </script> 
+
+</body>
+</html>

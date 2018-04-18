@@ -1,0 +1,542 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>sconce package &mdash; Pytorch-Sconce master documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato" type="text/css" />
+  <link rel="stylesheet" href="_static/css/pytorch_theme.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="sconce.models package" href="sconce.models.html" />
+    <link rel="prev" title="Welcome to sconce’s documentation!" href="index.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Pytorch-Sconce
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                master (0.6.0 )
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Package Reference</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">sconce package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="sconce.models.html">sconce.models package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sconce.models.html#subpackages">Subpackages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sconce.models.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sconce.models.html#module-sconce.models.basic_autoencoder">sconce.models.basic_autoencoder module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sconce.models.html#module-sconce.models.basic_classifier">sconce.models.basic_classifier module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sconce.models.html#module-sconce.models.convolutional_autoencoder_plus_perceptron">sconce.models.convolutional_autoencoder_plus_perceptron module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sconce.models.html#module-sconce.models.multilayer_perceptron">sconce.models.multilayer_perceptron module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sconce.models.html#module-sconce.models.simple_convolutional_autoencoder">sconce.models.simple_convolutional_autoencoder module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sconce.models.html#module-sconce.models.wide_resnet_image_classifier">sconce.models.wide_resnet_image_classifier module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sconce.models.html#module-sconce.models">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sconce.monitors.html">sconce.monitors package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sconce.monitors.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sconce.monitors.html#module-sconce.monitors.base">sconce.monitors.base module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sconce.monitors.html#module-sconce.monitors.dataframe_monitor">sconce.monitors.dataframe_monitor module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sconce.monitors.html#module-sconce.monitors.losswise_monitor">sconce.monitors.losswise_monitor module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sconce.monitors.html#module-sconce.monitors.ringbuffer_monitor">sconce.monitors.ringbuffer_monitor module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sconce.monitors.html#module-sconce.monitors.stdout_monitor">sconce.monitors.stdout_monitor module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sconce.monitors.html#module-sconce.monitors">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sconce.rate_controllers.html">sconce.rate_controllers package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sconce.rate_controllers.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sconce.rate_controllers.html#module-sconce.rate_controllers.base">sconce.rate_controllers.base module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sconce.rate_controllers.html#module-sconce.rate_controllers.constant_rate_controller">sconce.rate_controllers.constant_rate_controller module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sconce.rate_controllers.html#module-sconce.rate_controllers.cosine_rate_controller">sconce.rate_controllers.cosine_rate_controller module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sconce.rate_controllers.html#module-sconce.rate_controllers.exponential_rate_controller">sconce.rate_controllers.exponential_rate_controller module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sconce.rate_controllers.html#module-sconce.rate_controllers.linear_rate_controller">sconce.rate_controllers.linear_rate_controller module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sconce.rate_controllers.html#module-sconce.rate_controllers.step_rate_controller">sconce.rate_controllers.step_rate_controller module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sconce.rate_controllers.html#module-sconce.rate_controllers.triangle_rate_controller">sconce.rate_controllers.triangle_rate_controller module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sconce.rate_controllers.html#module-sconce.rate_controllers">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sconce.trainers.html">sconce.trainers package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sconce.trainers.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sconce.trainers.html#module-sconce.trainers.autoencoder_trainer">sconce.trainers.autoencoder_trainer module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sconce.trainers.html#module-sconce.trainers.classifier_trainer">sconce.trainers.classifier_trainer module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sconce.trainers.html#module-sconce.trainers">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-sconce.data_generator">sconce.data_generator module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-sconce.trainer">sconce.trainer module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-sconce.utils">sconce.utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-sconce">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="sconce.monitors.html">sconce.monitors package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="sconce.monitors.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sconce.monitors.html#module-sconce.monitors.base">sconce.monitors.base module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sconce.monitors.html#module-sconce.monitors.dataframe_monitor">sconce.monitors.dataframe_monitor module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sconce.monitors.html#module-sconce.monitors.losswise_monitor">sconce.monitors.losswise_monitor module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sconce.monitors.html#module-sconce.monitors.ringbuffer_monitor">sconce.monitors.ringbuffer_monitor module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sconce.monitors.html#module-sconce.monitors.stdout_monitor">sconce.monitors.stdout_monitor module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sconce.monitors.html#module-sconce.monitors">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="sconce.trainers.html">sconce.trainers package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="sconce.trainers.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sconce.trainers.html#module-sconce.trainers.autoencoder_trainer">sconce.trainers.autoencoder_trainer module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sconce.trainers.html#module-sconce.trainers.classifier_trainer">sconce.trainers.classifier_trainer module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sconce.trainers.html#module-sconce.trainers">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="sconce.models.html">sconce.models package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="sconce.models.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="sconce.models.layers.html">sconce.models.layers package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sconce.models.layers.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sconce.models.layers.html#module-sconce.models.layers.convolution2d_layer">sconce.models.layers.convolution2d_layer module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sconce.models.layers.html#module-sconce.models.layers.fully_connected_layer">sconce.models.layers.fully_connected_layer module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sconce.models.layers.html#module-sconce.models.layers">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="sconce.models.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sconce.models.html#module-sconce.models.basic_autoencoder">sconce.models.basic_autoencoder module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sconce.models.html#module-sconce.models.basic_classifier">sconce.models.basic_classifier module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sconce.models.html#module-sconce.models.convolutional_autoencoder_plus_perceptron">sconce.models.convolutional_autoencoder_plus_perceptron module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sconce.models.html#module-sconce.models.multilayer_perceptron">sconce.models.multilayer_perceptron module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sconce.models.html#module-sconce.models.simple_convolutional_autoencoder">sconce.models.simple_convolutional_autoencoder module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sconce.models.html#module-sconce.models.wide_resnet_image_classifier">sconce.models.wide_resnet_image_classifier module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sconce.models.html#module-sconce.models">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="sconce.models.layers.html">sconce.models.layers package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="sconce.models.layers.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sconce.models.layers.html#module-sconce.models.layers.convolution2d_layer">sconce.models.layers.convolution2d_layer module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sconce.models.layers.html#module-sconce.models.layers.fully_connected_layer">sconce.models.layers.fully_connected_layer module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sconce.models.layers.html#module-sconce.models.layers">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Pytorch-Sconce</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>sconce package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/sconce.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="sconce-package">
+<h1>sconce package<a class="headerlink" href="#sconce-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="sconce.models.html">sconce.models package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="sconce.models.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="sconce.models.layers.html">sconce.models.layers package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sconce.models.layers.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sconce.models.layers.html#module-sconce.models.layers.convolution2d_layer">sconce.models.layers.convolution2d_layer module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sconce.models.layers.html#module-sconce.models.layers.fully_connected_layer">sconce.models.layers.fully_connected_layer module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sconce.models.layers.html#module-sconce.models.layers">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="sconce.models.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sconce.models.html#module-sconce.models.basic_autoencoder">sconce.models.basic_autoencoder module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sconce.models.html#module-sconce.models.basic_classifier">sconce.models.basic_classifier module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sconce.models.html#module-sconce.models.convolutional_autoencoder_plus_perceptron">sconce.models.convolutional_autoencoder_plus_perceptron module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sconce.models.html#module-sconce.models.multilayer_perceptron">sconce.models.multilayer_perceptron module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sconce.models.html#module-sconce.models.simple_convolutional_autoencoder">sconce.models.simple_convolutional_autoencoder module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sconce.models.html#module-sconce.models.wide_resnet_image_classifier">sconce.models.wide_resnet_image_classifier module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sconce.models.html#module-sconce.models">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="sconce.monitors.html">sconce.monitors package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="sconce.monitors.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sconce.monitors.html#module-sconce.monitors.base">sconce.monitors.base module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sconce.monitors.html#module-sconce.monitors.dataframe_monitor">sconce.monitors.dataframe_monitor module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sconce.monitors.html#module-sconce.monitors.losswise_monitor">sconce.monitors.losswise_monitor module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sconce.monitors.html#module-sconce.monitors.ringbuffer_monitor">sconce.monitors.ringbuffer_monitor module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sconce.monitors.html#module-sconce.monitors.stdout_monitor">sconce.monitors.stdout_monitor module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sconce.monitors.html#module-sconce.monitors">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="sconce.rate_controllers.html">sconce.rate_controllers package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="sconce.rate_controllers.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sconce.rate_controllers.html#module-sconce.rate_controllers.base">sconce.rate_controllers.base module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sconce.rate_controllers.html#module-sconce.rate_controllers.constant_rate_controller">sconce.rate_controllers.constant_rate_controller module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sconce.rate_controllers.html#module-sconce.rate_controllers.cosine_rate_controller">sconce.rate_controllers.cosine_rate_controller module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sconce.rate_controllers.html#module-sconce.rate_controllers.exponential_rate_controller">sconce.rate_controllers.exponential_rate_controller module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sconce.rate_controllers.html#module-sconce.rate_controllers.linear_rate_controller">sconce.rate_controllers.linear_rate_controller module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sconce.rate_controllers.html#module-sconce.rate_controllers.step_rate_controller">sconce.rate_controllers.step_rate_controller module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sconce.rate_controllers.html#module-sconce.rate_controllers.triangle_rate_controller">sconce.rate_controllers.triangle_rate_controller module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sconce.rate_controllers.html#module-sconce.rate_controllers">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="sconce.trainers.html">sconce.trainers package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="sconce.trainers.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sconce.trainers.html#module-sconce.trainers.autoencoder_trainer">sconce.trainers.autoencoder_trainer module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sconce.trainers.html#module-sconce.trainers.classifier_trainer">sconce.trainers.classifier_trainer module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sconce.trainers.html#module-sconce.trainers">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-sconce.data_generator">
+<span id="sconce-data-generator-module"></span><h2>sconce.data_generator module<a class="headerlink" href="#module-sconce.data_generator" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="sconce.data_generator.DataGenerator">
+<em class="property">class </em><code class="descclassname">sconce.data_generator.</code><code class="descname">DataGenerator</code><span class="sig-paren">(</span><em>data_loader</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/data_generator.html#DataGenerator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.data_generator.DataGenerator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.6)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>A thin wrapper around a &lt;data_loader&gt; that turns torch.Tensors into
+torch.Variables (that live on cpu or on cuda) and iterates endlessly.</p>
+<dl class="attribute">
+<dt id="sconce.data_generator.DataGenerator.batch_size">
+<code class="descname">batch_size</code><a class="headerlink" href="#sconce.data_generator.DataGenerator.batch_size" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sconce.data_generator.DataGenerator.cuda">
+<code class="descname">cuda</code><span class="sig-paren">(</span><em>device=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/data_generator.html#DataGenerator.cuda"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.data_generator.DataGenerator.cuda" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="sconce.data_generator.DataGenerator.dataset">
+<code class="descname">dataset</code><a class="headerlink" href="#sconce.data_generator.DataGenerator.dataset" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="classmethod">
+<dt id="sconce.data_generator.DataGenerator.from_dataset">
+<em class="property">classmethod </em><code class="descname">from_dataset</code><span class="sig-paren">(</span><em>dataset</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/data_generator.html#DataGenerator.from_dataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.data_generator.DataGenerator.from_dataset" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="classmethod">
+<dt id="sconce.data_generator.DataGenerator.from_pytorch">
+<em class="property">classmethod </em><code class="descname">from_pytorch</code><span class="sig-paren">(</span><em>batch_size=500</em>, <em>data_location=None</em>, <em>num_workers=1</em>, <em>pin_memory=True</em>, <em>shuffle=True</em>, <em>train=True</em>, <em>fraction=1.0</em>, <em>transform=&lt;torchvision.transforms.transforms.ToTensor object&gt;</em>, <em>dataset_class=&lt;class 'torchvision.datasets.mnist.MNIST'&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/data_generator.html#DataGenerator.from_pytorch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.data_generator.DataGenerator.from_pytorch" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sconce.data_generator.DataGenerator.next">
+<code class="descname">next</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/data_generator.html#DataGenerator.next"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.data_generator.DataGenerator.next" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="sconce.data_generator.DataGenerator.num_samples">
+<code class="descname">num_samples</code><a class="headerlink" href="#sconce.data_generator.DataGenerator.num_samples" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sconce.data_generator.DataGenerator.preprocess">
+<code class="descname">preprocess</code><span class="sig-paren">(</span><em>inputs</em>, <em>targets</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/data_generator.html#DataGenerator.preprocess"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.data_generator.DataGenerator.preprocess" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sconce.data_generator.DataGenerator.reset">
+<code class="descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/data_generator.html#DataGenerator.reset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.data_generator.DataGenerator.reset" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-sconce.trainer">
+<span id="sconce-trainer-module"></span><h2>sconce.trainer module<a class="headerlink" href="#module-sconce.trainer" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="sconce.trainer.Trainer">
+<em class="property">class </em><code class="descclassname">sconce.trainer.</code><code class="descname">Trainer</code><span class="sig-paren">(</span><em>*</em>, <em>model</em>, <em>training_data_generator</em>, <em>test_data_generator</em>, <em>optimizer</em>, <em>monitor=None</em>, <em>rate_controller=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/trainer.html#Trainer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.trainer.Trainer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.6)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dl class="method">
+<dt id="sconce.trainer.Trainer.checkpoint">
+<code class="descname">checkpoint</code><span class="sig-paren">(</span><em>filename=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/trainer.html#Trainer.checkpoint"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.trainer.Trainer.checkpoint" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sconce.trainer.Trainer.load_model_state">
+<code class="descname">load_model_state</code><span class="sig-paren">(</span><em>filename</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/trainer.html#Trainer.load_model_state"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.trainer.Trainer.load_model_state" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sconce.trainer.Trainer.multi_train">
+<code class="descname">multi_train</code><span class="sig-paren">(</span><em>*</em>, <em>num_cycles</em>, <em>cycle_length=1</em>, <em>cycle_multiplier=2.0</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/trainer.html#Trainer.multi_train"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.trainer.Trainer.multi_train" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="sconce.trainer.Trainer.num_trainable_parameters">
+<code class="descname">num_trainable_parameters</code><a class="headerlink" href="#sconce.trainer.Trainer.num_trainable_parameters" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sconce.trainer.Trainer.restore">
+<code class="descname">restore</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/trainer.html#Trainer.restore"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.trainer.Trainer.restore" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sconce.trainer.Trainer.save_model_state">
+<code class="descname">save_model_state</code><span class="sig-paren">(</span><em>filename=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/trainer.html#Trainer.save_model_state"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.trainer.Trainer.save_model_state" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sconce.trainer.Trainer.survey_learning_rate">
+<code class="descname">survey_learning_rate</code><span class="sig-paren">(</span><em>*</em>, <em>num_epochs=1.0</em>, <em>min_learning_rate=1e-12</em>, <em>max_learning_rate=10</em>, <em>monitor=None</em>, <em>batch_multiplier=1</em>, <em>rate_controller_class=&lt;class 'sconce.rate_controllers.exponential_rate_controller.ExponentialRateController'&gt;</em>, <em>stop_factor=10</em>, <em>**rate_controller_kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/trainer.html#Trainer.survey_learning_rate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.trainer.Trainer.survey_learning_rate" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sconce.trainer.Trainer.test">
+<code class="descname">test</code><span class="sig-paren">(</span><em>*</em>, <em>monitor=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/trainer.html#Trainer.test"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.trainer.Trainer.test" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sconce.trainer.Trainer.train">
+<code class="descname">train</code><span class="sig-paren">(</span><em>*</em>, <em>num_epochs</em>, <em>monitor=None</em>, <em>rate_controller=None</em>, <em>test_to_train_ratio=None</em>, <em>batch_multiplier=1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/trainer.html#Trainer.train"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.trainer.Trainer.train" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-sconce.utils">
+<span id="sconce-utils-module"></span><h2>sconce.utils module<a class="headerlink" href="#module-sconce.utils" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="sconce.utils.Progbar">
+<em class="property">class </em><code class="descclassname">sconce.utils.</code><code class="descname">Progbar</code><span class="sig-paren">(</span><em>target</em>, <em>width=30</em>, <em>verbose=1</em>, <em>interval=0.05</em>, <em>stateful_metrics=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/utils.html#Progbar"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.utils.Progbar" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.6)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Displays a progress bar.
+# Arguments</p>
+<blockquote>
+<div><p>target: Total number of steps expected, None if unknown.
+width: Progress bar width on screen.
+verbose: Verbosity mode, 0 (silent), 1 (verbose), 2 (semi-verbose)
+stateful_metrics: Iterable of string names of metrics that</p>
+<blockquote>
+<div>should <em>not</em> be averaged over time. Metrics in this list
+will be displayed as-is. All others will be averaged
+by the progbar before display.</div></blockquote>
+<p>interval: Minimum visual progress update interval (in seconds).</p>
+</div></blockquote>
+<dl class="method">
+<dt id="sconce.utils.Progbar.add">
+<code class="descname">add</code><span class="sig-paren">(</span><em>n</em>, <em>values=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/utils.html#Progbar.add"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.utils.Progbar.add" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sconce.utils.Progbar.update">
+<code class="descname">update</code><span class="sig-paren">(</span><em>current</em>, <em>values=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/utils.html#Progbar.update"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.utils.Progbar.update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Updates the progress bar.
+# Arguments</p>
+<blockquote>
+<div><p>current: Index of current step.
+values: List of tuples:</p>
+<blockquote>
+<div><cite>(name, value_for_last_step)</cite>.
+If <cite>name</cite> is in <cite>stateful_metrics</cite>,
+<cite>value_for_last_step</cite> will be displayed as-is.
+Else, an average of the metric over time will be displayed.</div></blockquote>
+</div></blockquote>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-sconce">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-sconce" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="sconce.models.html" class="btn btn-neutral float-right" title="sconce.models package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="Welcome to sconce’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Pytorch-Sconce Contributors.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'master',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          
+          SphinxRtdTheme.Navigation.enableSticky();
+          
+      });
+  </script> 
+
+</body>
+</html>
