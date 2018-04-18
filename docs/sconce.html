@@ -315,53 +315,141 @@
 <dl class="class">
 <dt id="sconce.data_generator.DataGenerator">
 <em class="property">class </em><code class="descclassname">sconce.data_generator.</code><code class="descname">DataGenerator</code><span class="sig-paren">(</span><em>data_loader</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/data_generator.html#DataGenerator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.data_generator.DataGenerator" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.6)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
-<p>A thin wrapper around a &lt;data_loader&gt; that turns torch.Tensors into
-torch.Variables (that live on cpu or on cuda) and iterates endlessly.</p>
+<dd><p>A thin wrapper around a <a class="reference external" href="http://pytorch.org/docs/stable/data.html#torch.utils.data.DataLoader" title="(in PyTorch vmaster (0.3.1.post2 ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataLoader</span></code></a> that
+automatically yields tuples of <a class="reference external" href="http://pytorch.org/docs/stable/autograd.html#torch.autograd.Variable" title="(in PyTorch vmaster (0.3.1.post2 ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">Variable</span></code></a> (that
+live on cpu or on cuda).
+A DataGenerator will iterate endlessly.</p>
+<p>Like the underlying <a class="reference external" href="http://pytorch.org/docs/stable/data.html#torch.utils.data.DataLoader" title="(in PyTorch vmaster (0.3.1.post2 ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataLoader</span></code></a>, a
+DataGenerator’s <code class="docutils literal notranslate"><span class="pre">__next__</span></code> method yields two values, which we refer to as
+the <cite>inputs</cite> and the <cite>targets</cite>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>data_loader</strong> (<a class="reference external" href="http://pytorch.org/docs/stable/data.html#torch.utils.data.DataLoader" title="(in PyTorch vmaster (0.3.1.post2 ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataLoader</span></code></a>) – the wrapped
+data_loader.</td>
+</tr>
+</tbody>
+</table>
 <dl class="attribute">
 <dt id="sconce.data_generator.DataGenerator.batch_size">
 <code class="descname">batch_size</code><a class="headerlink" href="#sconce.data_generator.DataGenerator.batch_size" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>the wrapped data_loader’s batch_size</p>
+</dd></dl>
 
 <dl class="method">
 <dt id="sconce.data_generator.DataGenerator.cuda">
 <code class="descname">cuda</code><span class="sig-paren">(</span><em>device=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/data_generator.html#DataGenerator.cuda"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.data_generator.DataGenerator.cuda" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Put the <cite>inputs</cite> and <cite>targets</cite> (yielded by this DataGenerator) on the
+specified device.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>device</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.6)"><em>bool</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.6)"><em>dict</em></a>) – if int or bool, sets the behavior for
+both <cite>inputs</cite> and <cite>targets</cite>. To set them individually, pass a
+dictionary with keys {‘inputs’, ‘targets’} instead. See
+<a class="reference external" href="http://pytorch.org/docs/stable/tensors.html#torch.Tensor.cuda" title="(in PyTorch vmaster (0.3.1.post2 ))"><code class="xref py py-meth docutils literal notranslate"><span class="pre">torch.Tensor.cuda()</span></code></a> for details.</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Example</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">g</span> <span class="o">=</span> <span class="n">DataGenerator</span><span class="o">.</span><span class="n">from_pytorch</span><span class="p">(</span><span class="n">batch_size</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">g</span><span class="o">.</span><span class="n">cuda</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">g</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+<span class="go">(Variable containing:</span>
+<span class="go"> [torch.cuda.FloatTensor of size 100x1x28x28 (GPU 0)],</span>
+<span class="go"> Variable containing:</span>
+<span class="go"> [torch.cuda.LongTensor of size 100 (GPU 0)])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">g</span><span class="o">.</span><span class="n">cuda</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">g</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+<span class="go"> [torch.FloatTensor of size 100x1x28x28],</span>
+<span class="go"> Variable containing:</span>
+<span class="go"> [torch.LongTensor of size 100])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">g</span><span class="o">.</span><span class="n">cuda</span><span class="p">(</span><span class="n">device</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;inputs&#39;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;targets&#39;</span><span class="p">:</span><span class="mi">1</span><span class="p">})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">g</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+<span class="go"> [torch.cuda.FloatTensor of size 100x1x28x28 (GPU 0)],</span>
+<span class="go"> Variable containing:</span>
+<span class="go"> [torch.cuda.LongTensor of size 100 (GPU 1)])</span>
+</pre></div>
+</div>
+</dd></dl>
 
 <dl class="attribute">
 <dt id="sconce.data_generator.DataGenerator.dataset">
 <code class="descname">dataset</code><a class="headerlink" href="#sconce.data_generator.DataGenerator.dataset" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>the wrapped data_loader’s <a class="reference external" href="http://pytorch.org/docs/stable/data.html#torch.utils.data.Dataset" title="(in PyTorch vmaster (0.3.1.post2 ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dataset</span></code></a></p>
+</dd></dl>
 
 <dl class="classmethod">
 <dt id="sconce.data_generator.DataGenerator.from_dataset">
 <em class="property">classmethod </em><code class="descname">from_dataset</code><span class="sig-paren">(</span><em>dataset</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/data_generator.html#DataGenerator.from_dataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.data_generator.DataGenerator.from_dataset" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Create a DataGenerator from an instantiated dataset.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>dataset</strong> (<a class="reference external" href="http://pytorch.org/docs/stable/data.html#torch.utils.data.Dataset" title="(in PyTorch vmaster (0.3.1.post2 ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dataset</span></code></a>) – the pytorch
+dataset.</li>
+<li><strong>**kwargs</strong> – passed directly to the
+<a class="reference external" href="http://pytorch.org/docs/stable/data.html#torch.utils.data.DataLoader" title="(in PyTorch vmaster (0.3.1.post2 ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataLoader</span></code></a>) constructor.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 <dl class="classmethod">
 <dt id="sconce.data_generator.DataGenerator.from_pytorch">
-<em class="property">classmethod </em><code class="descname">from_pytorch</code><span class="sig-paren">(</span><em>batch_size=500</em>, <em>data_location=None</em>, <em>num_workers=1</em>, <em>pin_memory=True</em>, <em>shuffle=True</em>, <em>train=True</em>, <em>fraction=1.0</em>, <em>transform=&lt;torchvision.transforms.transforms.ToTensor object&gt;</em>, <em>dataset_class=&lt;class 'torchvision.datasets.mnist.MNIST'&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/data_generator.html#DataGenerator.from_pytorch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.data_generator.DataGenerator.from_pytorch" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="sconce.data_generator.DataGenerator.next">
-<code class="descname">next</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/data_generator.html#DataGenerator.next"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.data_generator.DataGenerator.next" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<em class="property">classmethod </em><code class="descname">from_pytorch</code><span class="sig-paren">(</span><em>batch_size=500</em>, <em>data_location=None</em>, <em>dataset_class=&lt;class 'torchvision.datasets.mnist.MNIST'&gt;</em>, <em>fraction=1.0</em>, <em>num_workers=1</em>, <em>pin_memory=True</em>, <em>shuffle=True</em>, <em>train=True</em>, <em>transform=&lt;torchvision.transforms.transforms.ToTensor object&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/data_generator.html#DataGenerator.from_pytorch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.data_generator.DataGenerator.from_pytorch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a DataGenerator from a torchvision dataset class.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>batch_size</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) – how large the yielded <cite>inputs</cite> and <cite>targets</cite>
+should be. See <code class="xref py py-class docutils literal notranslate"><span class="pre">DataLoader</span></code> for details.</li>
+<li><strong>data_location</strong> (<em>path</em>) – where downloaded dataset should be stored.  If
+<code class="docutils literal notranslate"><span class="pre">None</span></code> a system dependent temporary location will be used.</li>
+<li><strong>dataset_class</strong> (<em>class</em>) – a torchvision dataset class that supports
+constructor arguments {‘root’, ‘train’, ‘download’,
+‘transform’}. For example, MNIST, FashionMnist, CIFAR10, or
+CIFAR100.</li>
+<li><strong>fraction</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.6)"><em>float</em></a>) – (0.0 - 1.0] how much of the original dataset’s
+data to use.</li>
+<li><strong>num_workers</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) – how many subprocesses to use for data loading.
+See <code class="xref py py-class docutils literal notranslate"><span class="pre">DataLoader</span></code> for details.</li>
+<li><strong>pin_memory</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.6)"><em>bool</em></a>) – if <code class="docutils literal notranslate"><span class="pre">True</span></code>, the data loader will copy tensors
+into CUDA pinned memory before returning them. See
+<code class="xref py py-class docutils literal notranslate"><span class="pre">DataLoader</span></code> for details.</li>
+<li><strong>shuffle</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.6)"><em>bool</em></a>) – set to <code class="docutils literal notranslate"><span class="pre">True</span></code> to have the data reshuffled at every
+epoch. See <code class="xref py py-class docutils literal notranslate"><span class="pre">DataLoader</span></code> for details.</li>
+<li><strong>train</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.6)"><em>bool</em></a>) – if <code class="docutils literal notranslate"><span class="pre">True</span></code>, creates dataset from training set,
+otherwise creates from test set.</li>
+<li><strong>transform</strong> (<em>callable</em>) – a function/transform that takes in an PIL
+image and returns a transformed version.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 <dl class="attribute">
 <dt id="sconce.data_generator.DataGenerator.num_samples">
 <code class="descname">num_samples</code><a class="headerlink" href="#sconce.data_generator.DataGenerator.num_samples" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="sconce.data_generator.DataGenerator.preprocess">
-<code class="descname">preprocess</code><span class="sig-paren">(</span><em>inputs</em>, <em>targets</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/data_generator.html#DataGenerator.preprocess"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.data_generator.DataGenerator.preprocess" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>the <code class="docutils literal notranslate"><span class="pre">len</span></code> of the wrapped data_loader’s
+<a class="reference external" href="http://pytorch.org/docs/stable/data.html#torch.utils.data.Dataset" title="(in PyTorch vmaster (0.3.1.post2 ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dataset</span></code></a></p>
+</dd></dl>
 
 <dl class="method">
 <dt id="sconce.data_generator.DataGenerator.reset">
 <code class="descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/data_generator.html#DataGenerator.reset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.data_generator.DataGenerator.reset" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Start iterating through the data_loader from the begining.</p>
+</dd></dl>
 
 </dd></dl>
 

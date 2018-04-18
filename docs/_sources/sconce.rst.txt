@@ -19,8 +19,6 @@ sconce.data\_generator module
 
 .. automodule:: sconce.data_generator
     :members:
-    :undoc-members:
-    :show-inheritance:
 
 sconce.trainer module
 ---------------------

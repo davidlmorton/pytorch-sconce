@@ -256,8 +256,18 @@
 
 <div class="viewcode-block" id="DataGenerator"><a class="viewcode-back" href="../../sconce.html#sconce.data_generator.DataGenerator">[docs]</a><span class="k">class</span> <span class="nc">DataGenerator</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    A thin wrapper around a &lt;data_loader&gt; that turns torch.Tensors into</span>
-<span class="sd">    torch.Variables (that live on cpu or on cuda) and iterates endlessly.</span>
+<span class="sd">    A thin wrapper around a :py:class:`~torch.utils.data.DataLoader` that</span>
+<span class="sd">    automatically yields tuples of :py:class:`~torch.autograd.Variable` (that</span>
+<span class="sd">    live on cpu or on cuda).</span>
+<span class="sd">    A DataGenerator will iterate endlessly.</span>
+
+<span class="sd">    Like the underlying :py:class:`~torch.utils.data.DataLoader`, a</span>
+<span class="sd">    DataGenerator&#39;s ``__next__`` method yields two values, which we refer to as</span>
+<span class="sd">    the `inputs` and the `targets`.</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        data_loader (:py:class:`~torch.utils.data.DataLoader`): the wrapped</span>
+<span class="sd">            data_loader.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_loader</span><span class="p">):</span>
@@ -267,6 +277,35 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
 
 <div class="viewcode-block" id="DataGenerator.cuda"><a class="viewcode-back" href="../../sconce.html#sconce.data_generator.DataGenerator.cuda">[docs]</a>    <span class="k">def</span> <span class="nf">cuda</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Put the `inputs` and `targets` (yielded by this DataGenerator) on the</span>
+<span class="sd">        specified device.</span>
+
+<span class="sd">        Arguments:</span>
+<span class="sd">            device (int or bool or dict): if int or bool, sets the behavior for</span>
+<span class="sd">                both `inputs` and `targets`. To set them individually, pass a</span>
+<span class="sd">                dictionary with keys {&#39;inputs&#39;, &#39;targets&#39;} instead. See</span>
+<span class="sd">                :py:meth:`torch.Tensor.cuda` for details.</span>
+
+<span class="sd">        Example:</span>
+<span class="sd">            &gt;&gt;&gt; g = DataGenerator.from_pytorch(batch_size=100)</span>
+<span class="sd">            &gt;&gt;&gt; g.cuda()</span>
+<span class="sd">            &gt;&gt;&gt; g.next()</span>
+<span class="sd">            (Variable containing:</span>
+<span class="sd">             [torch.cuda.FloatTensor of size 100x1x28x28 (GPU 0)],</span>
+<span class="sd">             Variable containing:</span>
+<span class="sd">             [torch.cuda.LongTensor of size 100 (GPU 0)])</span>
+<span class="sd">            &gt;&gt;&gt; g.cuda(False)</span>
+<span class="sd">            &gt;&gt;&gt; g.next()</span>
+<span class="sd">             [torch.FloatTensor of size 100x1x28x28],</span>
+<span class="sd">             Variable containing:</span>
+<span class="sd">             [torch.LongTensor of size 100])</span>
+<span class="sd">            &gt;&gt;&gt; g.cuda(device={&#39;inputs&#39;:0, &#39;targets&#39;:1})</span>
+<span class="sd">            &gt;&gt;&gt; g.next()</span>
+<span class="sd">             [torch.cuda.FloatTensor of size 100x1x28x28 (GPU 0)],</span>
+<span class="sd">             Variable containing:</span>
+<span class="sd">             [torch.cuda.LongTensor of size 100 (GPU 1)])</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">device</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
             <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">device</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
                 <span class="k">if</span> <span class="n">key</span> <span class="o">==</span> <span class="s1">&#39;inputs&#39;</span><span class="p">:</span>
@@ -281,18 +320,31 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">_targets_cuda</span> <span class="o">=</span> <span class="n">device</span></div>
 
 <div class="viewcode-block" id="DataGenerator.reset"><a class="viewcode-back" href="../../sconce.html#sconce.data_generator.DataGenerator.reset">[docs]</a>    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Start iterating through the data_loader from the begining.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_iterator</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data_loader</span><span class="p">)</span></div>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">dataset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        the wrapped data_loader&#39;s :py:class:`~torch.utils.data.Dataset`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_loader</span><span class="o">.</span><span class="n">dataset</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">batch_size</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        the wrapped data_loader&#39;s batch_size</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_loader</span><span class="o">.</span><span class="n">batch_size</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">num_samples</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        the ``len`` of the wrapped data_loader&#39;s</span>
+<span class="sd">        :py:class:`~torch.utils.data.Dataset`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -304,7 +356,7 @@
     <span class="k">def</span> <span class="nf">__next__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
 
-<div class="viewcode-block" id="DataGenerator.preprocess"><a class="viewcode-back" href="../../sconce.html#sconce.data_generator.DataGenerator.preprocess">[docs]</a>    <span class="k">def</span> <span class="nf">preprocess</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">targets</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">preprocess</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">targets</span><span class="p">):</span>
         <span class="n">inputs</span> <span class="o">=</span> <span class="n">Variable</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span>
         <span class="n">targets</span> <span class="o">=</span> <span class="n">Variable</span><span class="p">(</span><span class="n">targets</span><span class="p">)</span>
 
@@ -318,27 +370,53 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="n">targets</span> <span class="o">=</span> <span class="n">targets</span><span class="o">.</span><span class="n">cuda</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_targets_cuda</span><span class="p">)</span>
 
-        <span class="k">return</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">targets</span></div>
+        <span class="k">return</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">targets</span>
 
-<div class="viewcode-block" id="DataGenerator.next"><a class="viewcode-back" href="../../sconce.html#sconce.data_generator.DataGenerator.next">[docs]</a>    <span class="k">def</span> <span class="nf">next</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">next</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">inputs</span><span class="p">,</span> <span class="n">targets</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_iterator</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
         <span class="k">except</span> <span class="ne">StopIteration</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
             <span class="n">inputs</span><span class="p">,</span> <span class="n">targets</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_iterator</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">preprocess</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">targets</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">preprocess</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">targets</span><span class="p">)</span>
 
 <div class="viewcode-block" id="DataGenerator.from_pytorch"><a class="viewcode-back" href="../../sconce.html#sconce.data_generator.DataGenerator.from_pytorch">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">from_pytorch</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span>
             <span class="n">batch_size</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span>
             <span class="n">data_location</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="n">dataset_class</span><span class="o">=</span><span class="n">datasets</span><span class="o">.</span><span class="n">MNIST</span><span class="p">,</span>
+            <span class="n">fraction</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
             <span class="n">num_workers</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
             <span class="n">pin_memory</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
             <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
             <span class="n">train</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-            <span class="n">fraction</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
-            <span class="n">transform</span><span class="o">=</span><span class="n">transforms</span><span class="o">.</span><span class="n">ToTensor</span><span class="p">(),</span>
-            <span class="n">dataset_class</span><span class="o">=</span><span class="n">datasets</span><span class="o">.</span><span class="n">MNIST</span><span class="p">):</span>
+            <span class="n">transform</span><span class="o">=</span><span class="n">transforms</span><span class="o">.</span><span class="n">ToTensor</span><span class="p">()):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create a DataGenerator from a torchvision dataset class.</span>
+
+<span class="sd">        Arguments:</span>
+<span class="sd">            batch_size (int): how large the yielded `inputs` and `targets`</span>
+<span class="sd">                should be. See :py:class:`DataLoader` for details.</span>
+<span class="sd">            data_location (path): where downloaded dataset should be stored.  If</span>
+<span class="sd">                ``None`` a system dependent temporary location will be used.</span>
+<span class="sd">            dataset_class (class): a torchvision dataset class that supports</span>
+<span class="sd">                constructor arguments {&#39;root&#39;, &#39;train&#39;, &#39;download&#39;,</span>
+<span class="sd">                &#39;transform&#39;}. For example, MNIST, FashionMnist, CIFAR10, or</span>
+<span class="sd">                CIFAR100.</span>
+<span class="sd">            fraction (float): (0.0 - 1.0] how much of the original dataset&#39;s</span>
+<span class="sd">                data to use.</span>
+<span class="sd">            num_workers (int): how many subprocesses to use for data loading.</span>
+<span class="sd">                See :py:class:`DataLoader` for details.</span>
+<span class="sd">            pin_memory (bool): if ``True``, the data loader will copy tensors</span>
+<span class="sd">                into CUDA pinned memory before returning them. See</span>
+<span class="sd">                :py:class:`DataLoader` for details.</span>
+<span class="sd">            shuffle (bool): set to ``True`` to have the data reshuffled at every</span>
+<span class="sd">                epoch. See :py:class:`DataLoader` for details.</span>
+<span class="sd">            train (bool): if ``True``, creates dataset from training set,</span>
+<span class="sd">                otherwise creates from test set.</span>
+<span class="sd">            transform (callable): a function/transform that takes in an PIL</span>
+<span class="sd">                image and returns a transformed version.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">assert</span><span class="p">(</span><span class="n">fraction</span> <span class="o">&gt;</span> <span class="mf">0.0</span><span class="p">)</span>
         <span class="k">assert</span><span class="p">(</span><span class="n">fraction</span> <span class="o">&lt;=</span> <span class="mf">1.0</span><span class="p">)</span>
 
@@ -346,7 +424,7 @@
             <span class="n">data_location</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">tempfile</span><span class="o">.</span><span class="n">gettempdir</span><span class="p">(),</span>
                     <span class="n">dataset_class</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
 
-        <span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset_class</span><span class="p">(</span><span class="n">data_location</span><span class="p">,</span>
+        <span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset_class</span><span class="p">(</span><span class="n">root</span><span class="o">=</span><span class="n">data_location</span><span class="p">,</span>
                 <span class="n">train</span><span class="o">=</span><span class="n">train</span><span class="p">,</span>
                 <span class="n">download</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
                 <span class="n">transform</span><span class="o">=</span><span class="n">transform</span><span class="p">)</span>
@@ -363,6 +441,15 @@
 
 <div class="viewcode-block" id="DataGenerator.from_dataset"><a class="viewcode-back" href="../../sconce.html#sconce.data_generator.DataGenerator.from_dataset">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">from_dataset</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create a DataGenerator from an instantiated dataset.</span>
+
+<span class="sd">        Arguments:</span>
+<span class="sd">            dataset (:py:class:`~torch.utils.data.Dataset`): the pytorch</span>
+<span class="sd">                dataset.</span>
+<span class="sd">            **kwargs: passed directly to the</span>
+<span class="sd">                :py:class:`~torch.utils.data.DataLoader`) constructor.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">data_loader</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">DataLoader</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">data_loader</span><span class="p">)</span></div></div>
 </pre></div>
