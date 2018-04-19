@@ -15,7 +15,7 @@ class Trainer:
     :py:class:`~sconce.rate_controllers.base.RateController`, ect).
 
     Keyword Arguments:
-        model (:py:class:`torch.nn.Module`): the torch model to be trained.  See :py:module:`~sconce.models` for examples.
+        model (:py:class:`torch.nn.Module`): the torch model to be trained.  See :py:mod:`sconce.models` for examples.
         training_data_generator (:py:class:`~sconce.data_generator.DataGenerator`): yields training `inputs` and
             `targets`.
         test_data_generator (:py:class:`~sconce.data_generator.DataGenerator`): yields test `inputs` and `targets`.
