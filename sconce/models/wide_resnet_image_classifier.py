@@ -100,6 +100,25 @@ class WideResnetGroup_3x3(nn.Module):
 
 
 class WideResnetImageClassifier(nn.Module):
+    """
+    A wide resnet image classifier, based on `this paper`_
+
+    .. _this paper: http://arxiv.org/abs/1605.07146
+
+    Loss:
+        This model uses cross-entropy for the loss.
+
+    Metrics:
+        classification_accuracy: [0.0, 1.0] the fraction of correctly predicted labels.
+
+    Arguments:
+        image_channels (int): number of channels in the input images.
+        depth (int): total number of convolutional layers in the network.  This
+            should be divisible by (6n + 4) where n is a positive integer.
+        widening_factor (int): [1, inf) determines how many convolutional
+            channels are in the network (see paper above for details).
+        num_categories (int): [2, inf) the number of different image classes.
+    """
     def __init__(self, image_channels=1,
             depth=28,
             widening_factor=10,

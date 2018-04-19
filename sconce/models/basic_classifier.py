@@ -7,6 +7,26 @@ import yaml
 
 
 class BasicClassifier(nn.Module):
+    """
+    A basic 2D image classifier built up of some number of convolutional layers followed by some number of densly
+    connected layers.
+
+    Loss:
+        This model uses cross-entropy for the loss.
+
+    Metrics:
+        classification_accuracy: [0.0, 1.0] the fraction of correctly predicted labels.
+
+    Arguments:
+        image_height (int): image height in pixels.
+        image_width (int): image width in pixels.
+        image_channels (int): number of channels in the input images.
+        convolutional_layer_kwargs (list[dict]): a list of dictionaries describing the convolutional layers. See
+            :py:class:`~sconce.models.layers.convolutiona2d_layer.Convolution2dLayer` for details.
+        fully_connected_layer_kwargs (list[dict]): a list of dictionaries describing the fully connected layers. See
+            :py:class:`~sconce.models.layers.fully_connected_layer.FullyConnectedLayer` for details.
+        num_categories (int): [2, inf) the number of different image classes.
+    """
     def __init__(self, image_height, image_width, image_channels,
             convolutional_layer_kwargs,
             fully_connected_layer_kwargs,
@@ -56,11 +76,52 @@ class BasicClassifier(nn.Module):
 
     @classmethod
     def new_from_yaml_filename(cls, yaml_filename):
+        """
+        Construct a new BasicClassifier from a yaml file.
+
+        Arguments:
+            filename (path): the filename of a yaml file.  See
+                :py:meth:`~sconce.models.basic_classifier.BasicClassifier.new_from_yaml_file`
+                for more details.
+        """
         with open(yaml_filename) as yaml_file:
             return cls.new_from_yaml_file(yaml_file)
 
     @classmethod
     def new_from_yaml_file(cls, yaml_file):
+        """
+        Construct a new BasicClassifier from a yaml file.
+
+        Arguments:
+            yaml_file (file): a file-like object that yaml contents can be read from.
+
+        Example yaml file contents:
+
+        .. code-block:: yaml
+
+            ---
+            # Values for MNIST and FashionMNIST
+            image_height: 28
+            image_width: 28
+            image_channels: 1
+            num_categories: 10
+
+            # Remaining values are not related to the dataset
+            convolutional_layer_attributes: ["out_channels", "stride", "padding", "kernel_size"]
+            convolutional_layer_values:  [ # ==============  ========  =========  =============
+                                            [16,             1,        4,         9],
+                                            [8,              2,        1,         3],
+                                            [8,              2,        1,         3],
+                                            [8,              2,        1,         3],
+                                            [8,              2,        1,         3],
+            ]
+
+            fully_connected_layer_attributes: ['out_size', 'dropout']
+            fully_connected_layer_values:  [ # ======      =========
+                                              [100,        0.4],
+                                              [100,        0.8],
+            ]
+        """
         yaml_data = yaml.load(yaml_file)
 
         convolutional_layer_kwargs = []

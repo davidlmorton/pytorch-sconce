@@ -3,6 +3,21 @@ from torch.nn import functional as F
 
 
 class BasicAutoencoder(nn.Module):
+    """
+    A basic 2D image autoencoder built up of densly connected layers, two each in the encoder and the decoder.
+
+    Loss:
+        This model uses binary cross-entropy for the loss.
+
+    Metrics:
+        None
+
+    Arguments:
+        image_height (int): image height in pixels.
+        image_width (int): image width in pixels.
+        hidden_size (int): the number of activations in each of the 4 hidden layers.
+        latent_size (int): the number of activations in the latent representation (encoder output).
+    """
     def __init__(self, image_height, image_width, hidden_size, latent_size):
         super().__init__()
         self.num_pixels = image_height * image_width

@@ -15,7 +15,7 @@ class Trainer:
     :py:class:`~sconce.rate_controllers.base.RateController`, ect).
 
     Keyword Arguments:
-        model (:py:class:`torch.nn.Module`): the torch model to be trained (see note below).
+        model (:py:class:`torch.nn.Module`): the torch model to be trained.  See :py:module:`~sconce.models` for examples.
         training_data_generator (:py:class:`~sconce.data_generator.DataGenerator`): yields training `inputs` and
             `targets`.
         test_data_generator (:py:class:`~sconce.data_generator.DataGenerator`): yields test `inputs` and `targets`.
@@ -31,27 +31,6 @@ class Trainer:
             that adjusts the optimizer's learning rate during training. If ``None``, a
             :py:class:`~sconce.rate_controllers.cosine_rate_controller.CosineRateController` with
             max_learning_rate=1e-4 will be created for you and used.
-
-    Note:
-        The model must satisfy a few constraints.
-
-        #. It must accept arbitrary keyword arguments in it's ``forward`` method.  The base class of trainer will pass
-           `inputs` and `targets`, but subclasses may modify that behavior to include other keyword arguments.
-        #. It must return a dictionary from it's ``forward`` method.  The dictionary is expected to include at least
-           the key `outputs` but may include any other keys you like.  The value of the key `outputs` is expected to be
-           the :py:class:`~torch.autograd.Variable` output of the model, used for calculating the loss.
-        #. It must define a ``calculate_loss`` method.  This method must accept arbitrary keyword arguments.  The base
-           class of trainer will pass `inputs`, `outputs`, and `targets`, but subclasses may modify that behavior to
-           include other keyword arguments.
-        #. It must return a dictionary form it's ``calculate_loss`` method.  The dictionary is expected to include at
-           least the key 'loss', but may include any otehr keys you like.  The value of the key `loss` is expected to
-           be the :py:class:`~torch.autograd.Variable` output of the loss function, used to back-propagate the
-           gradients used by the optimizer.
-        #. It may define a ``calculate_metrics`` method.  This method must accept arbitrary keyword arguments.  The
-           base class of trainer will pass `inputs`, `outputs`, `targets`, and `loss`, but subclasses may modify that
-           behavior to include other keyword arguments.
-        #. If it defines a ``calculate_metrics`` method, it must return a dictionary.  No restrictions are made on the
-           keys or values of this dictionary.
     """
     def __init__(self, *, model, training_data_generator, test_data_generator,
                  optimizer, monitor=None, rate_controller=None):
