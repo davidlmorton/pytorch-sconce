@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Sconce Models &mdash; Pytorch-Sconce master documentation</title>
+  <title>sconce.models package &mdash; Pytorch-Sconce master documentation</title>
   
 
   
@@ -30,9 +30,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato" type="text/css" />
   <link rel="stylesheet" href="_static/css/pytorch_theme.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="sconce.monitors package" href="sconce.monitors.html" />
-    <link rel="prev" title="sconce package" href="sconce.html" /> 
+    <link rel="search" title="Search" href="search.html" /> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -85,84 +83,37 @@
               
             
             
-              <p class="caption"><span class="caption-text">Package Reference</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="sconce.html">sconce package</a><ul class="current">
-<li class="toctree-l2 current"><a class="reference internal" href="sconce.html#subpackages">Subpackages</a><ul class="current">
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Sconce Models</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#basicautoencoder"><span class="hidden-section">BasicAutoencoder</span></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#basicclassifer"><span class="hidden-section">BasicClassifer</span></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#multilayerperceptron"><span class="hidden-section">MultilayerPerceptron</span></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#wideresnetimageclassifier"><span class="hidden-section">WideResnetImageClassifier</span></a></li>
+              <p class="caption"><span class="caption-text">Class Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="data_generator.html"><span class="hidden-section">DataGenerator</span></a></li>
+<li class="toctree-l1"><a class="reference internal" href="rate_controllers.html">Rate Controllers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="rate_controllers.html#constantratecontroller"><span class="hidden-section">ConstantRateController</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="rate_controllers.html#cosineratecontroller"><span class="hidden-section">CosineRateController</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="rate_controllers.html#exponentialratecontroller"><span class="hidden-section">ExponentialRateController</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="rate_controllers.html#linearratecontroller"><span class="hidden-section">LinearRateController</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="rate_controllers.html#stepratecontroller"><span class="hidden-section">StepRateController</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="rate_controllers.html#triangleratecontroller"><span class="hidden-section">TriangleRateController</span></a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="sconce.monitors.html">sconce.monitors package</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="sconce.monitors.html#submodules">Submodules</a></li>
-<li class="toctree-l4"><a class="reference internal" href="sconce.monitors.html#module-sconce.monitors.base">sconce.monitors.base module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="sconce.monitors.html#module-sconce.monitors.dataframe_monitor">sconce.monitors.dataframe_monitor module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="sconce.monitors.html#module-sconce.monitors.losswise_monitor">sconce.monitors.losswise_monitor module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="sconce.monitors.html#module-sconce.monitors.ringbuffer_monitor">sconce.monitors.ringbuffer_monitor module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="sconce.monitors.html#module-sconce.monitors.stdout_monitor">sconce.monitors.stdout_monitor module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="sconce.monitors.html#module-sconce.monitors">Module contents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="monitors.html">Monitors</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="monitors.html#compositemonitor"><span class="hidden-section">CompositeMonitor</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="monitors.html#dataframemonitor"><span class="hidden-section">DataframeMonitor</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="monitors.html#losswisemonitor"><span class="hidden-section">LosswiseMonitor</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="monitors.html#ringbuffermonitor"><span class="hidden-section">RingbufferMonitor</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="monitors.html#stdoutmonitor"><span class="hidden-section">StdoutMonitor</span></a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="sconce.rate_controllers.html">sconce.rate_controllers package</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="sconce.rate_controllers.html#submodules">Submodules</a></li>
-<li class="toctree-l4"><a class="reference internal" href="sconce.rate_controllers.html#module-sconce.rate_controllers.base">sconce.rate_controllers.base module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="sconce.rate_controllers.html#module-sconce.rate_controllers.constant_rate_controller">sconce.rate_controllers.constant_rate_controller module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="sconce.rate_controllers.html#module-sconce.rate_controllers.cosine_rate_controller">sconce.rate_controllers.cosine_rate_controller module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="sconce.rate_controllers.html#module-sconce.rate_controllers.exponential_rate_controller">sconce.rate_controllers.exponential_rate_controller module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="sconce.rate_controllers.html#module-sconce.rate_controllers.linear_rate_controller">sconce.rate_controllers.linear_rate_controller module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="sconce.rate_controllers.html#module-sconce.rate_controllers.step_rate_controller">sconce.rate_controllers.step_rate_controller module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="sconce.rate_controllers.html#module-sconce.rate_controllers.triangle_rate_controller">sconce.rate_controllers.triangle_rate_controller module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="sconce.rate_controllers.html#module-sconce.rate_controllers">Module contents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="models.html">Models</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="models.html#basicautoencoder"><span class="hidden-section">BasicAutoencoder</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="models.html#basicclassifer"><span class="hidden-section">BasicClassifer</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="models.html#multilayerperceptron"><span class="hidden-section">MultilayerPerceptron</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="models.html#wideresnetimageclassifier"><span class="hidden-section">WideResnetImageClassifier</span></a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="sconce.trainers.html">sconce.trainers package</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="sconce.trainers.html#submodules">Submodules</a></li>
-<li class="toctree-l4"><a class="reference internal" href="sconce.trainers.html#module-sconce.trainers.autoencoder_trainer">sconce.trainers.autoencoder_trainer module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="sconce.trainers.html#module-sconce.trainers.classifier_trainer">sconce.trainers.classifier_trainer module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="sconce.trainers.html#module-sconce.trainers">Module contents</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="sconce.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sconce.html#module-sconce.data_generator">sconce.data_generator module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sconce.html#module-sconce.trainer">sconce.trainer module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sconce.html#module-sconce.utils">sconce.utils module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sconce.html#module-sconce">Module contents</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="sconce.monitors.html">sconce.monitors package</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="sconce.monitors.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sconce.monitors.html#module-sconce.monitors.base">sconce.monitors.base module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sconce.monitors.html#module-sconce.monitors.dataframe_monitor">sconce.monitors.dataframe_monitor module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sconce.monitors.html#module-sconce.monitors.losswise_monitor">sconce.monitors.losswise_monitor module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sconce.monitors.html#module-sconce.monitors.ringbuffer_monitor">sconce.monitors.ringbuffer_monitor module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sconce.monitors.html#module-sconce.monitors.stdout_monitor">sconce.monitors.stdout_monitor module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sconce.monitors.html#module-sconce.monitors">Module contents</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="sconce.trainers.html">sconce.trainers package</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="sconce.trainers.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sconce.trainers.html#module-sconce.trainers.autoencoder_trainer">sconce.trainers.autoencoder_trainer module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sconce.trainers.html#module-sconce.trainers.classifier_trainer">sconce.trainers.classifier_trainer module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sconce.trainers.html#module-sconce.trainers">Module contents</a></li>
-</ul>
-</li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Sconce Models</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#basicautoencoder"><span class="hidden-section">BasicAutoencoder</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#basicclassifer"><span class="hidden-section">BasicClassifer</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#multilayerperceptron"><span class="hidden-section">MultilayerPerceptron</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#wideresnetimageclassifier"><span class="hidden-section">WideResnetImageClassifier</span></a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="sconce.models.layers.html">sconce.models.layers package</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="sconce.models.layers.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sconce.models.layers.html#module-sconce.models.layers.convolution2d_layer">sconce.models.layers.convolution2d_layer module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sconce.models.layers.html#module-sconce.models.layers.fully_connected_layer">sconce.models.layers.fully_connected_layer module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sconce.models.layers.html#module-sconce.models.layers">Module contents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="trainers.html">Trainers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="trainers.html#basic-trainer"><span class="hidden-section">Basic Trainer</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="trainers.html#autoencodertrainer"><span class="hidden-section">AutoencoderTrainer</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="trainers.html#classifiertrainer"><span class="hidden-section">ClassifierTrainer</span></a></li>
 </ul>
 </li>
 </ul>
@@ -210,9 +161,7 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-          <li><a href="sconce.html">sconce package</a> &raquo;</li>
-        
-      <li>Sconce Models</li>
+      <li>sconce.models package</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -231,39 +180,30 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="module-sconce.models">
-<span id="sconce-models"></span><h1>Sconce Models<a class="headerlink" href="#module-sconce.models" title="Permalink to this headline">¶</a></h1>
-<p>A model in Sconce is just a <a class="reference external" href="http://pytorch.org/docs/stable/nn.html#torch.nn.Module" title="(in PyTorch vmaster (0.3.1.post2 ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.Module</span></code></a> with a few restrictions
-(see note below).  Sconce comes with a few example models to get you started.</p>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p>For a model to be used by a <a class="reference internal" href="sconce.html#sconce.trainer.Trainer" title="sconce.trainer.Trainer"><code class="xref py py-class docutils literal notranslate"><span class="pre">Trainer</span></code></a>, the model must satisfy a few constraints.</p>
-<ol class="last arabic simple">
-<li>It must accept arbitrary keyword arguments in it’s <code class="docutils literal notranslate"><span class="pre">forward</span></code> method.  The base class of trainer will pass
-<cite>inputs</cite> and <cite>targets</cite>, but subclasses may modify that behavior to include other keyword arguments.</li>
-<li>It must return a dictionary from it’s <code class="docutils literal notranslate"><span class="pre">forward</span></code> method.  The dictionary is expected to include at least
-the key <cite>outputs</cite> but may include any other keys you like.  The value of the key <cite>outputs</cite> is expected to be
-the <a class="reference external" href="http://pytorch.org/docs/stable/autograd.html#torch.autograd.Variable" title="(in PyTorch vmaster (0.3.1.post2 ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">Variable</span></code></a> output of the model, used for calculating the loss.</li>
-<li>It must define a <code class="docutils literal notranslate"><span class="pre">calculate_loss</span></code> method.  This method must accept arbitrary keyword arguments.  The base
-class of trainer will pass <cite>inputs</cite>, <cite>outputs</cite>, and <cite>targets</cite>, but subclasses may modify that behavior to
-include other keyword arguments.</li>
-<li>It must return a dictionary form it’s <code class="docutils literal notranslate"><span class="pre">calculate_loss</span></code> method.  The dictionary is expected to include at
-least the key ‘loss’, but may include any otehr keys you like.  The value of the key <cite>loss</cite> is expected to
-be the <a class="reference external" href="http://pytorch.org/docs/stable/autograd.html#torch.autograd.Variable" title="(in PyTorch vmaster (0.3.1.post2 ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">Variable</span></code></a> output of the loss function, used to back-propagate the
-gradients used by the optimizer.</li>
-<li>It may define a <code class="docutils literal notranslate"><span class="pre">calculate_metrics</span></code> method.  This method must accept arbitrary keyword arguments.  The
-base class of trainer will pass <cite>inputs</cite>, <cite>outputs</cite>, <cite>targets</cite>, and <cite>loss</cite>, but subclasses may modify that
-behavior to include other keyword arguments.</li>
-<li>If it defines a <code class="docutils literal notranslate"><span class="pre">calculate_metrics</span></code> method, it must return a dictionary.  No restrictions are made on the
-keys or values of this dictionary.</li>
-</ol>
+  <div class="section" id="sconce-models-package">
+<h1>sconce.models package<a class="headerlink" href="#sconce-models-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="sconce.models.layers.html">sconce.models.layers package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="sconce.models.layers.html#module-sconce.models.layers.convolution2d_layer">sconce.models.layers.convolution2d_layer module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sconce.models.layers.html#module-sconce.models.layers.fully_connected_layer">sconce.models.layers.fully_connected_layer module</a></li>
+</ul>
+</li>
+</ul>
 </div>
-<div class="section" id="basicautoencoder">
-<h2><span class="hidden-section">BasicAutoencoder</span><a class="headerlink" href="#basicautoencoder" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-sconce.models.basic_autoencoder">
+<span id="sconce-models-basic-autoencoder-module"></span><h2>sconce.models.basic_autoencoder module<a class="headerlink" href="#module-sconce.models.basic_autoencoder" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
-<dt id="sconce.models.BasicAutoencoder">
-<em class="property">class </em><code class="descclassname">sconce.models.</code><code class="descname">BasicAutoencoder</code><span class="sig-paren">(</span><em>image_height</em>, <em>image_width</em>, <em>hidden_size</em>, <em>latent_size</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/models/basic_autoencoder.html#BasicAutoencoder"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.models.BasicAutoencoder" title="Permalink to this definition">¶</a></dt>
-<dd><p>A basic 2D image autoencoder built up of densly connected layers, two each in the encoder and the decoder.</p>
+<dt id="sconce.models.basic_autoencoder.BasicAutoencoder">
+<em class="property">class </em><code class="descclassname">sconce.models.basic_autoencoder.</code><code class="descname">BasicAutoencoder</code><span class="sig-paren">(</span><em>image_height</em>, <em>image_width</em>, <em>hidden_size</em>, <em>latent_size</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/models/basic_autoencoder.html#BasicAutoencoder"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.models.basic_autoencoder.BasicAutoencoder" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+<p>A basic 2D image autoencoder built up of densly connected layers, two each in the encoder and the decoder.</p>
 <dl class="docutils">
 <dt>Loss:</dt>
 <dd>This model uses binary cross-entropy for the loss.</dd>
@@ -284,15 +224,36 @@ keys or values of this dictionary.</li>
 </tr>
 </tbody>
 </table>
+<dl class="method">
+<dt id="sconce.models.basic_autoencoder.BasicAutoencoder.calculate_loss">
+<code class="descname">calculate_loss</code><span class="sig-paren">(</span><em>inputs</em>, <em>outputs</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/models/basic_autoencoder.html#BasicAutoencoder.calculate_loss"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.models.basic_autoencoder.BasicAutoencoder.calculate_loss" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sconce.models.basic_autoencoder.BasicAutoencoder.decode">
+<code class="descname">decode</code><span class="sig-paren">(</span><em>x_latent</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/models/basic_autoencoder.html#BasicAutoencoder.decode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.models.basic_autoencoder.BasicAutoencoder.decode" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sconce.models.basic_autoencoder.BasicAutoencoder.encode">
+<code class="descname">encode</code><span class="sig-paren">(</span><em>inputs</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/models/basic_autoencoder.html#BasicAutoencoder.encode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.models.basic_autoencoder.BasicAutoencoder.encode" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sconce.models.basic_autoencoder.BasicAutoencoder.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>inputs</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/models/basic_autoencoder.html#BasicAutoencoder.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.models.basic_autoencoder.BasicAutoencoder.forward" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 </div>
-<div class="section" id="basicclassifer">
-<h2><span class="hidden-section">BasicClassifer</span><a class="headerlink" href="#basicclassifer" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-sconce.models.basic_classifier">
+<span id="sconce-models-basic-classifier-module"></span><h2>sconce.models.basic_classifier module<a class="headerlink" href="#module-sconce.models.basic_classifier" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
-<dt id="sconce.models.BasicClassifier">
-<em class="property">class </em><code class="descclassname">sconce.models.</code><code class="descname">BasicClassifier</code><span class="sig-paren">(</span><em>image_height</em>, <em>image_width</em>, <em>image_channels</em>, <em>convolutional_layer_kwargs</em>, <em>fully_connected_layer_kwargs</em>, <em>num_categories=10</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/models/basic_classifier.html#BasicClassifier"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.models.BasicClassifier" title="Permalink to this definition">¶</a></dt>
-<dd><p>A basic 2D image classifier built up of some number of convolutional layers followed by some number of densly
+<dt id="sconce.models.basic_classifier.BasicClassifier">
+<em class="property">class </em><code class="descclassname">sconce.models.basic_classifier.</code><code class="descname">BasicClassifier</code><span class="sig-paren">(</span><em>image_height</em>, <em>image_width</em>, <em>image_channels</em>, <em>convolutional_layer_kwargs</em>, <em>fully_connected_layer_kwargs</em>, <em>num_categories=10</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/models/basic_classifier.html#BasicClassifier"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.models.basic_classifier.BasicClassifier" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+<p>A basic 2D image classifier built up of some number of convolutional layers followed by some number of densly
 connected layers.</p>
 <dl class="docutils">
 <dt>Loss:</dt>
@@ -309,7 +270,7 @@ connected layers.</p>
 <li><strong>image_width</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) – image width in pixels.</li>
 <li><strong>image_channels</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) – number of channels in the input images.</li>
 <li><strong>convolutional_layer_kwargs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.6)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.6)"><em>dict</em></a><em>]</em>) – a list of dictionaries describing the convolutional layers. See
-<code class="xref py py-class docutils literal notranslate"><span class="pre">Convolution2dLayer</span></code> for details.</li>
+<a class="reference internal" href="sconce.models.layers.html#sconce.models.layers.convolution2d_layer.Convolution2dLayer" title="sconce.models.layers.convolution2d_layer.Convolution2dLayer"><code class="xref py py-class docutils literal notranslate"><span class="pre">Convolution2dLayer</span></code></a> for details.</li>
 <li><strong>fully_connected_layer_kwargs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.6)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.6)"><em>dict</em></a><em>]</em>) – a list of dictionaries describing the fully connected layers. See
 <a class="reference internal" href="sconce.models.layers.html#sconce.models.layers.fully_connected_layer.FullyConnectedLayer" title="sconce.models.layers.fully_connected_layer.FullyConnectedLayer"><code class="xref py py-class docutils literal notranslate"><span class="pre">FullyConnectedLayer</span></code></a> for details.</li>
 <li><strong>num_categories</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) – [2, inf) the number of different image classes.</li>
@@ -318,9 +279,34 @@ connected layers.</p>
 </tr>
 </tbody>
 </table>
+<dl class="method">
+<dt id="sconce.models.basic_classifier.BasicClassifier.calculate_loss">
+<code class="descname">calculate_loss</code><span class="sig-paren">(</span><em>targets</em>, <em>outputs</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/models/basic_classifier.html#BasicClassifier.calculate_loss"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.models.basic_classifier.BasicClassifier.calculate_loss" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sconce.models.basic_classifier.BasicClassifier.calculate_metrics">
+<code class="descname">calculate_metrics</code><span class="sig-paren">(</span><em>targets</em>, <em>outputs</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/models/basic_classifier.html#BasicClassifier.calculate_metrics"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.models.basic_classifier.BasicClassifier.calculate_metrics" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sconce.models.basic_classifier.BasicClassifier.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>inputs</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/models/basic_classifier.html#BasicClassifier.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.models.basic_classifier.BasicClassifier.forward" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sconce.models.basic_classifier.BasicClassifier.freeze_batchnorm_layers">
+<code class="descname">freeze_batchnorm_layers</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/models/basic_classifier.html#BasicClassifier.freeze_batchnorm_layers"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.models.basic_classifier.BasicClassifier.freeze_batchnorm_layers" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="sconce.models.basic_classifier.BasicClassifier.layers">
+<code class="descname">layers</code><a class="headerlink" href="#sconce.models.basic_classifier.BasicClassifier.layers" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="classmethod">
-<dt id="sconce.models.BasicClassifier.new_from_yaml_file">
-<em class="property">classmethod </em><code class="descname">new_from_yaml_file</code><span class="sig-paren">(</span><em>yaml_file</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/models/basic_classifier.html#BasicClassifier.new_from_yaml_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.models.BasicClassifier.new_from_yaml_file" title="Permalink to this definition">¶</a></dt>
+<dt id="sconce.models.basic_classifier.BasicClassifier.new_from_yaml_file">
+<em class="property">classmethod </em><code class="descname">new_from_yaml_file</code><span class="sig-paren">(</span><em>yaml_file</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/models/basic_classifier.html#BasicClassifier.new_from_yaml_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.models.basic_classifier.BasicClassifier.new_from_yaml_file" title="Permalink to this definition">¶</a></dt>
 <dd><p>Construct a new BasicClassifier from a yaml file.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -358,30 +344,98 @@ connected layers.</p>
 </dd></dl>
 
 <dl class="classmethod">
-<dt id="sconce.models.BasicClassifier.new_from_yaml_filename">
-<em class="property">classmethod </em><code class="descname">new_from_yaml_filename</code><span class="sig-paren">(</span><em>yaml_filename</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/models/basic_classifier.html#BasicClassifier.new_from_yaml_filename"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.models.BasicClassifier.new_from_yaml_filename" title="Permalink to this definition">¶</a></dt>
+<dt id="sconce.models.basic_classifier.BasicClassifier.new_from_yaml_filename">
+<em class="property">classmethod </em><code class="descname">new_from_yaml_filename</code><span class="sig-paren">(</span><em>yaml_filename</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/models/basic_classifier.html#BasicClassifier.new_from_yaml_filename"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.models.basic_classifier.BasicClassifier.new_from_yaml_filename" title="Permalink to this definition">¶</a></dt>
 <dd><p>Construct a new BasicClassifier from a yaml file.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>filename</strong> (<em>path</em>) – the filename of a yaml file.  See
-<code class="xref py py-meth docutils literal notranslate"><span class="pre">new_from_yaml_file()</span></code>
+<a class="reference internal" href="#sconce.models.basic_classifier.BasicClassifier.new_from_yaml_file" title="sconce.models.basic_classifier.BasicClassifier.new_from_yaml_file"><code class="xref py py-meth docutils literal notranslate"><span class="pre">new_from_yaml_file()</span></code></a>
 for more details.</td>
 </tr>
 </tbody>
 </table>
 </dd></dl>
 
+<dl class="method">
+<dt id="sconce.models.basic_classifier.BasicClassifier.unfreeze_batchnorm_layers">
+<code class="descname">unfreeze_batchnorm_layers</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/models/basic_classifier.html#BasicClassifier.unfreeze_batchnorm_layers"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.models.basic_classifier.BasicClassifier.unfreeze_batchnorm_layers" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 </div>
-<div class="section" id="multilayerperceptron">
-<h2><span class="hidden-section">MultilayerPerceptron</span><a class="headerlink" href="#multilayerperceptron" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-sconce.models.convolutional_autoencoder_plus_perceptron">
+<span id="sconce-models-convolutional-autoencoder-plus-perceptron-module"></span><h2>sconce.models.convolutional_autoencoder_plus_perceptron module<a class="headerlink" href="#module-sconce.models.convolutional_autoencoder_plus_perceptron" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
-<dt id="sconce.models.MultilayerPerceptron">
-<em class="property">class </em><code class="descclassname">sconce.models.</code><code class="descname">MultilayerPerceptron</code><span class="sig-paren">(</span><em>image_height</em>, <em>image_width</em>, <em>image_channels</em>, <em>layer_kwargs</em>, <em>num_categories=10</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/models/multilayer_perceptron.html#MultilayerPerceptron"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.models.MultilayerPerceptron" title="Permalink to this definition">¶</a></dt>
-<dd><p>A basic 2D image multi-layer perceptron built up of a number of densly connected layers.</p>
+<dt id="sconce.models.convolutional_autoencoder_plus_perceptron.ConvolutionalAutoencoderPlusPerceptron">
+<em class="property">class </em><code class="descclassname">sconce.models.convolutional_autoencoder_plus_perceptron.</code><code class="descname">ConvolutionalAutoencoderPlusPerceptron</code><span class="sig-paren">(</span><em>image_channels</em>, <em>conv_channels</em>, <em>hidden_features</em>, <em>perceptron_features</em>, <em>conv_bias=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/models/convolutional_autoencoder_plus_perceptron.html#ConvolutionalAutoencoderPlusPerceptron"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.models.convolutional_autoencoder_plus_perceptron.ConvolutionalAutoencoderPlusPerceptron" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+<dl class="method">
+<dt id="sconce.models.convolutional_autoencoder_plus_perceptron.ConvolutionalAutoencoderPlusPerceptron.calculate_losses">
+<code class="descname">calculate_losses</code><span class="sig-paren">(</span><em>x_out</em>, <em>x_in</em>, <em>y_in</em>, <em>y_out</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/models/convolutional_autoencoder_plus_perceptron.html#ConvolutionalAutoencoderPlusPerceptron.calculate_losses"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.models.convolutional_autoencoder_plus_perceptron.ConvolutionalAutoencoderPlusPerceptron.calculate_losses" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sconce.models.convolutional_autoencoder_plus_perceptron.ConvolutionalAutoencoderPlusPerceptron.decode">
+<code class="descname">decode</code><span class="sig-paren">(</span><em>x_latent</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/models/convolutional_autoencoder_plus_perceptron.html#ConvolutionalAutoencoderPlusPerceptron.decode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.models.convolutional_autoencoder_plus_perceptron.ConvolutionalAutoencoderPlusPerceptron.decode" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sconce.models.convolutional_autoencoder_plus_perceptron.ConvolutionalAutoencoderPlusPerceptron.encode">
+<code class="descname">encode</code><span class="sig-paren">(</span><em>x_in</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/models/convolutional_autoencoder_plus_perceptron.html#ConvolutionalAutoencoderPlusPerceptron.encode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.models.convolutional_autoencoder_plus_perceptron.ConvolutionalAutoencoderPlusPerceptron.encode" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sconce.models.convolutional_autoencoder_plus_perceptron.ConvolutionalAutoencoderPlusPerceptron.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>x_in</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/models/convolutional_autoencoder_plus_perceptron.html#ConvolutionalAutoencoderPlusPerceptron.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.models.convolutional_autoencoder_plus_perceptron.ConvolutionalAutoencoderPlusPerceptron.forward" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="sconce.models.convolutional_autoencoder_plus_perceptron.ConvolutionalLayer">
+<em class="property">class </em><code class="descclassname">sconce.models.convolutional_autoencoder_plus_perceptron.</code><code class="descname">ConvolutionalLayer</code><span class="sig-paren">(</span><em>*</em>, <em>in_channels</em>, <em>out_channels</em>, <em>stride=2</em>, <em>kernel_size=3</em>, <em>padding=1</em>, <em>bias=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/models/convolutional_autoencoder_plus_perceptron.html#ConvolutionalLayer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.models.convolutional_autoencoder_plus_perceptron.ConvolutionalLayer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+<dl class="method">
+<dt id="sconce.models.convolutional_autoencoder_plus_perceptron.ConvolutionalLayer.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>x_in</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/models/convolutional_autoencoder_plus_perceptron.html#ConvolutionalLayer.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.models.convolutional_autoencoder_plus_perceptron.ConvolutionalLayer.forward" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="sconce.models.convolutional_autoencoder_plus_perceptron.DeconvolutionalLayer">
+<em class="property">class </em><code class="descclassname">sconce.models.convolutional_autoencoder_plus_perceptron.</code><code class="descname">DeconvolutionalLayer</code><span class="sig-paren">(</span><em>*</em>, <em>in_channels</em>, <em>out_channels</em>, <em>stride=2</em>, <em>kernel_size=3</em>, <em>padding=1</em>, <em>output_padding=1</em>, <em>bias=False</em>, <em>activation=ReLU()</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/models/convolutional_autoencoder_plus_perceptron.html#DeconvolutionalLayer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.models.convolutional_autoencoder_plus_perceptron.DeconvolutionalLayer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+<dl class="method">
+<dt id="sconce.models.convolutional_autoencoder_plus_perceptron.DeconvolutionalLayer.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>x_in</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/models/convolutional_autoencoder_plus_perceptron.html#DeconvolutionalLayer.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.models.convolutional_autoencoder_plus_perceptron.DeconvolutionalLayer.forward" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="sconce.models.convolutional_autoencoder_plus_perceptron.Perceptron">
+<em class="property">class </em><code class="descclassname">sconce.models.convolutional_autoencoder_plus_perceptron.</code><code class="descname">Perceptron</code><span class="sig-paren">(</span><em>*</em>, <em>in_features</em>, <em>hidden_features</em>, <em>output_features</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/models/convolutional_autoencoder_plus_perceptron.html#Perceptron"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.models.convolutional_autoencoder_plus_perceptron.Perceptron" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+<dl class="method">
+<dt id="sconce.models.convolutional_autoencoder_plus_perceptron.Perceptron.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>x_in</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/models/convolutional_autoencoder_plus_perceptron.html#Perceptron.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.models.convolutional_autoencoder_plus_perceptron.Perceptron.forward" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-sconce.models.multilayer_perceptron">
+<span id="sconce-models-multilayer-perceptron-module"></span><h2>sconce.models.multilayer_perceptron module<a class="headerlink" href="#module-sconce.models.multilayer_perceptron" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="sconce.models.multilayer_perceptron.MultilayerPerceptron">
+<em class="property">class </em><code class="descclassname">sconce.models.multilayer_perceptron.</code><code class="descname">MultilayerPerceptron</code><span class="sig-paren">(</span><em>image_height</em>, <em>image_width</em>, <em>image_channels</em>, <em>layer_kwargs</em>, <em>num_categories=10</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/models/multilayer_perceptron.html#MultilayerPerceptron"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.models.multilayer_perceptron.MultilayerPerceptron" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+<p>A basic 2D image multi-layer perceptron built up of a number of densly connected layers.</p>
 <dl class="docutils">
 <dt>Loss:</dt>
 <dd>This model uses cross-entropy for the loss.</dd>
@@ -404,9 +458,24 @@ for more details.</td>
 </tr>
 </tbody>
 </table>
+<dl class="method">
+<dt id="sconce.models.multilayer_perceptron.MultilayerPerceptron.calculate_loss">
+<code class="descname">calculate_loss</code><span class="sig-paren">(</span><em>targets</em>, <em>outputs</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/models/multilayer_perceptron.html#MultilayerPerceptron.calculate_loss"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.models.multilayer_perceptron.MultilayerPerceptron.calculate_loss" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sconce.models.multilayer_perceptron.MultilayerPerceptron.calculate_metrics">
+<code class="descname">calculate_metrics</code><span class="sig-paren">(</span><em>targets</em>, <em>outputs</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/models/multilayer_perceptron.html#MultilayerPerceptron.calculate_metrics"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.models.multilayer_perceptron.MultilayerPerceptron.calculate_metrics" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sconce.models.multilayer_perceptron.MultilayerPerceptron.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>inputs</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/models/multilayer_perceptron.html#MultilayerPerceptron.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.models.multilayer_perceptron.MultilayerPerceptron.forward" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="classmethod">
-<dt id="sconce.models.MultilayerPerceptron.new_from_yaml_file">
-<em class="property">classmethod </em><code class="descname">new_from_yaml_file</code><span class="sig-paren">(</span><em>yaml_file</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/models/multilayer_perceptron.html#MultilayerPerceptron.new_from_yaml_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.models.MultilayerPerceptron.new_from_yaml_file" title="Permalink to this definition">¶</a></dt>
+<dt id="sconce.models.multilayer_perceptron.MultilayerPerceptron.new_from_yaml_file">
+<em class="property">classmethod </em><code class="descname">new_from_yaml_file</code><span class="sig-paren">(</span><em>yaml_file</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/models/multilayer_perceptron.html#MultilayerPerceptron.new_from_yaml_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.models.multilayer_perceptron.MultilayerPerceptron.new_from_yaml_file" title="Permalink to this definition">¶</a></dt>
 <dd><p>Construct a new MultilayerPerceptron from a yaml file.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -434,15 +503,15 @@ for more details.</td>
 </dd></dl>
 
 <dl class="classmethod">
-<dt id="sconce.models.MultilayerPerceptron.new_from_yaml_filename">
-<em class="property">classmethod </em><code class="descname">new_from_yaml_filename</code><span class="sig-paren">(</span><em>yaml_filename</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/models/multilayer_perceptron.html#MultilayerPerceptron.new_from_yaml_filename"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.models.MultilayerPerceptron.new_from_yaml_filename" title="Permalink to this definition">¶</a></dt>
+<dt id="sconce.models.multilayer_perceptron.MultilayerPerceptron.new_from_yaml_filename">
+<em class="property">classmethod </em><code class="descname">new_from_yaml_filename</code><span class="sig-paren">(</span><em>yaml_filename</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/models/multilayer_perceptron.html#MultilayerPerceptron.new_from_yaml_filename"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.models.multilayer_perceptron.MultilayerPerceptron.new_from_yaml_filename" title="Permalink to this definition">¶</a></dt>
 <dd><p>Construct a new MultilayerPerceptron from a yaml file.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>filename</strong> (<em>path</em>) – the filename of a yaml file.  See
-<code class="xref py py-meth docutils literal notranslate"><span class="pre">new_from_yaml_file()</span></code>
+<a class="reference internal" href="#sconce.models.basic_classifier.BasicClassifier.new_from_yaml_file" title="sconce.models.basic_classifier.BasicClassifier.new_from_yaml_file"><code class="xref py py-meth docutils literal notranslate"><span class="pre">new_from_yaml_file()</span></code></a>
 for more details.</td>
 </tr>
 </tbody>
@@ -452,12 +521,97 @@ for more details.</td>
 </dd></dl>
 
 </div>
-<div class="section" id="wideresnetimageclassifier">
-<h2><span class="hidden-section">WideResnetImageClassifier</span><a class="headerlink" href="#wideresnetimageclassifier" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-sconce.models.simple_convolutional_autoencoder">
+<span id="sconce-models-simple-convolutional-autoencoder-module"></span><h2>sconce.models.simple_convolutional_autoencoder module<a class="headerlink" href="#module-sconce.models.simple_convolutional_autoencoder" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
-<dt id="sconce.models.WideResnetImageClassifier">
-<em class="property">class </em><code class="descclassname">sconce.models.</code><code class="descname">WideResnetImageClassifier</code><span class="sig-paren">(</span><em>image_channels=1</em>, <em>depth=28</em>, <em>widening_factor=10</em>, <em>num_categories=10</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/models/wide_resnet_image_classifier.html#WideResnetImageClassifier"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.models.WideResnetImageClassifier" title="Permalink to this definition">¶</a></dt>
-<dd><p>A wide resnet image classifier, based on <a class="reference external" href="http://arxiv.org/abs/1605.07146">this paper</a></p>
+<dt id="sconce.models.simple_convolutional_autoencoder.ConvolutionalLayer">
+<em class="property">class </em><code class="descclassname">sconce.models.simple_convolutional_autoencoder.</code><code class="descname">ConvolutionalLayer</code><span class="sig-paren">(</span><em>*</em>, <em>in_channels</em>, <em>out_channels</em>, <em>stride=2</em>, <em>kernel_size=3</em>, <em>padding=1</em>, <em>bias=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/models/simple_convolutional_autoencoder.html#ConvolutionalLayer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.models.simple_convolutional_autoencoder.ConvolutionalLayer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+<dl class="method">
+<dt id="sconce.models.simple_convolutional_autoencoder.ConvolutionalLayer.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>x_in</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/models/simple_convolutional_autoencoder.html#ConvolutionalLayer.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.models.simple_convolutional_autoencoder.ConvolutionalLayer.forward" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="sconce.models.simple_convolutional_autoencoder.DeconvolutionalLayer">
+<em class="property">class </em><code class="descclassname">sconce.models.simple_convolutional_autoencoder.</code><code class="descname">DeconvolutionalLayer</code><span class="sig-paren">(</span><em>*</em>, <em>in_channels</em>, <em>out_channels</em>, <em>stride=2</em>, <em>kernel_size=3</em>, <em>padding=1</em>, <em>output_padding=1</em>, <em>bias=False</em>, <em>activation=ReLU()</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/models/simple_convolutional_autoencoder.html#DeconvolutionalLayer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.models.simple_convolutional_autoencoder.DeconvolutionalLayer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+<dl class="method">
+<dt id="sconce.models.simple_convolutional_autoencoder.DeconvolutionalLayer.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>x_in</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/models/simple_convolutional_autoencoder.html#DeconvolutionalLayer.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.models.simple_convolutional_autoencoder.DeconvolutionalLayer.forward" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="sconce.models.simple_convolutional_autoencoder.SimpleConvolutionalAutoencoder">
+<em class="property">class </em><code class="descclassname">sconce.models.simple_convolutional_autoencoder.</code><code class="descname">SimpleConvolutionalAutoencoder</code><span class="sig-paren">(</span><em>image_channels</em>, <em>conv_channels</em>, <em>conv_bias=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/models/simple_convolutional_autoencoder.html#SimpleConvolutionalAutoencoder"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.models.simple_convolutional_autoencoder.SimpleConvolutionalAutoencoder" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+<dl class="method">
+<dt id="sconce.models.simple_convolutional_autoencoder.SimpleConvolutionalAutoencoder.calculate_loss">
+<code class="descname">calculate_loss</code><span class="sig-paren">(</span><em>inputs</em>, <em>outputs</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/models/simple_convolutional_autoencoder.html#SimpleConvolutionalAutoencoder.calculate_loss"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.models.simple_convolutional_autoencoder.SimpleConvolutionalAutoencoder.calculate_loss" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sconce.models.simple_convolutional_autoencoder.SimpleConvolutionalAutoencoder.decode">
+<code class="descname">decode</code><span class="sig-paren">(</span><em>x_latent</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/models/simple_convolutional_autoencoder.html#SimpleConvolutionalAutoencoder.decode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.models.simple_convolutional_autoencoder.SimpleConvolutionalAutoencoder.decode" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sconce.models.simple_convolutional_autoencoder.SimpleConvolutionalAutoencoder.encode">
+<code class="descname">encode</code><span class="sig-paren">(</span><em>inputs</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/models/simple_convolutional_autoencoder.html#SimpleConvolutionalAutoencoder.encode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.models.simple_convolutional_autoencoder.SimpleConvolutionalAutoencoder.encode" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sconce.models.simple_convolutional_autoencoder.SimpleConvolutionalAutoencoder.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>inputs</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/models/simple_convolutional_autoencoder.html#SimpleConvolutionalAutoencoder.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.models.simple_convolutional_autoencoder.SimpleConvolutionalAutoencoder.forward" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-sconce.models.wide_resnet_image_classifier">
+<span id="sconce-models-wide-resnet-image-classifier-module"></span><h2>sconce.models.wide_resnet_image_classifier module<a class="headerlink" href="#module-sconce.models.wide_resnet_image_classifier" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="sconce.models.wide_resnet_image_classifier.AdaptiveAveragePooling2dLayer">
+<em class="property">class </em><code class="descclassname">sconce.models.wide_resnet_image_classifier.</code><code class="descname">AdaptiveAveragePooling2dLayer</code><span class="sig-paren">(</span><em>in_channels</em>, <em>output_size</em>, <em>inplace_activation=False</em>, <em>preactivate=False</em>, <em>with_batchnorm=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/models/wide_resnet_image_classifier.html#AdaptiveAveragePooling2dLayer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.models.wide_resnet_image_classifier.AdaptiveAveragePooling2dLayer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+<dl class="method">
+<dt id="sconce.models.wide_resnet_image_classifier.AdaptiveAveragePooling2dLayer.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/models/wide_resnet_image_classifier.html#AdaptiveAveragePooling2dLayer.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.models.wide_resnet_image_classifier.AdaptiveAveragePooling2dLayer.forward" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="sconce.models.wide_resnet_image_classifier.WideResnetBlock_3x3">
+<em class="property">class </em><code class="descclassname">sconce.models.wide_resnet_image_classifier.</code><code class="descname">WideResnetBlock_3x3</code><span class="sig-paren">(</span><em>in_channels</em>, <em>out_channels</em>, <em>stride</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/models/wide_resnet_image_classifier.html#WideResnetBlock_3x3"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.models.wide_resnet_image_classifier.WideResnetBlock_3x3" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+<dl class="method">
+<dt id="sconce.models.wide_resnet_image_classifier.WideResnetBlock_3x3.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>x_in</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/models/wide_resnet_image_classifier.html#WideResnetBlock_3x3.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.models.wide_resnet_image_classifier.WideResnetBlock_3x3.forward" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="sconce.models.wide_resnet_image_classifier.WideResnetGroup_3x3">
+<em class="property">class </em><code class="descclassname">sconce.models.wide_resnet_image_classifier.</code><code class="descname">WideResnetGroup_3x3</code><span class="sig-paren">(</span><em>in_channels</em>, <em>out_channels</em>, <em>stride</em>, <em>num_blocks</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/models/wide_resnet_image_classifier.html#WideResnetGroup_3x3"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.models.wide_resnet_image_classifier.WideResnetGroup_3x3" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+<dl class="method">
+<dt id="sconce.models.wide_resnet_image_classifier.WideResnetGroup_3x3.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/models/wide_resnet_image_classifier.html#WideResnetGroup_3x3.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.models.wide_resnet_image_classifier.WideResnetGroup_3x3.forward" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="sconce.models.wide_resnet_image_classifier.WideResnetImageClassifier">
+<em class="property">class </em><code class="descclassname">sconce.models.wide_resnet_image_classifier.</code><code class="descname">WideResnetImageClassifier</code><span class="sig-paren">(</span><em>image_channels=1</em>, <em>depth=28</em>, <em>widening_factor=10</em>, <em>num_categories=10</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/models/wide_resnet_image_classifier.html#WideResnetImageClassifier"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.models.wide_resnet_image_classifier.WideResnetImageClassifier" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+<p>A wide resnet image classifier, based on <a class="reference external" href="http://arxiv.org/abs/1605.07146">this paper</a></p>
 <dl class="docutils">
 <dt>Loss:</dt>
 <dd>This model uses cross-entropy for the loss.</dd>
@@ -480,6 +634,21 @@ channels are in the network (see paper above for details).</li>
 </tr>
 </tbody>
 </table>
+<dl class="method">
+<dt id="sconce.models.wide_resnet_image_classifier.WideResnetImageClassifier.calculate_loss">
+<code class="descname">calculate_loss</code><span class="sig-paren">(</span><em>targets</em>, <em>outputs</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/models/wide_resnet_image_classifier.html#WideResnetImageClassifier.calculate_loss"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.models.wide_resnet_image_classifier.WideResnetImageClassifier.calculate_loss" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sconce.models.wide_resnet_image_classifier.WideResnetImageClassifier.calculate_metrics">
+<code class="descname">calculate_metrics</code><span class="sig-paren">(</span><em>targets</em>, <em>outputs</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/models/wide_resnet_image_classifier.html#WideResnetImageClassifier.calculate_metrics"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.models.wide_resnet_image_classifier.WideResnetImageClassifier.calculate_metrics" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sconce.models.wide_resnet_image_classifier.WideResnetImageClassifier.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>inputs</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/models/wide_resnet_image_classifier.html#WideResnetImageClassifier.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.models.wide_resnet_image_classifier.WideResnetImageClassifier.forward" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 </div>
@@ -490,15 +659,6 @@ channels are in the network (see paper above for details).</li>
            
           </div>
           <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="sconce.monitors.html" class="btn btn-neutral float-right" title="sconce.monitors package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="sconce.html" class="btn btn-neutral" title="sconce package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
-    </div>
   
 
   <hr/>

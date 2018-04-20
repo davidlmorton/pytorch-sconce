@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>sconce &mdash; Pytorch-Sconce master documentation</title>
+  <title>Monitors &mdash; Pytorch-Sconce master documentation</title>
   
 
   
@@ -30,7 +30,9 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato" type="text/css" />
   <link rel="stylesheet" href="_static/css/pytorch_theme.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" /> 
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Models" href="models.html" />
+    <link rel="prev" title="Rate Controllers" href="rate_controllers.html" /> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -84,7 +86,7 @@
             
             
               <p class="caption"><span class="caption-text">Class Reference</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="data_generator.html"><span class="hidden-section">DataGenerator</span></a></li>
 <li class="toctree-l1"><a class="reference internal" href="rate_controllers.html">Rate Controllers</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="rate_controllers.html#constantratecontroller"><span class="hidden-section">ConstantRateController</span></a></li>
@@ -95,12 +97,12 @@
 <li class="toctree-l2"><a class="reference internal" href="rate_controllers.html#triangleratecontroller"><span class="hidden-section">TriangleRateController</span></a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="monitors.html">Monitors</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="monitors.html#compositemonitor"><span class="hidden-section">CompositeMonitor</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="monitors.html#dataframemonitor"><span class="hidden-section">DataframeMonitor</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="monitors.html#losswisemonitor"><span class="hidden-section">LosswiseMonitor</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="monitors.html#ringbuffermonitor"><span class="hidden-section">RingbufferMonitor</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="monitors.html#stdoutmonitor"><span class="hidden-section">StdoutMonitor</span></a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Monitors</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#compositemonitor"><span class="hidden-section">CompositeMonitor</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dataframemonitor"><span class="hidden-section">DataframeMonitor</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#losswisemonitor"><span class="hidden-section">LosswiseMonitor</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ringbuffermonitor"><span class="hidden-section">RingbufferMonitor</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#stdoutmonitor"><span class="hidden-section">StdoutMonitor</span></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="models.html">Models</a><ul>
@@ -161,13 +163,13 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>sconce</li>
+      <li>Monitors</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="_sources/modules.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/monitors.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -180,55 +182,47 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="sconce">
-<h1>sconce<a class="headerlink" href="#sconce" title="Permalink to this headline">¶</a></h1>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="sconce.html">sconce package</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="sconce.html#subpackages">Subpackages</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="sconce.models.html">sconce.models package</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="sconce.models.html#subpackages">Subpackages</a></li>
-<li class="toctree-l4"><a class="reference internal" href="sconce.models.html#submodules">Submodules</a></li>
-<li class="toctree-l4"><a class="reference internal" href="sconce.models.html#module-sconce.models.basic_autoencoder">sconce.models.basic_autoencoder module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="sconce.models.html#module-sconce.models.basic_classifier">sconce.models.basic_classifier module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="sconce.models.html#module-sconce.models.convolutional_autoencoder_plus_perceptron">sconce.models.convolutional_autoencoder_plus_perceptron module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="sconce.models.html#module-sconce.models.multilayer_perceptron">sconce.models.multilayer_perceptron module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="sconce.models.html#module-sconce.models.simple_convolutional_autoencoder">sconce.models.simple_convolutional_autoencoder module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="sconce.models.html#module-sconce.models.wide_resnet_image_classifier">sconce.models.wide_resnet_image_classifier module</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="sconce.monitors.html">sconce.monitors package</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="sconce.monitors.html#module-sconce.monitors.base">sconce.monitors.base module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="sconce.monitors.html#module-sconce.monitors.dataframe_monitor">sconce.monitors.dataframe_monitor module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="sconce.monitors.html#module-sconce.monitors.losswise_monitor">sconce.monitors.losswise_monitor module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="sconce.monitors.html#module-sconce.monitors.ringbuffer_monitor">sconce.monitors.ringbuffer_monitor module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="sconce.monitors.html#module-sconce.monitors.stdout_monitor">sconce.monitors.stdout_monitor module</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="sconce.rate_controllers.html">sconce.rate_controllers package</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="sconce.rate_controllers.html#module-sconce.rate_controllers.base">sconce.rate_controllers.base module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="sconce.rate_controllers.html#module-sconce.rate_controllers.constant_rate_controller">sconce.rate_controllers.constant_rate_controller module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="sconce.rate_controllers.html#module-sconce.rate_controllers.cosine_rate_controller">sconce.rate_controllers.cosine_rate_controller module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="sconce.rate_controllers.html#module-sconce.rate_controllers.exponential_rate_controller">sconce.rate_controllers.exponential_rate_controller module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="sconce.rate_controllers.html#module-sconce.rate_controllers.linear_rate_controller">sconce.rate_controllers.linear_rate_controller module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="sconce.rate_controllers.html#module-sconce.rate_controllers.step_rate_controller">sconce.rate_controllers.step_rate_controller module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="sconce.rate_controllers.html#module-sconce.rate_controllers.triangle_rate_controller">sconce.rate_controllers.triangle_rate_controller module</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="sconce.trainers.html">sconce.trainers package</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="sconce.trainers.html#module-sconce.trainers.autoencoder_trainer">sconce.trainers.autoencoder_trainer module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="sconce.trainers.html#module-sconce.trainers.classifier_trainer">sconce.trainers.classifier_trainer module</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="sconce.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sconce.html#module-sconce.data_generator">sconce.data_generator module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sconce.html#module-sconce.trainer">sconce.trainer module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sconce.html#module-sconce.utils">sconce.utils module</a></li>
-</ul>
-</li>
-</ul>
+  <div class="section" id="monitors">
+<h1>Monitors<a class="headerlink" href="#monitors" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="compositemonitor">
+<h2><span class="hidden-section">CompositeMonitor</span><a class="headerlink" href="#compositemonitor" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="sconce.monitors.CompositeMonitor">
+<em class="property">class </em><code class="descclassname">sconce.monitors.</code><code class="descname">CompositeMonitor</code><span class="sig-paren">(</span><em>monitors</em>, <em>name='composite_monitor'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/monitors/base.html#CompositeMonitor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.monitors.CompositeMonitor" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="dataframemonitor">
+<h2><span class="hidden-section">DataframeMonitor</span><a class="headerlink" href="#dataframemonitor" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="sconce.monitors.DataframeMonitor">
+<em class="property">class </em><code class="descclassname">sconce.monitors.</code><code class="descname">DataframeMonitor</code><span class="sig-paren">(</span><em>df=None, metadata=None, blacklist=['._inputs', '._outputs'], name='dataframe_monitor'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/monitors/dataframe_monitor.html#DataframeMonitor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.monitors.DataframeMonitor" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="losswisemonitor">
+<h2><span class="hidden-section">LosswiseMonitor</span><a class="headerlink" href="#losswisemonitor" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="sconce.monitors.LosswiseMonitor">
+<em class="property">class </em><code class="descclassname">sconce.monitors.</code><code class="descname">LosswiseMonitor</code><span class="sig-paren">(</span><em>api_key</em>, <em>tag</em>, <em>params={}</em>, <em>min_graphs={'loss': {'training_loss': 'Training Loss'</em>, <em>'test_loss': 'Test Loss'}</em>, <em>'lr': {'learning_rate': 'Learning Rate'}}</em>, <em>max_graphs={}</em>, <em>name='losswise_monitor'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/monitors/losswise_monitor.html#LosswiseMonitor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.monitors.LosswiseMonitor" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="ringbuffermonitor">
+<h2><span class="hidden-section">RingbufferMonitor</span><a class="headerlink" href="#ringbuffermonitor" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="sconce.monitors.RingbufferMonitor">
+<em class="property">class </em><code class="descclassname">sconce.monitors.</code><code class="descname">RingbufferMonitor</code><span class="sig-paren">(</span><em>capacity=100</em>, <em>key='training_loss'</em>, <em>name='ringbuffer_monitor'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/monitors/ringbuffer_monitor.html#RingbufferMonitor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.monitors.RingbufferMonitor" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="stdoutmonitor">
+<h2><span class="hidden-section">StdoutMonitor</span><a class="headerlink" href="#stdoutmonitor" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="sconce.monitors.StdoutMonitor">
+<em class="property">class </em><code class="descclassname">sconce.monitors.</code><code class="descname">StdoutMonitor</code><span class="sig-paren">(</span><em>metric_names</em>, <em>progbar_kwargs={}</em>, <em>name='stdout_monitor'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/monitors/stdout_monitor.html#StdoutMonitor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.monitors.StdoutMonitor" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </div>
 </div>
 
@@ -237,6 +231,15 @@
            
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="models.html" class="btn btn-neutral float-right" title="Models" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="rate_controllers.html" class="btn btn-neutral" title="Rate Controllers" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>

@@ -3,29 +3,23 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to sconce's documentation!
-==================================
+:github_url: https://github.com/davidlmorton/pytorch-sconce
+
+Sconce Documentation
+====================
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
+   :caption: Class Reference
 
-.. toctree::
-   :maxdepth: 1
-   :caption: Package Reference
-
-   sconce
-   sconce.monitors
-   sconce.rate_controlles
-   sconce.trainers
-
-   sconce.models
-   sconce.models.layers
-
+   data_generator
+   rate_controllers
+   monitors
+   models
+   trainers
 
 Indices and tables
 ==================
 
 * :ref:`genindex`
 * :ref:`modindex`
-* :ref:`search`

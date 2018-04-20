@@ -1,9 +1,6 @@
 sconce.rate\_controllers package
 ================================
 
-Submodules
-----------
-
 sconce.rate\_controllers.base module
 ------------------------------------
 
@@ -56,15 +53,6 @@ sconce.rate\_controllers.triangle\_rate\_controller module
 ----------------------------------------------------------
 
 .. automodule:: sconce.rate_controllers.triangle_rate_controller
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-
-Module contents
----------------
-
-.. automodule:: sconce.rate_controllers
     :members:
     :undoc-members:
     :show-inheritance:

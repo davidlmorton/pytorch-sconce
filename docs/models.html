@@ -1,0 +1,485 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Models &mdash; Pytorch-Sconce master documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato" type="text/css" />
+  <link rel="stylesheet" href="_static/css/pytorch_theme.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Trainers" href="trainers.html" />
+    <link rel="prev" title="Monitors" href="monitors.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Pytorch-Sconce
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                master (0.6.0 )
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Class Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="data_generator.html"><span class="hidden-section">DataGenerator</span></a></li>
+<li class="toctree-l1"><a class="reference internal" href="rate_controllers.html">Rate Controllers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="rate_controllers.html#constantratecontroller"><span class="hidden-section">ConstantRateController</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="rate_controllers.html#cosineratecontroller"><span class="hidden-section">CosineRateController</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="rate_controllers.html#exponentialratecontroller"><span class="hidden-section">ExponentialRateController</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="rate_controllers.html#linearratecontroller"><span class="hidden-section">LinearRateController</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="rate_controllers.html#stepratecontroller"><span class="hidden-section">StepRateController</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="rate_controllers.html#triangleratecontroller"><span class="hidden-section">TriangleRateController</span></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="monitors.html">Monitors</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="monitors.html#compositemonitor"><span class="hidden-section">CompositeMonitor</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="monitors.html#dataframemonitor"><span class="hidden-section">DataframeMonitor</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="monitors.html#losswisemonitor"><span class="hidden-section">LosswiseMonitor</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="monitors.html#ringbuffermonitor"><span class="hidden-section">RingbufferMonitor</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="monitors.html#stdoutmonitor"><span class="hidden-section">StdoutMonitor</span></a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Models</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#basicautoencoder"><span class="hidden-section">BasicAutoencoder</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#basicclassifer"><span class="hidden-section">BasicClassifer</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#multilayerperceptron"><span class="hidden-section">MultilayerPerceptron</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#wideresnetimageclassifier"><span class="hidden-section">WideResnetImageClassifier</span></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="trainers.html">Trainers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="trainers.html#basic-trainer"><span class="hidden-section">Basic Trainer</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="trainers.html#autoencodertrainer"><span class="hidden-section">AutoencoderTrainer</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="trainers.html#classifiertrainer"><span class="hidden-section">ClassifierTrainer</span></a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Pytorch-Sconce</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Models</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/models.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="models">
+<h1>Models<a class="headerlink" href="#models" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="basicautoencoder">
+<h2><span class="hidden-section">BasicAutoencoder</span><a class="headerlink" href="#basicautoencoder" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="sconce.models.BasicAutoencoder">
+<em class="property">class </em><code class="descclassname">sconce.models.</code><code class="descname">BasicAutoencoder</code><span class="sig-paren">(</span><em>image_height</em>, <em>image_width</em>, <em>hidden_size</em>, <em>latent_size</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/models/basic_autoencoder.html#BasicAutoencoder"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.models.BasicAutoencoder" title="Permalink to this definition">¶</a></dt>
+<dd><p>A basic 2D image autoencoder built up of densly connected layers, two each in the encoder and the decoder.</p>
+<dl class="docutils">
+<dt>Loss:</dt>
+<dd>This model uses binary cross-entropy for the loss.</dd>
+<dt>Metrics:</dt>
+<dd>None</dd>
+</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>image_height</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) – image height in pixels.</li>
+<li><strong>image_width</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) – image width in pixels.</li>
+<li><strong>hidden_size</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) – the number of activations in each of the 4 hidden layers.</li>
+<li><strong>latent_size</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) – the number of activations in the latent representation (encoder output).</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="basicclassifer">
+<h2><span class="hidden-section">BasicClassifer</span><a class="headerlink" href="#basicclassifer" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="sconce.models.BasicClassifier">
+<em class="property">class </em><code class="descclassname">sconce.models.</code><code class="descname">BasicClassifier</code><span class="sig-paren">(</span><em>image_height</em>, <em>image_width</em>, <em>image_channels</em>, <em>convolutional_layer_kwargs</em>, <em>fully_connected_layer_kwargs</em>, <em>num_categories=10</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/models/basic_classifier.html#BasicClassifier"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.models.BasicClassifier" title="Permalink to this definition">¶</a></dt>
+<dd><p>A basic 2D image classifier built up of some number of convolutional layers followed by some number of densly
+connected layers.</p>
+<dl class="docutils">
+<dt>Loss:</dt>
+<dd>This model uses cross-entropy for the loss.</dd>
+<dt>Metrics:</dt>
+<dd>classification_accuracy: [0.0, 1.0] the fraction of correctly predicted labels.</dd>
+</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>image_height</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) – image height in pixels.</li>
+<li><strong>image_width</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) – image width in pixels.</li>
+<li><strong>image_channels</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) – number of channels in the input images.</li>
+<li><strong>convolutional_layer_kwargs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.6)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.6)"><em>dict</em></a><em>]</em>) – a list of dictionaries describing the convolutional layers. See
+<a class="reference internal" href="sconce.models.layers.html#sconce.models.layers.convolution2d_layer.Convolution2dLayer" title="sconce.models.layers.convolution2d_layer.Convolution2dLayer"><code class="xref py py-class docutils literal notranslate"><span class="pre">Convolution2dLayer</span></code></a> for details.</li>
+<li><strong>fully_connected_layer_kwargs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.6)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.6)"><em>dict</em></a><em>]</em>) – a list of dictionaries describing the fully connected layers. See
+<a class="reference internal" href="sconce.models.layers.html#sconce.models.layers.fully_connected_layer.FullyConnectedLayer" title="sconce.models.layers.fully_connected_layer.FullyConnectedLayer"><code class="xref py py-class docutils literal notranslate"><span class="pre">FullyConnectedLayer</span></code></a> for details.</li>
+<li><strong>num_categories</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) – [2, inf) the number of different image classes.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="classmethod">
+<dt id="sconce.models.BasicClassifier.new_from_yaml_file">
+<em class="property">classmethod </em><code class="descname">new_from_yaml_file</code><span class="sig-paren">(</span><em>yaml_file</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/models/basic_classifier.html#BasicClassifier.new_from_yaml_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.models.BasicClassifier.new_from_yaml_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Construct a new BasicClassifier from a yaml file.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>yaml_file</strong> (<em>file</em>) – a file-like object that yaml contents can be read from.</td>
+</tr>
+</tbody>
+</table>
+<p>Example yaml file contents:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nn">---</span>
+<span class="c1"># Values for MNIST and FashionMNIST</span>
+<span class="l l-Scalar l-Scalar-Plain">image_height</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">28</span>
+<span class="l l-Scalar l-Scalar-Plain">image_width</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">28</span>
+<span class="l l-Scalar l-Scalar-Plain">image_channels</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="l l-Scalar l-Scalar-Plain">num_categories</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">10</span>
+
+<span class="c1"># Remaining values are not related to the dataset</span>
+<span class="l l-Scalar l-Scalar-Plain">convolutional_layer_attributes</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[</span><span class="s">&quot;out_channels&quot;</span><span class="p p-Indicator">,</span> <span class="s">&quot;stride&quot;</span><span class="p p-Indicator">,</span> <span class="s">&quot;padding&quot;</span><span class="p p-Indicator">,</span> <span class="s">&quot;kernel_size&quot;</span><span class="p p-Indicator">]</span>
+<span class="l l-Scalar l-Scalar-Plain">convolutional_layer_values</span><span class="p p-Indicator">:</span>  <span class="p p-Indicator">[</span> <span class="c1"># ==============  ========  =========  =============</span>
+                                <span class="p p-Indicator">[</span><span class="nv">16</span><span class="p p-Indicator">,</span>             <span class="nv">1</span><span class="p p-Indicator">,</span>        <span class="nv">4</span><span class="p p-Indicator">,</span>         <span class="nv">9</span><span class="p p-Indicator">],</span>
+                                <span class="p p-Indicator">[</span><span class="nv">8</span><span class="p p-Indicator">,</span>              <span class="nv">2</span><span class="p p-Indicator">,</span>        <span class="nv">1</span><span class="p p-Indicator">,</span>         <span class="nv">3</span><span class="p p-Indicator">],</span>
+                                <span class="p p-Indicator">[</span><span class="nv">8</span><span class="p p-Indicator">,</span>              <span class="nv">2</span><span class="p p-Indicator">,</span>        <span class="nv">1</span><span class="p p-Indicator">,</span>         <span class="nv">3</span><span class="p p-Indicator">],</span>
+                                <span class="p p-Indicator">[</span><span class="nv">8</span><span class="p p-Indicator">,</span>              <span class="nv">2</span><span class="p p-Indicator">,</span>        <span class="nv">1</span><span class="p p-Indicator">,</span>         <span class="nv">3</span><span class="p p-Indicator">],</span>
+                                <span class="p p-Indicator">[</span><span class="nv">8</span><span class="p p-Indicator">,</span>              <span class="nv">2</span><span class="p p-Indicator">,</span>        <span class="nv">1</span><span class="p p-Indicator">,</span>         <span class="nv">3</span><span class="p p-Indicator">],</span>
+<span class="p p-Indicator">]</span>
+
+<span class="l l-Scalar l-Scalar-Plain">fully_connected_layer_attributes</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[</span><span class="s">&#39;out_size&#39;</span><span class="p p-Indicator">,</span> <span class="s">&#39;dropout&#39;</span><span class="p p-Indicator">]</span>
+<span class="l l-Scalar l-Scalar-Plain">fully_connected_layer_values</span><span class="p p-Indicator">:</span>  <span class="p p-Indicator">[</span> <span class="c1"># ======      =========</span>
+                                  <span class="p p-Indicator">[</span><span class="nv">100</span><span class="p p-Indicator">,</span>        <span class="nv">0.4</span><span class="p p-Indicator">],</span>
+                                  <span class="p p-Indicator">[</span><span class="nv">100</span><span class="p p-Indicator">,</span>        <span class="nv">0.8</span><span class="p p-Indicator">],</span>
+<span class="p p-Indicator">]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="sconce.models.BasicClassifier.new_from_yaml_filename">
+<em class="property">classmethod </em><code class="descname">new_from_yaml_filename</code><span class="sig-paren">(</span><em>yaml_filename</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/models/basic_classifier.html#BasicClassifier.new_from_yaml_filename"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.models.BasicClassifier.new_from_yaml_filename" title="Permalink to this definition">¶</a></dt>
+<dd><p>Construct a new BasicClassifier from a yaml file.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>filename</strong> (<em>path</em>) – the filename of a yaml file.  See
+<a class="reference internal" href="sconce.models.html#sconce.models.basic_classifier.BasicClassifier.new_from_yaml_file" title="sconce.models.basic_classifier.BasicClassifier.new_from_yaml_file"><code class="xref py py-meth docutils literal notranslate"><span class="pre">new_from_yaml_file()</span></code></a>
+for more details.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="multilayerperceptron">
+<h2><span class="hidden-section">MultilayerPerceptron</span><a class="headerlink" href="#multilayerperceptron" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="sconce.models.MultilayerPerceptron">
+<em class="property">class </em><code class="descclassname">sconce.models.</code><code class="descname">MultilayerPerceptron</code><span class="sig-paren">(</span><em>image_height</em>, <em>image_width</em>, <em>image_channels</em>, <em>layer_kwargs</em>, <em>num_categories=10</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/models/multilayer_perceptron.html#MultilayerPerceptron"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.models.MultilayerPerceptron" title="Permalink to this definition">¶</a></dt>
+<dd><p>A basic 2D image multi-layer perceptron built up of a number of densly connected layers.</p>
+<dl class="docutils">
+<dt>Loss:</dt>
+<dd>This model uses cross-entropy for the loss.</dd>
+<dt>Metrics:</dt>
+<dd>classification_accuracy: [0.0, 1.0] the fraction of correctly predicted labels.</dd>
+</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>image_height</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) – image height in pixels.</li>
+<li><strong>image_width</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) – image width in pixels.</li>
+<li><strong>image_channels</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) – number of channels in the input images.</li>
+<li><strong>layer_kwargs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.6)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.6)"><em>dict</em></a><em>]</em>) – a list of dictionaries describing layers. See
+<a class="reference internal" href="sconce.models.layers.html#sconce.models.layers.fully_connected_layer.FullyConnectedLayer" title="sconce.models.layers.fully_connected_layer.FullyConnectedLayer"><code class="xref py py-class docutils literal notranslate"><span class="pre">FullyConnectedLayer</span></code></a> for details.</li>
+<li><strong>num_categories</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) – [2, inf) the number of different image classes.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="classmethod">
+<dt id="sconce.models.MultilayerPerceptron.new_from_yaml_file">
+<em class="property">classmethod </em><code class="descname">new_from_yaml_file</code><span class="sig-paren">(</span><em>yaml_file</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/models/multilayer_perceptron.html#MultilayerPerceptron.new_from_yaml_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.models.MultilayerPerceptron.new_from_yaml_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Construct a new MultilayerPerceptron from a yaml file.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>yaml_file</strong> (<em>file</em>) – a file-like object that yaml contents can be read from.</td>
+</tr>
+</tbody>
+</table>
+<p>Example yaml file contents:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nn">---</span>
+<span class="c1"># Values for MNIST and FashionMNIST</span>
+<span class="l l-Scalar l-Scalar-Plain">image_height</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">28</span>
+<span class="l l-Scalar l-Scalar-Plain">image_width</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">28</span>
+<span class="l l-Scalar l-Scalar-Plain">image_channels</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="l l-Scalar l-Scalar-Plain">num_categories</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">10</span>
+
+<span class="l l-Scalar l-Scalar-Plain">layer_attributes</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[</span><span class="s">&#39;out_size&#39;</span><span class="p p-Indicator">,</span> <span class="s">&#39;dropout&#39;</span><span class="p p-Indicator">,</span> <span class="s">&#39;with_batchnorm&#39;</span><span class="p p-Indicator">]</span>
+<span class="l l-Scalar l-Scalar-Plain">layer_values</span><span class="p p-Indicator">:</span>  <span class="p p-Indicator">[</span> <span class="c1"># ======      =========  ================</span>
+                  <span class="p p-Indicator">[</span><span class="nv">100</span><span class="p p-Indicator">,</span>        <span class="nv">0.4</span><span class="p p-Indicator">,</span>       <span class="nv">true</span><span class="p p-Indicator">],</span>
+                  <span class="p p-Indicator">[</span><span class="nv">100</span><span class="p p-Indicator">,</span>        <span class="nv">0.8</span><span class="p p-Indicator">,</span>       <span class="nv">true</span><span class="p p-Indicator">],</span>
+<span class="p p-Indicator">]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="sconce.models.MultilayerPerceptron.new_from_yaml_filename">
+<em class="property">classmethod </em><code class="descname">new_from_yaml_filename</code><span class="sig-paren">(</span><em>yaml_filename</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/models/multilayer_perceptron.html#MultilayerPerceptron.new_from_yaml_filename"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.models.MultilayerPerceptron.new_from_yaml_filename" title="Permalink to this definition">¶</a></dt>
+<dd><p>Construct a new MultilayerPerceptron from a yaml file.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>filename</strong> (<em>path</em>) – the filename of a yaml file.  See
+<a class="reference internal" href="sconce.models.html#sconce.models.basic_classifier.BasicClassifier.new_from_yaml_file" title="sconce.models.basic_classifier.BasicClassifier.new_from_yaml_file"><code class="xref py py-meth docutils literal notranslate"><span class="pre">new_from_yaml_file()</span></code></a>
+for more details.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="wideresnetimageclassifier">
+<h2><span class="hidden-section">WideResnetImageClassifier</span><a class="headerlink" href="#wideresnetimageclassifier" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="sconce.models.WideResnetImageClassifier">
+<em class="property">class </em><code class="descclassname">sconce.models.</code><code class="descname">WideResnetImageClassifier</code><span class="sig-paren">(</span><em>image_channels=1</em>, <em>depth=28</em>, <em>widening_factor=10</em>, <em>num_categories=10</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/models/wide_resnet_image_classifier.html#WideResnetImageClassifier"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.models.WideResnetImageClassifier" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wide resnet image classifier, based on <a class="reference external" href="http://arxiv.org/abs/1605.07146">this paper</a></p>
+<dl class="docutils">
+<dt>Loss:</dt>
+<dd>This model uses cross-entropy for the loss.</dd>
+<dt>Metrics:</dt>
+<dd>classification_accuracy: [0.0, 1.0] the fraction of correctly predicted labels.</dd>
+</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>image_channels</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) – number of channels in the input images.</li>
+<li><strong>depth</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) – total number of convolutional layers in the network.  This
+should be divisible by (6n + 4) where n is a positive integer.</li>
+<li><strong>widening_factor</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) – [1, inf) determines how many convolutional
+channels are in the network (see paper above for details).</li>
+<li><strong>num_categories</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) – [2, inf) the number of different image classes.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="trainers.html" class="btn btn-neutral float-right" title="Trainers" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="monitors.html" class="btn btn-neutral" title="Monitors" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Pytorch-Sconce Contributors.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'master',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          
+          SphinxRtdTheme.Navigation.enableSticky();
+          
+      });
+  </script> 
+
+</body>
+</html>

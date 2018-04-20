@@ -1,9 +1,6 @@
 sconce.monitors package
 =======================
 
-Submodules
-----------
-
 sconce.monitors.base module
 ---------------------------
 
@@ -40,15 +37,6 @@ sconce.monitors.stdout\_monitor module
 --------------------------------------
 
 .. automodule:: sconce.monitors.stdout_monitor
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-
-Module contents
----------------
-
-.. automodule:: sconce.monitors
     :members:
     :undoc-members:
     :show-inheritance:

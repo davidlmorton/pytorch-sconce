@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>sconce package &mdash; Pytorch-Sconce master documentation</title>
+  <title>Trainers &mdash; Pytorch-Sconce master documentation</title>
   
 
   
@@ -30,7 +30,8 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato" type="text/css" />
   <link rel="stylesheet" href="_static/css/pytorch_theme.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" /> 
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Models" href="models.html" /> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -84,7 +85,7 @@
             
             
               <p class="caption"><span class="caption-text">Class Reference</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="data_generator.html"><span class="hidden-section">DataGenerator</span></a></li>
 <li class="toctree-l1"><a class="reference internal" href="rate_controllers.html">Rate Controllers</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="rate_controllers.html#constantratecontroller"><span class="hidden-section">ConstantRateController</span></a></li>
@@ -110,10 +111,10 @@
 <li class="toctree-l2"><a class="reference internal" href="models.html#wideresnetimageclassifier"><span class="hidden-section">WideResnetImageClassifier</span></a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="trainers.html">Trainers</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="trainers.html#basic-trainer"><span class="hidden-section">Basic Trainer</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="trainers.html#autoencodertrainer"><span class="hidden-section">AutoencoderTrainer</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="trainers.html#classifiertrainer"><span class="hidden-section">ClassifierTrainer</span></a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Trainers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#basic-trainer"><span class="hidden-section">Basic Trainer</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#autoencodertrainer"><span class="hidden-section">AutoencoderTrainer</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#classifiertrainer"><span class="hidden-section">ClassifierTrainer</span></a></li>
 </ul>
 </li>
 </ul>
@@ -161,13 +162,13 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>sconce package</li>
+      <li>Trainers</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="_sources/sconce.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/trainers.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -180,188 +181,16 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="sconce-package">
-<h1>sconce package<a class="headerlink" href="#sconce-package" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="subpackages">
-<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="sconce.models.html">sconce.models package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sconce.monitors.html">sconce.monitors package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sconce.rate_controllers.html">sconce.rate_controllers package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sconce.trainers.html">sconce.trainers package</a></li>
-</ul>
-</div>
-</div>
-<div class="section" id="submodules">
-<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
-</div>
-<div class="section" id="module-sconce.data_generator">
-<span id="sconce-data-generator-module"></span><h2>sconce.data_generator module<a class="headerlink" href="#module-sconce.data_generator" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="sconce.data_generator.DataGenerator">
-<em class="property">class </em><code class="descclassname">sconce.data_generator.</code><code class="descname">DataGenerator</code><span class="sig-paren">(</span><em>data_loader</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/data_generator.html#DataGenerator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.data_generator.DataGenerator" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.6)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
-<p>A thin wrapper around a <a class="reference external" href="http://pytorch.org/docs/stable/data.html#torch.utils.data.DataLoader" title="(in PyTorch vmaster (0.3.1.post2 ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataLoader</span></code></a> that
-automatically yields tuples of <a class="reference external" href="http://pytorch.org/docs/stable/autograd.html#torch.autograd.Variable" title="(in PyTorch vmaster (0.3.1.post2 ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">Variable</span></code></a> (that
-live on cpu or on cuda).
-A DataGenerator will iterate endlessly.</p>
-<p>Like the underlying <a class="reference external" href="http://pytorch.org/docs/stable/data.html#torch.utils.data.DataLoader" title="(in PyTorch vmaster (0.3.1.post2 ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataLoader</span></code></a>, a
-DataGenerator’s <code class="docutils literal notranslate"><span class="pre">__next__</span></code> method yields two values, which we refer to as
-the <cite>inputs</cite> and the <cite>targets</cite>.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>data_loader</strong> (<a class="reference external" href="http://pytorch.org/docs/stable/data.html#torch.utils.data.DataLoader" title="(in PyTorch vmaster (0.3.1.post2 ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataLoader</span></code></a>) – the wrapped
-data_loader.</td>
-</tr>
-</tbody>
-</table>
-<dl class="attribute">
-<dt id="sconce.data_generator.DataGenerator.batch_size">
-<code class="descname">batch_size</code><a class="headerlink" href="#sconce.data_generator.DataGenerator.batch_size" title="Permalink to this definition">¶</a></dt>
-<dd><p>the wrapped data_loader’s batch_size</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="sconce.data_generator.DataGenerator.cuda">
-<code class="descname">cuda</code><span class="sig-paren">(</span><em>device=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/data_generator.html#DataGenerator.cuda"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.data_generator.DataGenerator.cuda" title="Permalink to this definition">¶</a></dt>
-<dd><p>Put the <cite>inputs</cite> and <cite>targets</cite> (yielded by this DataGenerator) on the
-specified device.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>device</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.6)"><em>bool</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.6)"><em>dict</em></a>) – if int or bool, sets the behavior for
-both <cite>inputs</cite> and <cite>targets</cite>. To set them individually, pass a
-dictionary with keys {‘inputs’, ‘targets’} instead. See
-<a class="reference external" href="http://pytorch.org/docs/stable/tensors.html#torch.Tensor.cuda" title="(in PyTorch vmaster (0.3.1.post2 ))"><code class="xref py py-meth docutils literal notranslate"><span class="pre">torch.Tensor.cuda()</span></code></a> for details.</td>
-</tr>
-</tbody>
-</table>
-<p class="rubric">Example</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">g</span> <span class="o">=</span> <span class="n">DataGenerator</span><span class="o">.</span><span class="n">from_pytorch</span><span class="p">(</span><span class="n">batch_size</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">g</span><span class="o">.</span><span class="n">cuda</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">g</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
-<span class="go">(Variable containing:</span>
-<span class="go"> [torch.cuda.FloatTensor of size 100x1x28x28 (GPU 0)],</span>
-<span class="go"> Variable containing:</span>
-<span class="go"> [torch.cuda.LongTensor of size 100 (GPU 0)])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">g</span><span class="o">.</span><span class="n">cuda</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">g</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
-<span class="go">(Variable containing:</span>
-<span class="go"> [torch.FloatTensor of size 100x1x28x28],</span>
-<span class="go"> Variable containing:</span>
-<span class="go"> [torch.LongTensor of size 100])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">g</span><span class="o">.</span><span class="n">cuda</span><span class="p">(</span><span class="n">device</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;inputs&#39;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;targets&#39;</span><span class="p">:</span><span class="mi">1</span><span class="p">})</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">g</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
-<span class="go">(Variable containing:</span>
-<span class="go"> [torch.cuda.FloatTensor of size 100x1x28x28 (GPU 0)],</span>
-<span class="go"> Variable containing:</span>
-<span class="go"> [torch.cuda.LongTensor of size 100 (GPU 1)])</span>
-</pre></div>
-</div>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="sconce.data_generator.DataGenerator.dataset">
-<code class="descname">dataset</code><a class="headerlink" href="#sconce.data_generator.DataGenerator.dataset" title="Permalink to this definition">¶</a></dt>
-<dd><p>the wrapped data_loader’s <a class="reference external" href="http://pytorch.org/docs/stable/data.html#torch.utils.data.Dataset" title="(in PyTorch vmaster (0.3.1.post2 ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dataset</span></code></a></p>
-</dd></dl>
-
-<dl class="classmethod">
-<dt id="sconce.data_generator.DataGenerator.from_dataset">
-<em class="property">classmethod </em><code class="descname">from_dataset</code><span class="sig-paren">(</span><em>dataset</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/data_generator.html#DataGenerator.from_dataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.data_generator.DataGenerator.from_dataset" title="Permalink to this definition">¶</a></dt>
-<dd><p>Create a DataGenerator from an instantiated dataset.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>dataset</strong> (<a class="reference external" href="http://pytorch.org/docs/stable/data.html#torch.utils.data.Dataset" title="(in PyTorch vmaster (0.3.1.post2 ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dataset</span></code></a>) – the pytorch
-dataset.</li>
-<li><strong>**kwargs</strong> – passed directly to the
-<a class="reference external" href="http://pytorch.org/docs/stable/data.html#torch.utils.data.DataLoader" title="(in PyTorch vmaster (0.3.1.post2 ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataLoader</span></code></a>) constructor.</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="classmethod">
-<dt id="sconce.data_generator.DataGenerator.from_pytorch">
-<em class="property">classmethod </em><code class="descname">from_pytorch</code><span class="sig-paren">(</span><em>batch_size=500</em>, <em>data_location=None</em>, <em>dataset_class=&lt;class 'torchvision.datasets.mnist.MNIST'&gt;</em>, <em>fraction=1.0</em>, <em>num_workers=1</em>, <em>pin_memory=True</em>, <em>shuffle=True</em>, <em>train=True</em>, <em>transform=&lt;torchvision.transforms.transforms.ToTensor object&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/data_generator.html#DataGenerator.from_pytorch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.data_generator.DataGenerator.from_pytorch" title="Permalink to this definition">¶</a></dt>
-<dd><p>Create a DataGenerator from a torchvision dataset class.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>batch_size</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) – how large the yielded <cite>inputs</cite> and <cite>targets</cite>
-should be. See <code class="xref py py-class docutils literal notranslate"><span class="pre">DataLoader</span></code> for details.</li>
-<li><strong>data_location</strong> (<em>path</em>) – where downloaded dataset should be stored.  If
-<code class="docutils literal notranslate"><span class="pre">None</span></code> a system dependent temporary location will be used.</li>
-<li><strong>dataset_class</strong> (<em>class</em>) – a torchvision dataset class that supports
-constructor arguments {‘root’, ‘train’, ‘download’,
-‘transform’}. For example, MNIST, FashionMnist, CIFAR10, or
-CIFAR100.</li>
-<li><strong>fraction</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.6)"><em>float</em></a>) – (0.0 - 1.0] how much of the original dataset’s
-data to use.</li>
-<li><strong>num_workers</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) – how many subprocesses to use for data loading.
-See <code class="xref py py-class docutils literal notranslate"><span class="pre">DataLoader</span></code> for details.</li>
-<li><strong>pin_memory</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.6)"><em>bool</em></a>) – if <code class="docutils literal notranslate"><span class="pre">True</span></code>, the data loader will copy tensors
-into CUDA pinned memory before returning them. See
-<code class="xref py py-class docutils literal notranslate"><span class="pre">DataLoader</span></code> for details.</li>
-<li><strong>shuffle</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.6)"><em>bool</em></a>) – set to <code class="docutils literal notranslate"><span class="pre">True</span></code> to have the data reshuffled at every
-epoch. See <code class="xref py py-class docutils literal notranslate"><span class="pre">DataLoader</span></code> for details.</li>
-<li><strong>train</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.6)"><em>bool</em></a>) – if <code class="docutils literal notranslate"><span class="pre">True</span></code>, creates dataset from training set,
-otherwise creates from test set.</li>
-<li><strong>transform</strong> (<em>callable</em>) – a function/transform that takes in an PIL
-image and returns a transformed version.</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="sconce.data_generator.DataGenerator.next">
-<code class="descname">next</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/data_generator.html#DataGenerator.next"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.data_generator.DataGenerator.next" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="sconce.data_generator.DataGenerator.num_samples">
-<code class="descname">num_samples</code><a class="headerlink" href="#sconce.data_generator.DataGenerator.num_samples" title="Permalink to this definition">¶</a></dt>
-<dd><p>the <code class="docutils literal notranslate"><span class="pre">len</span></code> of the wrapped data_loader’s
-<a class="reference external" href="http://pytorch.org/docs/stable/data.html#torch.utils.data.Dataset" title="(in PyTorch vmaster (0.3.1.post2 ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dataset</span></code></a></p>
-</dd></dl>
-
-<dl class="method">
-<dt id="sconce.data_generator.DataGenerator.preprocess">
-<code class="descname">preprocess</code><span class="sig-paren">(</span><em>inputs</em>, <em>targets</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/data_generator.html#DataGenerator.preprocess"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.data_generator.DataGenerator.preprocess" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="sconce.data_generator.DataGenerator.reset">
-<code class="descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/data_generator.html#DataGenerator.reset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.data_generator.DataGenerator.reset" title="Permalink to this definition">¶</a></dt>
-<dd><p>Start iterating through the data_loader from the begining.</p>
-</dd></dl>
-
-</dd></dl>
-
-</div>
-<div class="section" id="module-sconce.trainer">
-<span id="sconce-trainer-module"></span><h2>sconce.trainer module<a class="headerlink" href="#module-sconce.trainer" title="Permalink to this headline">¶</a></h2>
+  <div class="section" id="trainers">
+<h1>Trainers<a class="headerlink" href="#trainers" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="basic-trainer">
+<h2><span class="hidden-section">Basic Trainer</span><a class="headerlink" href="#basic-trainer" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="sconce.trainer.Trainer">
 <em class="property">class </em><code class="descclassname">sconce.trainer.</code><code class="descname">Trainer</code><span class="sig-paren">(</span><em>*</em>, <em>model</em>, <em>training_data_generator</em>, <em>test_data_generator</em>, <em>optimizer</em>, <em>monitor=None</em>, <em>rate_controller=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/trainer.html#Trainer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.trainer.Trainer" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.6)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
-<p>A Class that is used to train pytorch models.
+<dd><p>A Class that is used to train pytorch models.
 It defines the training loop and orchestrates the various other sconce
-objects (<a class="reference internal" href="#sconce.data_generator.DataGenerator" title="sconce.data_generator.DataGenerator"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataGenerator</span></code></a>,
+objects (<a class="reference internal" href="sconce.html#sconce.data_generator.DataGenerator" title="sconce.data_generator.DataGenerator"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataGenerator</span></code></a>,
 <a class="reference internal" href="sconce.monitors.html#sconce.monitors.base.Monitor" title="sconce.monitors.base.Monitor"><code class="xref py py-class docutils literal notranslate"><span class="pre">Monitor</span></code></a>,
 <a class="reference internal" href="sconce.rate_controllers.html#sconce.rate_controllers.base.RateController" title="sconce.rate_controllers.base.RateController"><code class="xref py py-class docutils literal notranslate"><span class="pre">RateController</span></code></a>, ect).</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -371,9 +200,9 @@ objects (<a class="reference internal" href="#sconce.data_generator.DataGenerato
 <tr class="field-odd field"><th class="field-name" colspan="2">Keyword Arguments:</th></tr>
 <tr class="field-odd field"><td>&#160;</td><td class="field-body"><ul class="first last simple">
 <li><strong>model</strong> (<a class="reference external" href="http://pytorch.org/docs/stable/nn.html#torch.nn.Module" title="(in PyTorch vmaster (0.3.1.post2 ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.Module</span></code></a>) – the torch model to be trained.  See <code class="xref py py-mod docutils literal notranslate"><span class="pre">sconce.models</span></code> for examples.</li>
-<li><strong>training_data_generator</strong> (<a class="reference internal" href="#sconce.data_generator.DataGenerator" title="sconce.data_generator.DataGenerator"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataGenerator</span></code></a>) – yields training <cite>inputs</cite> and
+<li><strong>training_data_generator</strong> (<a class="reference internal" href="sconce.html#sconce.data_generator.DataGenerator" title="sconce.data_generator.DataGenerator"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataGenerator</span></code></a>) – yields training <cite>inputs</cite> and
 <cite>targets</cite>.</li>
-<li><strong>test_data_generator</strong> (<a class="reference internal" href="#sconce.data_generator.DataGenerator" title="sconce.data_generator.DataGenerator"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataGenerator</span></code></a>) – yields test <cite>inputs</cite> and <cite>targets</cite>.
+<li><strong>test_data_generator</strong> (<a class="reference internal" href="sconce.html#sconce.data_generator.DataGenerator" title="sconce.data_generator.DataGenerator"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataGenerator</span></code></a>) – yields test <cite>inputs</cite> and <cite>targets</cite>.
 These are never used for back-propagation.</li>
 <li><strong>optimizer</strong> (<a class="reference external" href="http://pytorch.org/docs/stable/optim.html#torch.optim.Optimizer" title="(in PyTorch vmaster (0.3.1.post2 ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">torch.optim.Optimizer</span></code></a>) – the torch optimizer that updates model parameters during
 training.</li>
@@ -394,7 +223,7 @@ max_learning_rate=1e-4 will be created for you and used.</li>
 <dl class="method">
 <dt id="sconce.trainer.Trainer.checkpoint">
 <code class="descname">checkpoint</code><span class="sig-paren">(</span><em>filename=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/trainer.html#Trainer.checkpoint"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.trainer.Trainer.checkpoint" title="Permalink to this definition">¶</a></dt>
-<dd><p>Save model state and retain filename for a later call to <a class="reference internal" href="trainers.html#sconce.trainer.Trainer.restore" title="sconce.trainer.Trainer.restore"><code class="xref py py-meth docutils literal notranslate"><span class="pre">restore()</span></code></a>.</p>
+<dd><p>Save model state and retain filename for a later call to <a class="reference internal" href="#sconce.trainer.Trainer.restore" title="sconce.trainer.Trainer.restore"><code class="xref py py-meth docutils literal notranslate"><span class="pre">restore()</span></code></a>.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -437,7 +266,7 @@ multiplied by <code class="docutils literal notranslate"><span class="pre">cycle
 </td>
 </tr>
 <tr class="field-even field"><th class="field-name" colspan="2">Keyword Arguments:</th></tr>
-<tr class="field-even field"><td>&#160;</td><td class="field-body"><p class="first last"><strong>**kwargs</strong> – are passed to the underlying <a class="reference internal" href="trainers.html#sconce.trainer.Trainer.train" title="sconce.trainer.Trainer.train"><code class="xref py py-meth docutils literal notranslate"><span class="pre">train()</span></code></a> method.</p>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><p class="first last"><strong>**kwargs</strong> – are passed to the underlying <a class="reference internal" href="#sconce.trainer.Trainer.train" title="sconce.trainer.Trainer.train"><code class="xref py py-meth docutils literal notranslate"><span class="pre">train()</span></code></a> method.</p>
 </td>
 </tr>
 </tbody>
@@ -453,7 +282,7 @@ multiplied by <code class="docutils literal notranslate"><span class="pre">cycle
 <dl class="method">
 <dt id="sconce.trainer.Trainer.restore">
 <code class="descname">restore</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/trainer.html#Trainer.restore"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.trainer.Trainer.restore" title="Permalink to this definition">¶</a></dt>
-<dd><p>Restore model to previously checkpointed state.  See also <a class="reference internal" href="trainers.html#sconce.trainer.Trainer.checkpoint" title="sconce.trainer.Trainer.checkpoint"><code class="xref py py-meth docutils literal notranslate"><span class="pre">checkpoint()</span></code></a>.</p>
+<dd><p>Restore model to previously checkpointed state.  See also <a class="reference internal" href="#sconce.trainer.Trainer.checkpoint" title="sconce.trainer.Trainer.checkpoint"><code class="xref py py-meth docutils literal notranslate"><span class="pre">checkpoint()</span></code></a>.</p>
 </dd></dl>
 
 <dl class="method">
@@ -576,46 +405,21 @@ the memory usage would be for a batch size of 100.</li>
 </dd></dl>
 
 </div>
-<div class="section" id="module-sconce.utils">
-<span id="sconce-utils-module"></span><h2>sconce.utils module<a class="headerlink" href="#module-sconce.utils" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="autoencodertrainer">
+<h2><span class="hidden-section">AutoencoderTrainer</span><a class="headerlink" href="#autoencodertrainer" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
-<dt id="sconce.utils.Progbar">
-<em class="property">class </em><code class="descclassname">sconce.utils.</code><code class="descname">Progbar</code><span class="sig-paren">(</span><em>target</em>, <em>width=30</em>, <em>verbose=1</em>, <em>interval=0.05</em>, <em>stateful_metrics=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/utils.html#Progbar"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.utils.Progbar" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.6)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
-<p>Displays a progress bar.
-# Arguments</p>
-<blockquote>
-<div><p>target: Total number of steps expected, None if unknown.
-width: Progress bar width on screen.
-verbose: Verbosity mode, 0 (silent), 1 (verbose), 2 (semi-verbose)
-stateful_metrics: Iterable of string names of metrics that</p>
-<blockquote>
-<div>should <em>not</em> be averaged over time. Metrics in this list
-will be displayed as-is. All others will be averaged
-by the progbar before display.</div></blockquote>
-<p>interval: Minimum visual progress update interval (in seconds).</p>
-</div></blockquote>
-<dl class="method">
-<dt id="sconce.utils.Progbar.add">
-<code class="descname">add</code><span class="sig-paren">(</span><em>n</em>, <em>values=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/utils.html#Progbar.add"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.utils.Progbar.add" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="sconce.utils.Progbar.update">
-<code class="descname">update</code><span class="sig-paren">(</span><em>current</em>, <em>values=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/utils.html#Progbar.update"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.utils.Progbar.update" title="Permalink to this definition">¶</a></dt>
-<dd><p>Updates the progress bar.
-# Arguments</p>
-<blockquote>
-<div><p>current: Index of current step.
-values: List of tuples:</p>
-<blockquote>
-<div><cite>(name, value_for_last_step)</cite>.
-If <cite>name</cite> is in <cite>stateful_metrics</cite>,
-<cite>value_for_last_step</cite> will be displayed as-is.
-Else, an average of the metric over time will be displayed.</div></blockquote>
-</div></blockquote>
+<dt id="sconce.trainers.AutoencoderTrainer">
+<em class="property">class </em><code class="descclassname">sconce.trainers.</code><code class="descname">AutoencoderTrainer</code><span class="sig-paren">(</span><em>*</em>, <em>model</em>, <em>training_data_generator</em>, <em>test_data_generator</em>, <em>optimizer</em>, <em>monitor=None</em>, <em>rate_controller=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/trainers/autoencoder_trainer.html#AutoencoderTrainer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.trainers.AutoencoderTrainer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#sconce.trainer.Trainer" title="sconce.trainer.Trainer"><code class="xref py py-class docutils literal notranslate"><span class="pre">sconce.trainer.Trainer</span></code></a>, <a class="reference internal" href="sconce.trainers.html#sconce.trainers.autoencoder_trainer.AutoencoderMixin" title="sconce.trainers.autoencoder_trainer.AutoencoderMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">sconce.trainers.autoencoder_trainer.AutoencoderMixin</span></code></a></p>
 </dd></dl>
 
+</div>
+<div class="section" id="classifiertrainer">
+<h2><span class="hidden-section">ClassifierTrainer</span><a class="headerlink" href="#classifiertrainer" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="sconce.trainers.ClassifierTrainer">
+<em class="property">class </em><code class="descclassname">sconce.trainers.</code><code class="descname">ClassifierTrainer</code><span class="sig-paren">(</span><em>*</em>, <em>model</em>, <em>training_data_generator</em>, <em>test_data_generator</em>, <em>optimizer</em>, <em>monitor=None</em>, <em>rate_controller=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/trainers/classifier_trainer.html#ClassifierTrainer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.trainers.ClassifierTrainer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#sconce.trainer.Trainer" title="sconce.trainer.Trainer"><code class="xref py py-class docutils literal notranslate"><span class="pre">sconce.trainer.Trainer</span></code></a>, <a class="reference internal" href="sconce.trainers.html#sconce.trainers.classifier_trainer.ClassifierMixin" title="sconce.trainers.classifier_trainer.ClassifierMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">sconce.trainers.classifier_trainer.ClassifierMixin</span></code></a></p>
 </dd></dl>
 
 </div>
@@ -626,6 +430,13 @@ Else, an average of the metric over time will be displayed.</div></blockquote>
            
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="models.html" class="btn btn-neutral" title="Models" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>
