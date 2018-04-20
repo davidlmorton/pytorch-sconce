@@ -367,67 +367,8 @@ for more details.</td>
 </dd></dl>
 
 </div>
-<div class="section" id="module-sconce.models.convolutional_autoencoder_plus_perceptron">
-<span id="sconce-models-convolutional-autoencoder-plus-perceptron-module"></span><h2>sconce.models.convolutional_autoencoder_plus_perceptron module<a class="headerlink" href="#module-sconce.models.convolutional_autoencoder_plus_perceptron" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="sconce.models.convolutional_autoencoder_plus_perceptron.ConvolutionalAutoencoderPlusPerceptron">
-<em class="property">class </em><code class="descclassname">sconce.models.convolutional_autoencoder_plus_perceptron.</code><code class="descname">ConvolutionalAutoencoderPlusPerceptron</code><span class="sig-paren">(</span><em>image_channels</em>, <em>conv_channels</em>, <em>hidden_features</em>, <em>perceptron_features</em>, <em>conv_bias=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/models/convolutional_autoencoder_plus_perceptron.html#ConvolutionalAutoencoderPlusPerceptron"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.models.convolutional_autoencoder_plus_perceptron.ConvolutionalAutoencoderPlusPerceptron" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
-<dl class="method">
-<dt id="sconce.models.convolutional_autoencoder_plus_perceptron.ConvolutionalAutoencoderPlusPerceptron.calculate_losses">
-<code class="descname">calculate_losses</code><span class="sig-paren">(</span><em>x_out</em>, <em>x_in</em>, <em>y_in</em>, <em>y_out</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/models/convolutional_autoencoder_plus_perceptron.html#ConvolutionalAutoencoderPlusPerceptron.calculate_losses"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.models.convolutional_autoencoder_plus_perceptron.ConvolutionalAutoencoderPlusPerceptron.calculate_losses" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="sconce.models.convolutional_autoencoder_plus_perceptron.ConvolutionalAutoencoderPlusPerceptron.decode">
-<code class="descname">decode</code><span class="sig-paren">(</span><em>x_latent</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/models/convolutional_autoencoder_plus_perceptron.html#ConvolutionalAutoencoderPlusPerceptron.decode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.models.convolutional_autoencoder_plus_perceptron.ConvolutionalAutoencoderPlusPerceptron.decode" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="sconce.models.convolutional_autoencoder_plus_perceptron.ConvolutionalAutoencoderPlusPerceptron.encode">
-<code class="descname">encode</code><span class="sig-paren">(</span><em>x_in</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/models/convolutional_autoencoder_plus_perceptron.html#ConvolutionalAutoencoderPlusPerceptron.encode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.models.convolutional_autoencoder_plus_perceptron.ConvolutionalAutoencoderPlusPerceptron.encode" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="sconce.models.convolutional_autoencoder_plus_perceptron.ConvolutionalAutoencoderPlusPerceptron.forward">
-<code class="descname">forward</code><span class="sig-paren">(</span><em>x_in</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/models/convolutional_autoencoder_plus_perceptron.html#ConvolutionalAutoencoderPlusPerceptron.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.models.convolutional_autoencoder_plus_perceptron.ConvolutionalAutoencoderPlusPerceptron.forward" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="class">
-<dt id="sconce.models.convolutional_autoencoder_plus_perceptron.ConvolutionalLayer">
-<em class="property">class </em><code class="descclassname">sconce.models.convolutional_autoencoder_plus_perceptron.</code><code class="descname">ConvolutionalLayer</code><span class="sig-paren">(</span><em>*</em>, <em>in_channels</em>, <em>out_channels</em>, <em>stride=2</em>, <em>kernel_size=3</em>, <em>padding=1</em>, <em>bias=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/models/convolutional_autoencoder_plus_perceptron.html#ConvolutionalLayer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.models.convolutional_autoencoder_plus_perceptron.ConvolutionalLayer" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
-<dl class="method">
-<dt id="sconce.models.convolutional_autoencoder_plus_perceptron.ConvolutionalLayer.forward">
-<code class="descname">forward</code><span class="sig-paren">(</span><em>x_in</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/models/convolutional_autoencoder_plus_perceptron.html#ConvolutionalLayer.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.models.convolutional_autoencoder_plus_perceptron.ConvolutionalLayer.forward" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="class">
-<dt id="sconce.models.convolutional_autoencoder_plus_perceptron.DeconvolutionalLayer">
-<em class="property">class </em><code class="descclassname">sconce.models.convolutional_autoencoder_plus_perceptron.</code><code class="descname">DeconvolutionalLayer</code><span class="sig-paren">(</span><em>*</em>, <em>in_channels</em>, <em>out_channels</em>, <em>stride=2</em>, <em>kernel_size=3</em>, <em>padding=1</em>, <em>output_padding=1</em>, <em>bias=False</em>, <em>activation=ReLU()</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/models/convolutional_autoencoder_plus_perceptron.html#DeconvolutionalLayer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.models.convolutional_autoencoder_plus_perceptron.DeconvolutionalLayer" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
-<dl class="method">
-<dt id="sconce.models.convolutional_autoencoder_plus_perceptron.DeconvolutionalLayer.forward">
-<code class="descname">forward</code><span class="sig-paren">(</span><em>x_in</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/models/convolutional_autoencoder_plus_perceptron.html#DeconvolutionalLayer.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.models.convolutional_autoencoder_plus_perceptron.DeconvolutionalLayer.forward" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="class">
-<dt id="sconce.models.convolutional_autoencoder_plus_perceptron.Perceptron">
-<em class="property">class </em><code class="descclassname">sconce.models.convolutional_autoencoder_plus_perceptron.</code><code class="descname">Perceptron</code><span class="sig-paren">(</span><em>*</em>, <em>in_features</em>, <em>hidden_features</em>, <em>output_features</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/models/convolutional_autoencoder_plus_perceptron.html#Perceptron"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.models.convolutional_autoencoder_plus_perceptron.Perceptron" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
-<dl class="method">
-<dt id="sconce.models.convolutional_autoencoder_plus_perceptron.Perceptron.forward">
-<code class="descname">forward</code><span class="sig-paren">(</span><em>x_in</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/models/convolutional_autoencoder_plus_perceptron.html#Perceptron.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.models.convolutional_autoencoder_plus_perceptron.Perceptron.forward" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
+<div class="section" id="sconce-models-convolutional-autoencoder-plus-perceptron-module">
+<h2>sconce.models.convolutional_autoencoder_plus_perceptron module<a class="headerlink" href="#sconce-models-convolutional-autoencoder-plus-perceptron-module" title="Permalink to this headline">¶</a></h2>
 </div>
 <div class="section" id="module-sconce.models.multilayer_perceptron">
 <span id="sconce-models-multilayer-perceptron-module"></span><h2>sconce.models.multilayer_perceptron module<a class="headerlink" href="#module-sconce.models.multilayer_perceptron" title="Permalink to this headline">¶</a></h2>
@@ -521,56 +462,8 @@ for more details.</td>
 </dd></dl>
 
 </div>
-<div class="section" id="module-sconce.models.simple_convolutional_autoencoder">
-<span id="sconce-models-simple-convolutional-autoencoder-module"></span><h2>sconce.models.simple_convolutional_autoencoder module<a class="headerlink" href="#module-sconce.models.simple_convolutional_autoencoder" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="sconce.models.simple_convolutional_autoencoder.ConvolutionalLayer">
-<em class="property">class </em><code class="descclassname">sconce.models.simple_convolutional_autoencoder.</code><code class="descname">ConvolutionalLayer</code><span class="sig-paren">(</span><em>*</em>, <em>in_channels</em>, <em>out_channels</em>, <em>stride=2</em>, <em>kernel_size=3</em>, <em>padding=1</em>, <em>bias=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/models/simple_convolutional_autoencoder.html#ConvolutionalLayer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.models.simple_convolutional_autoencoder.ConvolutionalLayer" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
-<dl class="method">
-<dt id="sconce.models.simple_convolutional_autoencoder.ConvolutionalLayer.forward">
-<code class="descname">forward</code><span class="sig-paren">(</span><em>x_in</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/models/simple_convolutional_autoencoder.html#ConvolutionalLayer.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.models.simple_convolutional_autoencoder.ConvolutionalLayer.forward" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="class">
-<dt id="sconce.models.simple_convolutional_autoencoder.DeconvolutionalLayer">
-<em class="property">class </em><code class="descclassname">sconce.models.simple_convolutional_autoencoder.</code><code class="descname">DeconvolutionalLayer</code><span class="sig-paren">(</span><em>*</em>, <em>in_channels</em>, <em>out_channels</em>, <em>stride=2</em>, <em>kernel_size=3</em>, <em>padding=1</em>, <em>output_padding=1</em>, <em>bias=False</em>, <em>activation=ReLU()</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/models/simple_convolutional_autoencoder.html#DeconvolutionalLayer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.models.simple_convolutional_autoencoder.DeconvolutionalLayer" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
-<dl class="method">
-<dt id="sconce.models.simple_convolutional_autoencoder.DeconvolutionalLayer.forward">
-<code class="descname">forward</code><span class="sig-paren">(</span><em>x_in</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/models/simple_convolutional_autoencoder.html#DeconvolutionalLayer.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.models.simple_convolutional_autoencoder.DeconvolutionalLayer.forward" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="class">
-<dt id="sconce.models.simple_convolutional_autoencoder.SimpleConvolutionalAutoencoder">
-<em class="property">class </em><code class="descclassname">sconce.models.simple_convolutional_autoencoder.</code><code class="descname">SimpleConvolutionalAutoencoder</code><span class="sig-paren">(</span><em>image_channels</em>, <em>conv_channels</em>, <em>conv_bias=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/models/simple_convolutional_autoencoder.html#SimpleConvolutionalAutoencoder"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.models.simple_convolutional_autoencoder.SimpleConvolutionalAutoencoder" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
-<dl class="method">
-<dt id="sconce.models.simple_convolutional_autoencoder.SimpleConvolutionalAutoencoder.calculate_loss">
-<code class="descname">calculate_loss</code><span class="sig-paren">(</span><em>inputs</em>, <em>outputs</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/models/simple_convolutional_autoencoder.html#SimpleConvolutionalAutoencoder.calculate_loss"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.models.simple_convolutional_autoencoder.SimpleConvolutionalAutoencoder.calculate_loss" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="sconce.models.simple_convolutional_autoencoder.SimpleConvolutionalAutoencoder.decode">
-<code class="descname">decode</code><span class="sig-paren">(</span><em>x_latent</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/models/simple_convolutional_autoencoder.html#SimpleConvolutionalAutoencoder.decode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.models.simple_convolutional_autoencoder.SimpleConvolutionalAutoencoder.decode" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="sconce.models.simple_convolutional_autoencoder.SimpleConvolutionalAutoencoder.encode">
-<code class="descname">encode</code><span class="sig-paren">(</span><em>inputs</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/models/simple_convolutional_autoencoder.html#SimpleConvolutionalAutoencoder.encode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.models.simple_convolutional_autoencoder.SimpleConvolutionalAutoencoder.encode" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="sconce.models.simple_convolutional_autoencoder.SimpleConvolutionalAutoencoder.forward">
-<code class="descname">forward</code><span class="sig-paren">(</span><em>inputs</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/models/simple_convolutional_autoencoder.html#SimpleConvolutionalAutoencoder.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.models.simple_convolutional_autoencoder.SimpleConvolutionalAutoencoder.forward" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
+<div class="section" id="sconce-models-simple-convolutional-autoencoder-module">
+<h2>sconce.models.simple_convolutional_autoencoder module<a class="headerlink" href="#sconce-models-simple-convolutional-autoencoder-module" title="Permalink to this headline">¶</a></h2>
 </div>
 <div class="section" id="module-sconce.models.wide_resnet_image_classifier">
 <span id="sconce-models-wide-resnet-image-classifier-module"></span><h2>sconce.models.wide_resnet_image_classifier module<a class="headerlink" href="#module-sconce.models.wide_resnet_image_classifier" title="Permalink to this headline">¶</a></h2>
