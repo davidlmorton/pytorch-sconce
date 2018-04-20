@@ -7,10 +7,14 @@ A library for training pytorch models
 pip install pytorch-sconce
 ```
 
+## Documentation
+
+You can find documentation [here](https://davidlmorton.github.io/pytorch-sconce).
+
 ## Getting Started
 
 We haven't had time to work on this documentation much yet.
-You should look to the tests to see how the library works and what can be done with it.
+Until then, you should look to the tests to see how the library works and what can be done with it.
 Below are the contents of tests/test_basic_classifier.py:
 
 ```python
