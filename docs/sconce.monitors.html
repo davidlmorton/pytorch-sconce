@@ -96,6 +96,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="monitors.html">Monitors</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="monitors.html#monitor"><span class="hidden-section">Monitor</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="monitors.html#compositemonitor"><span class="hidden-section">CompositeMonitor</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="monitors.html#dataframemonitor"><span class="hidden-section">DataframeMonitor</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="monitors.html#losswisemonitor"><span class="hidden-section">LosswiseMonitor</span></a></li>
@@ -186,8 +187,29 @@
 <span id="sconce-monitors-base-module"></span><h2>sconce.monitors.base module<a class="headerlink" href="#module-sconce.monitors.base" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="sconce.monitors.base.CompositeMonitor">
-<em class="property">class </em><code class="descclassname">sconce.monitors.base.</code><code class="descname">CompositeMonitor</code><span class="sig-paren">(</span><em>monitors</em>, <em>name='composite_monitor'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/monitors/base.html#CompositeMonitor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.monitors.base.CompositeMonitor" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">sconce.monitors.base.</code><code class="descname">CompositeMonitor</code><span class="sig-paren">(</span><em>monitors</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/monitors/base.html#CompositeMonitor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.monitors.base.CompositeMonitor" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#sconce.monitors.base.Monitor" title="sconce.monitors.base.Monitor"><code class="xref py py-class docutils literal notranslate"><span class="pre">sconce.monitors.base.Monitor</span></code></a></p>
+<p>A monitor composed of two or more monitors.  Using this allows you to pass a single monitor object to a trainer
+method and have it use all of the composed monitors.  Composed monitors can be accessed using their name like so:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sconce</span> <span class="k">import</span> <span class="n">monitors</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">metric_names</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;training_loss&#39;</span><span class="p">:</span> <span class="s1">&#39;loss&#39;</span><span class="p">,</span> <span class="s1">&#39;test_loss&#39;</span><span class="p">:</span> <span class="s1">&#39;val_loss&#39;</span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">stdout_monitor</span> <span class="o">=</span> <span class="n">monitors</span><span class="o">.</span><span class="n">StdoutMonitor</span><span class="p">(</span><span class="n">metric_names</span><span class="o">=</span><span class="n">metric_names</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dataframe_monitor</span> <span class="o">=</span> <span class="n">monitors</span><span class="o">.</span><span class="n">DataframeMonitor</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">monitor</span> <span class="o">=</span> <span class="n">dataframe_monitor</span> <span class="o">+</span> <span class="n">stdout_monitor</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">monitor</span><span class="o">.</span><span class="n">dataframe_monitor</span>
+<span class="go">&lt;sconce.monitors.dataframe_monitor.DataframeMonitor at 0x7fb1fbd498d0&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dataframe_monitor</span> <span class="ow">is</span> <span class="n">monitor</span><span class="o">.</span><span class="n">dataframe_monitor</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>monitors</strong> (iterable of <a class="reference internal" href="#sconce.monitors.base.Monitor" title="sconce.monitors.base.Monitor"><code class="xref py py-class docutils literal notranslate"><span class="pre">Monitor</span></code></a>) – the monitors you want to compose together.</td>
+</tr>
+</tbody>
+</table>
 <dl class="method">
 <dt id="sconce.monitors.base.CompositeMonitor.add_monitor">
 <code class="descname">add_monitor</code><span class="sig-paren">(</span><em>other</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/monitors/base.html#CompositeMonitor.add_monitor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.monitors.base.CompositeMonitor.add_monitor" title="Permalink to this definition">¶</a></dt>
@@ -195,7 +217,7 @@
 
 <dl class="method">
 <dt id="sconce.monitors.base.CompositeMonitor.end_session">
-<code class="descname">end_session</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/monitors/base.html#CompositeMonitor.end_session"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.monitors.base.CompositeMonitor.end_session" title="Permalink to this definition">¶</a></dt>
+<code class="descname">end_session</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/monitors/base.html#CompositeMonitor.end_session"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.monitors.base.CompositeMonitor.end_session" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -205,7 +227,7 @@
 
 <dl class="method">
 <dt id="sconce.monitors.base.CompositeMonitor.write">
-<code class="descname">write</code><span class="sig-paren">(</span><em>data</em>, <em>step</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/monitors/base.html#CompositeMonitor.write"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.monitors.base.CompositeMonitor.write" title="Permalink to this definition">¶</a></dt>
+<code class="descname">write</code><span class="sig-paren">(</span><em>data</em>, <em>step</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/monitors/base.html#CompositeMonitor.write"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.monitors.base.CompositeMonitor.write" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -214,20 +236,74 @@
 <dt id="sconce.monitors.base.Monitor">
 <em class="property">class </em><code class="descclassname">sconce.monitors.base.</code><code class="descname">Monitor</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/monitors/base.html#Monitor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.monitors.base.Monitor" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/abc.html#abc.ABC" title="(in Python v3.6)"><code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></a></p>
+<p>Base class for monitors in sconce.  A monitor is an object that a <a class="reference internal" href="trainers.html#sconce.trainer.Trainer" title="sconce.trainer.Trainer"><code class="xref py py-class docutils literal notranslate"><span class="pre">Trainer</span></code></a> uses to
+record metrics during training or other tasks.  This base class defines the interface that trainers use.  Monitors
+can be composed together (using addition operator) to produce a <a class="reference internal" href="#sconce.monitors.base.CompositeMonitor" title="sconce.monitors.base.CompositeMonitor"><code class="xref py py-class docutils literal notranslate"><span class="pre">CompositeMonitor</span></code></a>
+object.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.6)"><em>str</em></a>) – used to gain access to a monitor when it has been composed together into a
+<a class="reference internal" href="#sconce.monitors.base.CompositeMonitor" title="sconce.monitors.base.CompositeMonitor"><code class="xref py py-class docutils literal notranslate"><span class="pre">CompositeMonitor</span></code></a>.</td>
+</tr>
+</tbody>
+</table>
 <dl class="method">
 <dt id="sconce.monitors.base.Monitor.end_session">
-<code class="descname">end_session</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/monitors/base.html#Monitor.end_session"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.monitors.base.Monitor.end_session" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<code class="descname">end_session</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/monitors/base.html#Monitor.end_session"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.monitors.base.Monitor.end_session" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called by a <a class="reference internal" href="trainers.html#sconce.trainer.Trainer" title="sconce.trainer.Trainer"><code class="xref py py-class docutils literal notranslate"><span class="pre">Trainer</span></code></a> when a training/evaluation session has ended.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>**kwargs</strong> – must be accepted to allow for future use cases.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 <dl class="method">
 <dt id="sconce.monitors.base.Monitor.start_session">
 <code class="descname">start_session</code><span class="sig-paren">(</span><em>num_steps</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/monitors/base.html#Monitor.start_session"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.monitors.base.Monitor.start_session" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Called by a <a class="reference internal" href="trainers.html#sconce.trainer.Trainer" title="sconce.trainer.Trainer"><code class="xref py py-class docutils literal notranslate"><span class="pre">Trainer</span></code></a> when starting a training/evaluation session.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>num_steps</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) – [1, inf) the number of update/evaluation steps to expect.</li>
+<li><strong>**kwargs</strong> – must be accepted to allow for future use cases.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 <dl class="method">
 <dt id="sconce.monitors.base.Monitor.write">
-<code class="descname">write</code><span class="sig-paren">(</span><em>data</em>, <em>step</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/monitors/base.html#Monitor.write"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.monitors.base.Monitor.write" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<code class="descname">write</code><span class="sig-paren">(</span><em>data</em>, <em>step</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/monitors/base.html#Monitor.write"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.monitors.base.Monitor.write" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called by a <a class="reference internal" href="trainers.html#sconce.trainer.Trainer" title="sconce.trainer.Trainer"><code class="xref py py-class docutils literal notranslate"><span class="pre">Trainer</span></code></a> during a
+training/evaluation session just after the training/evaluation step.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>data</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.6)"><em>dict</em></a>) – the output of the training/evaluation step.  The keys
+may include, but are not limited to: {‘training_loss’, ‘test_loss’,
+‘learning_rate’}.</li>
+<li><strong>step</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.6)"><em>float</em></a>) – (0.0, inf) the step that was just completed.
+Fractional steps are possible (see batch_multiplier option on
+<a class="reference internal" href="trainers.html#sconce.trainer.Trainer.train" title="sconce.trainer.Trainer.train"><code class="xref py py-meth docutils literal notranslate"><span class="pre">sconce.trainer.Trainer.train()</span></code></a>).</li>
+<li><strong>**kwargs</strong> – must be accepted to allow for future use cases.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 </dd></dl>
 
@@ -275,7 +351,7 @@
 
 <dl class="method">
 <dt id="sconce.monitors.dataframe_monitor.DataframeMonitor.write">
-<code class="descname">write</code><span class="sig-paren">(</span><em>data</em>, <em>step</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/monitors/dataframe_monitor.html#DataframeMonitor.write"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.monitors.dataframe_monitor.DataframeMonitor.write" title="Permalink to this definition">¶</a></dt>
+<code class="descname">write</code><span class="sig-paren">(</span><em>data</em>, <em>step</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/monitors/dataframe_monitor.html#DataframeMonitor.write"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.monitors.dataframe_monitor.DataframeMonitor.write" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -294,7 +370,7 @@
 
 <dl class="method">
 <dt id="sconce.monitors.losswise_monitor.LosswiseMonitor.write">
-<code class="descname">write</code><span class="sig-paren">(</span><em>data</em>, <em>step</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/monitors/losswise_monitor.html#LosswiseMonitor.write"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.monitors.losswise_monitor.LosswiseMonitor.write" title="Permalink to this definition">¶</a></dt>
+<code class="descname">write</code><span class="sig-paren">(</span><em>data</em>, <em>step</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/monitors/losswise_monitor.html#LosswiseMonitor.write"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.monitors.losswise_monitor.LosswiseMonitor.write" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -328,7 +404,7 @@
 
 <dl class="method">
 <dt id="sconce.monitors.ringbuffer_monitor.RingbufferMonitor.write">
-<code class="descname">write</code><span class="sig-paren">(</span><em>data</em>, <em>step</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/monitors/ringbuffer_monitor.html#RingbufferMonitor.write"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.monitors.ringbuffer_monitor.RingbufferMonitor.write" title="Permalink to this definition">¶</a></dt>
+<code class="descname">write</code><span class="sig-paren">(</span><em>data</em>, <em>step</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/monitors/ringbuffer_monitor.html#RingbufferMonitor.write"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.monitors.ringbuffer_monitor.RingbufferMonitor.write" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -342,12 +418,12 @@
 <dd><p>Bases: <a class="reference internal" href="#sconce.monitors.base.Monitor" title="sconce.monitors.base.Monitor"><code class="xref py py-class docutils literal notranslate"><span class="pre">sconce.monitors.base.Monitor</span></code></a></p>
 <dl class="method">
 <dt id="sconce.monitors.stdout_monitor.StdoutMonitor.start_session">
-<code class="descname">start_session</code><span class="sig-paren">(</span><em>num_steps</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/monitors/stdout_monitor.html#StdoutMonitor.start_session"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.monitors.stdout_monitor.StdoutMonitor.start_session" title="Permalink to this definition">¶</a></dt>
+<code class="descname">start_session</code><span class="sig-paren">(</span><em>num_steps</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/monitors/stdout_monitor.html#StdoutMonitor.start_session"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.monitors.stdout_monitor.StdoutMonitor.start_session" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="sconce.monitors.stdout_monitor.StdoutMonitor.write">
-<code class="descname">write</code><span class="sig-paren">(</span><em>data</em>, <em>step</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/monitors/stdout_monitor.html#StdoutMonitor.write"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.monitors.stdout_monitor.StdoutMonitor.write" title="Permalink to this definition">¶</a></dt>
+<code class="descname">write</code><span class="sig-paren">(</span><em>data</em>, <em>step</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/monitors/stdout_monitor.html#StdoutMonitor.write"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.monitors.stdout_monitor.StdoutMonitor.write" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>

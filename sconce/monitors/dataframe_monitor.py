@@ -35,7 +35,7 @@ class DataframeMonitor(Monitor):
                 return True
         return False
 
-    def write(self, data, step):
+    def write(self, data, step, **kwargs):
         data['step'] = step + self.previous_session_steps
         data['timestamp'] = pd.Timestamp.now()
 

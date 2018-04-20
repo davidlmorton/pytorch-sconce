@@ -22,7 +22,7 @@ class RingbufferMonitor(Monitor):
     def start_session(self, num_steps, **kwargs):
         self.previous_session_steps += self.last_step
 
-    def write(self, data, step):
+    def write(self, data, step, **kwargs):
         if self.key in data.keys():
             value = data[self.key]
 

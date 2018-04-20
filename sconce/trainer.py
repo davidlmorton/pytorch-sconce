@@ -81,7 +81,8 @@ class Trainer:
         Save model state to a file.
 
         Arguments:
-            filename (path, optional): the filename to save the model state to.  If ``None``, a system dependent temporary location will be chosen.
+            filename (path, optional): the filename to save the model state to.
+                If ``None``, a system dependent temporary location will be chosen.
 
         Returns:
             filename (path): the passed in filename, or the temporary filename chosen if ``None`` was passed in.

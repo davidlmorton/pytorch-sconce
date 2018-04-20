@@ -96,6 +96,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../monitors.html">Monitors</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../monitors.html#monitor"><span class="hidden-section">Monitor</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../monitors.html#compositemonitor"><span class="hidden-section">CompositeMonitor</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../monitors.html#dataframemonitor"><span class="hidden-section">DataframeMonitor</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../monitors.html#losswisemonitor"><span class="hidden-section">LosswiseMonitor</span></a></li>
@@ -183,17 +184,53 @@
 
 
 <div class="viewcode-block" id="Monitor"><a class="viewcode-back" href="../../../sconce.monitors.html#sconce.monitors.Monitor">[docs]</a><span class="k">class</span> <span class="nc">Monitor</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Base class for monitors in sconce.  A monitor is an object that a :py:class:`~sconce.trainer.Trainer` uses to</span>
+<span class="sd">    record metrics during training or other tasks.  This base class defines the interface that trainers use.  Monitors</span>
+<span class="sd">    can be composed together (using addition operator) to produce a :py:class:`~sconce.monitors.base.CompositeMonitor`</span>
+<span class="sd">    object.</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        name (str): used to gain access to a monitor when it has been composed together into a</span>
+<span class="sd">            :py:class:`~sconce.monitors.base.CompositeMonitor`.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
 
 <div class="viewcode-block" id="Monitor.start_session"><a class="viewcode-back" href="../../../sconce.monitors.html#sconce.monitors.Monitor.start_session">[docs]</a>    <span class="k">def</span> <span class="nf">start_session</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_steps</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Called by a :py:class:`~sconce.trainer.Trainer` when starting a training/evaluation session.</span>
+
+<span class="sd">        Arguments:</span>
+<span class="sd">            num_steps (int): [1, inf) the number of update/evaluation steps to expect.</span>
+<span class="sd">            **kwargs:  must be accepted to allow for future use cases.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">pass</span></div>
 
-<div class="viewcode-block" id="Monitor.end_session"><a class="viewcode-back" href="../../../sconce.monitors.html#sconce.monitors.Monitor.end_session">[docs]</a>    <span class="k">def</span> <span class="nf">end_session</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Monitor.end_session"><a class="viewcode-back" href="../../../sconce.monitors.html#sconce.monitors.Monitor.end_session">[docs]</a>    <span class="k">def</span> <span class="nf">end_session</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Called by a :py:class:`~sconce.trainer.Trainer` when a training/evaluation session has ended.</span>
+
+<span class="sd">        Arguments:</span>
+<span class="sd">            **kwargs: must be accepted to allow for future use cases.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">pass</span></div>
 
 <div class="viewcode-block" id="Monitor.write"><a class="viewcode-back" href="../../../sconce.monitors.html#sconce.monitors.Monitor.write">[docs]</a>    <span class="nd">@abstractmethod</span>
-    <span class="k">def</span> <span class="nf">write</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">step</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">write</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">step</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Called by a :py:class:`~sconce.trainer.Trainer` during a</span>
+<span class="sd">        training/evaluation session just after the training/evaluation step.</span>
+
+<span class="sd">        Arguments:</span>
+<span class="sd">            data (dict): the output of the training/evaluation step.  The keys</span>
+<span class="sd">                may include, but are not limited to: {&#39;training_loss&#39;, &#39;test_loss&#39;,</span>
+<span class="sd">                &#39;learning_rate&#39;}.</span>
+<span class="sd">            step (float): (0.0, inf) the step that was just completed.</span>
+<span class="sd">                Fractional steps are possible (see batch_multiplier option on</span>
+<span class="sd">                :py:meth:`sconce.trainer.Trainer.train`).</span>
+<span class="sd">            **kwargs: must be accepted to allow for future use cases.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">pass</span></div>
 
     <span class="k">def</span> <span class="nf">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
@@ -201,8 +238,25 @@
 
 
 <div class="viewcode-block" id="CompositeMonitor"><a class="viewcode-back" href="../../../sconce.monitors.html#sconce.monitors.CompositeMonitor">[docs]</a><span class="k">class</span> <span class="nc">CompositeMonitor</span><span class="p">(</span><span class="n">Monitor</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">monitors</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;composite_monitor&#39;</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A monitor composed of two or more monitors.  Using this allows you to pass a single monitor object to a trainer</span>
+<span class="sd">    method and have it use all of the composed monitors.  Composed monitors can be accessed using their name like so:</span>
+
+<span class="sd">        &gt;&gt;&gt; from sconce import monitors</span>
+<span class="sd">        &gt;&gt;&gt; metric_names = {&#39;training_loss&#39;: &#39;loss&#39;, &#39;test_loss&#39;: &#39;val_loss&#39;}</span>
+<span class="sd">        &gt;&gt;&gt; stdout_monitor = monitors.StdoutMonitor(metric_names=metric_names)</span>
+<span class="sd">        &gt;&gt;&gt; dataframe_monitor = monitors.DataframeMonitor()</span>
+<span class="sd">        &gt;&gt;&gt; monitor = dataframe_monitor + stdout_monitor</span>
+<span class="sd">        &gt;&gt;&gt; monitor.dataframe_monitor</span>
+<span class="sd">        &lt;sconce.monitors.dataframe_monitor.DataframeMonitor at 0x7fb1fbd498d0&gt;</span>
+<span class="sd">        &gt;&gt;&gt; dataframe_monitor is monitor.dataframe_monitor</span>
+<span class="sd">        True</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        monitors (iterable of :py:class:`~sconce.monitors.base.Monitor`): the monitors you want to compose together.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">monitors</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">monitors</span> <span class="o">=</span> <span class="p">[]</span>
 
@@ -229,13 +283,13 @@
         <span class="k">for</span> <span class="n">monitor</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">monitors</span><span class="p">:</span>
             <span class="n">monitor</span><span class="o">.</span><span class="n">start_session</span><span class="p">(</span><span class="n">num_steps</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="CompositeMonitor.end_session"><a class="viewcode-back" href="../../../sconce.monitors.html#sconce.monitors.CompositeMonitor.end_session">[docs]</a>    <span class="k">def</span> <span class="nf">end_session</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="CompositeMonitor.end_session"><a class="viewcode-back" href="../../../sconce.monitors.html#sconce.monitors.CompositeMonitor.end_session">[docs]</a>    <span class="k">def</span> <span class="nf">end_session</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="k">for</span> <span class="n">monitor</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">monitors</span><span class="p">:</span>
-            <span class="n">monitor</span><span class="o">.</span><span class="n">end_session</span><span class="p">()</span></div>
+            <span class="n">monitor</span><span class="o">.</span><span class="n">end_session</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="CompositeMonitor.write"><a class="viewcode-back" href="../../../sconce.monitors.html#sconce.monitors.CompositeMonitor.write">[docs]</a>    <span class="k">def</span> <span class="nf">write</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">step</span><span class="p">):</span>
+<div class="viewcode-block" id="CompositeMonitor.write"><a class="viewcode-back" href="../../../sconce.monitors.html#sconce.monitors.CompositeMonitor.write">[docs]</a>    <span class="k">def</span> <span class="nf">write</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">step</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="k">for</span> <span class="n">monitor</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">monitors</span><span class="p">:</span>
-            <span class="n">monitor</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">step</span><span class="p">)</span></div></div>
+            <span class="n">monitor</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">step</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div></div>
 </pre></div>
 
            </div>

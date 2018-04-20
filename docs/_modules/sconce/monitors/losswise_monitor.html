@@ -96,6 +96,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../monitors.html">Monitors</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../monitors.html#monitor"><span class="hidden-section">Monitor</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../monitors.html#compositemonitor"><span class="hidden-section">CompositeMonitor</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../monitors.html#dataframemonitor"><span class="hidden-section">DataframeMonitor</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../monitors.html#losswisemonitor"><span class="hidden-section">LosswiseMonitor</span></a></li>
@@ -224,7 +225,7 @@
     <span class="k">def</span> <span class="nf">_graph_descriptions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="p">{</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">_min_graphs</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">_max_graphs</span><span class="p">}</span>
 
-<div class="viewcode-block" id="LosswiseMonitor.write"><a class="viewcode-back" href="../../../sconce.monitors.html#sconce.monitors.LosswiseMonitor.write">[docs]</a>    <span class="k">def</span> <span class="nf">write</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">step</span><span class="p">):</span>
+<div class="viewcode-block" id="LosswiseMonitor.write"><a class="viewcode-back" href="../../../sconce.monitors.html#sconce.monitors.LosswiseMonitor.write">[docs]</a>    <span class="k">def</span> <span class="nf">write</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">step</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="k">for</span> <span class="n">tracker</span><span class="p">,</span> <span class="n">metrics</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_graph_descriptions</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="n">graph</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_graphs</span><span class="p">[</span><span class="n">tracker</span><span class="p">]</span>
 

@@ -96,6 +96,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../monitors.html">Monitors</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../monitors.html#monitor"><span class="hidden-section">Monitor</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../monitors.html#compositemonitor"><span class="hidden-section">CompositeMonitor</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../monitors.html#dataframemonitor"><span class="hidden-section">DataframeMonitor</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../monitors.html#losswisemonitor"><span class="hidden-section">LosswiseMonitor</span></a></li>
@@ -192,10 +193,10 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_progbar_kwargs</span> <span class="o">=</span> <span class="n">progbar_kwargs</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_progress_bar</span> <span class="o">=</span> <span class="kc">None</span>
 
-<div class="viewcode-block" id="StdoutMonitor.start_session"><a class="viewcode-back" href="../../../sconce.monitors.html#sconce.monitors.StdoutMonitor.start_session">[docs]</a>    <span class="k">def</span> <span class="nf">start_session</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_steps</span><span class="p">):</span>
+<div class="viewcode-block" id="StdoutMonitor.start_session"><a class="viewcode-back" href="../../../sconce.monitors.html#sconce.monitors.StdoutMonitor.start_session">[docs]</a>    <span class="k">def</span> <span class="nf">start_session</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_steps</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_progress_bar</span> <span class="o">=</span> <span class="n">Progbar</span><span class="p">(</span><span class="n">num_steps</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">_progbar_kwargs</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="StdoutMonitor.write"><a class="viewcode-back" href="../../../sconce.monitors.html#sconce.monitors.StdoutMonitor.write">[docs]</a>    <span class="k">def</span> <span class="nf">write</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">step</span><span class="p">):</span>
+<div class="viewcode-block" id="StdoutMonitor.write"><a class="viewcode-back" href="../../../sconce.monitors.html#sconce.monitors.StdoutMonitor.write">[docs]</a>    <span class="k">def</span> <span class="nf">write</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">step</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">step</span> <span class="o">!=</span> <span class="nb">int</span><span class="p">(</span><span class="n">step</span><span class="p">):</span>
             <span class="c1"># don&#39;t update for partial steps</span>
             <span class="k">return</span>

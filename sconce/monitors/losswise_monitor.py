@@ -43,7 +43,7 @@ class LosswiseMonitor(Monitor):
     def _graph_descriptions(self):
         return {**self._min_graphs, **self._max_graphs}
 
-    def write(self, data, step):
+    def write(self, data, step, **kwargs):
         for tracker, metrics in self._graph_descriptions.items():
             graph = self._graphs[tracker]
 

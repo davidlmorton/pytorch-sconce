@@ -7,6 +7,13 @@ Monitors
 .. currentmodule:: sconce.monitors
 
 
+:hidden:`Monitor`
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. autoclass:: Monitor
+    :members:
+
+
 :hidden:`CompositeMonitor`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 

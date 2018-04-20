@@ -96,6 +96,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../monitors.html">Monitors</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../monitors.html#monitor"><span class="hidden-section">Monitor</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../monitors.html#compositemonitor"><span class="hidden-section">CompositeMonitor</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../monitors.html#dataframemonitor"><span class="hidden-section">DataframeMonitor</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../monitors.html#losswisemonitor"><span class="hidden-section">LosswiseMonitor</span></a></li>
@@ -216,7 +217,7 @@
                 <span class="k">return</span> <span class="kc">True</span>
         <span class="k">return</span> <span class="kc">False</span></div>
 
-<div class="viewcode-block" id="DataframeMonitor.write"><a class="viewcode-back" href="../../../sconce.monitors.html#sconce.monitors.DataframeMonitor.write">[docs]</a>    <span class="k">def</span> <span class="nf">write</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">step</span><span class="p">):</span>
+<div class="viewcode-block" id="DataframeMonitor.write"><a class="viewcode-back" href="../../../sconce.monitors.html#sconce.monitors.DataframeMonitor.write">[docs]</a>    <span class="k">def</span> <span class="nf">write</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">step</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="n">data</span><span class="p">[</span><span class="s1">&#39;step&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">step</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">previous_session_steps</span>
         <span class="n">data</span><span class="p">[</span><span class="s1">&#39;timestamp&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
 
