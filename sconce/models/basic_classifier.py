@@ -22,7 +22,7 @@ class BasicClassifier(nn.Module):
         image_width (int): image width in pixels.
         image_channels (int): number of channels in the input images.
         convolutional_layer_kwargs (list[dict]): a list of dictionaries describing the convolutional layers. See
-            :py:class:`~sconce.models.layers.convolutiona2d_layer.Convolution2dLayer` for details.
+            :py:class:`~sconce.models.layers.convolution2d_layer.Convolution2dLayer` for details.
         fully_connected_layer_kwargs (list[dict]): a list of dictionaries describing the fully connected layers. See
             :py:class:`~sconce.models.layers.fully_connected_layer.FullyConnectedLayer` for details.
         num_categories (int): [2, inf) the number of different image classes.
