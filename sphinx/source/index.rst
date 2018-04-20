@@ -16,7 +16,7 @@ Welcome to sconce's documentation!
 
    sconce
    sconce.monitors
-   sconce.rate_controlles
+   sconce.rate_controllers
    sconce.trainers
 
    sconce.models
