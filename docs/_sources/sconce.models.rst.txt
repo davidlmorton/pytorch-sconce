@@ -27,26 +27,10 @@ sconce.models.basic\_classifier module
     :undoc-members:
     :show-inheritance:
 
-sconce.models.convolutional\_autoencoder\_plus\_perceptron module
------------------------------------------------------------------
-
-.. automodule:: sconce.models.convolutional_autoencoder_plus_perceptron
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
 sconce.models.multilayer\_perceptron module
 -------------------------------------------
 
 .. automodule:: sconce.models.multilayer_perceptron
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-sconce.models.simple\_convolutional\_autoencoder module
--------------------------------------------------------
-
-.. automodule:: sconce.models.simple_convolutional_autoencoder
     :members:
     :undoc-members:
     :show-inheritance:
