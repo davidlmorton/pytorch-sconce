@@ -7,6 +7,7 @@ Subpackages
 .. toctree::
     :maxdepth: 1
 
+    sconce.data_generators
     sconce.models
     sconce.monitors
     sconce.rate_controllers
@@ -14,14 +15,6 @@ Subpackages
 
 Submodules
 ----------
-
-sconce.data\_generator module
------------------------------
-
-.. automodule:: sconce.data_generator
-    :members:
-    :undoc-members:
-    :show-inheritance:
 
 sconce.trainer module
 ---------------------

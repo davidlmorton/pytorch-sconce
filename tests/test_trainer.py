@@ -1,4 +1,4 @@
-from sconce.data_generator import DataGenerator
+from sconce.data_generators import DataGenerator
 from sconce.rate_controllers import CosineRateController
 from sconce.trainer import Trainer
 from sconce.models import BasicAutoencoder

@@ -1,7 +1,12 @@
 .. role:: hidden
     :class: hidden-section
 
-.. currentmodule:: sconce.data_generator
+
+Data Generators
+===============
+
+.. currentmodule:: sconce.data_generators
+
 
 :hidden:`DataGenerator`
 ~~~~~~~~~~~~~~~~~~~~~~~

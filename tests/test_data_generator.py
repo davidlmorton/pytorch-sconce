@@ -1,4 +1,4 @@
-from sconce.data_generator import DataGenerator
+from sconce.data_generators import DataGenerator
 
 import torch
 import unittest

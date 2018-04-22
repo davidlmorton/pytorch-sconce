@@ -1,5 +1,5 @@
 # flake8: noqa
-from sconce.data_generator import DataGenerator
+from sconce.data_generators import DataGenerator
 from sconce.rate_controllers import TriangleRateController
 from sconce.trainers import ClassifierTrainer
 from sconce.models import WideResnetImageClassifier

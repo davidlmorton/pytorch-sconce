@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Data Generators &mdash; Pytorch-Sconce master documentation</title>
+  <title>sconce.data_generators package &mdash; Pytorch-Sconce master documentation</title>
   
 
   
@@ -30,9 +30,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato" type="text/css" />
   <link rel="stylesheet" href="_static/css/pytorch_theme.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Rate Controllers" href="rate_controllers.html" />
-    <link rel="prev" title="Sconce Documentation" href="index.html" /> 
+    <link rel="search" title="Search" href="search.html" /> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -86,9 +84,9 @@
             
             
               <p class="caption"><span class="caption-text">Class Reference</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Data Generators</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#datagenerator"><span class="hidden-section">DataGenerator</span></a></li>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="data_generator.html">Data Generators</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="data_generator.html#datagenerator"><span class="hidden-section">DataGenerator</span></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="rate_controllers.html">Rate Controllers</a><ul>
@@ -167,13 +165,13 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>Data Generators</li>
+      <li>sconce.data_generators package</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="_sources/data_generator.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/sconce.data_generators.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -186,14 +184,15 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="data-generators">
-<h1>Data Generators<a class="headerlink" href="#data-generators" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="datagenerator">
-<h2><span class="hidden-section">DataGenerator</span><a class="headerlink" href="#datagenerator" title="Permalink to this headline">¶</a></h2>
+  <div class="section" id="sconce-data-generators-package">
+<h1>sconce.data_generators package<a class="headerlink" href="#sconce-data-generators-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-sconce.data_generators.base">
+<span id="sconce-data-generators-base-module"></span><h2>sconce.data_generators.base module<a class="headerlink" href="#module-sconce.data_generators.base" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
-<dt id="sconce.data_generators.DataGenerator">
-<em class="property">class </em><code class="descclassname">sconce.data_generators.</code><code class="descname">DataGenerator</code><span class="sig-paren">(</span><em>data_loader</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/data_generators/base.html#DataGenerator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.data_generators.DataGenerator" title="Permalink to this definition">¶</a></dt>
-<dd><p>A thin wrapper around a <a class="reference external" href="http://pytorch.org/docs/stable/data.html#torch.utils.data.DataLoader" title="(in PyTorch vmaster (0.3.1.post2 ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataLoader</span></code></a> that
+<dt id="sconce.data_generators.base.DataGenerator">
+<em class="property">class </em><code class="descclassname">sconce.data_generators.base.</code><code class="descname">DataGenerator</code><span class="sig-paren">(</span><em>data_loader</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/data_generators/base.html#DataGenerator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.data_generators.base.DataGenerator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.6)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>A thin wrapper around a <a class="reference external" href="http://pytorch.org/docs/stable/data.html#torch.utils.data.DataLoader" title="(in PyTorch vmaster (0.3.1.post2 ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataLoader</span></code></a> that
 automatically yields tuples of <a class="reference external" href="http://pytorch.org/docs/stable/autograd.html#torch.autograd.Variable" title="(in PyTorch vmaster (0.3.1.post2 ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">Variable</span></code></a> (that
 live on cpu or on cuda).
 A DataGenerator will iterate endlessly.</p>
@@ -210,14 +209,14 @@ data_loader.</td>
 </tbody>
 </table>
 <dl class="attribute">
-<dt id="sconce.data_generators.DataGenerator.batch_size">
-<code class="descname">batch_size</code><a class="headerlink" href="#sconce.data_generators.DataGenerator.batch_size" title="Permalink to this definition">¶</a></dt>
+<dt id="sconce.data_generators.base.DataGenerator.batch_size">
+<code class="descname">batch_size</code><a class="headerlink" href="#sconce.data_generators.base.DataGenerator.batch_size" title="Permalink to this definition">¶</a></dt>
 <dd><p>the wrapped data_loader’s batch_size</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="sconce.data_generators.DataGenerator.cuda">
-<code class="descname">cuda</code><span class="sig-paren">(</span><em>device=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/data_generators/base.html#DataGenerator.cuda"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.data_generators.DataGenerator.cuda" title="Permalink to this definition">¶</a></dt>
+<dt id="sconce.data_generators.base.DataGenerator.cuda">
+<code class="descname">cuda</code><span class="sig-paren">(</span><em>device=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/data_generators/base.html#DataGenerator.cuda"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.data_generators.base.DataGenerator.cuda" title="Permalink to this definition">¶</a></dt>
 <dd><p>Put the <cite>inputs</cite> and <cite>targets</cite> (yielded by this DataGenerator) on the
 specified device.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -256,14 +255,14 @@ dictionary with keys {‘inputs’, ‘targets’} instead. See
 </dd></dl>
 
 <dl class="attribute">
-<dt id="sconce.data_generators.DataGenerator.dataset">
-<code class="descname">dataset</code><a class="headerlink" href="#sconce.data_generators.DataGenerator.dataset" title="Permalink to this definition">¶</a></dt>
+<dt id="sconce.data_generators.base.DataGenerator.dataset">
+<code class="descname">dataset</code><a class="headerlink" href="#sconce.data_generators.base.DataGenerator.dataset" title="Permalink to this definition">¶</a></dt>
 <dd><p>the wrapped data_loader’s <a class="reference external" href="http://pytorch.org/docs/stable/data.html#torch.utils.data.Dataset" title="(in PyTorch vmaster (0.3.1.post2 ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dataset</span></code></a></p>
 </dd></dl>
 
 <dl class="classmethod">
-<dt id="sconce.data_generators.DataGenerator.from_dataset">
-<em class="property">classmethod </em><code class="descname">from_dataset</code><span class="sig-paren">(</span><em>dataset</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/data_generators/base.html#DataGenerator.from_dataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.data_generators.DataGenerator.from_dataset" title="Permalink to this definition">¶</a></dt>
+<dt id="sconce.data_generators.base.DataGenerator.from_dataset">
+<em class="property">classmethod </em><code class="descname">from_dataset</code><span class="sig-paren">(</span><em>dataset</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/data_generators/base.html#DataGenerator.from_dataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.data_generators.base.DataGenerator.from_dataset" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create a DataGenerator from an instantiated dataset.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -282,8 +281,8 @@ dataset.</li>
 </dd></dl>
 
 <dl class="classmethod">
-<dt id="sconce.data_generators.DataGenerator.from_pytorch">
-<em class="property">classmethod </em><code class="descname">from_pytorch</code><span class="sig-paren">(</span><em>batch_size=500</em>, <em>data_location=None</em>, <em>dataset_class=&lt;class 'torchvision.datasets.mnist.MNIST'&gt;</em>, <em>fraction=1.0</em>, <em>num_workers=1</em>, <em>pin_memory=True</em>, <em>shuffle=True</em>, <em>train=True</em>, <em>transform=&lt;torchvision.transforms.transforms.ToTensor object&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/data_generators/base.html#DataGenerator.from_pytorch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.data_generators.DataGenerator.from_pytorch" title="Permalink to this definition">¶</a></dt>
+<dt id="sconce.data_generators.base.DataGenerator.from_pytorch">
+<em class="property">classmethod </em><code class="descname">from_pytorch</code><span class="sig-paren">(</span><em>batch_size=500</em>, <em>data_location=None</em>, <em>dataset_class=&lt;class 'torchvision.datasets.mnist.MNIST'&gt;</em>, <em>fraction=1.0</em>, <em>num_workers=1</em>, <em>pin_memory=True</em>, <em>shuffle=True</em>, <em>train=True</em>, <em>transform=&lt;torchvision.transforms.transforms.ToTensor object&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/data_generators/base.html#DataGenerator.from_pytorch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.data_generators.base.DataGenerator.from_pytorch" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create a DataGenerator from a torchvision dataset class.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -318,16 +317,26 @@ image and returns a transformed version.</li>
 </table>
 </dd></dl>
 
+<dl class="method">
+<dt id="sconce.data_generators.base.DataGenerator.next">
+<code class="descname">next</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/data_generators/base.html#DataGenerator.next"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.data_generators.base.DataGenerator.next" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="attribute">
-<dt id="sconce.data_generators.DataGenerator.num_samples">
-<code class="descname">num_samples</code><a class="headerlink" href="#sconce.data_generators.DataGenerator.num_samples" title="Permalink to this definition">¶</a></dt>
+<dt id="sconce.data_generators.base.DataGenerator.num_samples">
+<code class="descname">num_samples</code><a class="headerlink" href="#sconce.data_generators.base.DataGenerator.num_samples" title="Permalink to this definition">¶</a></dt>
 <dd><p>the <code class="docutils literal notranslate"><span class="pre">len</span></code> of the wrapped data_loader’s
 <a class="reference external" href="http://pytorch.org/docs/stable/data.html#torch.utils.data.Dataset" title="(in PyTorch vmaster (0.3.1.post2 ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dataset</span></code></a></p>
 </dd></dl>
 
 <dl class="method">
-<dt id="sconce.data_generators.DataGenerator.reset">
-<code class="descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/data_generators/base.html#DataGenerator.reset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.data_generators.DataGenerator.reset" title="Permalink to this definition">¶</a></dt>
+<dt id="sconce.data_generators.base.DataGenerator.preprocess">
+<code class="descname">preprocess</code><span class="sig-paren">(</span><em>inputs</em>, <em>targets</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/data_generators/base.html#DataGenerator.preprocess"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.data_generators.base.DataGenerator.preprocess" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sconce.data_generators.base.DataGenerator.reset">
+<code class="descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/data_generators/base.html#DataGenerator.reset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.data_generators.base.DataGenerator.reset" title="Permalink to this definition">¶</a></dt>
 <dd><p>Start iterating through the data_loader from the begining.</p>
 </dd></dl>
 
@@ -341,15 +350,6 @@ image and returns a transformed version.</li>
            
           </div>
           <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="rate_controllers.html" class="btn btn-neutral float-right" title="Rate Controllers" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="index.html" class="btn btn-neutral" title="Sconce Documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
-    </div>
   
 
   <hr/>

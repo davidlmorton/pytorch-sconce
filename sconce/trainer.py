@@ -10,16 +10,16 @@ class Trainer:
     """
     A Class that is used to train pytorch models.
     It defines the training loop and orchestrates the various other sconce
-    objects (:py:class:`~sconce.data_generator.DataGenerator`,
+    objects (:py:class:`~sconce.data_generators.base.DataGenerator`,
     :py:class:`~sconce.monitors.base.Monitor`,
     :py:class:`~sconce.rate_controllers.base.RateController`, ect).
 
     Keyword Arguments:
         model (:py:class:`torch.nn.Module`): the torch model to be trained.  See :py:mod:`sconce.models` for examples.
-        training_data_generator (:py:class:`~sconce.data_generator.DataGenerator`): yields training `inputs` and
+        training_data_generator (:py:class:`~sconce.data_generators.base.DataGenerator`): yields training `inputs` and
             `targets`.
-        test_data_generator (:py:class:`~sconce.data_generator.DataGenerator`): yields test `inputs` and `targets`.
-            These are never used for back-propagation.
+        test_data_generator (:py:class:`~sconce.data_generators.base.DataGenerator`): yields test `inputs` and
+            `targets`.  These are never used for back-propagation.
         optimizer (:py:class:`torch.optim.Optimizer`): the torch optimizer that updates model parameters during
             training.
         monitor (:py:class:`~sconce.monitors.base.Monitor`, optional): the sconce monitor that records data during

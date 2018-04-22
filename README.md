@@ -19,7 +19,7 @@ Below are the contents of tests/test_basic_classifier.py:
 
 ```python
 # flake8: noqa
-from sconce.data_generator import DataGenerator
+from sconce.data_generators import DataGenerator
 from sconce.rate_controllers import CosineRateController
 from sconce.trainers import ClassifierTrainer
 from sconce.models import BasicClassifier

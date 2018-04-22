@@ -86,7 +86,10 @@
             
               <p class="caption"><span class="caption-text">Class Reference</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="data_generator.html"><span class="hidden-section">DataGenerator</span></a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_generator.html">Data Generators</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="data_generator.html#datagenerator"><span class="hidden-section">DataGenerator</span></a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="rate_controllers.html">Rate Controllers</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="rate_controllers.html#constantratecontroller"><span class="hidden-section">ConstantRateController</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="rate_controllers.html#cosineratecontroller"><span class="hidden-section">CosineRateController</span></a></li>
@@ -191,7 +194,7 @@
 <em class="property">class </em><code class="descclassname">sconce.trainer.</code><code class="descname">Trainer</code><span class="sig-paren">(</span><em>*</em>, <em>model</em>, <em>training_data_generator</em>, <em>test_data_generator</em>, <em>optimizer</em>, <em>monitor=None</em>, <em>rate_controller=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/trainer.html#Trainer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.trainer.Trainer" title="Permalink to this definition">¶</a></dt>
 <dd><p>A Class that is used to train pytorch models.
 It defines the training loop and orchestrates the various other sconce
-objects (<a class="reference internal" href="sconce.html#sconce.data_generator.DataGenerator" title="sconce.data_generator.DataGenerator"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataGenerator</span></code></a>,
+objects (<a class="reference internal" href="sconce.data_generators.html#sconce.data_generators.base.DataGenerator" title="sconce.data_generators.base.DataGenerator"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataGenerator</span></code></a>,
 <a class="reference internal" href="sconce.monitors.html#sconce.monitors.base.Monitor" title="sconce.monitors.base.Monitor"><code class="xref py py-class docutils literal notranslate"><span class="pre">Monitor</span></code></a>,
 <a class="reference internal" href="sconce.rate_controllers.html#sconce.rate_controllers.base.RateController" title="sconce.rate_controllers.base.RateController"><code class="xref py py-class docutils literal notranslate"><span class="pre">RateController</span></code></a>, ect).</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -201,10 +204,10 @@ objects (<a class="reference internal" href="sconce.html#sconce.data_generator.D
 <tr class="field-odd field"><th class="field-name" colspan="2">Keyword Arguments:</th></tr>
 <tr class="field-odd field"><td>&#160;</td><td class="field-body"><ul class="first last simple">
 <li><strong>model</strong> (<a class="reference external" href="http://pytorch.org/docs/stable/nn.html#torch.nn.Module" title="(in PyTorch vmaster (0.3.1.post2 ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.Module</span></code></a>) – the torch model to be trained.  See <code class="xref py py-mod docutils literal notranslate"><span class="pre">sconce.models</span></code> for examples.</li>
-<li><strong>training_data_generator</strong> (<a class="reference internal" href="sconce.html#sconce.data_generator.DataGenerator" title="sconce.data_generator.DataGenerator"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataGenerator</span></code></a>) – yields training <cite>inputs</cite> and
+<li><strong>training_data_generator</strong> (<a class="reference internal" href="sconce.data_generators.html#sconce.data_generators.base.DataGenerator" title="sconce.data_generators.base.DataGenerator"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataGenerator</span></code></a>) – yields training <cite>inputs</cite> and
 <cite>targets</cite>.</li>
-<li><strong>test_data_generator</strong> (<a class="reference internal" href="sconce.html#sconce.data_generator.DataGenerator" title="sconce.data_generator.DataGenerator"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataGenerator</span></code></a>) – yields test <cite>inputs</cite> and <cite>targets</cite>.
-These are never used for back-propagation.</li>
+<li><strong>test_data_generator</strong> (<a class="reference internal" href="sconce.data_generators.html#sconce.data_generators.base.DataGenerator" title="sconce.data_generators.base.DataGenerator"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataGenerator</span></code></a>) – yields test <cite>inputs</cite> and
+<cite>targets</cite>.  These are never used for back-propagation.</li>
 <li><strong>optimizer</strong> (<a class="reference external" href="http://pytorch.org/docs/stable/optim.html#torch.optim.Optimizer" title="(in PyTorch vmaster (0.3.1.post2 ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">torch.optim.Optimizer</span></code></a>) – the torch optimizer that updates model parameters during
 training.</li>
 <li><strong>monitor</strong> (<a class="reference internal" href="sconce.monitors.html#sconce.monitors.base.Monitor" title="sconce.monitors.base.Monitor"><code class="xref py py-class docutils literal notranslate"><span class="pre">Monitor</span></code></a>, optional) – the sconce monitor that records data during
