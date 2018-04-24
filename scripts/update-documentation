@@ -1,0 +1,32 @@
+#! /usr/bin/env bash
+
+set -o nounset
+set -o pipefail
+set -o errexit
+
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+BASE_DIR="$(dirname ${SCRIPT_DIR})"
+
+if git diff --name-only --exit-code; then
+    echo "No tracked files found with differences, proceeding"
+else
+    echo "Found the above tracked files had changes... aborting."
+    exit 1
+fi
+
+cd $BASE_DIR
+rm -rf docs
+mkdir docs
+git checkout docs/.nojekyll
+
+cd $BASE_DIR/sphinx
+make clean
+make html
+
+\cp -rf build/html/* ../docs
+
+cd $BASE_DIR
+git add docs
+git commit -am "Automated Process Updated Rendered Documentation"
+
+git push origin master:master

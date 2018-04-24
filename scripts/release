@@ -8,6 +8,13 @@ SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 BASE_DIR="$(dirname ${SCRIPT_DIR})"
 VERSION=${1:?You must specify a version}
 
+if git diff --name-only --exit-code; then
+    echo "No tracked files found with differences, proceeding"
+else
+    echo "Found the above tracked files had changes... aborting."
+    exit 1
+fi
+
 cd $BASE_DIR
 sed -i "s/version = .*/version = ${VERSION}/" setup.cfg
 sed -i "s|pytorch-sconce/archive/.*\.tar\.gz|pytorch-sconce\/archive\/${VERSION}.tar.gz|" setup.cfg
@@ -15,6 +22,7 @@ sed -i "s/__version__ = '.*'/__version__ = '${VERSION}'/" sconce/__init__.py
 
 git commit -a -m "Update version to ${VERSION}"
 git tag -f ${VERSION} -m "Release ${VERSION}"
+
 git push --tags origin master:master
 
 python setup.py sdist upload -r pypi
