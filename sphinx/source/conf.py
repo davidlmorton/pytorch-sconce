@@ -182,6 +182,7 @@ intersphinx_mapping = {
     'python': ('https://docs.python.org/', None),
     'numpy': ('http://docs.scipy.org/doc/numpy/', None),
     'torch': ('http://pytorch.org/docs/stable', None),
+    'torchvision': ('http://pytorch.org/docs/master', None),
 }
 
 # -- Options for todo extension ----------------------------------------------

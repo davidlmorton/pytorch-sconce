@@ -14,6 +14,10 @@ def get_image_info(image):
 
 
 class ImageDataGenerator(DataGenerator):
+    """
+    A DataGenerator class with some handy methods for image type data.
+    """
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
@@ -21,11 +25,17 @@ class ImageDataGenerator(DataGenerator):
 
     @property
     def num_channels(self):
+        """
+        The number of image channels, based on looking at the first image in the dataset.
+        """
         dataset = self.real_dataset
         for image, target in dataset:
             return image.shape[0]
 
     def get_summary_df(self):
+        """
+        Return a pandas dataframe that summarizes the image metadata in the dataset.
+        """
         if self.summary_df is None:
             self.summary_df = self._get_summary_df()
         return self.summary_df
@@ -53,10 +63,16 @@ class ImageDataGenerator(DataGenerator):
         return pd.DataFrame(info_list)
 
     def plot_label_summary(self):
+        """
+        Generate a barchart showing how many images of each label there are.
+        """
         summary_df = self.get_summary_df()
         return sns.countplot(x='label', data=summary_df)
 
     def plot_size_summary(self):
+        """
+        Generate a scatter plot showing the sizes of the images in the dataset.
+        """
         summary_df = self.get_summary_df()
         return sns.jointplot(x="height", y="width",
                 kind='scatter', stat_func=None, data=summary_df)
@@ -122,6 +138,14 @@ class ImageDataGenerator(DataGenerator):
 
     @classmethod
     def from_image_folder(self, root, loader_kwargs=None, **dataset_kwargs):
+        """
+        Create a DataGenerator from a folder of images.  See :py:class:`torchvision.datasets.ImageFolder`.
+
+        Arguments:
+            root (path): the root directory path.
+            loader_kwargs (dict): keyword args provided to the DataLoader constructor.
+            **dataset_kwargs: keyword args provided to the :py:class:`torchvision.datasets.ImageFolder` constructor.
+        """
         if loader_kwargs is None:
             loader_kwargs = {}
 

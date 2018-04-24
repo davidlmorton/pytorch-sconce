@@ -89,6 +89,7 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Data Generators</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#datagenerator"><span class="hidden-section">DataGenerator</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#imagedatagenerator"><span class="hidden-section">ImageDataGenerator</span></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="rate_controllers.html">Rate Controllers</a><ul>
@@ -193,18 +194,18 @@
 <dl class="class">
 <dt id="sconce.data_generators.DataGenerator">
 <em class="property">class </em><code class="descclassname">sconce.data_generators.</code><code class="descname">DataGenerator</code><span class="sig-paren">(</span><em>data_loader</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/data_generators/base.html#DataGenerator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.data_generators.DataGenerator" title="Permalink to this definition">¶</a></dt>
-<dd><p>A thin wrapper around a <a class="reference external" href="http://pytorch.org/docs/stable/data.html#torch.utils.data.DataLoader" title="(in PyTorch vmaster (0.3.1.post2 ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataLoader</span></code></a> that
-automatically yields tuples of <a class="reference external" href="http://pytorch.org/docs/stable/autograd.html#torch.autograd.Variable" title="(in PyTorch vmaster (0.3.1.post2 ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">Variable</span></code></a> (that
+<dd><p>A thin wrapper around a <a class="reference external" href="http://pytorch.org/docs/master/data.html#torch.utils.data.DataLoader" title="(in PyTorch vmaster (0.5.0a0+cfb626b ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataLoader</span></code></a> that
+automatically yields tuples of <code class="xref py py-class docutils literal notranslate"><span class="pre">Variable</span></code> (that
 live on cpu or on cuda).
 A DataGenerator will iterate endlessly.</p>
-<p>Like the underlying <a class="reference external" href="http://pytorch.org/docs/stable/data.html#torch.utils.data.DataLoader" title="(in PyTorch vmaster (0.3.1.post2 ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataLoader</span></code></a>, a
+<p>Like the underlying <a class="reference external" href="http://pytorch.org/docs/master/data.html#torch.utils.data.DataLoader" title="(in PyTorch vmaster (0.5.0a0+cfb626b ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataLoader</span></code></a>, a
 DataGenerator’s <code class="docutils literal notranslate"><span class="pre">__next__</span></code> method yields two values, which we refer to as
 the <cite>inputs</cite> and the <cite>targets</cite>.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>data_loader</strong> (<a class="reference external" href="http://pytorch.org/docs/stable/data.html#torch.utils.data.DataLoader" title="(in PyTorch vmaster (0.3.1.post2 ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataLoader</span></code></a>) – the wrapped
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>data_loader</strong> (<a class="reference external" href="http://pytorch.org/docs/master/data.html#torch.utils.data.DataLoader" title="(in PyTorch vmaster (0.5.0a0+cfb626b ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataLoader</span></code></a>) – the wrapped
 data_loader.</td>
 </tr>
 </tbody>
@@ -227,7 +228,7 @@ specified device.</p>
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>device</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.6)"><em>bool</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.6)"><em>dict</em></a>) – if int or bool, sets the behavior for
 both <cite>inputs</cite> and <cite>targets</cite>. To set them individually, pass a
 dictionary with keys {‘inputs’, ‘targets’} instead. See
-<a class="reference external" href="http://pytorch.org/docs/stable/tensors.html#torch.Tensor.cuda" title="(in PyTorch vmaster (0.3.1.post2 ))"><code class="xref py py-meth docutils literal notranslate"><span class="pre">torch.Tensor.cuda()</span></code></a> for details.</td>
+<a class="reference external" href="http://pytorch.org/docs/master/tensors.html#torch.Tensor.cuda" title="(in PyTorch vmaster (0.5.0a0+cfb626b ))"><code class="xref py py-meth docutils literal notranslate"><span class="pre">torch.Tensor.cuda()</span></code></a> for details.</td>
 </tr>
 </tbody>
 </table>
@@ -258,7 +259,7 @@ dictionary with keys {‘inputs’, ‘targets’} instead. See
 <dl class="attribute">
 <dt id="sconce.data_generators.DataGenerator.dataset">
 <code class="descname">dataset</code><a class="headerlink" href="#sconce.data_generators.DataGenerator.dataset" title="Permalink to this definition">¶</a></dt>
-<dd><p>the wrapped data_loader’s <a class="reference external" href="http://pytorch.org/docs/stable/data.html#torch.utils.data.Dataset" title="(in PyTorch vmaster (0.3.1.post2 ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dataset</span></code></a></p>
+<dd><p>the wrapped data_loader’s <a class="reference external" href="http://pytorch.org/docs/master/data.html#torch.utils.data.Dataset" title="(in PyTorch vmaster (0.5.0a0+cfb626b ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dataset</span></code></a></p>
 </dd></dl>
 
 <dl class="classmethod">
@@ -270,10 +271,10 @@ dictionary with keys {‘inputs’, ‘targets’} instead. See
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>dataset</strong> (<a class="reference external" href="http://pytorch.org/docs/stable/data.html#torch.utils.data.Dataset" title="(in PyTorch vmaster (0.3.1.post2 ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dataset</span></code></a>) – the pytorch
+<li><strong>dataset</strong> (<a class="reference external" href="http://pytorch.org/docs/master/data.html#torch.utils.data.Dataset" title="(in PyTorch vmaster (0.5.0a0+cfb626b ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dataset</span></code></a>) – the pytorch
 dataset.</li>
 <li><strong>**kwargs</strong> – passed directly to the
-<a class="reference external" href="http://pytorch.org/docs/stable/data.html#torch.utils.data.DataLoader" title="(in PyTorch vmaster (0.3.1.post2 ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataLoader</span></code></a>) constructor.</li>
+<a class="reference external" href="http://pytorch.org/docs/master/data.html#torch.utils.data.DataLoader" title="(in PyTorch vmaster (0.5.0a0+cfb626b ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataLoader</span></code></a>) constructor.</li>
 </ul>
 </td>
 </tr>
@@ -322,13 +323,108 @@ image and returns a transformed version.</li>
 <dt id="sconce.data_generators.DataGenerator.num_samples">
 <code class="descname">num_samples</code><a class="headerlink" href="#sconce.data_generators.DataGenerator.num_samples" title="Permalink to this definition">¶</a></dt>
 <dd><p>the <code class="docutils literal notranslate"><span class="pre">len</span></code> of the wrapped data_loader’s
-<a class="reference external" href="http://pytorch.org/docs/stable/data.html#torch.utils.data.Dataset" title="(in PyTorch vmaster (0.3.1.post2 ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dataset</span></code></a></p>
+<a class="reference external" href="http://pytorch.org/docs/master/data.html#torch.utils.data.Dataset" title="(in PyTorch vmaster (0.5.0a0+cfb626b ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dataset</span></code></a></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="sconce.data_generators.DataGenerator.real_dataset">
+<code class="descname">real_dataset</code><a class="headerlink" href="#sconce.data_generators.DataGenerator.real_dataset" title="Permalink to this definition">¶</a></dt>
+<dd><p>the wrapped data_loader’s <a class="reference external" href="http://pytorch.org/docs/master/data.html#torch.utils.data.Dataset" title="(in PyTorch vmaster (0.5.0a0+cfb626b ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dataset</span></code></a> reaching through any Subsets</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="sconce.data_generators.DataGenerator.reset">
 <code class="descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/data_generators/base.html#DataGenerator.reset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.data_generators.DataGenerator.reset" title="Permalink to this definition">¶</a></dt>
 <dd><p>Start iterating through the data_loader from the begining.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="imagedatagenerator">
+<h2><span class="hidden-section">ImageDataGenerator</span><a class="headerlink" href="#imagedatagenerator" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="sconce.data_generators.ImageDataGenerator">
+<em class="property">class </em><code class="descclassname">sconce.data_generators.</code><code class="descname">ImageDataGenerator</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/data_generators/image_data_generator.html#ImageDataGenerator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.data_generators.ImageDataGenerator" title="Permalink to this definition">¶</a></dt>
+<dd><p>A DataGenerator class with some handy methods for image type data.</p>
+<dl class="classmethod">
+<dt id="sconce.data_generators.ImageDataGenerator.from_image_folder">
+<em class="property">classmethod </em><code class="descname">from_image_folder</code><span class="sig-paren">(</span><em>root</em>, <em>loader_kwargs=None</em>, <em>**dataset_kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/data_generators/image_data_generator.html#ImageDataGenerator.from_image_folder"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.data_generators.ImageDataGenerator.from_image_folder" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a DataGenerator from a folder of images.  See <a class="reference external" href="http://pytorch.org/docs/master/torchvision/datasets.html#torchvision.datasets.ImageFolder" title="(in PyTorch vmaster (0.5.0a0+cfb626b ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">torchvision.datasets.ImageFolder</span></code></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>root</strong> (<em>path</em>) – the root directory path.</li>
+<li><strong>loader_kwargs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.6)"><em>dict</em></a>) – keyword args provided to the DataLoader constructor.</li>
+<li><strong>**dataset_kwargs</strong> – keyword args provided to the <a class="reference external" href="http://pytorch.org/docs/master/torchvision/datasets.html#torchvision.datasets.ImageFolder" title="(in PyTorch vmaster (0.5.0a0+cfb626b ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">torchvision.datasets.ImageFolder</span></code></a> constructor.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="sconce.data_generators.ImageDataGenerator.from_torchvision">
+<em class="property">classmethod </em><code class="descname">from_torchvision</code><span class="sig-paren">(</span><em>batch_size=500</em>, <em>data_location=None</em>, <em>dataset_class=&lt;class 'torchvision.datasets.mnist.MNIST'&gt;</em>, <em>fraction=1.0</em>, <em>num_workers=1</em>, <em>pin_memory=True</em>, <em>shuffle=True</em>, <em>train=True</em>, <em>transform=&lt;torchvision.transforms.transforms.ToTensor object&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/data_generators/image_data_generator.html#ImageDataGenerator.from_torchvision"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.data_generators.ImageDataGenerator.from_torchvision" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a DataGenerator from a torchvision dataset class.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>batch_size</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) – how large the yielded <cite>inputs</cite> and <cite>targets</cite>
+should be. See <code class="xref py py-class docutils literal notranslate"><span class="pre">DataLoader</span></code> for details.</li>
+<li><strong>data_location</strong> (<em>path</em>) – where downloaded dataset should be stored.  If
+<code class="docutils literal notranslate"><span class="pre">None</span></code> a system dependent temporary location will be used.</li>
+<li><strong>dataset_class</strong> (<em>class</em>) – a torchvision dataset class that supports
+constructor arguments {‘root’, ‘train’, ‘download’,
+‘transform’}. For example, MNIST, FashionMnist, CIFAR10, or
+CIFAR100.</li>
+<li><strong>fraction</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.6)"><em>float</em></a>) – (0.0 - 1.0] how much of the original dataset’s
+data to use.</li>
+<li><strong>num_workers</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) – how many subprocesses to use for data loading.
+See <code class="xref py py-class docutils literal notranslate"><span class="pre">DataLoader</span></code> for details.</li>
+<li><strong>pin_memory</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.6)"><em>bool</em></a>) – if <code class="docutils literal notranslate"><span class="pre">True</span></code>, the data loader will copy tensors
+into CUDA pinned memory before returning them. See
+<code class="xref py py-class docutils literal notranslate"><span class="pre">DataLoader</span></code> for details.</li>
+<li><strong>shuffle</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.6)"><em>bool</em></a>) – set to <code class="docutils literal notranslate"><span class="pre">True</span></code> to have the data reshuffled at every
+epoch. See <code class="xref py py-class docutils literal notranslate"><span class="pre">DataLoader</span></code> for details.</li>
+<li><strong>train</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.6)"><em>bool</em></a>) – if <code class="docutils literal notranslate"><span class="pre">True</span></code>, creates dataset from training set,
+otherwise creates from test set.</li>
+<li><strong>transform</strong> (<em>callable</em>) – a function/transform that takes in an PIL
+image and returns a transformed version.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="sconce.data_generators.ImageDataGenerator.get_summary_df">
+<code class="descname">get_summary_df</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/data_generators/image_data_generator.html#ImageDataGenerator.get_summary_df"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.data_generators.ImageDataGenerator.get_summary_df" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a pandas dataframe that summarizes the image metadata in the dataset.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="sconce.data_generators.ImageDataGenerator.num_channels">
+<code class="descname">num_channels</code><a class="headerlink" href="#sconce.data_generators.ImageDataGenerator.num_channels" title="Permalink to this definition">¶</a></dt>
+<dd><p>The number of image channels, based on looking at the first image in the dataset.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sconce.data_generators.ImageDataGenerator.plot_label_summary">
+<code class="descname">plot_label_summary</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/data_generators/image_data_generator.html#ImageDataGenerator.plot_label_summary"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.data_generators.ImageDataGenerator.plot_label_summary" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate a barchart showing how many images of each label there are.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sconce.data_generators.ImageDataGenerator.plot_size_summary">
+<code class="descname">plot_size_summary</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/data_generators/image_data_generator.html#ImageDataGenerator.plot_size_summary"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.data_generators.ImageDataGenerator.plot_size_summary" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate a scatter plot showing the sizes of the images in the dataset.</p>
 </dd></dl>
 
 </dd></dl>

@@ -13,3 +13,10 @@ Data Generators
 
 .. autoclass:: DataGenerator
     :members:
+
+
+:hidden:`ImageDataGenerator`
+~~~~~~~~~~~~~~~~~~~~~~~
+
+.. autoclass:: ImageDataGenerator
+    :members:

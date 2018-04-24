@@ -8,3 +8,11 @@ sconce.data_generators.base module
     :members:
     :undoc-members:
     :show-inheritance:
+
+sconce.data_generators.image_data_generator module
+----------------------------------
+
+.. automodule:: sconce.data_generators.image_data_generator
+    :members:
+    :undoc-members:
+    :show-inheritance:
