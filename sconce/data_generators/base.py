@@ -1,4 +1,3 @@
-from torch.autograd import Variable
 from torch.utils import data
 from torchvision import datasets, transforms
 
@@ -10,7 +9,7 @@ import numpy as np
 class DataGenerator:
     """
     A thin wrapper around a :py:class:`~torch.utils.data.DataLoader` that
-    automatically yields tuples of :py:class:`~torch.autograd.Variable` (that
+    automatically yields tuples of :py:class:`torch.Tensor` (that
     live on cpu or on cuda).
     A DataGenerator will iterate endlessly.
 
@@ -44,21 +43,21 @@ class DataGenerator:
             >>> g = DataGenerator.from_pytorch(batch_size=100)
             >>> g.cuda()
             >>> g.next()
-            (Variable containing:
+            (Tenwor containing:
              [torch.cuda.FloatTensor of size 100x1x28x28 (GPU 0)],
-             Variable containing:
+             Tensor containing:
              [torch.cuda.LongTensor of size 100 (GPU 0)])
             >>> g.cuda(False)
             >>> g.next()
-            (Variable containing:
+            (Tensor containing:
              [torch.FloatTensor of size 100x1x28x28],
-             Variable containing:
+             Tensor containing:
              [torch.LongTensor of size 100])
             >>> g.cuda(device={'inputs':0, 'targets':1})
             >>> g.next()
-            (Variable containing:
+            (Tensor containing:
              [torch.cuda.FloatTensor of size 100x1x28x28 (GPU 0)],
-             Variable containing:
+             Tensor containing:
              [torch.cuda.LongTensor of size 100 (GPU 1)])
         """
         if isinstance(device, dict):
@@ -126,9 +125,6 @@ class DataGenerator:
         return self.next()
 
     def preprocess(self, inputs, targets):
-        inputs = Variable(inputs)
-        targets = Variable(targets)
-
         if self._inputs_cuda is False:
             inputs = inputs.cpu()
         else:

@@ -1,6 +1,5 @@
 from matplotlib import pyplot as plt
 from sconce.monitors.base import Monitor
-from torch.autograd import Variable
 
 import math
 import matplotlib.patheffects as path_effects
@@ -44,10 +43,7 @@ class DataframeMonitor(Monitor):
             if self.is_blacklisted(k):
                 continue
 
-            if isinstance(v, Variable):
-                v = v.data[0]
-
-            formatted_data[k] = v
+            formatted_data[k] = self._to_scalar(v)
 
         self._buffered_data.append(formatted_data)
         self.last_step = math.ceil(step)

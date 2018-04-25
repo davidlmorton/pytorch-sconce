@@ -1,5 +1,5 @@
 from sconce.monitors.base import Monitor
-from torch.autograd import Variable
+from torch import Tensor
 
 import math
 import numpy as np
@@ -26,9 +26,9 @@ class RingbufferMonitor(Monitor):
         if self.key in data.keys():
             value = data[self.key]
 
-            if isinstance(value, Variable):
+            if isinstance(value, Tensor):
                 dtype = value.data.cpu().numpy().dtype
-                value = value.data[0]
+                value = self._to_scalar(value)
             else:
                 dtype = np.array(value).dtype
 
