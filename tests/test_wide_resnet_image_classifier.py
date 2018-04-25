@@ -30,7 +30,7 @@ class TestWideResnetImageClassifier(unittest.TestCase):
             training_data_generator=training_generator,
             test_data_generator=test_generator)
 
-        self.assertTrue(trainer.get_classification_accuracy() < 0.2)
+        self.assertLess(trainer.get_classification_accuracy(), 0.2)
 
         rate_controller = TriangleRateController(
                 max_learning_rate=1e-1,
@@ -39,4 +39,4 @@ class TestWideResnetImageClassifier(unittest.TestCase):
 
         acc = trainer.get_classification_accuracy()
         print(f"Accuracy: {acc}")
-        self.assertTrue(acc > 0.90)
+        self.assertGreater(acc, 0.90)

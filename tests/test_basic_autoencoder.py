@@ -42,4 +42,4 @@ class TestBasicAutoencoder(unittest.TestCase):
 
         test_monitor = trainer.test()
         test_loss = test_monitor.dataframe_monitor.df['test_loss'].mean()
-        self.assertTrue(test_loss < 0.21)
+        self.assertLess(test_loss, 0.21)

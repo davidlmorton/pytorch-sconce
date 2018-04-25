@@ -35,7 +35,7 @@ class TestBasicClassifier(unittest.TestCase):
             training_data_generator=training_generator,
             test_data_generator=test_generator)
 
-        self.assertTrue(trainer.get_classification_accuracy() < 0.2)
+        self.assertLess(trainer.get_classification_accuracy(), 0.2)
 
         rate_controller = CosineRateController(
                 max_learning_rate=1e-1,
@@ -43,4 +43,4 @@ class TestBasicClassifier(unittest.TestCase):
         trainer.train(num_epochs=3, rate_controller=rate_controller)
         trainer.monitor.dataframe_monitor.plot(skip_first=30, smooth_window=5)
 
-        self.assertTrue(trainer.get_classification_accuracy() > 0.95)
+        self.assertGreater(trainer.get_classification_accuracy(), 0.95)
