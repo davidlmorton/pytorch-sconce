@@ -15,7 +15,7 @@ class TestRingbufferMonitor(unittest.TestCase):
 
             rb.write(data={'training_loss': r}, step=i)
 
-        self.assertTrue(rb.movement_index > 2)
+        self.assertGreater(rb.movement_index, 2)
 
     def test_is_moving_false(self):
         r1 = np.random.randn(1000) + 50
@@ -25,4 +25,4 @@ class TestRingbufferMonitor(unittest.TestCase):
         for i, r in enumerate(np.concatenate([r1, r2])):
             rb.write(data={'training_loss': r}, step=i)
 
-        self.assertTrue(rb.movement_index < 0.2)
+        self.assertLess(rb.movement_index, 0.2)
