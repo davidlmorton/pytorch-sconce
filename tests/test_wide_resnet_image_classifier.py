@@ -33,9 +33,9 @@ class TestWideResnetImageClassifier(unittest.TestCase):
         self.assertLess(trainer.get_classification_accuracy(), 0.2)
 
         rate_controller = TriangleRateController(
-                max_learning_rate=1e-1,
-                min_learning_rate=3e-2)
-        trainer.train(num_epochs=1, rate_controller=rate_controller)
+                max_learning_rate=5e-2,
+                min_learning_rate=5e-3)
+        trainer.train(num_epochs=2, rate_controller=rate_controller)
 
         acc = trainer.get_classification_accuracy()
         print(f"Accuracy: {acc}")
