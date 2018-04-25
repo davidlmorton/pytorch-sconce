@@ -70,7 +70,7 @@ class TestMultilayerPerceptron(unittest.TestCase):
                 max_learning_rate=100)
         max_lr = survey_monitor.dataframe_monitor.df.learning_rate.max()
         print(f"Max learning rate tried: {max_lr}")
-        self.assertLess(max_lr, 10)
+        self.assertLess(max_lr, 50)
 
         self.assertLess(trainer.get_classification_accuracy(), 0.2)
 
