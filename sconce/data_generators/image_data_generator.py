@@ -16,6 +16,8 @@ def get_image_info(image):
 class ImageDataGenerator(DataGenerator):
     """
     A DataGenerator class with some handy methods for image type data.
+
+    New in 0.7.0
     """
 
     def __init__(self, *args, **kwargs):
