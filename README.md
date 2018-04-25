@@ -11,6 +11,11 @@ pip install pytorch-sconce
 
 You can find documentation [here](https://davidlmorton.github.io/pytorch-sconce).
 
+## Pytorch-sconce flavored fast.ai notebooks
+
+You can find Jupyter notebooks that follow the lessons from the fast.ai deep learning courses
+[here](https://github.com/davidlmorton/fastai-course-sconce).
+
 ## Getting Started
 
 We haven't had time to work on this documentation much yet.
