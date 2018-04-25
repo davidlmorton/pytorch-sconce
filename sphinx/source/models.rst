@@ -5,6 +5,7 @@ Models
 ======
 
 .. currentmodule:: sconce.models
+.. automodule:: sconce.models
 
 :hidden:`BasicAutoencoder`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
