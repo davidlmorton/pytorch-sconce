@@ -1,5 +1,5 @@
 # flake8: noqa
-from sconce.data_generators import DataGenerator
+from sconce.data_generators import ImageDataGenerator
 from sconce.rate_controllers import CosineRateController
 from sconce.trainers import ClassifierTrainer
 from sconce.models import BasicClassifier
@@ -20,8 +20,8 @@ class TestBasicClassifier(unittest.TestCase):
         filename = self._test_file('basic_classifier.yaml')
         model = BasicClassifier.new_from_yaml_filename(filename)
 
-        training_generator = DataGenerator.from_pytorch()
-        test_generator = DataGenerator.from_pytorch(train=False)
+        training_generator = ImageDataGenerator.from_torchvision()
+        test_generator = ImageDataGenerator.from_torchvision(train=False)
 
         if torch.cuda.is_available():
             model.cuda()

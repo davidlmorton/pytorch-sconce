@@ -40,7 +40,7 @@ class DataGenerator:
                 :py:meth:`torch.Tensor.cuda` for details.
 
         Example:
-            >>> g = DataGenerator.from_pytorch(batch_size=100)
+            >>> g = DataGenerator.from_dataset(dataset, batch_size=100)
             >>> g.cuda()
             >>> g.next()
             (Tenwor containing:
@@ -157,6 +157,9 @@ class DataGenerator:
             train=True,
             transform=transforms.ToTensor()):
         """
+        Note:
+            This method is deprecated as of 0.8.0, and will be removed in 0.9.0.
+
         Create a DataGenerator from a torchvision dataset class.
 
         Arguments:
@@ -182,6 +185,8 @@ class DataGenerator:
             transform (callable): a function/transform that takes in an PIL
                 image and returns a transformed version.
         """
+        print("WARNING: DataGenerator.from_pytorch method has been deprecated.  "
+                "Please use ImageDataGenerator.from_torchvision instead.")
         assert(fraction > 0.0)
         assert(fraction <= 1.0)
 
