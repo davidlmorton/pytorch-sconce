@@ -236,7 +236,7 @@ dictionary with keys {‘inputs’, ‘targets’} instead. See
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">g</span> <span class="o">=</span> <span class="n">DataGenerator</span><span class="o">.</span><span class="n">from_dataset</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">g</span><span class="o">.</span><span class="n">cuda</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">g</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
-<span class="go">(Tenwor containing:</span>
+<span class="go">(Tensor containing:</span>
 <span class="go"> [torch.cuda.FloatTensor of size 100x1x28x28 (GPU 0)],</span>
 <span class="go"> Tensor containing:</span>
 <span class="go"> [torch.cuda.LongTensor of size 100 (GPU 0)])</span>
