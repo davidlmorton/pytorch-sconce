@@ -1,5 +1,5 @@
 # flake8: noqa
-from sconce.data_generators import DataGenerator
+from sconce.data_generators import ImageDataGenerator
 from sconce.rate_controllers import CosineRateController, TriangleRateController
 from sconce.trainers import ClassifierTrainer
 from sconce.models import MultilayerPerceptron
@@ -19,8 +19,8 @@ class TestMultilayerPerceptron(unittest.TestCase):
         filename = self._test_file('multilayer_perceptron.yaml')
         model = MultilayerPerceptron.new_from_yaml_filename(filename)
 
-        training_generator = DataGenerator.from_pytorch()
-        test_generator = DataGenerator.from_pytorch(train=False)
+        training_generator = ImageDataGenerator.from_torchvision()
+        test_generator = ImageDataGenerator.from_torchvision(train=False)
 
         if torch.cuda.is_available():
             model.cuda()
@@ -50,8 +50,8 @@ class TestMultilayerPerceptron(unittest.TestCase):
         filename = self._test_file('multilayer_perceptron.yaml')
         model = MultilayerPerceptron.new_from_yaml_filename(filename)
 
-        training_generator = DataGenerator.from_pytorch(batch_size=100)
-        test_generator = DataGenerator.from_pytorch(batch_size=100,
+        training_generator = ImageDataGenerator.from_torchvision(batch_size=100)
+        test_generator = ImageDataGenerator.from_torchvision(batch_size=100,
                 train=False)
 
         if torch.cuda.is_available():

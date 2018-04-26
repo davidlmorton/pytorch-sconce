@@ -1,5 +1,4 @@
 from sconce.rate_controllers.base import RateController
-from torch.autograd import Variable
 
 import numpy as np
 
@@ -45,7 +44,9 @@ class ExponentialRateController(RateController):
             return True
 
         loss = data[self.loss_key]
-        if isinstance(loss, Variable):
+        try:
+            loss = loss.item()
+        except ValueError:
             loss = loss.data[0]
 
         if self.min_loss is None or loss < self.min_loss:

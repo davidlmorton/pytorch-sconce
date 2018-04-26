@@ -85,7 +85,7 @@ class ImageDataGenerator(DataGenerator):
             data_location=None,
             dataset_class=datasets.MNIST,
             fraction=1.0,
-            num_workers=1,
+            num_workers=0,
             pin_memory=True,
             shuffle=True,
             train=True,

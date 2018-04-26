@@ -1,5 +1,4 @@
 from sconce.monitors.base import Monitor
-from torch.autograd import Variable
 
 import losswise
 import math
@@ -51,8 +50,7 @@ class LosswiseMonitor(Monitor):
             for key, name in metrics.items():
                 if key in data:
                     value = data[key]
-                    if isinstance(value, Variable):
-                        value = value.data[0]
+                    value = self._to_scalar(value)
                     values[key] = value
             graph.append(step + self.previous_session_steps, values)
         self.last_step = math.ceil(step)

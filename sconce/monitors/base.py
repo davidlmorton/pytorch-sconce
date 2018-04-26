@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+from torch import Tensor
 
 
 class Monitor(ABC):
@@ -14,6 +15,15 @@ class Monitor(ABC):
     """
     def __init__(self, name):
         self.name = name
+
+    def _to_scalar(self, value):
+        if isinstance(value, Tensor):
+            try:
+                return value.item()
+            except ValueError:
+                return value.data[0]
+        else:
+            return value
 
     def start_session(self, num_steps, **kwargs):
         """

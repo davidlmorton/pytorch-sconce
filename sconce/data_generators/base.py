@@ -1,4 +1,3 @@
-from torch.autograd import Variable
 from torch.utils import data
 from torchvision import datasets, transforms
 
@@ -10,7 +9,7 @@ import numpy as np
 class DataGenerator:
     """
     A thin wrapper around a :py:class:`~torch.utils.data.DataLoader` that
-    automatically yields tuples of :py:class:`~torch.autograd.Variable` (that
+    automatically yields tuples of :py:class:`torch.Tensor` (that
     live on cpu or on cuda).
     A DataGenerator will iterate endlessly.
 
@@ -41,24 +40,24 @@ class DataGenerator:
                 :py:meth:`torch.Tensor.cuda` for details.
 
         Example:
-            >>> g = DataGenerator.from_pytorch(batch_size=100)
+            >>> g = DataGenerator.from_dataset(dataset, batch_size=100)
             >>> g.cuda()
             >>> g.next()
-            (Variable containing:
+            (Tenwor containing:
              [torch.cuda.FloatTensor of size 100x1x28x28 (GPU 0)],
-             Variable containing:
+             Tensor containing:
              [torch.cuda.LongTensor of size 100 (GPU 0)])
             >>> g.cuda(False)
             >>> g.next()
-            (Variable containing:
+            (Tensor containing:
              [torch.FloatTensor of size 100x1x28x28],
-             Variable containing:
+             Tensor containing:
              [torch.LongTensor of size 100])
             >>> g.cuda(device={'inputs':0, 'targets':1})
             >>> g.next()
-            (Variable containing:
+            (Tensor containing:
              [torch.cuda.FloatTensor of size 100x1x28x28 (GPU 0)],
-             Variable containing:
+             Tensor containing:
              [torch.cuda.LongTensor of size 100 (GPU 1)])
         """
         if isinstance(device, dict):
@@ -126,9 +125,6 @@ class DataGenerator:
         return self.next()
 
     def preprocess(self, inputs, targets):
-        inputs = Variable(inputs)
-        targets = Variable(targets)
-
         if self._inputs_cuda is False:
             inputs = inputs.cpu()
         else:
@@ -155,12 +151,15 @@ class DataGenerator:
             data_location=None,
             dataset_class=datasets.MNIST,
             fraction=1.0,
-            num_workers=1,
+            num_workers=0,
             pin_memory=True,
             shuffle=True,
             train=True,
             transform=transforms.ToTensor()):
         """
+        Note:
+            This method is deprecated as of 0.8.0, and will be removed in 0.9.0.
+
         Create a DataGenerator from a torchvision dataset class.
 
         Arguments:
@@ -186,6 +185,8 @@ class DataGenerator:
             transform (callable): a function/transform that takes in an PIL
                 image and returns a transformed version.
         """
+        print("WARNING: DataGenerator.from_pytorch method has been deprecated.  "
+                "Please use ImageDataGenerator.from_torchvision instead.")
         assert(fraction > 0.0)
         assert(fraction <= 1.0)
 

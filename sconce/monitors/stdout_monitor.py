@@ -1,6 +1,5 @@
 from sconce.monitors.base import Monitor
 from sconce.utils import Progbar
-from torch.autograd import Variable
 
 
 class StdoutMonitor(Monitor):
@@ -27,7 +26,6 @@ class StdoutMonitor(Monitor):
         for key, name in self._metric_names.items():
             if key in data.keys():
                 value = data[key]
-                if isinstance(value, Variable):
-                    value = value.data[0]
+                value = self._to_scalar(value)
                 values.append((name, value))
         self._progress_bar.add(1, values)
