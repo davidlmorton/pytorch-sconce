@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                master (0.7.0 )
+                master (0.8.0 )
               </div>
             
           
@@ -186,7 +186,6 @@
   <h1>Source code for sconce.monitors.dataframe_monitor</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">matplotlib</span> <span class="k">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 <span class="kn">from</span> <span class="nn">sconce.monitors.base</span> <span class="k">import</span> <span class="n">Monitor</span>
-<span class="kn">from</span> <span class="nn">torch.autograd</span> <span class="k">import</span> <span class="n">Variable</span>
 
 <span class="kn">import</span> <span class="nn">math</span>
 <span class="kn">import</span> <span class="nn">matplotlib.patheffects</span> <span class="k">as</span> <span class="nn">path_effects</span>
@@ -230,10 +229,7 @@
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_blacklisted</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
                 <span class="k">continue</span>
 
-            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">Variable</span><span class="p">):</span>
-                <span class="n">v</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-
-            <span class="n">formatted_data</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">v</span>
+            <span class="n">formatted_data</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_to_scalar</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_buffered_data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">formatted_data</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">last_step</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">step</span><span class="p">)</span></div>

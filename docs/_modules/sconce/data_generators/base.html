@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                master (0.7.0 )
+                master (0.8.0 )
               </div>
             
           
@@ -184,8 +184,7 @@
            <div itemprop="articleBody">
             
   <h1>Source code for sconce.data_generators.base</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">torch.autograd</span> <span class="k">import</span> <span class="n">Variable</span>
-<span class="kn">from</span> <span class="nn">torch.utils</span> <span class="k">import</span> <span class="n">data</span>
+<span></span><span class="kn">from</span> <span class="nn">torch.utils</span> <span class="k">import</span> <span class="n">data</span>
 <span class="kn">from</span> <span class="nn">torchvision</span> <span class="k">import</span> <span class="n">datasets</span><span class="p">,</span> <span class="n">transforms</span>
 
 <span class="kn">import</span> <span class="nn">os</span>
@@ -196,7 +195,7 @@
 <div class="viewcode-block" id="DataGenerator"><a class="viewcode-back" href="../../../sconce.data_generators.html#sconce.data_generators.DataGenerator">[docs]</a><span class="k">class</span> <span class="nc">DataGenerator</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A thin wrapper around a :py:class:`~torch.utils.data.DataLoader` that</span>
-<span class="sd">    automatically yields tuples of :py:class:`~torch.autograd.Variable` (that</span>
+<span class="sd">    automatically yields tuples of :py:class:`torch.Tensor` (that</span>
 <span class="sd">    live on cpu or on cuda).</span>
 <span class="sd">    A DataGenerator will iterate endlessly.</span>
 
@@ -227,24 +226,24 @@
 <span class="sd">                :py:meth:`torch.Tensor.cuda` for details.</span>
 
 <span class="sd">        Example:</span>
-<span class="sd">            &gt;&gt;&gt; g = DataGenerator.from_pytorch(batch_size=100)</span>
+<span class="sd">            &gt;&gt;&gt; g = DataGenerator.from_dataset(dataset, batch_size=100)</span>
 <span class="sd">            &gt;&gt;&gt; g.cuda()</span>
 <span class="sd">            &gt;&gt;&gt; g.next()</span>
-<span class="sd">            (Variable containing:</span>
+<span class="sd">            (Tenwor containing:</span>
 <span class="sd">             [torch.cuda.FloatTensor of size 100x1x28x28 (GPU 0)],</span>
-<span class="sd">             Variable containing:</span>
+<span class="sd">             Tensor containing:</span>
 <span class="sd">             [torch.cuda.LongTensor of size 100 (GPU 0)])</span>
 <span class="sd">            &gt;&gt;&gt; g.cuda(False)</span>
 <span class="sd">            &gt;&gt;&gt; g.next()</span>
-<span class="sd">            (Variable containing:</span>
+<span class="sd">            (Tensor containing:</span>
 <span class="sd">             [torch.FloatTensor of size 100x1x28x28],</span>
-<span class="sd">             Variable containing:</span>
+<span class="sd">             Tensor containing:</span>
 <span class="sd">             [torch.LongTensor of size 100])</span>
 <span class="sd">            &gt;&gt;&gt; g.cuda(device={&#39;inputs&#39;:0, &#39;targets&#39;:1})</span>
 <span class="sd">            &gt;&gt;&gt; g.next()</span>
-<span class="sd">            (Variable containing:</span>
+<span class="sd">            (Tensor containing:</span>
 <span class="sd">             [torch.cuda.FloatTensor of size 100x1x28x28 (GPU 0)],</span>
-<span class="sd">             Variable containing:</span>
+<span class="sd">             Tensor containing:</span>
 <span class="sd">             [torch.cuda.LongTensor of size 100 (GPU 1)])</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">device</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
@@ -312,9 +311,6 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
 
 <div class="viewcode-block" id="DataGenerator.preprocess"><a class="viewcode-back" href="../../../sconce.data_generators.html#sconce.data_generators.DataGenerator.preprocess">[docs]</a>    <span class="k">def</span> <span class="nf">preprocess</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">targets</span><span class="p">):</span>
-        <span class="n">inputs</span> <span class="o">=</span> <span class="n">Variable</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span>
-        <span class="n">targets</span> <span class="o">=</span> <span class="n">Variable</span><span class="p">(</span><span class="n">targets</span><span class="p">)</span>
-
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_inputs_cuda</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">:</span>
             <span class="n">inputs</span> <span class="o">=</span> <span class="n">inputs</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span>
         <span class="k">else</span><span class="p">:</span>
@@ -341,12 +337,15 @@
             <span class="n">data_location</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
             <span class="n">dataset_class</span><span class="o">=</span><span class="n">datasets</span><span class="o">.</span><span class="n">MNIST</span><span class="p">,</span>
             <span class="n">fraction</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
-            <span class="n">num_workers</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+            <span class="n">num_workers</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
             <span class="n">pin_memory</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
             <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
             <span class="n">train</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
             <span class="n">transform</span><span class="o">=</span><span class="n">transforms</span><span class="o">.</span><span class="n">ToTensor</span><span class="p">()):</span>
         <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Note:</span>
+<span class="sd">            This method is deprecated as of 0.8.0, and will be removed in 0.9.0.</span>
+
 <span class="sd">        Create a DataGenerator from a torchvision dataset class.</span>
 
 <span class="sd">        Arguments:</span>
@@ -372,6 +371,8 @@
 <span class="sd">            transform (callable): a function/transform that takes in an PIL</span>
 <span class="sd">                image and returns a transformed version.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;WARNING: DataGenerator.from_pytorch method has been deprecated.  &quot;</span>
+                <span class="s2">&quot;Please use ImageDataGenerator.from_torchvision instead.&quot;</span><span class="p">)</span>
         <span class="k">assert</span><span class="p">(</span><span class="n">fraction</span> <span class="o">&gt;</span> <span class="mf">0.0</span><span class="p">)</span>
         <span class="k">assert</span><span class="p">(</span><span class="n">fraction</span> <span class="o">&lt;=</span> <span class="mf">1.0</span><span class="p">)</span>
 

@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                master (0.7.0 )
+                master (0.8.0 )
               </div>
             
           
@@ -186,7 +186,6 @@
   <h1>Source code for sconce.monitors.stdout_monitor</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">sconce.monitors.base</span> <span class="k">import</span> <span class="n">Monitor</span>
 <span class="kn">from</span> <span class="nn">sconce.utils</span> <span class="k">import</span> <span class="n">Progbar</span>
-<span class="kn">from</span> <span class="nn">torch.autograd</span> <span class="k">import</span> <span class="n">Variable</span>
 
 
 <div class="viewcode-block" id="StdoutMonitor"><a class="viewcode-back" href="../../../sconce.monitors.html#sconce.monitors.StdoutMonitor">[docs]</a><span class="k">class</span> <span class="nc">StdoutMonitor</span><span class="p">(</span><span class="n">Monitor</span><span class="p">):</span>
@@ -213,8 +212,7 @@
         <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_metric_names</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
                 <span class="n">value</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
-                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">Variable</span><span class="p">):</span>
-                    <span class="n">value</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_to_scalar</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
                 <span class="n">values</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_progress_bar</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">values</span><span class="p">)</span></div></div>
 </pre></div>
