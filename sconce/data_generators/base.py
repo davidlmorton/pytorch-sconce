@@ -43,7 +43,7 @@ class DataGenerator:
             >>> g = DataGenerator.from_dataset(dataset, batch_size=100)
             >>> g.cuda()
             >>> g.next()
-            (Tenwor containing:
+            (Tensor containing:
              [torch.cuda.FloatTensor of size 100x1x28x28 (GPU 0)],
              Tensor containing:
              [torch.cuda.LongTensor of size 100 (GPU 0)])
