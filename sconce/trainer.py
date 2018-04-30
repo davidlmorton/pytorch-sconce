@@ -1,3 +1,4 @@
+from collections import OrderedDict
 from sconce import monitors, rate_controllers
 
 import math
@@ -204,8 +205,17 @@ class Trainer:
         return monitor
 
     def _update_learning_rate(self, new_learning_rate):
-        for param_group in self.optimizer.param_groups:
-            param_group['lr'] = new_learning_rate
+        param_groups = self.optimizer.param_groups
+        if isinstance(new_learning_rate, OrderedDict):
+            assert len(new_learning_rate.values()) == len(param_groups),\
+                    "Expected the same number of learning rates as param_groups defined by the optimizer "\
+                    f"{len(param_groups)}, but found {len(new_learning_rate.values())} learning rates instead."
+            for param_group, lr in zip(param_groups, new_learning_rate.values()):
+                param_group['lr'] = lr
+        else:
+            for param_group in param_groups:
+                param_group['lr'] = new_learning_rate
+
         return new_learning_rate
 
     def _do_step(self, inputs, targets, train):

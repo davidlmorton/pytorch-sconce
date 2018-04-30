@@ -7,6 +7,18 @@ Rate Controllers
 .. currentmodule:: sconce.rate_controllers
 
 
+:hidden:`RateController`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. autoclass:: RateController
+    :members:
+
+:hidden:`CompositeRateController`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. autoclass:: CompositeRateController
+    :members:
+
 :hidden:`ConstantRateController`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
