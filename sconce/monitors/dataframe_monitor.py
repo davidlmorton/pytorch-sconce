@@ -10,7 +10,7 @@ import stringcase
 
 class DataframeMonitor(Monitor):
     def __init__(self, df=None, metadata=None,
-            blacklist=['._inputs', '._outputs'],
+            blacklist=['._inputs', '._outputs', '._targets'],
             name='dataframe_monitor'):
         super().__init__(name=name)
         if metadata is None:
