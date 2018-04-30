@@ -43,7 +43,12 @@ class DataframeMonitor(Monitor):
             if self.is_blacklisted(k):
                 continue
 
-            formatted_data[k] = self._to_scalar(v)
+            if isinstance(v, dict):
+                # pandas DataFrame constructor doesn't do nested dicts
+                for inside_k, inside_v in v.items():
+                    formatted_data[(k, inside_k)] = inside_v
+            else:
+                formatted_data[k] = self._to_scalar(v)
 
         self._buffered_data.append(formatted_data)
         self.last_step = math.ceil(step)
@@ -79,7 +84,6 @@ class DataframeMonitor(Monitor):
                     metrics=['loss'],
                     test_color='tomato',
                     training_color='mediumseagreen',
-                    learning_rate_color='dodgerblue',
                     fig=None):
         if fig is None:
             fig = plt.figure(figsize=figsize)
@@ -131,14 +135,22 @@ class DataframeMonitor(Monitor):
 
         metrics_ax.set_title(title)
 
-        df['learning_rate'].fillna(method='backfill').plot(ax=lr_ax,
-                color=learning_rate_color,
-                linewidth=3)
-        max_lr = df['learning_rate'].max()
-        lr_ax.set_ylabel(f'Learning Rate\n[max={max_lr}]')
+        self._plot_lr(ax=lr_ax, df=df)
 
         plt.tight_layout()
         return fig
+
+    def _plot_lr(self, ax, df):
+        for column in df.columns:
+            if isinstance(column, tuple) and column[0] == 'learning_rate':
+                name = column[1]
+                df[('learning_rate', name)].fillna(method='backfill').plot(ax=ax, logy=True, linewidth=3, label=name)
+                ax.legend(loc='best')
+            elif column == 'learning_rate':
+                df['learning_rate'].fillna(method='backfill').plot(ax=ax, logy=True, linewidth=3)
+
+        ax.set_ylabel('Learning Rate')
+        return ax
 
     def plot_learning_rate_survey(self, ax=None, figure_kwargs={},
             **plot_kwargs):
