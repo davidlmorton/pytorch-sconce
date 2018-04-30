@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                master (0.8.0 )
+                master (0.9.0 )
               </div>
             
           
@@ -91,6 +91,8 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="rate_controllers.html">Rate Controllers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="rate_controllers.html#ratecontroller"><span class="hidden-section">RateController</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="rate_controllers.html#compositeratecontroller"><span class="hidden-section">CompositeRateController</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="rate_controllers.html#constantratecontroller"><span class="hidden-section">ConstantRateController</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="rate_controllers.html#cosineratecontroller"><span class="hidden-section">CosineRateController</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="rate_controllers.html#exponentialratecontroller"><span class="hidden-section">ExponentialRateController</span></a></li>
@@ -316,7 +318,7 @@ Fractional steps are possible (see batch_multiplier option on
 <span id="sconce-monitors-dataframe-monitor-module"></span><h2>sconce.monitors.dataframe_monitor module<a class="headerlink" href="#module-sconce.monitors.dataframe_monitor" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="sconce.monitors.dataframe_monitor.DataframeMonitor">
-<em class="property">class </em><code class="descclassname">sconce.monitors.dataframe_monitor.</code><code class="descname">DataframeMonitor</code><span class="sig-paren">(</span><em>df=None, metadata=None, blacklist=['._inputs', '._outputs'], name='dataframe_monitor'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/monitors/dataframe_monitor.html#DataframeMonitor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.monitors.dataframe_monitor.DataframeMonitor" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">sconce.monitors.dataframe_monitor.</code><code class="descname">DataframeMonitor</code><span class="sig-paren">(</span><em>df=None, metadata=None, blacklist=['._inputs', '._outputs', '._targets'], name='dataframe_monitor'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/monitors/dataframe_monitor.html#DataframeMonitor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.monitors.dataframe_monitor.DataframeMonitor" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#sconce.monitors.base.Monitor" title="sconce.monitors.base.Monitor"><code class="xref py py-class docutils literal notranslate"><span class="pre">sconce.monitors.base.Monitor</span></code></a></p>
 <dl class="attribute">
 <dt id="sconce.monitors.dataframe_monitor.DataframeMonitor.df">
@@ -335,7 +337,7 @@ Fractional steps are possible (see batch_multiplier option on
 
 <dl class="method">
 <dt id="sconce.monitors.dataframe_monitor.DataframeMonitor.plot">
-<code class="descname">plot</code><span class="sig-paren">(</span><em>title='Training History', figsize=(15, 5), skip_first=100, smooth_window=50, metrics=['loss'], test_color='tomato', training_color='mediumseagreen', learning_rate_color='dodgerblue', fig=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/monitors/dataframe_monitor.html#DataframeMonitor.plot"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.monitors.dataframe_monitor.DataframeMonitor.plot" title="Permalink to this definition">¶</a></dt>
+<code class="descname">plot</code><span class="sig-paren">(</span><em>title='Training History', figsize=(15, 5), skip_first=100, smooth_window=50, metrics=['loss'], test_color='tomato', training_color='mediumseagreen', fig=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/monitors/dataframe_monitor.html#DataframeMonitor.plot"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.monitors.dataframe_monitor.DataframeMonitor.plot" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">

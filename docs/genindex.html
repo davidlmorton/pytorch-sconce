@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                master (0.8.0 )
+                master (0.9.0 )
               </div>
             
           
@@ -92,6 +92,8 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="rate_controllers.html">Rate Controllers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="rate_controllers.html#ratecontroller"><span class="hidden-section">RateController</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="rate_controllers.html#compositeratecontroller"><span class="hidden-section">CompositeRateController</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="rate_controllers.html#constantratecontroller"><span class="hidden-section">ConstantRateController</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="rate_controllers.html#cosineratecontroller"><span class="hidden-section">CosineRateController</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="rate_controllers.html#exponentialratecontroller"><span class="hidden-section">ExponentialRateController</span></a></li>
@@ -219,6 +221,8 @@
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="sconce.rate_controllers.html#sconce.rate_controllers.base.CompositeRateController.add_rate_controller">add_rate_controller() (sconce.rate_controllers.base.CompositeRateController method)</a>
+</li>
       <li><a href="sconce.trainers.html#sconce.trainers.autoencoder_trainer.AutoencoderMixin">AutoencoderMixin (class in sconce.trainers.autoencoder_trainer)</a>
 </li>
       <li><a href="trainers.html#sconce.trainers.AutoencoderTrainer">AutoencoderTrainer (class in sconce.trainers)</a>
@@ -293,6 +297,12 @@
 
       <ul>
         <li><a href="sconce.monitors.html#sconce.monitors.base.CompositeMonitor">(class in sconce.monitors.base)</a>
+</li>
+      </ul></li>
+      <li><a href="rate_controllers.html#sconce.rate_controllers.CompositeRateController">CompositeRateController (class in sconce.rate_controllers)</a>
+
+      <ul>
+        <li><a href="sconce.rate_controllers.html#sconce.rate_controllers.base.CompositeRateController">(class in sconce.rate_controllers.base)</a>
 </li>
       </ul></li>
       <li><a href="rate_controllers.html#sconce.rate_controllers.ConstantRateController">ConstantRateController (class in sconce.rate_controllers)</a>
@@ -539,9 +549,13 @@
         <li><a href="sconce.models.html#sconce.models.multilayer_perceptron.MultilayerPerceptron.new_from_yaml_filename">(sconce.models.multilayer_perceptron.MultilayerPerceptron class method)</a>
 </li>
       </ul></li>
-      <li><a href="sconce.rate_controllers.html#sconce.rate_controllers.base.RateController.new_learning_rate">new_learning_rate() (sconce.rate_controllers.base.RateController method)</a>
+      <li><a href="sconce.rate_controllers.html#sconce.rate_controllers.base.CompositeRateController.new_learning_rate">new_learning_rate() (sconce.rate_controllers.base.CompositeRateController method)</a>
 
       <ul>
+        <li><a href="rate_controllers.html#sconce.rate_controllers.RateController.new_learning_rate">(sconce.rate_controllers.RateController method)</a>
+</li>
+        <li><a href="sconce.rate_controllers.html#sconce.rate_controllers.base.RateController.new_learning_rate">(sconce.rate_controllers.base.RateController method)</a>
+</li>
         <li><a href="sconce.rate_controllers.html#sconce.rate_controllers.constant_rate_controller.ConstantRateController.new_learning_rate">(sconce.rate_controllers.constant_rate_controller.ConstantRateController method)</a>
 </li>
         <li><a href="sconce.rate_controllers.html#sconce.rate_controllers.cosine_rate_controller.CosineRateController.new_learning_rate">(sconce.rate_controllers.cosine_rate_controller.CosineRateController method)</a>
@@ -627,8 +641,12 @@
 <h2 id="R">R</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="sconce.rate_controllers.html#sconce.rate_controllers.base.RateController">RateController (class in sconce.rate_controllers.base)</a>
+      <li><a href="rate_controllers.html#sconce.rate_controllers.RateController">RateController (class in sconce.rate_controllers)</a>
+
+      <ul>
+        <li><a href="sconce.rate_controllers.html#sconce.rate_controllers.base.RateController">(class in sconce.rate_controllers.base)</a>
 </li>
+      </ul></li>
       <li><a href="sconce.data_generators.html#sconce.data_generators.base.DataGenerator.real_dataset">real_dataset (sconce.data_generators.base.DataGenerator attribute)</a>
 
       <ul>
@@ -707,10 +725,10 @@
 </li>
       <li><a href="sconce.html#module-sconce.trainer">sconce.trainer (module)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="sconce.trainers.html#module-sconce.trainers.autoencoder_trainer">sconce.trainers.autoencoder_trainer (module)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="sconce.trainers.html#module-sconce.trainers.classifier_trainer">sconce.trainers.classifier_trainer (module)</a>
 </li>
       <li><a href="sconce.html#module-sconce.utils">sconce.utils (module)</a>
@@ -735,6 +753,10 @@
         <li><a href="sconce.monitors.html#sconce.monitors.ringbuffer_monitor.RingbufferMonitor.start_session">(sconce.monitors.ringbuffer_monitor.RingbufferMonitor method)</a>
 </li>
         <li><a href="sconce.monitors.html#sconce.monitors.stdout_monitor.StdoutMonitor.start_session">(sconce.monitors.stdout_monitor.StdoutMonitor method)</a>
+</li>
+        <li><a href="rate_controllers.html#sconce.rate_controllers.RateController.start_session">(sconce.rate_controllers.RateController method)</a>
+</li>
+        <li><a href="sconce.rate_controllers.html#sconce.rate_controllers.base.CompositeRateController.start_session">(sconce.rate_controllers.base.CompositeRateController method)</a>
 </li>
         <li><a href="sconce.rate_controllers.html#sconce.rate_controllers.base.RateController.start_session">(sconce.rate_controllers.base.RateController method)</a>
 </li>

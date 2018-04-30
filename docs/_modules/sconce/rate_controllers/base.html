@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                master (0.8.0 )
+                master (0.9.0 )
               </div>
             
           
@@ -91,6 +91,8 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../rate_controllers.html">Rate Controllers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../rate_controllers.html#ratecontroller"><span class="hidden-section">RateController</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../rate_controllers.html#compositeratecontroller"><span class="hidden-section">CompositeRateController</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../rate_controllers.html#constantratecontroller"><span class="hidden-section">ConstantRateController</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../rate_controllers.html#cosineratecontroller"><span class="hidden-section">CosineRateController</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../rate_controllers.html#exponentialratecontroller"><span class="hidden-section">ExponentialRateController</span></a></li>
@@ -185,16 +187,91 @@
             
   <h1>Source code for sconce.rate_controllers.base</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">abc</span> <span class="k">import</span> <span class="n">ABC</span><span class="p">,</span> <span class="n">abstractmethod</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="k">import</span> <span class="n">OrderedDict</span>
 
 
-<div class="viewcode-block" id="RateController"><a class="viewcode-back" href="../../../sconce.rate_controllers.html#sconce.rate_controllers.base.RateController">[docs]</a><span class="k">class</span> <span class="nc">RateController</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
-<div class="viewcode-block" id="RateController.start_session"><a class="viewcode-back" href="../../../sconce.rate_controllers.html#sconce.rate_controllers.base.RateController.start_session">[docs]</a>    <span class="nd">@abstractmethod</span>
+<div class="viewcode-block" id="RateController"><a class="viewcode-back" href="../../../sconce.rate_controllers.html#sconce.rate_controllers.RateController">[docs]</a><span class="k">class</span> <span class="nc">RateController</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The base class of all rate controllers in Sconce.  It is only an interface, describing what must be implemented</span>
+<span class="sd">    if you want to define a rate controller.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="RateController.start_session"><a class="viewcode-back" href="../../../sconce.rate_controllers.html#sconce.rate_controllers.RateController.start_session">[docs]</a>    <span class="nd">@abstractmethod</span>
     <span class="k">def</span> <span class="nf">start_session</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_steps</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Called by a :py:class:`~sconce.trainer.Trainer` when starting a training session.</span>
+
+<span class="sd">        Arguments:</span>
+<span class="sd">            num_steps (int): [1, inf) the number of update steps to expect.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">pass</span></div>
 
-<div class="viewcode-block" id="RateController.new_learning_rate"><a class="viewcode-back" href="../../../sconce.rate_controllers.html#sconce.rate_controllers.base.RateController.new_learning_rate">[docs]</a>    <span class="nd">@abstractmethod</span>
+<div class="viewcode-block" id="RateController.new_learning_rate"><a class="viewcode-back" href="../../../sconce.rate_controllers.html#sconce.rate_controllers.RateController.new_learning_rate">[docs]</a>    <span class="nd">@abstractmethod</span>
     <span class="k">def</span> <span class="nf">new_learning_rate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">step</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Called by a :py:class:`~sconce.trainer.Trainer` during a</span>
+<span class="sd">        training/evaluation session just before the training step.</span>
+
+<span class="sd">        Arguments:</span>
+<span class="sd">            data (dict): the output of the training/evaluation step.  The keys</span>
+<span class="sd">                may include, but are not limited to: {&#39;training_loss&#39;, &#39;test_loss&#39;,</span>
+<span class="sd">                &#39;learning_rate&#39;}.</span>
+<span class="sd">            step (float): (0.0, inf) the step that was just completed.</span>
+<span class="sd">                Fractional steps are possible (see batch_multiplier option on</span>
+<span class="sd">                :py:meth:`sconce.trainer.Trainer.train`).</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            new_learning_rate (float, :py:class:`collections.OrderedDict`): The new learning rate that should be used</span>
+<span class="sd">            for the next training step.  If this is a :py:class:`~sconce.rate_controllers.base.CompositeRateController`</span>
+<span class="sd">            then an OrderedDict is returned where the keys are like, {&#39;group 0&#39;, &#39;group 1&#39;, ect}, and the values are the</span>
+<span class="sd">            new learning rate (float) for that parameter group.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">pass</span></div></div>
+
+
+<div class="viewcode-block" id="CompositeRateController"><a class="viewcode-back" href="../../../sconce.rate_controllers.html#sconce.rate_controllers.CompositeRateController">[docs]</a><span class="k">class</span> <span class="nc">CompositeRateController</span><span class="p">(</span><span class="n">RateController</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A rate controller composed of two or more rate controllers.  Using this allows you to pass a single rate controller</span>
+<span class="sd">    to a trainer, and control the learning rate of multiple parameter groups.  The order that the controllers are added</span>
+<span class="sd">    is important, and aligns to the order of the :py:class:`~torch.optim.optimizer.Optimizer`&#39;s parameter_groups.</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        rate_controllers (iterable of :py:class:`~sconce.rate_controllers.base.RateController`): the</span>
+<span class="sd">            rate_controllers you want to compose together.</span>
+
+<span class="sd">    New in 0.9.0</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rate_controllers</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">rate_controllers</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">for</span> <span class="n">rc</span> <span class="ow">in</span> <span class="n">rate_controllers</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">add_rate_controller</span><span class="p">(</span><span class="n">rc</span><span class="p">)</span>
+
+<div class="viewcode-block" id="CompositeRateController.add_rate_controller"><a class="viewcode-back" href="../../../sconce.rate_controllers.html#sconce.rate_controllers.CompositeRateController.add_rate_controller">[docs]</a>    <span class="k">def</span> <span class="nf">add_rate_controller</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">CompositeRateController</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">nested_rate_controller</span> <span class="ow">in</span> <span class="n">other</span><span class="o">.</span><span class="n">rate_controllers</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_add_rate_controller</span><span class="p">(</span><span class="n">nested_rate_controller</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_add_rate_controller</span><span class="p">(</span><span class="n">other</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">_add_rate_controller</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rate_controllers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+
+<div class="viewcode-block" id="CompositeRateController.start_session"><a class="viewcode-back" href="../../../sconce.rate_controllers.html#sconce.rate_controllers.CompositeRateController.start_session">[docs]</a>    <span class="k">def</span> <span class="nf">start_session</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_steps</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">rc</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">rate_controllers</span><span class="p">:</span>
+            <span class="n">rc</span><span class="o">.</span><span class="n">start_session</span><span class="p">(</span><span class="n">num_steps</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="CompositeRateController.new_learning_rate"><a class="viewcode-back" href="../../../sconce.rate_controllers.html#sconce.rate_controllers.CompositeRateController.new_learning_rate">[docs]</a>    <span class="k">def</span> <span class="nf">new_learning_rate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">step</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">rc</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rate_controllers</span><span class="p">):</span>
+            <span class="n">new_learning_rate</span> <span class="o">=</span> <span class="n">rc</span><span class="o">.</span><span class="n">new_learning_rate</span><span class="p">(</span><span class="n">step</span><span class="o">=</span><span class="n">step</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">new_learning_rate</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">return</span> <span class="kc">None</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">result</span><span class="p">[</span><span class="s1">&#39;group </span><span class="si">%d</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_learning_rate</span>
+        <span class="k">return</span> <span class="n">result</span></div></div>
 </pre></div>
 
            </div>
