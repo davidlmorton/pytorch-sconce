@@ -21,7 +21,7 @@ class Monitor(ABC):
             try:
                 return value.item()
             except ValueError:
-                return value.data[0]
+                return value.data[0].cpu().numpy()
         else:
             return value
 
