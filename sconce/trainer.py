@@ -1,6 +1,7 @@
 from collections import OrderedDict
 from sconce import monitors, rate_controllers
 
+import copy
 import math
 import numpy as np
 import tempfile
@@ -365,7 +366,8 @@ class Trainer:
             stdout_monitor = monitors.StdoutMonitor(metric_names=metric_names)
             monitor = monitors.DataframeMonitor() + stdout_monitor
 
-        filename = self.save_model_state()
+        orig_model_state_dict = copy.deepcopy(self.model.state_dict())
+        orig_optimizer_state_dict = copy.deepcopy(self.optimizer.state_dict())
 
         rate_controller = rate_controller_class(
                 min_learning_rate=min_learning_rate,
@@ -378,7 +380,8 @@ class Trainer:
                 test_to_train_ratio=0,
                 batch_multiplier=batch_multiplier)
 
-        self.load_model_state(filename)
+        self.model.load_state_dict(orig_model_state_dict)
+        self.optimizer.load_state_dict(orig_optimizer_state_dict)
 
         return monitor
 
