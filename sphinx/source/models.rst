@@ -13,6 +13,12 @@ Models
 .. autoclass:: BasicAutoencoder
     :members:
 
+:hidden:`BasicConvolutionalAutoencoder`
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. autoclass:: BasicConvolutionalAutoencoder
+    :members:
+
 :hidden:`BasicClassifer`
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
