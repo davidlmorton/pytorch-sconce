@@ -25,6 +25,7 @@ Note:
        keys or values of this dictionary.
 """
 from .basic_autoencoder import BasicAutoencoder
+from .basic_convolutional_autoencoder import BasicConvolutionalAutoencoder
 from .basic_classifier import BasicClassifier
 from .multilayer_perceptron import MultilayerPerceptron
 from .wide_resnet_image_classifier import WideResnetImageClassifier

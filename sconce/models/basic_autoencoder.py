@@ -1,10 +1,11 @@
 from torch import nn
 from torch.nn import functional as F
+from sconce.models.layers import FullyConnectedLayer
 
 
 class BasicAutoencoder(nn.Module):
     """
-    A basic 2D image autoencoder built up of densly connected layers, two each in the encoder and the decoder.
+    A basic 2D image autoencoder built up of fully connected layers, three each in the encoder and the decoder.
 
     Loss:
         This model uses binary cross-entropy for the loss.
@@ -22,40 +23,42 @@ class BasicAutoencoder(nn.Module):
         super().__init__()
         self.num_pixels = image_height * image_width
 
-        self.bn1 = nn.BatchNorm1d(self.num_pixels)
-        self.fc1 = nn.Linear(self.num_pixels, hidden_size)
 
-        self.bn2 = nn.BatchNorm1d(hidden_size)
-        self.fc2 = nn.Linear(hidden_size, latent_size)
+        self.fc1 = FullyConnectedLayer(in_size=self.num_pixels,
+                out_size=hidden_size,
+                activation=nn.ReLU())
 
-        self.bn3 = nn.BatchNorm1d(latent_size)
-        self.fc3 = nn.Linear(latent_size, hidden_size)
+        self.fc2 = FullyConnectedLayer(in_size=hidden_size,
+                out_size=hidden_size,
+                activation=nn.ReLU())
 
-        self.bn4 = nn.BatchNorm1d(hidden_size)
-        self.fc4 = nn.Linear(hidden_size, self.num_pixels)
+        self.fc3 = FullyConnectedLayer(in_size=hidden_size,
+                out_size=latent_size,
+                activation=nn.ReLU())
 
-        self.relu = nn.ReLU()
-        self.sigmoid = nn.Sigmoid()
+        self.fc4 = FullyConnectedLayer(in_size=latent_size,
+                out_size=hidden_size,
+                activation=nn.ReLU())
+
+        self.fc5 = FullyConnectedLayer(in_size=hidden_size,
+                out_size=hidden_size,
+                activation=nn.ReLU())
+
+        self.fc6 = FullyConnectedLayer(in_size=hidden_size,
+                out_size=self.num_pixels,
+                activation=nn.Sigmoid())
 
     def encode(self, inputs, **kwargs):
         encoder_input = inputs.view(-1, self.num_pixels)
-        x = self.bn1(encoder_input)
-        x = self.fc1(x)
-        x = self.relu(x)
-
-        x = self.bn2(x)
+        x = self.fc1(encoder_input)
         x = self.fc2(x)
-        x_latent = self.relu(x)
+        x_latent = self.fc3(x)
         return x_latent
 
     def decode(self, x_latent):
-        x = self.bn3(x_latent)
-        x = self.fc3(x)
-        x = self.relu(x)
-
-        x = self.bn4(x)
-        x = self.fc4(x)
-        outputs = self.sigmoid(x)
+        x = self.fc4(x_latent)
+        x = self.fc5(x)
+        outputs = self.fc6(x)
         return outputs
 
     def forward(self, inputs, **kwargs):
