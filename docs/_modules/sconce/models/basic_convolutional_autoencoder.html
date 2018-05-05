@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>sconce.models.basic_autoencoder &mdash; Pytorch-Sconce master documentation</title>
+  <title>sconce.models.basic_convolutional_autoencoder &mdash; Pytorch-Sconce master documentation</title>
   
 
   
@@ -171,7 +171,7 @@
         
           <li><a href="../../index.html">Module code</a> &raquo;</li>
         
-      <li>sconce.models.basic_autoencoder</li>
+      <li>sconce.models.basic_convolutional_autoencoder</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -186,15 +186,15 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <h1>Source code for sconce.models.basic_autoencoder</h1><div class="highlight"><pre>
+  <h1>Source code for sconce.models.basic_convolutional_autoencoder</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">torch</span> <span class="k">import</span> <span class="n">nn</span>
 <span class="kn">from</span> <span class="nn">torch.nn</span> <span class="k">import</span> <span class="n">functional</span> <span class="k">as</span> <span class="n">F</span>
-<span class="kn">from</span> <span class="nn">sconce.models.layers</span> <span class="k">import</span> <span class="n">FullyConnectedLayer</span>
+<span class="kn">from</span> <span class="nn">sconce.models.layers</span> <span class="k">import</span> <span class="n">Convolution2dLayer</span><span class="p">,</span> <span class="n">Deconvolution2dLayer</span>
 
 
-<div class="viewcode-block" id="BasicAutoencoder"><a class="viewcode-back" href="../../../sconce.models.html#sconce.models.BasicAutoencoder">[docs]</a><span class="k">class</span> <span class="nc">BasicAutoencoder</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+<div class="viewcode-block" id="BasicConvolutionalAutoencoder"><a class="viewcode-back" href="../../../models.html#sconce.models.BasicConvolutionalAutoencoder">[docs]</a><span class="k">class</span> <span class="nc">BasicConvolutionalAutoencoder</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    A basic 2D image autoencoder built up of fully connected layers, three each in the encoder and the decoder.</span>
+<span class="sd">    A basic 2D image autoencoder built up of convolutional layers, three each in the encoder and the decoder.</span>
 
 <span class="sd">    Loss:</span>
 <span class="sd">        This model uses binary cross-entropy for the loss.</span>
@@ -203,62 +203,63 @@
 <span class="sd">        None</span>
 
 <span class="sd">    Arguments:</span>
-<span class="sd">        image_height (int): image height in pixels.</span>
-<span class="sd">        image_width (int): image width in pixels.</span>
-<span class="sd">        hidden_size (int): the number of activations in each of the 4 hidden layers.</span>
-<span class="sd">        latent_size (int): the number of activations in the latent representation (encoder output).</span>
+<span class="sd">        image_channels (int): the number of channels in the input images.</span>
+<span class="sd">        conv_channels (list of int): a list of length three of integers describing the number of channels in each of the</span>
+<span class="sd">            three convolutional layers.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">image_height</span><span class="p">,</span> <span class="n">image_width</span><span class="p">,</span> <span class="n">hidden_size</span><span class="p">,</span> <span class="n">latent_size</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">image_channels</span><span class="p">,</span> <span class="n">conv_channels</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">num_pixels</span> <span class="o">=</span> <span class="n">image_height</span> <span class="o">*</span> <span class="n">image_width</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conv1</span> <span class="o">=</span> <span class="n">Convolution2dLayer</span><span class="p">(</span>
+                <span class="n">in_channels</span><span class="o">=</span><span class="n">image_channels</span><span class="p">,</span>
+                <span class="n">out_channels</span><span class="o">=</span><span class="n">conv_channels</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">conv2</span> <span class="o">=</span> <span class="n">Convolution2dLayer</span><span class="p">(</span>
+                <span class="n">in_channels</span><span class="o">=</span><span class="n">conv_channels</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                <span class="n">out_channels</span><span class="o">=</span><span class="n">conv_channels</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">conv3</span> <span class="o">=</span> <span class="n">Convolution2dLayer</span><span class="p">(</span>
+                <span class="n">in_channels</span><span class="o">=</span><span class="n">conv_channels</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+                <span class="n">out_channels</span><span class="o">=</span><span class="n">conv_channels</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
+                <span class="n">padding</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">deconv1</span> <span class="o">=</span> <span class="n">Deconvolution2dLayer</span><span class="p">(</span>
+                <span class="n">in_channels</span><span class="o">=</span><span class="n">conv_channels</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
+                <span class="n">out_channels</span><span class="o">=</span><span class="n">conv_channels</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+                <span class="n">padding</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+                <span class="n">output_padding</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">deconv2</span> <span class="o">=</span> <span class="n">Deconvolution2dLayer</span><span class="p">(</span>
+                <span class="n">in_channels</span><span class="o">=</span><span class="n">conv_channels</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+                <span class="n">out_channels</span><span class="o">=</span><span class="n">conv_channels</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">deconv3</span> <span class="o">=</span> <span class="n">Deconvolution2dLayer</span><span class="p">(</span>
+                <span class="n">in_channels</span><span class="o">=</span><span class="n">conv_channels</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                <span class="n">out_channels</span><span class="o">=</span><span class="n">image_channels</span><span class="p">,</span>
+                <span class="n">preactivate</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">fc1</span> <span class="o">=</span> <span class="n">FullyConnectedLayer</span><span class="p">(</span><span class="n">in_size</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">num_pixels</span><span class="p">,</span>
-                <span class="n">out_size</span><span class="o">=</span><span class="n">hidden_size</span><span class="p">,</span>
-                <span class="n">activation</span><span class="o">=</span><span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">())</span>
+    <span class="k">def</span> <span class="nf">encode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x_in</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conv1</span><span class="p">(</span><span class="n">x_in</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conv2</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">x_latent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conv3</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">x_latent</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">fc2</span> <span class="o">=</span> <span class="n">FullyConnectedLayer</span><span class="p">(</span><span class="n">in_size</span><span class="o">=</span><span class="n">hidden_size</span><span class="p">,</span>
-                <span class="n">out_size</span><span class="o">=</span><span class="n">hidden_size</span><span class="p">,</span>
-                <span class="n">activation</span><span class="o">=</span><span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">())</span>
+    <span class="k">def</span> <span class="nf">decode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x_latent</span><span class="p">):</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">deconv1</span><span class="p">(</span><span class="n">x_latent</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">deconv2</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">deconv3</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">x_out</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sigmoid</span><span class="p">()(</span><span class="n">x</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">x_out</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">fc3</span> <span class="o">=</span> <span class="n">FullyConnectedLayer</span><span class="p">(</span><span class="n">in_size</span><span class="o">=</span><span class="n">hidden_size</span><span class="p">,</span>
-                <span class="n">out_size</span><span class="o">=</span><span class="n">latent_size</span><span class="p">,</span>
-                <span class="n">activation</span><span class="o">=</span><span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">())</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">fc4</span> <span class="o">=</span> <span class="n">FullyConnectedLayer</span><span class="p">(</span><span class="n">in_size</span><span class="o">=</span><span class="n">latent_size</span><span class="p">,</span>
-                <span class="n">out_size</span><span class="o">=</span><span class="n">hidden_size</span><span class="p">,</span>
-                <span class="n">activation</span><span class="o">=</span><span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">())</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">fc5</span> <span class="o">=</span> <span class="n">FullyConnectedLayer</span><span class="p">(</span><span class="n">in_size</span><span class="o">=</span><span class="n">hidden_size</span><span class="p">,</span>
-                <span class="n">out_size</span><span class="o">=</span><span class="n">hidden_size</span><span class="p">,</span>
-                <span class="n">activation</span><span class="o">=</span><span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">())</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">fc6</span> <span class="o">=</span> <span class="n">FullyConnectedLayer</span><span class="p">(</span><span class="n">in_size</span><span class="o">=</span><span class="n">hidden_size</span><span class="p">,</span>
-                <span class="n">out_size</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">num_pixels</span><span class="p">,</span>
-                <span class="n">activation</span><span class="o">=</span><span class="n">nn</span><span class="o">.</span><span class="n">Sigmoid</span><span class="p">())</span>
-
-<div class="viewcode-block" id="BasicAutoencoder.encode"><a class="viewcode-back" href="../../../sconce.models.html#sconce.models.BasicAutoencoder.encode">[docs]</a>    <span class="k">def</span> <span class="nf">encode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inputs</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="n">encoder_input</span> <span class="o">=</span> <span class="n">inputs</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_pixels</span><span class="p">)</span>
-        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fc1</span><span class="p">(</span><span class="n">encoder_input</span><span class="p">)</span>
-        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fc2</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-        <span class="n">x_latent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fc3</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">x_latent</span></div>
-
-<div class="viewcode-block" id="BasicAutoencoder.decode"><a class="viewcode-back" href="../../../sconce.models.html#sconce.models.BasicAutoencoder.decode">[docs]</a>    <span class="k">def</span> <span class="nf">decode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x_latent</span><span class="p">):</span>
-        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fc4</span><span class="p">(</span><span class="n">x_latent</span><span class="p">)</span>
-        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fc5</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-        <span class="n">outputs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fc6</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">outputs</span></div>
-
-<div class="viewcode-block" id="BasicAutoencoder.forward"><a class="viewcode-back" href="../../../sconce.models.html#sconce.models.BasicAutoencoder.forward">[docs]</a>    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inputs</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inputs</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="n">x_latent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span>
-        <span class="n">outputs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">x_latent</span><span class="p">)</span>
-        <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;outputs&#39;</span><span class="p">:</span> <span class="n">outputs</span><span class="p">}</span></div>
+        <span class="n">x_out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">x_latent</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;outputs&#39;</span><span class="p">:</span> <span class="n">x_out</span><span class="p">}</span>
 
-<div class="viewcode-block" id="BasicAutoencoder.calculate_loss"><a class="viewcode-back" href="../../../sconce.models.html#sconce.models.BasicAutoencoder.calculate_loss">[docs]</a>    <span class="k">def</span> <span class="nf">calculate_loss</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">outputs</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">calculate_loss</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">outputs</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="n">reconstruction_loss</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">binary_cross_entropy</span><span class="p">(</span><span class="n">outputs</span><span class="p">,</span>
                 <span class="n">inputs</span><span class="o">.</span><span class="n">view_as</span><span class="p">(</span><span class="n">outputs</span><span class="p">))</span>
-        <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;loss&#39;</span><span class="p">:</span> <span class="n">reconstruction_loss</span><span class="p">}</span></div></div>
+        <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;loss&#39;</span><span class="p">:</span> <span class="n">reconstruction_loss</span><span class="p">}</span></div>
 </pre></div>
 
            </div>

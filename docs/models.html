@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                master (0.9.0 )
+                master (0.9.2 )
               </div>
             
           
@@ -114,6 +114,7 @@
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Models</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#basicautoencoder"><span class="hidden-section">BasicAutoencoder</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#basicconvolutionalautoencoder"><span class="hidden-section">BasicConvolutionalAutoencoder</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#basicclassifer"><span class="hidden-section">BasicClassifer</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#multilayerperceptron"><span class="hidden-section">MultilayerPerceptron</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#wideresnetimageclassifier"><span class="hidden-section">WideResnetImageClassifier</span></a></li>
@@ -191,7 +192,7 @@
             
   <div class="section" id="module-sconce.models">
 <span id="models"></span><h1>Models<a class="headerlink" href="#module-sconce.models" title="Permalink to this headline">¶</a></h1>
-<p>A model in Sconce is just a <a class="reference external" href="http://pytorch.org/docs/master/nn.html#torch.nn.Module" title="(in PyTorch vmaster (0.5.0a0+af71fb8 ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.Module</span></code></a> with a few restrictions
+<p>A model in Sconce is just a <a class="reference external" href="https://pytorch.org/docs/master/nn.html#torch.nn.Module" title="(in PyTorch vmaster (0.5.0a0+0859f0e ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.Module</span></code></a> with a few restrictions
 (see note below).  Sconce comes with a few example models to get you started.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
@@ -201,13 +202,13 @@
 <cite>inputs</cite> and <cite>targets</cite>, but subclasses may modify that behavior to include other keyword arguments.</li>
 <li>It must return a dictionary from it’s <code class="docutils literal notranslate"><span class="pre">forward</span></code> method.  The dictionary is expected to include at least
 the key <cite>outputs</cite> but may include any other keys you like.  The value of the key <cite>outputs</cite> is expected to be
-the <a class="reference external" href="http://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (0.5.0a0+af71fb8 ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">torch.Tensor</span></code></a> output of the model, used for calculating the loss.</li>
+the <a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (0.5.0a0+0859f0e ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">torch.Tensor</span></code></a> output of the model, used for calculating the loss.</li>
 <li>It must define a <code class="docutils literal notranslate"><span class="pre">calculate_loss</span></code> method.  This method must accept arbitrary keyword arguments.  The base
 class of trainer will pass <cite>inputs</cite>, <cite>outputs</cite>, and <cite>targets</cite>, but subclasses may modify that behavior to
 include other keyword arguments.</li>
 <li>It must return a dictionary form it’s <code class="docutils literal notranslate"><span class="pre">calculate_loss</span></code> method.  The dictionary is expected to include at
 least the key ‘loss’, but may include any otehr keys you like.  The value of the key <cite>loss</cite> is expected to
-be the <a class="reference external" href="http://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (0.5.0a0+af71fb8 ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">torch.Tensor</span></code></a> output of the loss function, used to back-propagate the
+be the <a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (0.5.0a0+0859f0e ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">torch.Tensor</span></code></a> output of the loss function, used to back-propagate the
 gradients used by the optimizer.</li>
 <li>It may define a <code class="docutils literal notranslate"><span class="pre">calculate_metrics</span></code> method.  This method must accept arbitrary keyword arguments.  The
 base class of trainer will pass <cite>inputs</cite>, <cite>outputs</cite>, <cite>targets</cite>, and <cite>loss</cite>, but subclasses may modify that
@@ -221,7 +222,7 @@ keys or values of this dictionary.</li>
 <dl class="class">
 <dt id="sconce.models.BasicAutoencoder">
 <em class="property">class </em><code class="descclassname">sconce.models.</code><code class="descname">BasicAutoencoder</code><span class="sig-paren">(</span><em>image_height</em>, <em>image_width</em>, <em>hidden_size</em>, <em>latent_size</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/models/basic_autoencoder.html#BasicAutoencoder"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.models.BasicAutoencoder" title="Permalink to this definition">¶</a></dt>
-<dd><p>A basic 2D image autoencoder built up of densly connected layers, two each in the encoder and the decoder.</p>
+<dd><p>A basic 2D image autoencoder built up of fully connected layers, three each in the encoder and the decoder.</p>
 <dl class="docutils">
 <dt>Loss:</dt>
 <dd>This model uses binary cross-entropy for the loss.</dd>
@@ -237,6 +238,34 @@ keys or values of this dictionary.</li>
 <li><strong>image_width</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) – image width in pixels.</li>
 <li><strong>hidden_size</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) – the number of activations in each of the 4 hidden layers.</li>
 <li><strong>latent_size</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) – the number of activations in the latent representation (encoder output).</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="basicconvolutionalautoencoder">
+<h2><span class="hidden-section">BasicConvolutionalAutoencoder</span><a class="headerlink" href="#basicconvolutionalautoencoder" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="sconce.models.BasicConvolutionalAutoencoder">
+<em class="property">class </em><code class="descclassname">sconce.models.</code><code class="descname">BasicConvolutionalAutoencoder</code><span class="sig-paren">(</span><em>image_channels</em>, <em>conv_channels</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/models/basic_convolutional_autoencoder.html#BasicConvolutionalAutoencoder"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.models.BasicConvolutionalAutoencoder" title="Permalink to this definition">¶</a></dt>
+<dd><p>A basic 2D image autoencoder built up of convolutional layers, three each in the encoder and the decoder.</p>
+<dl class="docutils">
+<dt>Loss:</dt>
+<dd>This model uses binary cross-entropy for the loss.</dd>
+<dt>Metrics:</dt>
+<dd>None</dd>
+</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>image_channels</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) – the number of channels in the input images.</li>
+<li><strong>conv_channels</strong> (<em>list of python:int</em>) – a list of length three of integers describing the number of channels in each of the
+three convolutional layers.</li>
 </ul>
 </td>
 </tr>
