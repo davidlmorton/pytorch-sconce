@@ -4,8 +4,10 @@ from collections import defaultdict
 
 import csv
 import glob
+import numpy as np
 import os
 import os.path
+import torch
 import torch.utils.data as data
 
 
@@ -51,6 +53,7 @@ class CsvImageFolder(data.Dataset):
         self._found_extensions = None
         self._load_found_extensions()
 
+        self._labels = []
         self._load()
 
     def _load(self):
@@ -92,6 +95,10 @@ class CsvImageFolder(data.Dataset):
     def _get_labels(self, row):
         return set(row[self.labels_key].split(self.labels_delimiter))
 
+    @property
+    def num_classes(self):
+        return len(self._labels)
+
     def __getitem__(self, index):
         """
         Args:
@@ -108,7 +115,10 @@ class CsvImageFolder(data.Dataset):
         sample = self.loader(path)
 
         labels = self._get_labels(row)
-        target = [self._label_idxs[label] for label in labels]
+        target_indices = np.array([self._label_idxs[label] for label in labels])
+        target = np.zeros(self.num_classes)
+        target[target_indices] = 1
+        target = torch.Tensor(target)
 
         if self.transform is not None:
             sample = self.transform(sample)
