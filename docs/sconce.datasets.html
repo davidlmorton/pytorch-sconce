@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>sconce.models.layers package &mdash; Pytorch-Sconce master documentation</title>
+  <title>sconce.datasets package &mdash; Pytorch-Sconce master documentation</title>
   
 
   
@@ -173,13 +173,13 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>sconce.models.layers package</li>
+      <li>sconce.datasets package</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="_sources/sconce.models.layers.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/sconce.datasets.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -192,41 +192,39 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="sconce-models-layers-package">
-<h1>sconce.models.layers package<a class="headerlink" href="#sconce-models-layers-package" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="module-sconce.models.layers.convolution2d_layer">
-<span id="sconce-models-layers-convolution2d-layer-module"></span><h2>sconce.models.layers.convolution2d_layer module<a class="headerlink" href="#module-sconce.models.layers.convolution2d_layer" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="sconce.models.layers.convolution2d_layer.Convolution2dLayer">
-<em class="property">class </em><code class="descclassname">sconce.models.layers.convolution2d_layer.</code><code class="descname">Convolution2dLayer</code><span class="sig-paren">(</span><em>*</em>, <em>in_channels</em>, <em>out_channels</em>, <em>stride=2</em>, <em>kernel_size=3</em>, <em>padding=1</em>, <em>inplace_activation=False</em>, <em>preactivate=False</em>, <em>with_batchnorm=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/models/layers/convolution2d_layer.html#Convolution2dLayer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.models.layers.convolution2d_layer.Convolution2dLayer" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
-<dl class="method">
-<dt id="sconce.models.layers.convolution2d_layer.Convolution2dLayer.forward">
-<code class="descname">forward</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/models/layers/convolution2d_layer.html#Convolution2dLayer.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.models.layers.convolution2d_layer.Convolution2dLayer.forward" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="sconce.models.layers.convolution2d_layer.Convolution2dLayer.out_height">
-<code class="descname">out_height</code><span class="sig-paren">(</span><em>in_height</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/models/layers/convolution2d_layer.html#Convolution2dLayer.out_height"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.models.layers.convolution2d_layer.Convolution2dLayer.out_height" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="sconce.models.layers.convolution2d_layer.Convolution2dLayer.out_width">
-<code class="descname">out_width</code><span class="sig-paren">(</span><em>in_width</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/models/layers/convolution2d_layer.html#Convolution2dLayer.out_width"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.models.layers.convolution2d_layer.Convolution2dLayer.out_width" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-</div>
-<div class="section" id="module-sconce.models.layers.fully_connected_layer">
-<span id="sconce-models-layers-fully-connected-layer-module"></span><h2>sconce.models.layers.fully_connected_layer module<a class="headerlink" href="#module-sconce.models.layers.fully_connected_layer" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="sconce.models.layers.fully_connected_layer.FullyConnectedLayer">
-<em class="property">class </em><code class="descclassname">sconce.models.layers.fully_connected_layer.</code><code class="descname">FullyConnectedLayer</code><span class="sig-paren">(</span><em>in_size</em>, <em>out_size</em>, <em>activation</em>, <em>with_batchnorm=True</em>, <em>dropout=0.0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/models/layers/fully_connected_layer.html#FullyConnectedLayer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.models.layers.fully_connected_layer.FullyConnectedLayer" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
-<dl class="method">
-<dt id="sconce.models.layers.fully_connected_layer.FullyConnectedLayer.forward">
-<code class="descname">forward</code><span class="sig-paren">(</span><em>x_in</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/models/layers/fully_connected_layer.html#FullyConnectedLayer.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.models.layers.fully_connected_layer.FullyConnectedLayer.forward" title="Permalink to this definition">¶</a></dt>
+  <div class="section" id="sconce-datasets-package">
+<h1>sconce.datasets package<a class="headerlink" href="#sconce-datasets-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="sconce-datasets-csv-image-folder-module">
+<h2>sconce.datasets.csv_image_folder module<a class="headerlink" href="#sconce-datasets-csv-image-folder-module" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-sconce.datasets.csv_image_folder"></span><dl class="class">
+<dt id="sconce.datasets.csv_image_folder.CsvImageFolder">
+<em class="property">class </em><code class="descclassname">sconce.datasets.csv_image_folder.</code><code class="descname">CsvImageFolder</code><span class="sig-paren">(</span><em>root, csv_path, filename_key='image_name', labels_key='tags', csv_delimiter=',', labels_delimiter=' ', loader=&lt;function default_loader&gt;, extensions=['.jpg', '.jpeg', '.png', '.ppm', '.bmp', '.pgm', '.tif'], transform=None, target_transform=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/datasets/csv_image_folder.html#CsvImageFolder"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.datasets.csv_image_folder.CsvImageFolder" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.utils.data.dataset.Dataset</span></code></p>
+<p>A Dataset that reads images from a folder and labels from a csv file.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>root</strong> (<em>string</em>) – directory where the images can be found.</li>
+<li><strong>csv_path</strong> (<em>string</em>) – the path to the csv file containing image filenames and labels.</li>
+<li><strong>filename_key</strong> (<em>string</em><em>, </em><em>optional</em>) – the column header of the csv for the column that contains image filenames
+(without extensions).</li>
+<li><strong>labels_key</strong> (<em>string</em><em>, </em><em>optional</em>) – the column header of the csv for the column that contains labels for each image.</li>
+<li><strong>csv_delimiter</strong> (<em>string</em><em>, </em><em>optional</em>) – the character(s) used to separate fields in the csv file.</li>
+<li><strong>loader</strong> (<em>callable</em><em>, </em><em>optional</em>) – a function to load a sample given its path.</li>
+<li><strong>extensions</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.6)"><em>list</em></a><em>[</em><em>string</em><em>]</em><em>, </em><em>optinoal</em>) – a list of allowed extensions. E.g, <code class="docutils literal notranslate"><span class="pre">['.jpg',</span> <span class="pre">'.tif']</span></code></li>
+<li><strong>transform</strong> (<em>callable</em><em>, </em><em>optional</em>) – A function/transform that takes in a sample and returns a transformed version.
+E.g, <code class="docutils literal notranslate"><span class="pre">transforms.RandomCrop</span></code> for images.</li>
+<li><strong>target_transform</strong> (<em>callable</em><em>, </em><em>optional</em>) – A function/transform that takes in the target and transforms it.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="sconce.datasets.csv_image_folder.CsvImageFolder.found_extensions">
+<code class="descname">found_extensions</code><a class="headerlink" href="#sconce.datasets.csv_image_folder.CsvImageFolder.found_extensions" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>

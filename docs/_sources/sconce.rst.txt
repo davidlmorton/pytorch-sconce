@@ -8,6 +8,7 @@ Subpackages
     :maxdepth: 1
 
     sconce.data_generators
+    sconce.datasets
     sconce.models
     sconce.monitors
     sconce.rate_controllers

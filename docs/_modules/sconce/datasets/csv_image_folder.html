@@ -1,0 +1,389 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>sconce.datasets.csv_image_folder &mdash; Pytorch-Sconce master documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/pytorch_theme.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> Pytorch-Sconce
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                master (0.9.3 )
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Class Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../data_generator.html">Data Generators</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../data_generator.html#datagenerator"><span class="hidden-section">DataGenerator</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../data_generator.html#imagedatagenerator"><span class="hidden-section">ImageDataGenerator</span></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../datasets.html">Datasests</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../datasets.html#csvimagefolder"><span class="hidden-section">CsvImageFolder</span></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../rate_controllers.html">Rate Controllers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../rate_controllers.html#ratecontroller"><span class="hidden-section">RateController</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../rate_controllers.html#compositeratecontroller"><span class="hidden-section">CompositeRateController</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../rate_controllers.html#constantratecontroller"><span class="hidden-section">ConstantRateController</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../rate_controllers.html#cosineratecontroller"><span class="hidden-section">CosineRateController</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../rate_controllers.html#exponentialratecontroller"><span class="hidden-section">ExponentialRateController</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../rate_controllers.html#linearratecontroller"><span class="hidden-section">LinearRateController</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../rate_controllers.html#stepratecontroller"><span class="hidden-section">StepRateController</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../rate_controllers.html#triangleratecontroller"><span class="hidden-section">TriangleRateController</span></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../monitors.html">Monitors</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../monitors.html#monitor"><span class="hidden-section">Monitor</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../monitors.html#compositemonitor"><span class="hidden-section">CompositeMonitor</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../monitors.html#dataframemonitor"><span class="hidden-section">DataframeMonitor</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../monitors.html#losswisemonitor"><span class="hidden-section">LosswiseMonitor</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../monitors.html#ringbuffermonitor"><span class="hidden-section">RingbufferMonitor</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../monitors.html#stdoutmonitor"><span class="hidden-section">StdoutMonitor</span></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../models.html">Models</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../models.html#basicautoencoder"><span class="hidden-section">BasicAutoencoder</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../models.html#basicconvolutionalautoencoder"><span class="hidden-section">BasicConvolutionalAutoencoder</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../models.html#basicclassifer"><span class="hidden-section">BasicClassifer</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../models.html#multilayerperceptron"><span class="hidden-section">MultilayerPerceptron</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../models.html#wideresnetimageclassifier"><span class="hidden-section">WideResnetImageClassifier</span></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../trainers.html">Trainers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../trainers.html#basic-trainer"><span class="hidden-section">Basic Trainer</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../trainers.html#autoencodertrainer"><span class="hidden-section">AutoencoderTrainer</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../trainers.html#classifiertrainer"><span class="hidden-section">ClassifierTrainer</span></a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Pytorch-Sconce</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>sconce.datasets.csv_image_folder</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for sconce.datasets.csv_image_folder</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">PIL</span> <span class="k">import</span> <span class="n">Image</span>
+<span class="kn">from</span> <span class="nn">torchvision.datasets</span> <span class="k">import</span> <span class="n">folder</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="k">import</span> <span class="n">defaultdict</span>
+
+<span class="kn">import</span> <span class="nn">csv</span>
+<span class="kn">import</span> <span class="nn">glob</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">os.path</span>
+<span class="kn">import</span> <span class="nn">torch.utils.data</span> <span class="k">as</span> <span class="nn">data</span>
+
+
+<div class="viewcode-block" id="CsvImageFolder"><a class="viewcode-back" href="../../../sconce.datasets.html#sconce.datasets.CsvImageFolder">[docs]</a><span class="k">class</span> <span class="nc">CsvImageFolder</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">Dataset</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A Dataset that reads images from a folder and labels from a csv file.</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        root (string): directory where the images can be found.</span>
+<span class="sd">        csv_path (string): the path to the csv file containing image filenames and labels.</span>
+<span class="sd">        filename_key (string, optional): the column header of the csv for the column that contains image filenames</span>
+<span class="sd">            (without extensions).</span>
+<span class="sd">        labels_key (string, optional): the column header of the csv for the column that contains labels for each image.</span>
+<span class="sd">        csv_delimiter (string, optional): the character(s) used to separate fields in the csv file.</span>
+<span class="sd">        loader (callable, optional): a function to load a sample given its path.</span>
+<span class="sd">        extensions (list[string], optinoal): a list of allowed extensions. E.g, ``[&#39;.jpg&#39;, &#39;.tif&#39;]``</span>
+<span class="sd">        transform (callable, optional): A function/transform that takes in a sample and returns a transformed version.</span>
+<span class="sd">            E.g, ``transforms.RandomCrop`` for images.</span>
+<span class="sd">        target_transform (callable, optional): A function/transform that takes in the target and transforms it.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">root</span><span class="p">,</span> <span class="n">csv_path</span><span class="p">,</span>
+            <span class="n">filename_key</span><span class="o">=</span><span class="s1">&#39;image_name&#39;</span><span class="p">,</span>
+            <span class="n">labels_key</span><span class="o">=</span><span class="s1">&#39;tags&#39;</span><span class="p">,</span>
+            <span class="n">csv_delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">,</span>
+            <span class="n">labels_delimiter</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">,</span>
+            <span class="n">loader</span><span class="o">=</span><span class="n">folder</span><span class="o">.</span><span class="n">default_loader</span><span class="p">,</span>
+            <span class="n">extensions</span><span class="o">=</span><span class="n">folder</span><span class="o">.</span><span class="n">IMG_EXTENSIONS</span><span class="p">,</span>
+            <span class="n">transform</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="n">target_transform</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">root</span> <span class="o">=</span> <span class="n">root</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">csv_path</span> <span class="o">=</span> <span class="n">csv_path</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">filename_key</span> <span class="o">=</span> <span class="n">filename_key</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">labels_key</span> <span class="o">=</span> <span class="n">labels_key</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">csv_delimiter</span> <span class="o">=</span> <span class="n">csv_delimiter</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">labels_delimiter</span> <span class="o">=</span> <span class="n">labels_delimiter</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">loader</span> <span class="o">=</span> <span class="n">loader</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">extensions</span> <span class="o">=</span> <span class="n">extensions</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">transform</span> <span class="o">=</span> <span class="n">transform</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">target_transform</span> <span class="o">=</span> <span class="n">target_transform</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_found_extensions</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_load_found_extensions</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_load</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">_load</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_rows</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">all_labels</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">csv_path</span><span class="p">)</span> <span class="k">as</span> <span class="n">csv_file</span><span class="p">:</span>
+            <span class="n">reader</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">DictReader</span><span class="p">(</span><span class="n">csv_file</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">csv_delimiter</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">reader</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_rows</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+                <span class="n">labels</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_labels</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+                <span class="n">all_labels</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_labels</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">all_labels</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_label_idxs</span> <span class="o">=</span> <span class="p">{</span><span class="n">label</span><span class="p">:</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">label</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_labels</span><span class="p">)}</span>
+
+    <span class="k">def</span> <span class="nf">_get_path</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">base_filename</span><span class="p">):</span>
+        <span class="n">found_extensions</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">found_extensions</span>
+        <span class="k">if</span> <span class="n">base_filename</span> <span class="ow">in</span> <span class="n">found_extensions</span><span class="p">:</span>
+            <span class="n">found_extensions</span> <span class="o">=</span> <span class="n">found_extensions</span><span class="p">[</span><span class="n">base_filename</span><span class="p">]</span>
+            <span class="k">for</span> <span class="n">extension</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">extensions</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">extension</span> <span class="ow">in</span> <span class="n">found_extensions</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="s1">&#39;</span><span class="si">%s%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">base_filename</span><span class="p">,</span> <span class="n">extension</span><span class="p">))</span>
+        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;No image file with base filename (</span><span class="si">{base_filename}</span><span class="s2">) &quot;</span>
+            <span class="n">f</span><span class="s2">&quot;found in folder (</span><span class="si">{self.root}</span><span class="s2">), valid extensions are: </span><span class="si">{self.extensions}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">found_extensions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_found_extensions</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_found_extensions</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_load_found_extensions</span><span class="p">()</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_found_extensions</span>
+
+    <span class="k">def</span> <span class="nf">_load_found_extensions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">found_extensions</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">):</span>
+            <span class="n">base</span><span class="p">,</span> <span class="n">ext</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+            <span class="n">found_extensions</span><span class="p">[</span><span class="n">base</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ext</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">found_extensions</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_get_labels</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">row</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">set</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">labels_key</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">labels_delimiter</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Args:</span>
+<span class="sd">            index (int): Index</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            tuple: (sample, target) where sample is the image, and target is an array of indices of the target</span>
+<span class="sd">                class.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">row</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_rows</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
+
+        <span class="n">base_filename</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">filename_key</span><span class="p">]</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_path</span><span class="p">(</span><span class="n">base_filename</span><span class="p">)</span>
+        <span class="n">sample</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">loader</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+
+        <span class="n">labels</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_labels</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+        <span class="n">target</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_label_idxs</span><span class="p">[</span><span class="n">label</span><span class="p">]</span> <span class="k">for</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">labels</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">transform</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">sample</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">sample</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_transform</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">target</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_transform</span><span class="p">(</span><span class="n">target</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">sample</span><span class="p">,</span> <span class="n">target</span>
+
+    <span class="k">def</span> <span class="nf">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_rows</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">fmt_str</span> <span class="o">=</span> <span class="s1">&#39;Dataset &#39;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
+        <span class="n">fmt_str</span> <span class="o">+=</span> <span class="s1">&#39;    Number of images: </span><span class="si">{}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="fm">__len__</span><span class="p">())</span>
+        <span class="n">fmt_str</span> <span class="o">+=</span> <span class="s1">&#39;    Root Location: </span><span class="si">{}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">)</span>
+        <span class="n">fmt_str</span> <span class="o">+=</span> <span class="s1">&#39;    Number of tags: </span><span class="si">{}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_labels</span><span class="p">))</span>
+        <span class="n">tmp</span> <span class="o">=</span> <span class="s1">&#39;    Transforms (if any): &#39;</span>
+        <span class="n">fmt_str</span> <span class="o">+=</span> <span class="s1">&#39;</span><span class="si">{0}{1}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">tmp</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">transform</span><span class="o">.</span><span class="fm">__repr__</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">tmp</span><span class="p">)))</span>
+        <span class="n">tmp</span> <span class="o">=</span> <span class="s1">&#39;    Target Transforms (if any): &#39;</span>
+        <span class="n">fmt_str</span> <span class="o">+=</span> <span class="s1">&#39;</span><span class="si">{0}{1}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">tmp</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_transform</span><span class="o">.</span><span class="fm">__repr__</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">tmp</span><span class="p">)))</span>
+        <span class="k">return</span> <span class="n">fmt_str</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Pytorch-Sconce Contributors.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'master',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          
+          SphinxRtdTheme.Navigation.enableSticky();
+          
+      });
+  </script> 
+
+</body>
+</html>
