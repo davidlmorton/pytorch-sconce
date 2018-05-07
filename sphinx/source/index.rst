@@ -13,6 +13,7 @@ Sconce Documentation
    :caption: Class Reference
 
    data_generator
+   datasets
    rate_controllers
    monitors
    models
