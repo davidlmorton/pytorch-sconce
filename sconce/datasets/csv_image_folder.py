@@ -53,21 +53,26 @@ class CsvImageFolder(data.Dataset):
         self._found_extensions = None
         self._load_found_extensions()
 
-        self._labels = []
+        self.labels = []
+        self.label_index = {}
+        self.num_labels_per_image = 0
         self._load()
 
     def _load(self):
         self._rows = []
         all_labels = set()
+        num_labels = 0
         with open(self.csv_path) as csv_file:
             reader = csv.DictReader(csv_file, delimiter=self.csv_delimiter)
             for row in reader:
                 self._rows.append(row)
                 labels = self._get_labels(row)
+                num_labels += len(labels)
                 all_labels.update(labels)
 
-        self._labels = sorted(all_labels)
-        self._label_idxs = {label:i for i, label in enumerate(self._labels)}
+        self.num_labels_per_image = num_labels / len(self._rows)
+        self.labels = sorted(all_labels)
+        self.label_index = {label:i for i, label in enumerate(self.labels)}
 
     def _get_path(self, base_filename):
         found_extensions = self.found_extensions
@@ -97,7 +102,7 @@ class CsvImageFolder(data.Dataset):
 
     @property
     def num_classes(self):
-        return len(self._labels)
+        return len(self.labels)
 
     def __getitem__(self, index):
         """
@@ -115,7 +120,7 @@ class CsvImageFolder(data.Dataset):
         sample = self.loader(path)
 
         labels = self._get_labels(row)
-        target_indices = np.array([self._label_idxs[label] for label in labels])
+        target_indices = np.array([self.label_index[label] for label in labels])
         target = np.zeros(self.num_classes)
         target[target_indices] = 1
         target = torch.Tensor(target)
@@ -134,7 +139,8 @@ class CsvImageFolder(data.Dataset):
         fmt_str = 'Dataset ' + self.__class__.__name__ + '\n'
         fmt_str += '    Number of images: {}\n'.format(self.__len__())
         fmt_str += '    Root Location: {}\n'.format(self.root)
-        fmt_str += '    Number of tags: {}\n'.format(len(self._labels))
+        fmt_str += '    Number of different labels: {}\n'.format(len(self.labels))
+        fmt_str += '    Average number of labels per image: %2.3f\n' % self.num_labels_per_image
         tmp = '    Transforms (if any): '
         fmt_str += '{0}{1}\n'.format(tmp, self.transform.__repr__().replace('\n', '\n' + ' ' * len(tmp)))
         tmp = '    Target Transforms (if any): '
