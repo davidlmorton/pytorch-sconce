@@ -96,6 +96,21 @@ class ImageMixin(ABC):
             figure_width=15,
             image_height=3,
             return_fig=False):
+        """
+        Plot the same image from this DataGenerator multiple times to see how the transforms affect them.
+
+        Arguments:
+            index (int): the index of the image to plot.
+            num_samples (int, optional): the number of times to plot the image (1 original, n - 1 transformed
+                variations).
+            num_cols (int, optional): the number of columns in the plot grid.
+            num_cols (int): the number of columns to plot, one image per column.
+            figure_width (float): the size, in matplotlib-inches, for the width of the whole figure.
+            image_height (float): the size, in matplotlib-inches, for the height of a single image.
+            return_fig (bool): return the generated matplotlib figure or not.
+
+        New in 0.10.3
+        """
 
         original = self._get_original_image(index)
         samples = [original] + [self.dataset[index][0] for i in range(num_samples - 1)]
