@@ -23,6 +23,7 @@ Trainers
 .. autoclass:: AutoencoderTrainer
     :members:
     :show-inheritance:
+    :inherited-members:
 
 
 :hidden:`ClassifierTrainer`
@@ -31,3 +32,4 @@ Trainers
 .. autoclass:: ClassifierTrainer
     :members:
     :show-inheritance:
+    :inherited-members:
