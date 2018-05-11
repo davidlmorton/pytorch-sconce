@@ -36,11 +36,11 @@ class Deconvolution2dLayer(nn.Module):
 
     def out_height(self, in_height):
         return (in_height - 1) * self.stride[0] - 2 * self.padding[0] +\
-               kernel_size[0] + output_padding[0]
+               self.kernel_size[0] + self.output_padding[0]
 
     def out_width(self, in_width):
         return (in_width - 1) * self.stride[1] - 2 * self.padding[1] +\
-               kernel_size[1] + output_padding[1]
+               self.kernel_size[1] + self.output_padding[1]
 
     def forward(self, x):
         if self.with_batchnorm:
