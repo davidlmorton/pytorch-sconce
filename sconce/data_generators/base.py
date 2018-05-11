@@ -1,9 +1,4 @@
 from torch.utils import data
-from torchvision import datasets, transforms
-
-import os
-import tempfile
-import numpy as np
 
 
 class DataGenerator:
