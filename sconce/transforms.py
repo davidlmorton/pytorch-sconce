@@ -28,7 +28,7 @@ class NHot(object):
             array: the n-hot encoded representation of the classes that an image belongs to.
         """
         indices_array = np.array(indices)
-        target = np.zeros(self.size)
+        target = np.zeros(self.size, dtype=np.float32)
         target[indices_array] = 1
         return target
 
