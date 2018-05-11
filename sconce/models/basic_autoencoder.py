@@ -23,7 +23,6 @@ class BasicAutoencoder(nn.Module):
         super().__init__()
         self.num_pixels = image_height * image_width
 
-
         self.fc1 = FullyConnectedLayer(in_size=self.num_pixels,
                 out_size=hidden_size,
                 activation=nn.ReLU())

@@ -25,6 +25,14 @@ sconce.trainer module
     :undoc-members:
     :show-inheritance:
 
+sconce.transforms module
+------------------------
+
+.. automodule:: sconce.transforms
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 sconce.utils module
 -------------------
 

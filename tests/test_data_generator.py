@@ -1,4 +1,4 @@
-from sconce.data_generators import ImageDataGenerator
+from sconce.data_generators import SingleClassImageDataGenerator
 
 import torch
 import unittest
@@ -8,7 +8,7 @@ class TestDataGenerator(unittest.TestCase):
     num_test_samples = 3
 
     def test_iterates_forever(self):
-        dg = ImageDataGenerator.from_torchvision(
+        dg = SingleClassImageDataGenerator.from_torchvision(
                 batch_size=1,
                 fraction=5 / 10_000,
                 train=False)
@@ -20,7 +20,7 @@ class TestDataGenerator(unittest.TestCase):
         self.assertTrue(True, "Can iterate forever")
 
     def test_properties(self):
-        dg = ImageDataGenerator.from_torchvision(
+        dg = SingleClassImageDataGenerator.from_torchvision(
                 batch_size=3,
                 fraction=15 / 10_000,
                 train=False)
@@ -30,7 +30,7 @@ class TestDataGenerator(unittest.TestCase):
     @unittest.skipIf(not torch.cuda.is_available(),
             "Cuda unavailable, skipping test")
     def test_cuda(self):
-        dg = ImageDataGenerator.from_torchvision(
+        dg = SingleClassImageDataGenerator.from_torchvision(
                 batch_size=1,
                 fraction=5 / 10_000,
                 train=False)

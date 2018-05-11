@@ -11,4 +11,4 @@ seaborn == 0.8.1
 stringcase == 1.2.0
 tables == 3.4.2
 torch == 0.4.0
-torchvision == 0.2.1
+-e git+https://github.com/davidlmorton/vision.git@a250051#egg=torchvision

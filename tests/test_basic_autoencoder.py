@@ -1,4 +1,4 @@
-from sconce.data_generators import ImageDataGenerator
+from sconce.data_generators import SingleClassImageDataGenerator
 from sconce.rate_controllers import CosineRateController
 from sconce.trainers import AutoencoderTrainer
 from sconce.models import BasicAutoencoder
@@ -12,8 +12,8 @@ class TestBasicAutoencoder(unittest.TestCase):
     def test_full_run(self):
         model = BasicAutoencoder(image_height=28, image_width=28,
                 hidden_size=200, latent_size=100)
-        training_generator = ImageDataGenerator.from_torchvision(fraction=1 / 6)
-        test_generator = ImageDataGenerator.from_torchvision(train=False, fraction=0.1)
+        training_generator = SingleClassImageDataGenerator.from_torchvision(fraction=1 / 6)
+        test_generator = SingleClassImageDataGenerator.from_torchvision(train=False, fraction=0.1)
 
         if torch.cuda.is_available():
             model.cuda()

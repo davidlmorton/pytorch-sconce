@@ -9,10 +9,15 @@ sconce.trainers.autoencoder\_trainer module
     :undoc-members:
     :show-inheritance:
 
-sconce.trainers.classifier\_trainer module
-------------------------------------------
+sconce.trainers.single\_class\_image\_classifier\_trainer module
+----------------------------------------------------------------
 
-.. automodule:: sconce.trainers.classifier_trainer
+.. automodule:: sconce.trainers.single_class_image_classifier_trainer
     :members:
     :undoc-members:
     :show-inheritance:
+
+sconce.trainers.classifier\_trainer module (deprecated)
+-------------------------------------------------------
+
+.. automodule:: sconce.trainers.classifier_trainer

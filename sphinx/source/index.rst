@@ -14,6 +14,7 @@ Sconce Documentation
 
    data_generator
    datasets
+   transforms
    rate_controllers
    monitors
    models
