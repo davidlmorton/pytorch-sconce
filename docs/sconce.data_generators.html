@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                master (0.10.2 )
+                master (0.10.3 )
               </div>
             
           
@@ -366,6 +366,31 @@ dataset.</li>
 <dt id="sconce.data_generators.image_mixin.ImageMixin.plot_image_size_summary">
 <code class="descname">plot_image_size_summary</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/data_generators/image_mixin.html#ImageMixin.plot_image_size_summary"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.data_generators.image_mixin.ImageMixin.plot_image_size_summary" title="Permalink to this definition">¶</a></dt>
 <dd><p>Generate a scatter plot showing the sizes of the images in the dataset.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sconce.data_generators.image_mixin.ImageMixin.plot_transforms">
+<code class="descname">plot_transforms</code><span class="sig-paren">(</span><em>index</em>, <em>num_samples=5</em>, <em>num_cols=5</em>, <em>figure_width=15</em>, <em>image_height=3</em>, <em>return_fig=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/data_generators/image_mixin.html#ImageMixin.plot_transforms"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.data_generators.image_mixin.ImageMixin.plot_transforms" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot the same image from this DataGenerator multiple times to see how the transforms affect them.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>index</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) – the index of the image to plot.</li>
+<li><strong>num_samples</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a><em>, </em><em>optional</em>) – the number of times to plot the image (1 original, n - 1 transformed
+variations).</li>
+<li><strong>num_cols</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) – the number of columns in the plot grid.</li>
+<li><strong>num_cols</strong> – the number of columns to plot, one image per column.</li>
+<li><strong>figure_width</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.6)"><em>float</em></a>) – the size, in matplotlib-inches, for the width of the whole figure.</li>
+<li><strong>image_height</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.6)"><em>float</em></a>) – the size, in matplotlib-inches, for the height of a single image.</li>
+<li><strong>return_fig</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.6)"><em>bool</em></a>) – return the generated matplotlib figure or not.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>New in 0.10.3</p>
 </dd></dl>
 
 </dd></dl>
