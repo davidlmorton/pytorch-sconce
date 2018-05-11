@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                master (0.10.1 )
+                master (0.10.2 )
               </div>
             
           
@@ -228,7 +228,7 @@
 <span class="sd">            array: the n-hot encoded representation of the classes that an image belongs to.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">indices_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">indices</span><span class="p">)</span>
-        <span class="n">target</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
+        <span class="n">target</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
         <span class="n">target</span><span class="p">[</span><span class="n">indices_array</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
         <span class="k">return</span> <span class="n">target</span>
 
