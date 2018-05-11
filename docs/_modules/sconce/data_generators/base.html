@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                master (0.9.4 )
+                master (0.10.0 )
               </div>
             
           
@@ -87,11 +87,17 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../data_generator.html">Data Generators</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../data_generator.html#datagenerator"><span class="hidden-section">DataGenerator</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../data_generator.html#imagedatagenerator"><span class="hidden-section">ImageDataGenerator</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../data_generator.html#imagedatagenerator-deprecated"><span class="hidden-section">ImageDataGenerator (deprecated)</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../data_generator.html#singleclassimagedatagenerator"><span class="hidden-section">SingleClassImageDataGenerator</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../data_generator.html#multiclassimagedatagenerator"><span class="hidden-section">MultiClassImageDataGenerator</span></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../datasets.html">Datasests</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../datasets.html#csvimagefolder"><span class="hidden-section">CsvImageFolder</span></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../transforms.html">Transforms</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../transforms.html#nhot"><span class="hidden-section">NHot</span></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../rate_controllers.html">Rate Controllers</a><ul>
@@ -125,7 +131,8 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../trainers.html">Trainers</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../trainers.html#basic-trainer"><span class="hidden-section">Basic Trainer</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../trainers.html#autoencodertrainer"><span class="hidden-section">AutoencoderTrainer</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../trainers.html#classifiertrainer"><span class="hidden-section">ClassifierTrainer</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../trainers.html#singleclassimageclassifiertrainer"><span class="hidden-section">SingleClassImageClassifierTrainer</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../trainers.html#classifiertrainer-deprecated"><span class="hidden-section">ClassifierTrainer (deprecated)</span></a></li>
 </ul>
 </li>
 </ul>
@@ -192,11 +199,6 @@
             
   <h1>Source code for sconce.data_generators.base</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">torch.utils</span> <span class="k">import</span> <span class="n">data</span>
-<span class="kn">from</span> <span class="nn">torchvision</span> <span class="k">import</span> <span class="n">datasets</span><span class="p">,</span> <span class="n">transforms</span>
-
-<span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">tempfile</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 
 <div class="viewcode-block" id="DataGenerator"><a class="viewcode-back" href="../../../sconce.data_generators.html#sconce.data_generators.DataGenerator">[docs]</a><span class="k">class</span> <span class="nc">DataGenerator</span><span class="p">:</span>
@@ -337,70 +339,6 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
             <span class="n">inputs</span><span class="p">,</span> <span class="n">targets</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_iterator</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">preprocess</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">targets</span><span class="p">)</span></div>
-
-<div class="viewcode-block" id="DataGenerator.from_pytorch"><a class="viewcode-back" href="../../../sconce.data_generators.html#sconce.data_generators.DataGenerator.from_pytorch">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">from_pytorch</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span>
-            <span class="n">batch_size</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span>
-            <span class="n">data_location</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-            <span class="n">dataset_class</span><span class="o">=</span><span class="n">datasets</span><span class="o">.</span><span class="n">MNIST</span><span class="p">,</span>
-            <span class="n">fraction</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
-            <span class="n">num_workers</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
-            <span class="n">pin_memory</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-            <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-            <span class="n">train</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-            <span class="n">transform</span><span class="o">=</span><span class="n">transforms</span><span class="o">.</span><span class="n">ToTensor</span><span class="p">()):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Note:</span>
-<span class="sd">            This method is deprecated as of 0.8.0, and will be removed in 0.9.0.</span>
-
-<span class="sd">        Create a DataGenerator from a torchvision dataset class.</span>
-
-<span class="sd">        Arguments:</span>
-<span class="sd">            batch_size (int): how large the yielded `inputs` and `targets`</span>
-<span class="sd">                should be. See :py:class:`DataLoader` for details.</span>
-<span class="sd">            data_location (path): where downloaded dataset should be stored.  If</span>
-<span class="sd">                ``None`` a system dependent temporary location will be used.</span>
-<span class="sd">            dataset_class (class): a torchvision dataset class that supports</span>
-<span class="sd">                constructor arguments {&#39;root&#39;, &#39;train&#39;, &#39;download&#39;,</span>
-<span class="sd">                &#39;transform&#39;}. For example, MNIST, FashionMnist, CIFAR10, or</span>
-<span class="sd">                CIFAR100.</span>
-<span class="sd">            fraction (float): (0.0 - 1.0] how much of the original dataset&#39;s</span>
-<span class="sd">                data to use.</span>
-<span class="sd">            num_workers (int): how many subprocesses to use for data loading.</span>
-<span class="sd">                See :py:class:`DataLoader` for details.</span>
-<span class="sd">            pin_memory (bool): if ``True``, the data loader will copy tensors</span>
-<span class="sd">                into CUDA pinned memory before returning them. See</span>
-<span class="sd">                :py:class:`DataLoader` for details.</span>
-<span class="sd">            shuffle (bool): set to ``True`` to have the data reshuffled at every</span>
-<span class="sd">                epoch. See :py:class:`DataLoader` for details.</span>
-<span class="sd">            train (bool): if ``True``, creates dataset from training set,</span>
-<span class="sd">                otherwise creates from test set.</span>
-<span class="sd">            transform (callable): a function/transform that takes in an PIL</span>
-<span class="sd">                image and returns a transformed version.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;WARNING: DataGenerator.from_pytorch method has been deprecated.  &quot;</span>
-                <span class="s2">&quot;Please use ImageDataGenerator.from_torchvision instead.&quot;</span><span class="p">)</span>
-        <span class="k">assert</span><span class="p">(</span><span class="n">fraction</span> <span class="o">&gt;</span> <span class="mf">0.0</span><span class="p">)</span>
-        <span class="k">assert</span><span class="p">(</span><span class="n">fraction</span> <span class="o">&lt;=</span> <span class="mf">1.0</span><span class="p">)</span>
-
-        <span class="k">if</span> <span class="n">data_location</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">data_location</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">tempfile</span><span class="o">.</span><span class="n">gettempdir</span><span class="p">(),</span>
-                    <span class="n">dataset_class</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
-
-        <span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset_class</span><span class="p">(</span><span class="n">data_location</span><span class="p">,</span>
-                <span class="n">train</span><span class="o">=</span><span class="n">train</span><span class="p">,</span>
-                <span class="n">download</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-                <span class="n">transform</span><span class="o">=</span><span class="n">transform</span><span class="p">)</span>
-        <span class="n">indices</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span>
-                <span class="n">start</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
-                <span class="n">stop</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span>
-                <span class="n">num</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span> <span class="o">*</span> <span class="n">fraction</span><span class="p">))]</span>
-        <span class="n">subset</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">Subset</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">indices</span><span class="o">=</span><span class="n">indices</span><span class="p">)</span>
-        <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">from_dataset</span><span class="p">(</span><span class="n">subset</span><span class="p">,</span>
-                <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span>
-                <span class="n">num_workers</span><span class="o">=</span><span class="n">num_workers</span><span class="p">,</span>
-                <span class="n">pin_memory</span><span class="o">=</span><span class="n">pin_memory</span><span class="p">,</span>
-                <span class="n">shuffle</span><span class="o">=</span><span class="n">shuffle</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="DataGenerator.from_dataset"><a class="viewcode-back" href="../../../sconce.data_generators.html#sconce.data_generators.DataGenerator.from_dataset">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">from_dataset</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>

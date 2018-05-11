@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                master (0.9.4 )
+                master (0.10.0 )
               </div>
             
           
@@ -87,11 +87,17 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../data_generator.html">Data Generators</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../data_generator.html#datagenerator"><span class="hidden-section">DataGenerator</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../data_generator.html#imagedatagenerator"><span class="hidden-section">ImageDataGenerator</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data_generator.html#imagedatagenerator-deprecated"><span class="hidden-section">ImageDataGenerator (deprecated)</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data_generator.html#singleclassimagedatagenerator"><span class="hidden-section">SingleClassImageDataGenerator</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data_generator.html#multiclassimagedatagenerator"><span class="hidden-section">MultiClassImageDataGenerator</span></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../datasets.html">Datasests</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../datasets.html#csvimagefolder"><span class="hidden-section">CsvImageFolder</span></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../transforms.html">Transforms</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../transforms.html#nhot"><span class="hidden-section">NHot</span></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../rate_controllers.html">Rate Controllers</a><ul>
@@ -125,7 +131,8 @@
 <li class="toctree-l1"><a class="reference internal" href="../trainers.html">Trainers</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../trainers.html#basic-trainer"><span class="hidden-section">Basic Trainer</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../trainers.html#autoencodertrainer"><span class="hidden-section">AutoencoderTrainer</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../trainers.html#classifiertrainer"><span class="hidden-section">ClassifierTrainer</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../trainers.html#singleclassimageclassifiertrainer"><span class="hidden-section">SingleClassImageClassifierTrainer</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../trainers.html#classifiertrainer-deprecated"><span class="hidden-section">ClassifierTrainer (deprecated)</span></a></li>
 </ul>
 </li>
 </ul>
@@ -191,6 +198,9 @@
   <h1>All modules for which code is available</h1>
 <ul><li><a href="sconce/data_generators/base.html">sconce.data_generators.base</a></li>
 <li><a href="sconce/data_generators/image_data_generator.html">sconce.data_generators.image_data_generator</a></li>
+<li><a href="sconce/data_generators/image_mixin.html">sconce.data_generators.image_mixin</a></li>
+<li><a href="sconce/data_generators/multi_class_image_data_generator.html">sconce.data_generators.multi_class_image_data_generator</a></li>
+<li><a href="sconce/data_generators/single_class_image_data_generator.html">sconce.data_generators.single_class_image_data_generator</a></li>
 <li><a href="sconce/datasets/csv_image_folder.html">sconce.datasets.csv_image_folder</a></li>
 <li><a href="sconce/models/basic_autoencoder.html">sconce.models.basic_autoencoder</a></li>
 <li><a href="sconce/models/basic_classifier.html">sconce.models.basic_classifier</a></li>
@@ -213,7 +223,8 @@
 <li><a href="sconce/rate_controllers/triangle_rate_controller.html">sconce.rate_controllers.triangle_rate_controller</a></li>
 <li><a href="sconce/trainer.html">sconce.trainer</a></li>
 <li><a href="sconce/trainers/autoencoder_trainer.html">sconce.trainers.autoencoder_trainer</a></li>
-<li><a href="sconce/trainers/classifier_trainer.html">sconce.trainers.classifier_trainer</a></li>
+<li><a href="sconce/trainers/single_class_image_classifier_trainer.html">sconce.trainers.single_class_image_classifier_trainer</a></li>
+<li><a href="sconce/transforms.html">sconce.transforms</a></li>
 <li><a href="sconce/utils.html">sconce.utils</a></li>
 </ul>
 

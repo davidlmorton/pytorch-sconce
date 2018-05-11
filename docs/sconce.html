@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                master (0.9.4 )
+                master (0.10.0 )
               </div>
             
           
@@ -87,11 +87,17 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="data_generator.html">Data Generators</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="data_generator.html#datagenerator"><span class="hidden-section">DataGenerator</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="data_generator.html#imagedatagenerator"><span class="hidden-section">ImageDataGenerator</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_generator.html#imagedatagenerator-deprecated"><span class="hidden-section">ImageDataGenerator (deprecated)</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_generator.html#singleclassimagedatagenerator"><span class="hidden-section">SingleClassImageDataGenerator</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_generator.html#multiclassimagedatagenerator"><span class="hidden-section">MultiClassImageDataGenerator</span></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="datasets.html">Datasests</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="datasets.html#csvimagefolder"><span class="hidden-section">CsvImageFolder</span></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="transforms.html">Transforms</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="transforms.html#nhot"><span class="hidden-section">NHot</span></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="rate_controllers.html">Rate Controllers</a><ul>
@@ -125,7 +131,8 @@
 <li class="toctree-l1"><a class="reference internal" href="trainers.html">Trainers</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="trainers.html#basic-trainer"><span class="hidden-section">Basic Trainer</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="trainers.html#autoencodertrainer"><span class="hidden-section">AutoencoderTrainer</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="trainers.html#classifiertrainer"><span class="hidden-section">ClassifierTrainer</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="trainers.html#singleclassimageclassifiertrainer"><span class="hidden-section">SingleClassImageClassifierTrainer</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="trainers.html#classifiertrainer-deprecated"><span class="hidden-section">ClassifierTrainer (deprecated)</span></a></li>
 </ul>
 </li>
 </ul>
@@ -227,12 +234,12 @@ objects (<a class="reference internal" href="sconce.data_generators.html#sconce.
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name" colspan="2">Keyword Arguments:</th></tr>
 <tr class="field-odd field"><td>&#160;</td><td class="field-body"><ul class="first last simple">
-<li><strong>model</strong> (<a class="reference external" href="https://pytorch.org/docs/master/nn.html#torch.nn.Module" title="(in PyTorch vmaster (0.5.0a0+5146bc9 ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.Module</span></code></a>) – the torch model to be trained.  See <a class="reference internal" href="models.html#module-sconce.models" title="sconce.models"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sconce.models</span></code></a> for examples.</li>
+<li><strong>model</strong> (<a class="reference external" href="https://pytorch.org/docs/master/nn.html#torch.nn.Module" title="(in PyTorch vmaster (0.5.0a0+947155c ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.Module</span></code></a>) – the torch model to be trained.  See <a class="reference internal" href="models.html#module-sconce.models" title="sconce.models"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sconce.models</span></code></a> for examples.</li>
 <li><strong>training_data_generator</strong> (<a class="reference internal" href="sconce.data_generators.html#sconce.data_generators.base.DataGenerator" title="sconce.data_generators.base.DataGenerator"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataGenerator</span></code></a>) – yields training <cite>inputs</cite> and
 <cite>targets</cite>.</li>
 <li><strong>test_data_generator</strong> (<a class="reference internal" href="sconce.data_generators.html#sconce.data_generators.base.DataGenerator" title="sconce.data_generators.base.DataGenerator"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataGenerator</span></code></a>) – yields test <cite>inputs</cite> and
 <cite>targets</cite>.  These are never used for back-propagation.</li>
-<li><strong>optimizer</strong> (<a class="reference external" href="https://pytorch.org/docs/master/optim.html#torch.optim.Optimizer" title="(in PyTorch vmaster (0.5.0a0+5146bc9 ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">torch.optim.Optimizer</span></code></a>) – the torch optimizer that updates model parameters during
+<li><strong>optimizer</strong> (<a class="reference external" href="https://pytorch.org/docs/master/optim.html#torch.optim.Optimizer" title="(in PyTorch vmaster (0.5.0a0+947155c ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">torch.optim.Optimizer</span></code></a>) – the torch optimizer that updates model parameters during
 training.</li>
 <li><strong>monitor</strong> (<a class="reference internal" href="sconce.monitors.html#sconce.monitors.base.Monitor" title="sconce.monitors.base.Monitor"><code class="xref py py-class docutils literal notranslate"><span class="pre">Monitor</span></code></a>, optional) – the sconce monitor that records data during
 training.  This data can be sent to external systems during training or kept until training completes
@@ -431,6 +438,31 @@ the memory usage would be for a batch size of 100.</li>
 </table>
 </dd></dl>
 
+</dd></dl>
+
+</div>
+<div class="section" id="module-sconce.transforms">
+<span id="sconce-transforms-module"></span><h2>sconce.transforms module<a class="headerlink" href="#module-sconce.transforms" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="sconce.transforms.NHot">
+<em class="property">class </em><code class="descclassname">sconce.transforms.</code><code class="descname">NHot</code><span class="sig-paren">(</span><em>size</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/transforms.html#NHot"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.transforms.NHot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.6)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Converts a list of indices to a n-hot encoded vector.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>size</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) – the size of the returned array</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">example</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">l</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t</span> <span class="o">=</span> <span class="n">NHot</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
+<span class="go">array([0., 1., 1., 1., 0., 0., 0., 1., 0., 0.])</span>
+</pre></div>
+</div>
 </dd></dl>
 
 </div>

@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                master (0.9.4 )
+                master (0.10.0 )
               </div>
             
           
@@ -87,11 +87,17 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="data_generator.html">Data Generators</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="data_generator.html#datagenerator"><span class="hidden-section">DataGenerator</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="data_generator.html#imagedatagenerator"><span class="hidden-section">ImageDataGenerator</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_generator.html#imagedatagenerator-deprecated"><span class="hidden-section">ImageDataGenerator (deprecated)</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_generator.html#singleclassimagedatagenerator"><span class="hidden-section">SingleClassImageDataGenerator</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_generator.html#multiclassimagedatagenerator"><span class="hidden-section">MultiClassImageDataGenerator</span></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="datasets.html">Datasests</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="datasets.html#csvimagefolder"><span class="hidden-section">CsvImageFolder</span></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="transforms.html">Transforms</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="transforms.html#nhot"><span class="hidden-section">NHot</span></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="rate_controllers.html">Rate Controllers</a><ul>
@@ -125,7 +131,8 @@
 <li class="toctree-l1"><a class="reference internal" href="trainers.html">Trainers</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="trainers.html#basic-trainer"><span class="hidden-section">Basic Trainer</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="trainers.html#autoencodertrainer"><span class="hidden-section">AutoencoderTrainer</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="trainers.html#classifiertrainer"><span class="hidden-section">ClassifierTrainer</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="trainers.html#singleclassimageclassifiertrainer"><span class="hidden-section">SingleClassImageClassifierTrainer</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="trainers.html#classifiertrainer-deprecated"><span class="hidden-section">ClassifierTrainer (deprecated)</span></a></li>
 </ul>
 </li>
 </ul>
@@ -198,19 +205,20 @@
 <h2>sconce.datasets.csv_image_folder module<a class="headerlink" href="#sconce-datasets-csv-image-folder-module" title="Permalink to this headline">¶</a></h2>
 <span class="target" id="module-sconce.datasets.csv_image_folder"></span><dl class="class">
 <dt id="sconce.datasets.csv_image_folder.CsvImageFolder">
-<em class="property">class </em><code class="descclassname">sconce.datasets.csv_image_folder.</code><code class="descname">CsvImageFolder</code><span class="sig-paren">(</span><em>root, csv_path, filename_key='image_name', labels_key='tags', csv_delimiter=',', labels_delimiter=' ', loader=&lt;function default_loader&gt;, extensions=['.jpg', '.jpeg', '.png', '.ppm', '.bmp', '.pgm', '.tif'], transform=None, target_transform=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/datasets/csv_image_folder.html#CsvImageFolder"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.datasets.csv_image_folder.CsvImageFolder" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">sconce.datasets.csv_image_folder.</code><code class="descname">CsvImageFolder</code><span class="sig-paren">(</span><em>root, csv_path, filename_key='image_name', classes_key='tags', csv_delimiter=',', classes_delimiter=' ', loader=&lt;function default_loader&gt;, extensions=['.jpg', '.jpeg', '.png', '.ppm', '.bmp', '.pgm', '.tif'], transform=None, target_transform=&lt;class 'sconce.transforms.NHot'&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/datasets/csv_image_folder.html#CsvImageFolder"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.datasets.csv_image_folder.CsvImageFolder" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.utils.data.dataset.Dataset</span></code></p>
-<p>A Dataset that reads images from a folder and labels from a csv file.</p>
+<p>A Dataset that reads images from a folder and classes from a csv file.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>root</strong> (<em>string</em>) – directory where the images can be found.</li>
-<li><strong>csv_path</strong> (<em>string</em>) – the path to the csv file containing image filenames and labels.</li>
+<li><strong>csv_path</strong> (<em>string</em>) – the path to the csv file containing image filenames and classes.</li>
 <li><strong>filename_key</strong> (<em>string</em><em>, </em><em>optional</em>) – the column header of the csv for the column that contains image filenames
 (without extensions).</li>
-<li><strong>labels_key</strong> (<em>string</em><em>, </em><em>optional</em>) – the column header of the csv for the column that contains labels for each image.</li>
+<li><strong>classes_key</strong> (<em>string</em><em>, </em><em>optional</em>) – the column header of the csv for the column that contains classes for each
+image.</li>
 <li><strong>csv_delimiter</strong> (<em>string</em><em>, </em><em>optional</em>) – the character(s) used to separate fields in the csv file.</li>
 <li><strong>loader</strong> (<em>callable</em><em>, </em><em>optional</em>) – a function to load a sample given its path.</li>
 <li><strong>extensions</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.6)"><em>list</em></a><em>[</em><em>string</em><em>]</em><em>, </em><em>optinoal</em>) – a list of allowed extensions. E.g, <code class="docutils literal notranslate"><span class="pre">['.jpg',</span> <span class="pre">'.tif']</span></code></li>
@@ -220,11 +228,29 @@ E.g, <code class="docutils literal notranslate"><span class="pre">transforms.Ran
 </ul>
 </td>
 </tr>
+<tr class="field-even field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
+<li><strong>class_to_idx</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.6)"><em>dict</em></a>) – a dictionary mapping class names to indices.</li>
+<li><strong>classes</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.6)"><em>list</em></a><em>[</em><em>string</em><em>]</em>) – the human readable names of the classes that images can belong to.</li>
+<li><strong>paths</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.6)"><em>list</em></a><em>[</em><em>string</em><em>]</em>) – for each image, the path to the image on disk.</li>
+<li><strong>targets</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.6)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.6)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a><em>]</em><em>]</em>) – for each image, a list of class indices to which that image belongs.</li>
+</ul>
+</td>
+</tr>
 </tbody>
 </table>
 <dl class="attribute">
 <dt id="sconce.datasets.csv_image_folder.CsvImageFolder.found_extensions">
 <code class="descname">found_extensions</code><a class="headerlink" href="#sconce.datasets.csv_image_folder.CsvImageFolder.found_extensions" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sconce.datasets.csv_image_folder.CsvImageFolder.get_sample">
+<code class="descname">get_sample</code><span class="sig-paren">(</span><em>index</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/datasets/csv_image_folder.html#CsvImageFolder.get_sample"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.datasets.csv_image_folder.CsvImageFolder.get_sample" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sconce.datasets.csv_image_folder.CsvImageFolder.get_target">
+<code class="descname">get_target</code><span class="sig-paren">(</span><em>index</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/datasets/csv_image_folder.html#CsvImageFolder.get_target"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.datasets.csv_image_folder.CsvImageFolder.get_target" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">

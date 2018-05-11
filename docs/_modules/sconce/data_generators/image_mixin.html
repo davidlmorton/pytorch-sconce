@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>sconce.rate_controllers.base &mdash; Pytorch-Sconce master documentation</title>
+  <title>sconce.data_generators.image_mixin &mdash; Pytorch-Sconce master documentation</title>
   
 
   
@@ -182,7 +182,7 @@
         
           <li><a href="../../index.html">Module code</a> &raquo;</li>
         
-      <li>sconce.rate_controllers.base</li>
+      <li>sconce.data_generators.image_mixin</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -197,93 +197,86 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <h1>Source code for sconce.rate_controllers.base</h1><div class="highlight"><pre>
+  <h1>Source code for sconce.data_generators.image_mixin</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">abc</span> <span class="k">import</span> <span class="n">ABC</span><span class="p">,</span> <span class="n">abstractmethod</span>
-<span class="kn">from</span> <span class="nn">collections</span> <span class="k">import</span> <span class="n">OrderedDict</span>
+
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
 
 
-<div class="viewcode-block" id="RateController"><a class="viewcode-back" href="../../../sconce.rate_controllers.html#sconce.rate_controllers.RateController">[docs]</a><span class="k">class</span> <span class="nc">RateController</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
+<div class="viewcode-block" id="get_image_size"><a class="viewcode-back" href="../../../sconce.data_generators.html#sconce.data_generators.get_image_size">[docs]</a><span class="k">def</span> <span class="nf">get_image_size</span><span class="p">(</span><span class="n">image</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="n">image</span><span class="o">.</span><span class="n">height</span><span class="p">,</span> <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="n">image</span><span class="o">.</span><span class="n">width</span><span class="p">}</span></div>
+
+
+<div class="viewcode-block" id="ImageMixin"><a class="viewcode-back" href="../../../sconce.data_generators.html#sconce.data_generators.ImageMixin">[docs]</a><span class="k">class</span> <span class="nc">ImageMixin</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    The base class of all rate controllers in Sconce.  It is only an interface, describing what must be implemented</span>
-<span class="sd">    if you want to define a rate controller.</span>
+<span class="sd">    A DataGenerator Mixin class with some handy methods for image type data.</span>
+
+<span class="sd">    New in 0.10.0 (used to be called ImageDataGenerator and not be abstract)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-
-<div class="viewcode-block" id="RateController.start_session"><a class="viewcode-back" href="../../../sconce.rate_controllers.html#sconce.rate_controllers.RateController.start_session">[docs]</a>    <span class="nd">@abstractmethod</span>
-    <span class="k">def</span> <span class="nf">start_session</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_steps</span><span class="p">):</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">num_channels</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Called by a :py:class:`~sconce.trainer.Trainer` when starting a training session.</span>
-
-<span class="sd">        Arguments:</span>
-<span class="sd">            num_steps (int): [1, inf) the number of update steps to expect.</span>
+<span class="sd">        The number of image channels, based on looking at the first image in the dataset.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">pass</span></div>
+        <span class="n">dataset</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">real_dataset</span>
+        <span class="k">for</span> <span class="n">image</span><span class="p">,</span> <span class="n">target</span> <span class="ow">in</span> <span class="n">dataset</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">image</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
-<div class="viewcode-block" id="RateController.new_learning_rate"><a class="viewcode-back" href="../../../sconce.rate_controllers.html#sconce.rate_controllers.RateController.new_learning_rate">[docs]</a>    <span class="nd">@abstractmethod</span>
-    <span class="k">def</span> <span class="nf">new_learning_rate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">step</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+<div class="viewcode-block" id="ImageMixin.get_image_size_df"><a class="viewcode-back" href="../../../sconce.data_generators.html#sconce.data_generators.ImageMixin.get_image_size_df">[docs]</a>    <span class="k">def</span> <span class="nf">get_image_size_df</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Called by a :py:class:`~sconce.trainer.Trainer` during a</span>
-<span class="sd">        training/evaluation session just before the training step.</span>
-
-<span class="sd">        Arguments:</span>
-<span class="sd">            data (dict): the output of the training/evaluation step.  The keys</span>
-<span class="sd">                may include, but are not limited to: {&#39;training_loss&#39;, &#39;test_loss&#39;,</span>
-<span class="sd">                &#39;learning_rate&#39;}.</span>
-<span class="sd">            step (float): (0.0, inf) the step that was just completed.</span>
-<span class="sd">                Fractional steps are possible (see batch_multiplier option on</span>
-<span class="sd">                :py:meth:`sconce.trainer.Trainer.train`).</span>
-
-<span class="sd">        Returns:</span>
-<span class="sd">            new_learning_rate (float, :py:class:`collections.OrderedDict`): The new learning rate that should be used</span>
-<span class="sd">            for the next training step.  If this is a :py:class:`~sconce.rate_controllers.base.CompositeRateController`</span>
-<span class="sd">            then an OrderedDict is returned where the keys are like, {&#39;group 0&#39;, &#39;group 1&#39;, ect}, and the values are the</span>
-<span class="sd">            new learning rate (float) for that parameter group.</span>
+<span class="sd">        Return a pandas dataframe that contains the image sizes in the dataset (before transforms).</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">pass</span></div></div>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;_image_size_df&#39;</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_image_size_df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_image_size_df</span><span class="p">()</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_image_size_df</span></div>
 
+    <span class="k">def</span> <span class="nf">_get_image_size_df</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">info_list</span> <span class="o">=</span> <span class="p">[]</span>
 
-<div class="viewcode-block" id="CompositeRateController"><a class="viewcode-back" href="../../../sconce.rate_controllers.html#sconce.rate_controllers.CompositeRateController">[docs]</a><span class="k">class</span> <span class="nc">CompositeRateController</span><span class="p">(</span><span class="n">RateController</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    A rate controller composed of two or more rate controllers.  Using this allows you to pass a single rate controller</span>
-<span class="sd">    to a trainer, and control the learning rate of multiple parameter groups.  The order that the controllers are added</span>
-<span class="sd">    is important, and aligns to the order of the :py:class:`~torch.optim.optimizer.Optimizer`&#39;s parameter_groups.</span>
+        <span class="n">dataset</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">real_dataset</span>
 
-<span class="sd">    Arguments:</span>
-<span class="sd">        rate_controllers (iterable of :py:class:`~sconce.rate_controllers.base.RateController`): the</span>
-<span class="sd">            rate_controllers you want to compose together.</span>
+        <span class="n">old_transform</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">transform</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">dataset</span><span class="o">.</span><span class="n">transform</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="n">dataset</span><span class="o">.</span><span class="n">target_transform</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="k">for</span> <span class="n">image</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">dataset</span><span class="p">:</span>
+                <span class="n">info</span> <span class="o">=</span> <span class="n">get_image_size</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+                <span class="n">info_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">info</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+            <span class="k">pass</span>
+        <span class="n">dataset</span><span class="o">.</span><span class="n">transform</span> <span class="o">=</span> <span class="n">old_transform</span>
 
-<span class="sd">    New in 0.9.0</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rate_controllers</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">info_list</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">rate_controllers</span> <span class="o">=</span> <span class="p">[]</span>
+<div class="viewcode-block" id="ImageMixin.get_class_df"><a class="viewcode-back" href="../../../sconce.data_generators.html#sconce.data_generators.ImageMixin.get_class_df">[docs]</a>    <span class="k">def</span> <span class="nf">get_class_df</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return a pandas dataframe that contains the classes in the dataset.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;_class_df&#39;</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_class_df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_class_df</span><span class="p">()</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_class_df</span></div>
 
-        <span class="k">for</span> <span class="n">rc</span> <span class="ow">in</span> <span class="n">rate_controllers</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">add_rate_controller</span><span class="p">(</span><span class="n">rc</span><span class="p">)</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">_get_class_df</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
 
-<div class="viewcode-block" id="CompositeRateController.add_rate_controller"><a class="viewcode-back" href="../../../sconce.rate_controllers.html#sconce.rate_controllers.CompositeRateController.add_rate_controller">[docs]</a>    <span class="k">def</span> <span class="nf">add_rate_controller</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
-        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">CompositeRateController</span><span class="p">):</span>
-            <span class="k">for</span> <span class="n">nested_rate_controller</span> <span class="ow">in</span> <span class="n">other</span><span class="o">.</span><span class="n">rate_controllers</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_add_rate_controller</span><span class="p">(</span><span class="n">nested_rate_controller</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_add_rate_controller</span><span class="p">(</span><span class="n">other</span><span class="p">)</span></div>
+<div class="viewcode-block" id="ImageMixin.plot_class_summary"><a class="viewcode-back" href="../../../sconce.data_generators.html#sconce.data_generators.ImageMixin.plot_class_summary">[docs]</a>    <span class="k">def</span> <span class="nf">plot_class_summary</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Generate a barchart showing how many images of each class there are.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_class_df</span><span class="p">()</span>
+        <span class="n">plot_kwargs</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;kind&#39;</span><span class="p">:</span> <span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">}</span>
+        <span class="k">return</span> <span class="n">df</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="o">**</span><span class="n">plot_kwargs</span><span class="p">)</span></div>
 
-    <span class="k">def</span> <span class="nf">_add_rate_controller</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">rate_controllers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
-
-<div class="viewcode-block" id="CompositeRateController.start_session"><a class="viewcode-back" href="../../../sconce.rate_controllers.html#sconce.rate_controllers.CompositeRateController.start_session">[docs]</a>    <span class="k">def</span> <span class="nf">start_session</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_steps</span><span class="p">):</span>
-        <span class="k">for</span> <span class="n">rc</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">rate_controllers</span><span class="p">:</span>
-            <span class="n">rc</span><span class="o">.</span><span class="n">start_session</span><span class="p">(</span><span class="n">num_steps</span><span class="p">)</span></div>
-
-<div class="viewcode-block" id="CompositeRateController.new_learning_rate"><a class="viewcode-back" href="../../../sconce.rate_controllers.html#sconce.rate_controllers.CompositeRateController.new_learning_rate">[docs]</a>    <span class="k">def</span> <span class="nf">new_learning_rate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">step</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
-        <span class="n">result</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">()</span>
-        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">rc</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rate_controllers</span><span class="p">):</span>
-            <span class="n">new_learning_rate</span> <span class="o">=</span> <span class="n">rc</span><span class="o">.</span><span class="n">new_learning_rate</span><span class="p">(</span><span class="n">step</span><span class="o">=</span><span class="n">step</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">new_learning_rate</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="k">return</span> <span class="kc">None</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="n">result</span><span class="p">[</span><span class="s1">&#39;group </span><span class="si">%d</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_learning_rate</span>
-        <span class="k">return</span> <span class="n">result</span></div></div>
+<div class="viewcode-block" id="ImageMixin.plot_image_size_summary"><a class="viewcode-back" href="../../../sconce.data_generators.html#sconce.data_generators.ImageMixin.plot_image_size_summary">[docs]</a>    <span class="k">def</span> <span class="nf">plot_image_size_summary</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Generate a scatter plot showing the sizes of the images in the dataset.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_image_size_df</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">sns</span><span class="o">.</span><span class="n">jointplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;height&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;width&quot;</span><span class="p">,</span>
+                <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;scatter&#39;</span><span class="p">,</span> <span class="n">stat_func</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">)</span></div></div>
 </pre></div>
 
            </div>

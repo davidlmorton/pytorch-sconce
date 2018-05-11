@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                master (0.9.4 )
+                master (0.10.0 )
               </div>
             
           
@@ -88,11 +88,17 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="data_generator.html">Data Generators</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="data_generator.html#datagenerator"><span class="hidden-section">DataGenerator</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="data_generator.html#imagedatagenerator"><span class="hidden-section">ImageDataGenerator</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_generator.html#imagedatagenerator-deprecated"><span class="hidden-section">ImageDataGenerator (deprecated)</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_generator.html#singleclassimagedatagenerator"><span class="hidden-section">SingleClassImageDataGenerator</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_generator.html#multiclassimagedatagenerator"><span class="hidden-section">MultiClassImageDataGenerator</span></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="datasets.html">Datasests</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="datasets.html#csvimagefolder"><span class="hidden-section">CsvImageFolder</span></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="transforms.html">Transforms</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="transforms.html#nhot"><span class="hidden-section">NHot</span></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="rate_controllers.html">Rate Controllers</a><ul>
@@ -126,7 +132,8 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Trainers</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#basic-trainer"><span class="hidden-section">Basic Trainer</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#autoencodertrainer"><span class="hidden-section">AutoencoderTrainer</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#classifiertrainer"><span class="hidden-section">ClassifierTrainer</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#singleclassimageclassifiertrainer"><span class="hidden-section">SingleClassImageClassifierTrainer</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#classifiertrainer-deprecated"><span class="hidden-section">ClassifierTrainer (deprecated)</span></a></li>
 </ul>
 </li>
 </ul>
@@ -211,12 +218,12 @@ objects (<a class="reference internal" href="sconce.data_generators.html#sconce.
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name" colspan="2">Keyword Arguments:</th></tr>
 <tr class="field-odd field"><td>&#160;</td><td class="field-body"><ul class="first last simple">
-<li><strong>model</strong> (<a class="reference external" href="https://pytorch.org/docs/master/nn.html#torch.nn.Module" title="(in PyTorch vmaster (0.5.0a0+5146bc9 ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.Module</span></code></a>) – the torch model to be trained.  See <a class="reference internal" href="models.html#module-sconce.models" title="sconce.models"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sconce.models</span></code></a> for examples.</li>
+<li><strong>model</strong> (<a class="reference external" href="https://pytorch.org/docs/master/nn.html#torch.nn.Module" title="(in PyTorch vmaster (0.5.0a0+947155c ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.Module</span></code></a>) – the torch model to be trained.  See <a class="reference internal" href="models.html#module-sconce.models" title="sconce.models"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sconce.models</span></code></a> for examples.</li>
 <li><strong>training_data_generator</strong> (<a class="reference internal" href="sconce.data_generators.html#sconce.data_generators.base.DataGenerator" title="sconce.data_generators.base.DataGenerator"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataGenerator</span></code></a>) – yields training <cite>inputs</cite> and
 <cite>targets</cite>.</li>
 <li><strong>test_data_generator</strong> (<a class="reference internal" href="sconce.data_generators.html#sconce.data_generators.base.DataGenerator" title="sconce.data_generators.base.DataGenerator"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataGenerator</span></code></a>) – yields test <cite>inputs</cite> and
 <cite>targets</cite>.  These are never used for back-propagation.</li>
-<li><strong>optimizer</strong> (<a class="reference external" href="https://pytorch.org/docs/master/optim.html#torch.optim.Optimizer" title="(in PyTorch vmaster (0.5.0a0+5146bc9 ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">torch.optim.Optimizer</span></code></a>) – the torch optimizer that updates model parameters during
+<li><strong>optimizer</strong> (<a class="reference external" href="https://pytorch.org/docs/master/optim.html#torch.optim.Optimizer" title="(in PyTorch vmaster (0.5.0a0+947155c ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">torch.optim.Optimizer</span></code></a>) – the torch optimizer that updates model parameters during
 training.</li>
 <li><strong>monitor</strong> (<a class="reference internal" href="sconce.monitors.html#sconce.monitors.base.Monitor" title="sconce.monitors.base.Monitor"><code class="xref py py-class docutils literal notranslate"><span class="pre">Monitor</span></code></a>, optional) – the sconce monitor that records data during
 training.  This data can be sent to external systems during training or kept until training completes
@@ -424,15 +431,441 @@ the memory usage would be for a batch size of 100.</li>
 <dt id="sconce.trainers.AutoencoderTrainer">
 <em class="property">class </em><code class="descclassname">sconce.trainers.</code><code class="descname">AutoencoderTrainer</code><span class="sig-paren">(</span><em>*</em>, <em>model</em>, <em>training_data_generator</em>, <em>test_data_generator</em>, <em>optimizer</em>, <em>monitor=None</em>, <em>rate_controller=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/trainers/autoencoder_trainer.html#AutoencoderTrainer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.trainers.AutoencoderTrainer" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#sconce.trainer.Trainer" title="sconce.trainer.Trainer"><code class="xref py py-class docutils literal notranslate"><span class="pre">sconce.trainer.Trainer</span></code></a>, <a class="reference internal" href="sconce.trainers.html#sconce.trainers.autoencoder_trainer.AutoencoderMixin" title="sconce.trainers.autoencoder_trainer.AutoencoderMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">sconce.trainers.autoencoder_trainer.AutoencoderMixin</span></code></a></p>
+<dl class="method">
+<dt id="sconce.trainers.AutoencoderTrainer.checkpoint">
+<code class="descname">checkpoint</code><span class="sig-paren">(</span><em>filename=None</em><span class="sig-paren">)</span><a class="headerlink" href="#sconce.trainers.AutoencoderTrainer.checkpoint" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save model state and retain filename for a later call to <a class="reference internal" href="#sconce.trainer.Trainer.restore" title="sconce.trainer.Trainer.restore"><code class="xref py py-meth docutils literal notranslate"><span class="pre">restore()</span></code></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>filename</strong> (<em>path</em><em>, </em><em>optional</em>) – the filename to save the model state to.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="sconce.trainers.AutoencoderTrainer.load_model_state">
+<code class="descname">load_model_state</code><span class="sig-paren">(</span><em>filename</em><span class="sig-paren">)</span><a class="headerlink" href="#sconce.trainers.AutoencoderTrainer.load_model_state" title="Permalink to this definition">¶</a></dt>
+<dd><p>Restore model state frome a file.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>filename</strong> (<em>path</em>) – the filename to where the model’s state was saved.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="sconce.trainers.AutoencoderTrainer.multi_train">
+<code class="descname">multi_train</code><span class="sig-paren">(</span><em>*</em>, <em>num_cycles</em>, <em>cycle_length=1</em>, <em>cycle_multiplier=2.0</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#sconce.trainers.AutoencoderTrainer.multi_train" title="Permalink to this definition">¶</a></dt>
+<dd><p>Runs multiple training sessions one after another.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>num_cycles</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) – [1, inf) the number of cycles to train for.</li>
+<li><strong>cycle_length</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.6)"><em>float</em></a>) – (0.0, inf) the length (in epochs) of the first cycle.</li>
+<li><strong>cycle_multiplier</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.6)"><em>float</em></a>) – (0.0, inf) a factor used to determine the length of a cycle.  The length of a
+cycle is equal to the length of the previous cycle (or <code class="docutils literal notranslate"><span class="pre">cycle_length</span></code> if it is the first cycle)
+multiplied by <code class="docutils literal notranslate"><span class="pre">cycle_multiplier</span></code>.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Keyword Arguments:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><p class="first last"><strong>**kwargs</strong> – are passed to the underlying <a class="reference internal" href="#sconce.trainer.Trainer.train" title="sconce.trainer.Trainer.train"><code class="xref py py-meth docutils literal notranslate"><span class="pre">train()</span></code></a> method.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="sconce.trainers.AutoencoderTrainer.num_trainable_parameters">
+<code class="descname">num_trainable_parameters</code><a class="headerlink" href="#sconce.trainers.AutoencoderTrainer.num_trainable_parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>The number of trainable parameters that the models has.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sconce.trainers.AutoencoderTrainer.restore">
+<code class="descname">restore</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sconce.trainers.AutoencoderTrainer.restore" title="Permalink to this definition">¶</a></dt>
+<dd><p>Restore model to previously checkpointed state.  See also <a class="reference internal" href="#sconce.trainer.Trainer.checkpoint" title="sconce.trainer.Trainer.checkpoint"><code class="xref py py-meth docutils literal notranslate"><span class="pre">checkpoint()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sconce.trainers.AutoencoderTrainer.save_model_state">
+<code class="descname">save_model_state</code><span class="sig-paren">(</span><em>filename=None</em><span class="sig-paren">)</span><a class="headerlink" href="#sconce.trainers.AutoencoderTrainer.save_model_state" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save model state to a file.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>filename</strong> (<em>path</em><em>, </em><em>optional</em>) – the filename to save the model state to.
+If <code class="docutils literal notranslate"><span class="pre">None</span></code>, a system dependent temporary location will be chosen.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">the passed in filename, or the temporary filename chosen if <code class="docutils literal notranslate"><span class="pre">None</span></code> was passed in.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">filename (path)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="sconce.trainers.AutoencoderTrainer.survey_learning_rate">
+<code class="descname">survey_learning_rate</code><span class="sig-paren">(</span><em>*</em>, <em>num_epochs=1.0</em>, <em>min_learning_rate=1e-12</em>, <em>max_learning_rate=10</em>, <em>monitor=None</em>, <em>batch_multiplier=1</em>, <em>rate_controller_class=&lt;class 'sconce.rate_controllers.exponential_rate_controller.ExponentialRateController'&gt;</em>, <em>stop_factor=10</em>, <em>**rate_controller_kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#sconce.trainers.AutoencoderTrainer.survey_learning_rate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checkpoints a model, then runs a learning rate survey, before restoring the model back.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Keyword Arguments:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body"><ul class="first simple">
+<li><strong>num_epochs</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.6)"><em>float</em></a><em>, </em><em>optional</em>) – (0.0, inf) the number of epochs to train the model for.</li>
+<li><strong>min_learning_rate</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.6)"><em>float</em></a><em>, </em><em>optional</em>) – (0.0, inf) the minimum learning rate used in the survey.</li>
+<li><strong>max_learning_rate</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.6)"><em>float</em></a><em>, </em><em>optional</em>) – (0.0, inf) the maximum learning rate used in the survey.</li>
+<li><strong>monitor</strong> (<a class="reference internal" href="sconce.monitors.html#sconce.monitors.base.Monitor" title="sconce.monitors.base.Monitor"><code class="xref py py-class docutils literal notranslate"><span class="pre">Monitor</span></code></a>, optional) – the sconce monitor that records data during
+the learning rate survey.  If <code class="docutils literal notranslate"><span class="pre">None</span></code>, a composite monitor consisting of a
+<a class="reference internal" href="sconce.monitors.html#sconce.monitors.stdout_monitor.StdoutMonitor" title="sconce.monitors.stdout_monitor.StdoutMonitor"><code class="xref py py-class docutils literal notranslate"><span class="pre">StdoutMonitor</span></code></a> and a
+<a class="reference internal" href="sconce.monitors.html#sconce.monitors.dataframe_monitor.DataframeMonitor" title="sconce.monitors.dataframe_monitor.DataframeMonitor"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataframeMonitor</span></code></a> will be created for you and used.</li>
+<li><strong>batch_multiplier</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a><em>, </em><em>optional</em>) – [1, inf) determines how often parameter updates will occur during
+training.  If greater than 1, this simulates large batch sizes without increasing memory usage.  For
+example, if the batch size were 100 and batch_multipler=10, the effective batch size would be 1,000, but
+the memory usage would be for a batch size of 100.</li>
+<li><strong>rate_controller_class</strong> (<em>class</em><em>, </em><em>optional</em>) – the subclass of
+<a class="reference internal" href="sconce.rate_controllers.html#sconce.rate_controllers.base.RateController" title="sconce.rate_controllers.base.RateController"><code class="xref py py-class docutils literal notranslate"><span class="pre">RateController</span></code></a> to be used during this learning rate survey.
+In practice, only
+<a class="reference internal" href="sconce.rate_controllers.html#sconce.rate_controllers.exponential_rate_controller.ExponentialRateController" title="sconce.rate_controllers.exponential_rate_controller.ExponentialRateController"><code class="xref py py-class docutils literal notranslate"><span class="pre">ExponentialRateController</span></code></a> and
+<a class="reference internal" href="sconce.rate_controllers.html#sconce.rate_controllers.linear_rate_controller.LinearRateController" title="sconce.rate_controllers.linear_rate_controller.LinearRateController"><code class="xref py py-class docutils literal notranslate"><span class="pre">LinearRateController</span></code></a> are typically used.</li>
+<li><strong>stop_factor</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.6)"><em>float</em></a>) – (1.0, inf) determines early stopping.  If the <cite>training loss</cite> rises by more than
+this factor from it’s minimum value, the survey will stop.</li>
+<li><strong>**rate_controller_kwargs</strong> – passed to the constructor of the <code class="docutils literal notranslate"><span class="pre">rate_controller_class</span></code> along with
+<code class="docutils literal notranslate"><span class="pre">min_learning_rate</span></code>, <code class="docutils literal notranslate"><span class="pre">max_learning_rate</span></code>, and <code class="docutils literal notranslate"><span class="pre">stop_factor</span></code>.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">the monitor used during this learning rate survey.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">monitor (<a class="reference internal" href="sconce.monitors.html#sconce.monitors.base.Monitor" title="sconce.monitors.base.Monitor"><code class="xref py py-class docutils literal notranslate"><span class="pre">Monitor</span></code></a>)</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="sconce.trainers.AutoencoderTrainer.test">
+<code class="descname">test</code><span class="sig-paren">(</span><em>*</em>, <em>monitor=None</em><span class="sig-paren">)</span><a class="headerlink" href="#sconce.trainers.AutoencoderTrainer.test" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run all samples of self.test_data_generator through the model in test (inference) mode.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>monitor</strong> (<a class="reference internal" href="sconce.monitors.html#sconce.monitors.base.Monitor" title="sconce.monitors.base.Monitor"><code class="xref py py-class docutils literal notranslate"><span class="pre">Monitor</span></code></a>, optional) – the sconce monitor that records data during
+this testing.  If <code class="docutils literal notranslate"><span class="pre">None</span></code>, a composite monitor consisting of a
+<a class="reference internal" href="sconce.monitors.html#sconce.monitors.stdout_monitor.StdoutMonitor" title="sconce.monitors.stdout_monitor.StdoutMonitor"><code class="xref py py-class docutils literal notranslate"><span class="pre">StdoutMonitor</span></code></a> and a
+<a class="reference internal" href="sconce.monitors.html#sconce.monitors.dataframe_monitor.DataframeMonitor" title="sconce.monitors.dataframe_monitor.DataframeMonitor"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataframeMonitor</span></code></a> will be created for you and used.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">the monitor used during this testing.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">monitor (<a class="reference internal" href="sconce.monitors.html#sconce.monitors.base.Monitor" title="sconce.monitors.base.Monitor"><code class="xref py py-class docutils literal notranslate"><span class="pre">Monitor</span></code></a>)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="sconce.trainers.AutoencoderTrainer.train">
+<code class="descname">train</code><span class="sig-paren">(</span><em>*</em>, <em>num_epochs</em>, <em>monitor=None</em>, <em>rate_controller=None</em>, <em>test_to_train_ratio=None</em>, <em>batch_multiplier=1</em><span class="sig-paren">)</span><a class="headerlink" href="#sconce.trainers.AutoencoderTrainer.train" title="Permalink to this definition">¶</a></dt>
+<dd><p>Train the model for a given number of epochs.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>num_epochs</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.6)"><em>float</em></a>) – the number of epochs to train the model for.</li>
+<li><strong>monitor</strong> (<a class="reference internal" href="sconce.monitors.html#sconce.monitors.base.Monitor" title="sconce.monitors.base.Monitor"><code class="xref py py-class docutils literal notranslate"><span class="pre">Monitor</span></code></a>, optional) – a monitor to use for this training session.
+If <code class="docutils literal notranslate"><span class="pre">None</span></code>, then self.monitor will be used.</li>
+<li><strong>(</strong> (<em>rate_controller</em>) – py:class:<cite>~sconce.rate_controllers.base.RateController, optional): a rate_controller to
+use for this training session.  If ``None`</cite>, then self.rate_controller will be used.</li>
+<li><strong>test_to_train_ratio</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.6)"><em>float</em></a><em>, </em><em>optional</em>) – [0.0, 1.0] determines how often (relative to training samples) that
+test samples are run through the model during training.  If <code class="docutils literal notranslate"><span class="pre">None</span></code>, then the relative size of the
+training and test datasets is used.  For example, for MNIST with 60,000 training samples and 10,000 test
+samples, the value would be 1/6th.</li>
+<li><strong>batch_multiplier</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a><em>, </em><em>optional</em>) – [1, inf) determines how often parameter updates will occur during
+training.  If greater than 1, this simulates large batch sizes without increasing memory usage.  For
+example, if the batch size were 100 and batch_multipler=10, the effective batch size would be 1,000, but
+the memory usage would be for a batch size of 100.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">the monitor used during training.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">monitor (<a class="reference internal" href="sconce.monitors.html#sconce.monitors.base.Monitor" title="sconce.monitors.base.Monitor"><code class="xref py py-class docutils literal notranslate"><span class="pre">Monitor</span></code></a>)</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 </dd></dl>
 
 </div>
-<div class="section" id="classifiertrainer">
-<h2><span class="hidden-section">ClassifierTrainer</span><a class="headerlink" href="#classifiertrainer" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="singleclassimageclassifiertrainer">
+<h2><span class="hidden-section">SingleClassImageClassifierTrainer</span><a class="headerlink" href="#singleclassimageclassifiertrainer" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="sconce.trainers.SingleClassImageClassifierTrainer">
+<em class="property">class </em><code class="descclassname">sconce.trainers.</code><code class="descname">SingleClassImageClassifierTrainer</code><span class="sig-paren">(</span><em>*</em>, <em>model</em>, <em>training_data_generator</em>, <em>test_data_generator</em>, <em>optimizer</em>, <em>monitor=None</em>, <em>rate_controller=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/trainers/single_class_image_classifier_trainer.html#SingleClassImageClassifierTrainer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.trainers.SingleClassImageClassifierTrainer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#sconce.trainer.Trainer" title="sconce.trainer.Trainer"><code class="xref py py-class docutils literal notranslate"><span class="pre">sconce.trainer.Trainer</span></code></a>, <a class="reference internal" href="sconce.trainers.html#sconce.trainers.single_class_image_classifier_trainer.SingleClassImageClassifierMixin" title="sconce.trainers.single_class_image_classifier_trainer.SingleClassImageClassifierMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">sconce.trainers.single_class_image_classifier_trainer.SingleClassImageClassifierMixin</span></code></a></p>
+<p>A trainer with some methods that are handy when you’re training an image classifier model.  Specifically a model
+that classifies images into a single class per image.</p>
+<p>New in 0.10.0 (Used to be called ClassifierTrainer)</p>
+<dl class="method">
+<dt id="sconce.trainers.SingleClassImageClassifierTrainer.checkpoint">
+<code class="descname">checkpoint</code><span class="sig-paren">(</span><em>filename=None</em><span class="sig-paren">)</span><a class="headerlink" href="#sconce.trainers.SingleClassImageClassifierTrainer.checkpoint" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save model state and retain filename for a later call to <a class="reference internal" href="#sconce.trainer.Trainer.restore" title="sconce.trainer.Trainer.restore"><code class="xref py py-meth docutils literal notranslate"><span class="pre">restore()</span></code></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>filename</strong> (<em>path</em><em>, </em><em>optional</em>) – the filename to save the model state to.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="sconce.trainers.SingleClassImageClassifierTrainer.load_model_state">
+<code class="descname">load_model_state</code><span class="sig-paren">(</span><em>filename</em><span class="sig-paren">)</span><a class="headerlink" href="#sconce.trainers.SingleClassImageClassifierTrainer.load_model_state" title="Permalink to this definition">¶</a></dt>
+<dd><p>Restore model state frome a file.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>filename</strong> (<em>path</em>) – the filename to where the model’s state was saved.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="sconce.trainers.SingleClassImageClassifierTrainer.multi_train">
+<code class="descname">multi_train</code><span class="sig-paren">(</span><em>*</em>, <em>num_cycles</em>, <em>cycle_length=1</em>, <em>cycle_multiplier=2.0</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#sconce.trainers.SingleClassImageClassifierTrainer.multi_train" title="Permalink to this definition">¶</a></dt>
+<dd><p>Runs multiple training sessions one after another.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>num_cycles</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) – [1, inf) the number of cycles to train for.</li>
+<li><strong>cycle_length</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.6)"><em>float</em></a>) – (0.0, inf) the length (in epochs) of the first cycle.</li>
+<li><strong>cycle_multiplier</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.6)"><em>float</em></a>) – (0.0, inf) a factor used to determine the length of a cycle.  The length of a
+cycle is equal to the length of the previous cycle (or <code class="docutils literal notranslate"><span class="pre">cycle_length</span></code> if it is the first cycle)
+multiplied by <code class="docutils literal notranslate"><span class="pre">cycle_multiplier</span></code>.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Keyword Arguments:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><p class="first last"><strong>**kwargs</strong> – are passed to the underlying <a class="reference internal" href="#sconce.trainer.Trainer.train" title="sconce.trainer.Trainer.train"><code class="xref py py-meth docutils literal notranslate"><span class="pre">train()</span></code></a> method.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="sconce.trainers.SingleClassImageClassifierTrainer.num_trainable_parameters">
+<code class="descname">num_trainable_parameters</code><a class="headerlink" href="#sconce.trainers.SingleClassImageClassifierTrainer.num_trainable_parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>The number of trainable parameters that the models has.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sconce.trainers.SingleClassImageClassifierTrainer.plot_samples">
+<code class="descname">plot_samples</code><span class="sig-paren">(</span><em>predicted_class</em>, <em>true_class=None</em>, <em>data_generator=None</em>, <em>sort_by='rising predicted class score'</em>, <em>num_samples=7</em>, <em>num_cols=7</em>, <em>figure_width=15</em>, <em>image_height=3</em>, <em>cache_results=True</em><span class="sig-paren">)</span><a class="headerlink" href="#sconce.trainers.SingleClassImageClassifierTrainer.plot_samples" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot samples of the dataset where the given &lt;predicted_class&gt; was predicted by the model.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>predicted_class</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a><em> or </em><em>string</em>) – the class string or the index of the class that was predicted by the model.</li>
+<li><strong>true_class</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a><em> or </em><em>string</em>) – the class string or the index of the class that the image actually belongs to.</li>
+<li><strong>data_generator</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">SingleClassImageDataGenerator</span></code>) – the data generator
+to use to find the samples.</li>
+<li><strong>sort_by</strong> (<em>string</em>) – one of the sort_by strings, see note below.</li>
+<li><strong>num_samples</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) – the number of sample images to plot.</li>
+<li><strong>num_cols</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) – the number of columns to plot, one image per column.</li>
+<li><strong>figure_width</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.6)"><em>float</em></a>) – the size, in matplotlib-inches, for the width of the whole figure.</li>
+<li><strong>image_height</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.6)"><em>float</em></a>) – the size, in matplotlib-inches, for the height of a single image.</li>
+<li><strong>cache_results</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.6)"><em>bool</em></a>) – keep the results in memory to make subsequent plots faster.  Beware, that on large
+datasets (like imagenet) this can cause your system to run out of memory.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<dl class="last docutils">
+<dt>The sort_by strings supported are:</dt>
+<dd><ul class="first last simple">
+<li>“rising predicted class score”: samples are plotted in order of the lowest predicted class score to
+the highest predicted class score.</li>
+<li>“falling predicted class score”: samples are plotted in order of the higest predicted class score to
+the lowest predicted class score.</li>
+<li>“rising true class score”: samples are plotted in order of the lowest true class score to
+the highest true class score.</li>
+<li>“falling true class score”: samples are plotted in order of the higest true class score to
+the lowest true class score.</li>
+</ul>
+</dd>
+</dl>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="sconce.trainers.SingleClassImageClassifierTrainer.restore">
+<code class="descname">restore</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sconce.trainers.SingleClassImageClassifierTrainer.restore" title="Permalink to this definition">¶</a></dt>
+<dd><p>Restore model to previously checkpointed state.  See also <a class="reference internal" href="#sconce.trainer.Trainer.checkpoint" title="sconce.trainer.Trainer.checkpoint"><code class="xref py py-meth docutils literal notranslate"><span class="pre">checkpoint()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sconce.trainers.SingleClassImageClassifierTrainer.save_model_state">
+<code class="descname">save_model_state</code><span class="sig-paren">(</span><em>filename=None</em><span class="sig-paren">)</span><a class="headerlink" href="#sconce.trainers.SingleClassImageClassifierTrainer.save_model_state" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save model state to a file.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>filename</strong> (<em>path</em><em>, </em><em>optional</em>) – the filename to save the model state to.
+If <code class="docutils literal notranslate"><span class="pre">None</span></code>, a system dependent temporary location will be chosen.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">the passed in filename, or the temporary filename chosen if <code class="docutils literal notranslate"><span class="pre">None</span></code> was passed in.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">filename (path)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="sconce.trainers.SingleClassImageClassifierTrainer.survey_learning_rate">
+<code class="descname">survey_learning_rate</code><span class="sig-paren">(</span><em>*</em>, <em>num_epochs=1.0</em>, <em>min_learning_rate=1e-12</em>, <em>max_learning_rate=10</em>, <em>monitor=None</em>, <em>batch_multiplier=1</em>, <em>rate_controller_class=&lt;class 'sconce.rate_controllers.exponential_rate_controller.ExponentialRateController'&gt;</em>, <em>stop_factor=10</em>, <em>**rate_controller_kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#sconce.trainers.SingleClassImageClassifierTrainer.survey_learning_rate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checkpoints a model, then runs a learning rate survey, before restoring the model back.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Keyword Arguments:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body"><ul class="first simple">
+<li><strong>num_epochs</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.6)"><em>float</em></a><em>, </em><em>optional</em>) – (0.0, inf) the number of epochs to train the model for.</li>
+<li><strong>min_learning_rate</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.6)"><em>float</em></a><em>, </em><em>optional</em>) – (0.0, inf) the minimum learning rate used in the survey.</li>
+<li><strong>max_learning_rate</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.6)"><em>float</em></a><em>, </em><em>optional</em>) – (0.0, inf) the maximum learning rate used in the survey.</li>
+<li><strong>monitor</strong> (<a class="reference internal" href="sconce.monitors.html#sconce.monitors.base.Monitor" title="sconce.monitors.base.Monitor"><code class="xref py py-class docutils literal notranslate"><span class="pre">Monitor</span></code></a>, optional) – the sconce monitor that records data during
+the learning rate survey.  If <code class="docutils literal notranslate"><span class="pre">None</span></code>, a composite monitor consisting of a
+<a class="reference internal" href="sconce.monitors.html#sconce.monitors.stdout_monitor.StdoutMonitor" title="sconce.monitors.stdout_monitor.StdoutMonitor"><code class="xref py py-class docutils literal notranslate"><span class="pre">StdoutMonitor</span></code></a> and a
+<a class="reference internal" href="sconce.monitors.html#sconce.monitors.dataframe_monitor.DataframeMonitor" title="sconce.monitors.dataframe_monitor.DataframeMonitor"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataframeMonitor</span></code></a> will be created for you and used.</li>
+<li><strong>batch_multiplier</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a><em>, </em><em>optional</em>) – [1, inf) determines how often parameter updates will occur during
+training.  If greater than 1, this simulates large batch sizes without increasing memory usage.  For
+example, if the batch size were 100 and batch_multipler=10, the effective batch size would be 1,000, but
+the memory usage would be for a batch size of 100.</li>
+<li><strong>rate_controller_class</strong> (<em>class</em><em>, </em><em>optional</em>) – the subclass of
+<a class="reference internal" href="sconce.rate_controllers.html#sconce.rate_controllers.base.RateController" title="sconce.rate_controllers.base.RateController"><code class="xref py py-class docutils literal notranslate"><span class="pre">RateController</span></code></a> to be used during this learning rate survey.
+In practice, only
+<a class="reference internal" href="sconce.rate_controllers.html#sconce.rate_controllers.exponential_rate_controller.ExponentialRateController" title="sconce.rate_controllers.exponential_rate_controller.ExponentialRateController"><code class="xref py py-class docutils literal notranslate"><span class="pre">ExponentialRateController</span></code></a> and
+<a class="reference internal" href="sconce.rate_controllers.html#sconce.rate_controllers.linear_rate_controller.LinearRateController" title="sconce.rate_controllers.linear_rate_controller.LinearRateController"><code class="xref py py-class docutils literal notranslate"><span class="pre">LinearRateController</span></code></a> are typically used.</li>
+<li><strong>stop_factor</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.6)"><em>float</em></a>) – (1.0, inf) determines early stopping.  If the <cite>training loss</cite> rises by more than
+this factor from it’s minimum value, the survey will stop.</li>
+<li><strong>**rate_controller_kwargs</strong> – passed to the constructor of the <code class="docutils literal notranslate"><span class="pre">rate_controller_class</span></code> along with
+<code class="docutils literal notranslate"><span class="pre">min_learning_rate</span></code>, <code class="docutils literal notranslate"><span class="pre">max_learning_rate</span></code>, and <code class="docutils literal notranslate"><span class="pre">stop_factor</span></code>.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">the monitor used during this learning rate survey.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">monitor (<a class="reference internal" href="sconce.monitors.html#sconce.monitors.base.Monitor" title="sconce.monitors.base.Monitor"><code class="xref py py-class docutils literal notranslate"><span class="pre">Monitor</span></code></a>)</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="sconce.trainers.SingleClassImageClassifierTrainer.test">
+<code class="descname">test</code><span class="sig-paren">(</span><em>*</em>, <em>monitor=None</em><span class="sig-paren">)</span><a class="headerlink" href="#sconce.trainers.SingleClassImageClassifierTrainer.test" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run all samples of self.test_data_generator through the model in test (inference) mode.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>monitor</strong> (<a class="reference internal" href="sconce.monitors.html#sconce.monitors.base.Monitor" title="sconce.monitors.base.Monitor"><code class="xref py py-class docutils literal notranslate"><span class="pre">Monitor</span></code></a>, optional) – the sconce monitor that records data during
+this testing.  If <code class="docutils literal notranslate"><span class="pre">None</span></code>, a composite monitor consisting of a
+<a class="reference internal" href="sconce.monitors.html#sconce.monitors.stdout_monitor.StdoutMonitor" title="sconce.monitors.stdout_monitor.StdoutMonitor"><code class="xref py py-class docutils literal notranslate"><span class="pre">StdoutMonitor</span></code></a> and a
+<a class="reference internal" href="sconce.monitors.html#sconce.monitors.dataframe_monitor.DataframeMonitor" title="sconce.monitors.dataframe_monitor.DataframeMonitor"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataframeMonitor</span></code></a> will be created for you and used.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">the monitor used during this testing.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">monitor (<a class="reference internal" href="sconce.monitors.html#sconce.monitors.base.Monitor" title="sconce.monitors.base.Monitor"><code class="xref py py-class docutils literal notranslate"><span class="pre">Monitor</span></code></a>)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="sconce.trainers.SingleClassImageClassifierTrainer.train">
+<code class="descname">train</code><span class="sig-paren">(</span><em>*</em>, <em>num_epochs</em>, <em>monitor=None</em>, <em>rate_controller=None</em>, <em>test_to_train_ratio=None</em>, <em>batch_multiplier=1</em><span class="sig-paren">)</span><a class="headerlink" href="#sconce.trainers.SingleClassImageClassifierTrainer.train" title="Permalink to this definition">¶</a></dt>
+<dd><p>Train the model for a given number of epochs.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>num_epochs</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.6)"><em>float</em></a>) – the number of epochs to train the model for.</li>
+<li><strong>monitor</strong> (<a class="reference internal" href="sconce.monitors.html#sconce.monitors.base.Monitor" title="sconce.monitors.base.Monitor"><code class="xref py py-class docutils literal notranslate"><span class="pre">Monitor</span></code></a>, optional) – a monitor to use for this training session.
+If <code class="docutils literal notranslate"><span class="pre">None</span></code>, then self.monitor will be used.</li>
+<li><strong>(</strong> (<em>rate_controller</em>) – py:class:<cite>~sconce.rate_controllers.base.RateController, optional): a rate_controller to
+use for this training session.  If ``None`</cite>, then self.rate_controller will be used.</li>
+<li><strong>test_to_train_ratio</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.6)"><em>float</em></a><em>, </em><em>optional</em>) – [0.0, 1.0] determines how often (relative to training samples) that
+test samples are run through the model during training.  If <code class="docutils literal notranslate"><span class="pre">None</span></code>, then the relative size of the
+training and test datasets is used.  For example, for MNIST with 60,000 training samples and 10,000 test
+samples, the value would be 1/6th.</li>
+<li><strong>batch_multiplier</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a><em>, </em><em>optional</em>) – [1, inf) determines how often parameter updates will occur during
+training.  If greater than 1, this simulates large batch sizes without increasing memory usage.  For
+example, if the batch size were 100 and batch_multipler=10, the effective batch size would be 1,000, but
+the memory usage would be for a batch size of 100.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">the monitor used during training.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">monitor (<a class="reference internal" href="sconce.monitors.html#sconce.monitors.base.Monitor" title="sconce.monitors.base.Monitor"><code class="xref py py-class docutils literal notranslate"><span class="pre">Monitor</span></code></a>)</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="classifiertrainer-deprecated">
+<h2><span class="hidden-section">ClassifierTrainer (deprecated)</span><a class="headerlink" href="#classifiertrainer-deprecated" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="sconce.trainers.ClassifierTrainer">
-<em class="property">class </em><code class="descclassname">sconce.trainers.</code><code class="descname">ClassifierTrainer</code><span class="sig-paren">(</span><em>*</em>, <em>model</em>, <em>training_data_generator</em>, <em>test_data_generator</em>, <em>optimizer</em>, <em>monitor=None</em>, <em>rate_controller=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/trainers/classifier_trainer.html#ClassifierTrainer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.trainers.ClassifierTrainer" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#sconce.trainer.Trainer" title="sconce.trainer.Trainer"><code class="xref py py-class docutils literal notranslate"><span class="pre">sconce.trainer.Trainer</span></code></a>, <a class="reference internal" href="sconce.trainers.html#sconce.trainers.classifier_trainer.ClassifierMixin" title="sconce.trainers.classifier_trainer.ClassifierMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">sconce.trainers.classifier_trainer.ClassifierMixin</span></code></a></p>
+<em class="property">class </em><code class="descclassname">sconce.trainers.</code><code class="descname">ClassifierTrainer</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/trainers/single_class_image_classifier_trainer.html#ClassifierTrainer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.trainers.ClassifierTrainer" title="Permalink to this definition">¶</a></dt>
+<dd><div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">This class has been deprecated for <a class="reference internal" href="#sconce.trainers.SingleClassImageClassifierTrainer" title="sconce.trainers.SingleClassImageClassifierTrainer"><code class="xref py py-class docutils literal notranslate"><span class="pre">SingleClassImageClassifierTrainer</span></code></a> and will be
+removed soon.  It will continue to work for now, but please update your code accordingly.</p>
+</div>
 </dd></dl>
 
 </div>

@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                master (0.9.4 )
+                master (0.10.0 )
               </div>
             
           
@@ -88,11 +88,17 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="data_generator.html">Data Generators</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="data_generator.html#datagenerator"><span class="hidden-section">DataGenerator</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="data_generator.html#imagedatagenerator"><span class="hidden-section">ImageDataGenerator</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_generator.html#imagedatagenerator-deprecated"><span class="hidden-section">ImageDataGenerator (deprecated)</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_generator.html#singleclassimagedatagenerator"><span class="hidden-section">SingleClassImageDataGenerator</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_generator.html#multiclassimagedatagenerator"><span class="hidden-section">MultiClassImageDataGenerator</span></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="datasets.html">Datasests</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="datasets.html#csvimagefolder"><span class="hidden-section">CsvImageFolder</span></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="transforms.html">Transforms</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="transforms.html#nhot"><span class="hidden-section">NHot</span></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="rate_controllers.html">Rate Controllers</a><ul>
@@ -126,7 +132,8 @@
 <li class="toctree-l1"><a class="reference internal" href="trainers.html">Trainers</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="trainers.html#basic-trainer"><span class="hidden-section">Basic Trainer</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="trainers.html#autoencodertrainer"><span class="hidden-section">AutoencoderTrainer</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="trainers.html#classifiertrainer"><span class="hidden-section">ClassifierTrainer</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="trainers.html#singleclassimageclassifiertrainer"><span class="hidden-section">SingleClassImageClassifierTrainer</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="trainers.html#classifiertrainer-deprecated"><span class="hidden-section">ClassifierTrainer (deprecated)</span></a></li>
 </ul>
 </li>
 </ul>
@@ -263,6 +270,10 @@
       <ul>
         <li><a href="data_generator.html#sconce.data_generators.DataGenerator.batch_size">(sconce.data_generators.DataGenerator attribute)</a>
 </li>
+        <li><a href="data_generator.html#sconce.data_generators.MultiClassImageDataGenerator.batch_size">(sconce.data_generators.MultiClassImageDataGenerator attribute)</a>
+</li>
+        <li><a href="data_generator.html#sconce.data_generators.SingleClassImageDataGenerator.batch_size">(sconce.data_generators.SingleClassImageDataGenerator attribute)</a>
+</li>
       </ul></li>
   </ul></td>
 </tr></table>
@@ -289,13 +300,17 @@
 </li>
       </ul></li>
       <li><a href="sconce.html#sconce.trainer.Trainer.checkpoint">checkpoint() (sconce.trainer.Trainer method)</a>, <a href="trainers.html#sconce.trainer.Trainer.checkpoint">[1]</a>
+
+      <ul>
+        <li><a href="trainers.html#sconce.trainers.AutoencoderTrainer.checkpoint">(sconce.trainers.AutoencoderTrainer method)</a>
 </li>
-      <li><a href="sconce.trainers.html#sconce.trainers.classifier_trainer.ClassifierMixin">ClassifierMixin (class in sconce.trainers.classifier_trainer)</a>
+        <li><a href="trainers.html#sconce.trainers.SingleClassImageClassifierTrainer.checkpoint">(sconce.trainers.SingleClassImageClassifierTrainer method)</a>
 </li>
+      </ul></li>
       <li><a href="trainers.html#sconce.trainers.ClassifierTrainer">ClassifierTrainer (class in sconce.trainers)</a>
 
       <ul>
-        <li><a href="sconce.trainers.html#sconce.trainers.classifier_trainer.ClassifierTrainer">(class in sconce.trainers.classifier_trainer)</a>
+        <li><a href="sconce.trainers.html#sconce.trainers.single_class_image_classifier_trainer.ClassifierTrainer">(class in sconce.trainers.single_class_image_classifier_trainer)</a>
 </li>
       </ul></li>
       <li><a href="monitors.html#sconce.monitors.CompositeMonitor">CompositeMonitor (class in sconce.monitors)</a>
@@ -337,6 +352,10 @@
       <ul>
         <li><a href="data_generator.html#sconce.data_generators.DataGenerator.cuda">(sconce.data_generators.DataGenerator method)</a>
 </li>
+        <li><a href="data_generator.html#sconce.data_generators.MultiClassImageDataGenerator.cuda">(sconce.data_generators.MultiClassImageDataGenerator method)</a>
+</li>
+        <li><a href="data_generator.html#sconce.data_generators.SingleClassImageDataGenerator.cuda">(sconce.data_generators.SingleClassImageDataGenerator method)</a>
+</li>
       </ul></li>
   </ul></td>
 </tr></table>
@@ -356,14 +375,18 @@
         <li><a href="sconce.data_generators.html#sconce.data_generators.base.DataGenerator">(class in sconce.data_generators.base)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="sconce.data_generators.html#sconce.data_generators.base.DataGenerator.dataset">dataset (sconce.data_generators.base.DataGenerator attribute)</a>
 
       <ul>
         <li><a href="data_generator.html#sconce.data_generators.DataGenerator.dataset">(sconce.data_generators.DataGenerator attribute)</a>
 </li>
+        <li><a href="data_generator.html#sconce.data_generators.MultiClassImageDataGenerator.dataset">(sconce.data_generators.MultiClassImageDataGenerator attribute)</a>
+</li>
+        <li><a href="data_generator.html#sconce.data_generators.SingleClassImageDataGenerator.dataset">(sconce.data_generators.SingleClassImageDataGenerator attribute)</a>
+</li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="sconce.models.html#sconce.models.basic_autoencoder.BasicAutoencoder.decode">decode() (sconce.models.basic_autoencoder.BasicAutoencoder method)</a>
 </li>
       <li><a href="sconce.monitors.html#sconce.monitors.dataframe_monitor.DataframeMonitor.df">df (sconce.monitors.dataframe_monitor.DataframeMonitor attribute)</a>
@@ -429,25 +452,23 @@
       <ul>
         <li><a href="data_generator.html#sconce.data_generators.DataGenerator.from_dataset">(sconce.data_generators.DataGenerator class method)</a>
 </li>
+        <li><a href="data_generator.html#sconce.data_generators.MultiClassImageDataGenerator.from_dataset">(sconce.data_generators.MultiClassImageDataGenerator class method)</a>
+</li>
+        <li><a href="data_generator.html#sconce.data_generators.SingleClassImageDataGenerator.from_dataset">(sconce.data_generators.SingleClassImageDataGenerator class method)</a>
+</li>
       </ul></li>
       <li><a href="sconce.monitors.html#sconce.monitors.dataframe_monitor.DataframeMonitor.from_file">from_file() (sconce.monitors.dataframe_monitor.DataframeMonitor class method)</a>
 </li>
-      <li><a href="sconce.data_generators.html#sconce.data_generators.image_data_generator.ImageDataGenerator.from_image_folder">from_image_folder() (sconce.data_generators.image_data_generator.ImageDataGenerator class method)</a>
+      <li><a href="sconce.data_generators.html#sconce.data_generators.single_class_image_data_generator.SingleClassImageDataGenerator.from_image_folder">from_image_folder() (sconce.data_generators.single_class_image_data_generator.SingleClassImageDataGenerator class method)</a>
 
       <ul>
-        <li><a href="data_generator.html#sconce.data_generators.ImageDataGenerator.from_image_folder">(sconce.data_generators.ImageDataGenerator class method)</a>
+        <li><a href="data_generator.html#sconce.data_generators.SingleClassImageDataGenerator.from_image_folder">(sconce.data_generators.SingleClassImageDataGenerator class method)</a>
 </li>
       </ul></li>
-      <li><a href="sconce.data_generators.html#sconce.data_generators.base.DataGenerator.from_pytorch">from_pytorch() (sconce.data_generators.base.DataGenerator class method)</a>
+      <li><a href="sconce.data_generators.html#sconce.data_generators.single_class_image_data_generator.SingleClassImageDataGenerator.from_torchvision">from_torchvision() (sconce.data_generators.single_class_image_data_generator.SingleClassImageDataGenerator class method)</a>
 
       <ul>
-        <li><a href="data_generator.html#sconce.data_generators.DataGenerator.from_pytorch">(sconce.data_generators.DataGenerator class method)</a>
-</li>
-      </ul></li>
-      <li><a href="sconce.data_generators.html#sconce.data_generators.image_data_generator.ImageDataGenerator.from_torchvision">from_torchvision() (sconce.data_generators.image_data_generator.ImageDataGenerator class method)</a>
-
-      <ul>
-        <li><a href="data_generator.html#sconce.data_generators.ImageDataGenerator.from_torchvision">(sconce.data_generators.ImageDataGenerator class method)</a>
+        <li><a href="data_generator.html#sconce.data_generators.SingleClassImageDataGenerator.from_torchvision">(sconce.data_generators.SingleClassImageDataGenerator class method)</a>
 </li>
       </ul></li>
       <li><a href="sconce.models.layers.html#sconce.models.layers.fully_connected_layer.FullyConnectedLayer">FullyConnectedLayer (class in sconce.models.layers.fully_connected_layer)</a>
@@ -458,20 +479,34 @@
 <h2 id="G">G</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="sconce.trainers.html#sconce.trainers.classifier_trainer.ClassifierMixin.get_classification_accuracy">get_classification_accuracy() (sconce.trainers.classifier_trainer.ClassifierMixin method)</a>
+      <li><a href="sconce.data_generators.html#sconce.data_generators.image_mixin.ImageMixin.get_class_df">get_class_df() (sconce.data_generators.image_mixin.ImageMixin method)</a>
+
+      <ul>
+        <li><a href="data_generator.html#sconce.data_generators.MultiClassImageDataGenerator.get_class_df">(sconce.data_generators.MultiClassImageDataGenerator method)</a>
 </li>
-      <li><a href="sconce.trainers.html#sconce.trainers.classifier_trainer.ClassifierMixin.get_confusion_matrix">get_confusion_matrix() (sconce.trainers.classifier_trainer.ClassifierMixin method)</a>
+        <li><a href="data_generator.html#sconce.data_generators.SingleClassImageDataGenerator.get_class_df">(sconce.data_generators.SingleClassImageDataGenerator method)</a>
+</li>
+      </ul></li>
+      <li><a href="sconce.trainers.html#sconce.trainers.single_class_image_classifier_trainer.SingleClassImageClassifierMixin.get_classification_accuracy">get_classification_accuracy() (sconce.trainers.single_class_image_classifier_trainer.SingleClassImageClassifierMixin method)</a>
+</li>
+      <li><a href="sconce.trainers.html#sconce.trainers.single_class_image_classifier_trainer.SingleClassImageClassifierMixin.get_confusion_matrix">get_confusion_matrix() (sconce.trainers.single_class_image_classifier_trainer.SingleClassImageClassifierMixin method)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="sconce.data_generators.html#sconce.data_generators.image_data_generator.get_image_info">get_image_info() (in module sconce.data_generators.image_data_generator)</a>
+      <li><a href="sconce.data_generators.html#sconce.data_generators.image_mixin.get_image_size">get_image_size() (in module sconce.data_generators.image_mixin)</a>
 </li>
-      <li><a href="sconce.data_generators.html#sconce.data_generators.image_data_generator.ImageDataGenerator.get_summary_df">get_summary_df() (sconce.data_generators.image_data_generator.ImageDataGenerator method)</a>
+      <li><a href="sconce.data_generators.html#sconce.data_generators.image_mixin.ImageMixin.get_image_size_df">get_image_size_df() (sconce.data_generators.image_mixin.ImageMixin method)</a>
 
       <ul>
-        <li><a href="data_generator.html#sconce.data_generators.ImageDataGenerator.get_summary_df">(sconce.data_generators.ImageDataGenerator method)</a>
+        <li><a href="data_generator.html#sconce.data_generators.MultiClassImageDataGenerator.get_image_size_df">(sconce.data_generators.MultiClassImageDataGenerator method)</a>
+</li>
+        <li><a href="data_generator.html#sconce.data_generators.SingleClassImageDataGenerator.get_image_size_df">(sconce.data_generators.SingleClassImageDataGenerator method)</a>
 </li>
       </ul></li>
+      <li><a href="sconce.datasets.html#sconce.datasets.csv_image_folder.CsvImageFolder.get_sample">get_sample() (sconce.datasets.csv_image_folder.CsvImageFolder method)</a>
+</li>
+      <li><a href="sconce.datasets.html#sconce.datasets.csv_image_folder.CsvImageFolder.get_target">get_target() (sconce.datasets.csv_image_folder.CsvImageFolder method)</a>
+</li>
   </ul></td>
 </tr></table>
 
@@ -479,13 +514,11 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="data_generator.html#sconce.data_generators.ImageDataGenerator">ImageDataGenerator (class in sconce.data_generators)</a>
-
-      <ul>
-        <li><a href="sconce.data_generators.html#sconce.data_generators.image_data_generator.ImageDataGenerator">(class in sconce.data_generators.image_data_generator)</a>
 </li>
-      </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="sconce.data_generators.html#sconce.data_generators.image_mixin.ImageMixin">ImageMixin (class in sconce.data_generators.image_mixin)</a>
+</li>
       <li><a href="sconce.monitors.html#sconce.monitors.dataframe_monitor.DataframeMonitor.is_blacklisted">is_blacklisted() (sconce.monitors.dataframe_monitor.DataframeMonitor method)</a>
 </li>
   </ul></td>
@@ -502,10 +535,16 @@
         <li><a href="sconce.rate_controllers.html#sconce.rate_controllers.linear_rate_controller.LinearRateController">(class in sconce.rate_controllers.linear_rate_controller)</a>
 </li>
       </ul></li>
+      <li><a href="sconce.html#sconce.trainer.Trainer.load_model_state">load_model_state() (sconce.trainer.Trainer method)</a>, <a href="trainers.html#sconce.trainer.Trainer.load_model_state">[1]</a>
+
+      <ul>
+        <li><a href="trainers.html#sconce.trainers.AutoencoderTrainer.load_model_state">(sconce.trainers.AutoencoderTrainer method)</a>
+</li>
+        <li><a href="trainers.html#sconce.trainers.SingleClassImageClassifierTrainer.load_model_state">(sconce.trainers.SingleClassImageClassifierTrainer method)</a>
+</li>
+      </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="sconce.html#sconce.trainer.Trainer.load_model_state">load_model_state() (sconce.trainer.Trainer method)</a>, <a href="trainers.html#sconce.trainer.Trainer.load_model_state">[1]</a>
-</li>
       <li><a href="monitors.html#sconce.monitors.LosswiseMonitor">LosswiseMonitor (class in sconce.monitors)</a>
 
       <ul>
@@ -526,12 +565,24 @@
         <li><a href="sconce.monitors.html#sconce.monitors.base.Monitor">(class in sconce.monitors.base)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="sconce.monitors.html#sconce.monitors.ringbuffer_monitor.RingbufferMonitor.movement_index">movement_index (sconce.monitors.ringbuffer_monitor.RingbufferMonitor attribute)</a>
 </li>
       <li><a href="sconce.html#sconce.trainer.Trainer.multi_train">multi_train() (sconce.trainer.Trainer method)</a>, <a href="trainers.html#sconce.trainer.Trainer.multi_train">[1]</a>
+
+      <ul>
+        <li><a href="trainers.html#sconce.trainers.AutoencoderTrainer.multi_train">(sconce.trainers.AutoencoderTrainer method)</a>
 </li>
+        <li><a href="trainers.html#sconce.trainers.SingleClassImageClassifierTrainer.multi_train">(sconce.trainers.SingleClassImageClassifierTrainer method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="data_generator.html#sconce.data_generators.MultiClassImageDataGenerator">MultiClassImageDataGenerator (class in sconce.data_generators)</a>
+
+      <ul>
+        <li><a href="sconce.data_generators.html#sconce.data_generators.multi_class_image_data_generator.MultiClassImageDataGenerator">(class in sconce.data_generators.multi_class_image_data_generator)</a>
+</li>
+      </ul></li>
       <li><a href="models.html#sconce.models.MultilayerPerceptron">MultilayerPerceptron (class in sconce.models)</a>
 
       <ul>
@@ -588,10 +639,14 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="sconce.data_generators.html#sconce.data_generators.base.DataGenerator.next">next() (sconce.data_generators.base.DataGenerator method)</a>
 </li>
-      <li><a href="sconce.data_generators.html#sconce.data_generators.image_data_generator.ImageDataGenerator.num_channels">num_channels (sconce.data_generators.image_data_generator.ImageDataGenerator attribute)</a>
+      <li><a href="sconce.html#sconce.transforms.NHot">NHot (class in sconce.transforms)</a>, <a href="transforms.html#sconce.transforms.NHot">[1]</a>
+</li>
+      <li><a href="sconce.data_generators.html#sconce.data_generators.image_mixin.ImageMixin.num_channels">num_channels (sconce.data_generators.image_mixin.ImageMixin attribute)</a>
 
       <ul>
-        <li><a href="data_generator.html#sconce.data_generators.ImageDataGenerator.num_channels">(sconce.data_generators.ImageDataGenerator attribute)</a>
+        <li><a href="data_generator.html#sconce.data_generators.MultiClassImageDataGenerator.num_channels">(sconce.data_generators.MultiClassImageDataGenerator attribute)</a>
+</li>
+        <li><a href="data_generator.html#sconce.data_generators.SingleClassImageDataGenerator.num_channels">(sconce.data_generators.SingleClassImageDataGenerator attribute)</a>
 </li>
       </ul></li>
       <li><a href="sconce.datasets.html#sconce.datasets.csv_image_folder.CsvImageFolder.num_classes">num_classes (sconce.datasets.csv_image_folder.CsvImageFolder attribute)</a>
@@ -601,9 +656,19 @@
       <ul>
         <li><a href="data_generator.html#sconce.data_generators.DataGenerator.num_samples">(sconce.data_generators.DataGenerator attribute)</a>
 </li>
+        <li><a href="data_generator.html#sconce.data_generators.MultiClassImageDataGenerator.num_samples">(sconce.data_generators.MultiClassImageDataGenerator attribute)</a>
+</li>
+        <li><a href="data_generator.html#sconce.data_generators.SingleClassImageDataGenerator.num_samples">(sconce.data_generators.SingleClassImageDataGenerator attribute)</a>
+</li>
       </ul></li>
       <li><a href="sconce.html#sconce.trainer.Trainer.num_trainable_parameters">num_trainable_parameters (sconce.trainer.Trainer attribute)</a>, <a href="trainers.html#sconce.trainer.Trainer.num_trainable_parameters">[1]</a>
+
+      <ul>
+        <li><a href="trainers.html#sconce.trainers.AutoencoderTrainer.num_trainable_parameters">(sconce.trainers.AutoencoderTrainer attribute)</a>
 </li>
+        <li><a href="trainers.html#sconce.trainers.SingleClassImageClassifierTrainer.num_trainable_parameters">(sconce.trainers.SingleClassImageClassifierTrainer attribute)</a>
+</li>
+      </ul></li>
   </ul></td>
 </tr></table>
 
@@ -624,28 +689,36 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="sconce.monitors.html#sconce.monitors.dataframe_monitor.DataframeMonitor.plot">plot() (sconce.monitors.dataframe_monitor.DataframeMonitor method)</a>
 </li>
-      <li><a href="sconce.trainers.html#sconce.trainers.classifier_trainer.ClassifierMixin.plot_confusion_matrix">plot_confusion_matrix() (sconce.trainers.classifier_trainer.ClassifierMixin method)</a>
-</li>
-      <li><a href="sconce.trainers.html#sconce.trainers.autoencoder_trainer.AutoencoderMixin.plot_input_output_pairs">plot_input_output_pairs() (sconce.trainers.autoencoder_trainer.AutoencoderMixin method)</a>
-</li>
-      <li><a href="sconce.data_generators.html#sconce.data_generators.image_data_generator.ImageDataGenerator.plot_label_summary">plot_label_summary() (sconce.data_generators.image_data_generator.ImageDataGenerator method)</a>
+      <li><a href="sconce.data_generators.html#sconce.data_generators.image_mixin.ImageMixin.plot_class_summary">plot_class_summary() (sconce.data_generators.image_mixin.ImageMixin method)</a>
 
       <ul>
-        <li><a href="data_generator.html#sconce.data_generators.ImageDataGenerator.plot_label_summary">(sconce.data_generators.ImageDataGenerator method)</a>
+        <li><a href="data_generator.html#sconce.data_generators.MultiClassImageDataGenerator.plot_class_summary">(sconce.data_generators.MultiClassImageDataGenerator method)</a>
+</li>
+        <li><a href="data_generator.html#sconce.data_generators.SingleClassImageDataGenerator.plot_class_summary">(sconce.data_generators.SingleClassImageDataGenerator method)</a>
 </li>
       </ul></li>
-      <li><a href="sconce.trainers.html#sconce.trainers.autoencoder_trainer.AutoencoderMixin.plot_latent_space">plot_latent_space() (sconce.trainers.autoencoder_trainer.AutoencoderMixin method)</a>
+      <li><a href="sconce.trainers.html#sconce.trainers.single_class_image_classifier_trainer.SingleClassImageClassifierMixin.plot_confusion_matrix">plot_confusion_matrix() (sconce.trainers.single_class_image_classifier_trainer.SingleClassImageClassifierMixin method)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="sconce.monitors.html#sconce.monitors.dataframe_monitor.DataframeMonitor.plot_learning_rate_survey">plot_learning_rate_survey() (sconce.monitors.dataframe_monitor.DataframeMonitor method)</a>
-</li>
-      <li><a href="sconce.trainers.html#sconce.trainers.classifier_trainer.ClassifierMixin.plot_samples">plot_samples() (sconce.trainers.classifier_trainer.ClassifierMixin method)</a>
-</li>
-      <li><a href="sconce.data_generators.html#sconce.data_generators.image_data_generator.ImageDataGenerator.plot_size_summary">plot_size_summary() (sconce.data_generators.image_data_generator.ImageDataGenerator method)</a>
+      <li><a href="sconce.data_generators.html#sconce.data_generators.image_mixin.ImageMixin.plot_image_size_summary">plot_image_size_summary() (sconce.data_generators.image_mixin.ImageMixin method)</a>
 
       <ul>
-        <li><a href="data_generator.html#sconce.data_generators.ImageDataGenerator.plot_size_summary">(sconce.data_generators.ImageDataGenerator method)</a>
+        <li><a href="data_generator.html#sconce.data_generators.MultiClassImageDataGenerator.plot_image_size_summary">(sconce.data_generators.MultiClassImageDataGenerator method)</a>
+</li>
+        <li><a href="data_generator.html#sconce.data_generators.SingleClassImageDataGenerator.plot_image_size_summary">(sconce.data_generators.SingleClassImageDataGenerator method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="sconce.trainers.html#sconce.trainers.autoencoder_trainer.AutoencoderMixin.plot_input_output_pairs">plot_input_output_pairs() (sconce.trainers.autoencoder_trainer.AutoencoderMixin method)</a>
+</li>
+      <li><a href="sconce.trainers.html#sconce.trainers.autoencoder_trainer.AutoencoderMixin.plot_latent_space">plot_latent_space() (sconce.trainers.autoencoder_trainer.AutoencoderMixin method)</a>
+</li>
+      <li><a href="sconce.monitors.html#sconce.monitors.dataframe_monitor.DataframeMonitor.plot_learning_rate_survey">plot_learning_rate_survey() (sconce.monitors.dataframe_monitor.DataframeMonitor method)</a>
+</li>
+      <li><a href="sconce.trainers.html#sconce.trainers.single_class_image_classifier_trainer.SingleClassImageClassifierMixin.plot_samples">plot_samples() (sconce.trainers.single_class_image_classifier_trainer.SingleClassImageClassifierMixin method)</a>
+
+      <ul>
+        <li><a href="trainers.html#sconce.trainers.SingleClassImageClassifierTrainer.plot_samples">(sconce.trainers.SingleClassImageClassifierTrainer method)</a>
 </li>
       </ul></li>
       <li><a href="sconce.data_generators.html#sconce.data_generators.base.DataGenerator.preprocess">preprocess() (sconce.data_generators.base.DataGenerator method)</a>
@@ -669,11 +742,19 @@
       <ul>
         <li><a href="data_generator.html#sconce.data_generators.DataGenerator.real_dataset">(sconce.data_generators.DataGenerator attribute)</a>
 </li>
+        <li><a href="data_generator.html#sconce.data_generators.MultiClassImageDataGenerator.real_dataset">(sconce.data_generators.MultiClassImageDataGenerator attribute)</a>
+</li>
+        <li><a href="data_generator.html#sconce.data_generators.SingleClassImageDataGenerator.real_dataset">(sconce.data_generators.SingleClassImageDataGenerator attribute)</a>
+</li>
       </ul></li>
       <li><a href="sconce.data_generators.html#sconce.data_generators.base.DataGenerator.reset">reset() (sconce.data_generators.base.DataGenerator method)</a>
 
       <ul>
         <li><a href="data_generator.html#sconce.data_generators.DataGenerator.reset">(sconce.data_generators.DataGenerator method)</a>
+</li>
+        <li><a href="data_generator.html#sconce.data_generators.MultiClassImageDataGenerator.reset">(sconce.data_generators.MultiClassImageDataGenerator method)</a>
+</li>
+        <li><a href="data_generator.html#sconce.data_generators.SingleClassImageDataGenerator.reset">(sconce.data_generators.SingleClassImageDataGenerator method)</a>
 </li>
       </ul></li>
   </ul></td>
@@ -681,7 +762,13 @@
       <li><a href="sconce.rate_controllers.html#sconce.rate_controllers.constant_rate_controller.ConstantRateController.reset_monitor">reset_monitor() (sconce.rate_controllers.constant_rate_controller.ConstantRateController method)</a>
 </li>
       <li><a href="sconce.html#sconce.trainer.Trainer.restore">restore() (sconce.trainer.Trainer method)</a>, <a href="trainers.html#sconce.trainer.Trainer.restore">[1]</a>
+
+      <ul>
+        <li><a href="trainers.html#sconce.trainers.AutoencoderTrainer.restore">(sconce.trainers.AutoencoderTrainer method)</a>
 </li>
+        <li><a href="trainers.html#sconce.trainers.SingleClassImageClassifierTrainer.restore">(sconce.trainers.SingleClassImageClassifierTrainer method)</a>
+</li>
+      </ul></li>
       <li><a href="monitors.html#sconce.monitors.RingbufferMonitor">RingbufferMonitor (class in sconce.monitors)</a>
 
       <ul>
@@ -697,10 +784,22 @@
       <li><a href="sconce.monitors.html#sconce.monitors.dataframe_monitor.DataframeMonitor.save">save() (sconce.monitors.dataframe_monitor.DataframeMonitor method)</a>
 </li>
       <li><a href="sconce.html#sconce.trainer.Trainer.save_model_state">save_model_state() (sconce.trainer.Trainer method)</a>, <a href="trainers.html#sconce.trainer.Trainer.save_model_state">[1]</a>
+
+      <ul>
+        <li><a href="trainers.html#sconce.trainers.AutoencoderTrainer.save_model_state">(sconce.trainers.AutoencoderTrainer method)</a>
 </li>
+        <li><a href="trainers.html#sconce.trainers.SingleClassImageClassifierTrainer.save_model_state">(sconce.trainers.SingleClassImageClassifierTrainer method)</a>
+</li>
+      </ul></li>
       <li><a href="sconce.data_generators.html#module-sconce.data_generators.base">sconce.data_generators.base (module)</a>
 </li>
       <li><a href="sconce.data_generators.html#module-sconce.data_generators.image_data_generator">sconce.data_generators.image_data_generator (module)</a>
+</li>
+      <li><a href="sconce.data_generators.html#module-sconce.data_generators.image_mixin">sconce.data_generators.image_mixin (module)</a>
+</li>
+      <li><a href="sconce.data_generators.html#module-sconce.data_generators.multi_class_image_data_generator">sconce.data_generators.multi_class_image_data_generator (module)</a>
+</li>
+      <li><a href="sconce.data_generators.html#module-sconce.data_generators.single_class_image_data_generator">sconce.data_generators.single_class_image_data_generator (module)</a>
 </li>
       <li><a href="sconce.datasets.html#module-sconce.datasets.csv_image_folder">sconce.datasets.csv_image_folder (module)</a>
 </li>
@@ -746,9 +845,11 @@
 </li>
       <li><a href="sconce.trainers.html#module-sconce.trainers.autoencoder_trainer">sconce.trainers.autoencoder_trainer (module)</a>
 </li>
+      <li><a href="sconce.trainers.html#module-sconce.trainers.single_class_image_classifier_trainer">sconce.trainers.single_class_image_classifier_trainer (module)</a>
+</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="sconce.trainers.html#module-sconce.trainers.classifier_trainer">sconce.trainers.classifier_trainer (module)</a>
+      <li><a href="sconce.html#module-sconce.transforms">sconce.transforms (module)</a>
 </li>
       <li><a href="sconce.html#module-sconce.utils">sconce.utils (module)</a>
 </li>
@@ -756,6 +857,20 @@
 
       <ul>
         <li><a href="sconce.rate_controllers.html#sconce.rate_controllers.linear_rate_controller.LinearRateController.should_continue">(sconce.rate_controllers.linear_rate_controller.LinearRateController method)</a>
+</li>
+      </ul></li>
+      <li><a href="sconce.trainers.html#sconce.trainers.single_class_image_classifier_trainer.SingleClassImageClassifierMixin">SingleClassImageClassifierMixin (class in sconce.trainers.single_class_image_classifier_trainer)</a>
+</li>
+      <li><a href="trainers.html#sconce.trainers.SingleClassImageClassifierTrainer">SingleClassImageClassifierTrainer (class in sconce.trainers)</a>
+
+      <ul>
+        <li><a href="sconce.trainers.html#sconce.trainers.single_class_image_classifier_trainer.SingleClassImageClassifierTrainer">(class in sconce.trainers.single_class_image_classifier_trainer)</a>
+</li>
+      </ul></li>
+      <li><a href="data_generator.html#sconce.data_generators.SingleClassImageDataGenerator">SingleClassImageDataGenerator (class in sconce.data_generators)</a>
+
+      <ul>
+        <li><a href="sconce.data_generators.html#sconce.data_generators.single_class_image_data_generator.SingleClassImageDataGenerator">(class in sconce.data_generators.single_class_image_data_generator)</a>
 </li>
       </ul></li>
       <li><a href="sconce.monitors.html#sconce.monitors.base.CompositeMonitor.start_session">start_session() (sconce.monitors.base.CompositeMonitor method)</a>
@@ -807,7 +922,13 @@
 </li>
       </ul></li>
       <li><a href="sconce.html#sconce.trainer.Trainer.survey_learning_rate">survey_learning_rate() (sconce.trainer.Trainer method)</a>, <a href="trainers.html#sconce.trainer.Trainer.survey_learning_rate">[1]</a>
+
+      <ul>
+        <li><a href="trainers.html#sconce.trainers.AutoencoderTrainer.survey_learning_rate">(sconce.trainers.AutoencoderTrainer method)</a>
 </li>
+        <li><a href="trainers.html#sconce.trainers.SingleClassImageClassifierTrainer.survey_learning_rate">(sconce.trainers.SingleClassImageClassifierTrainer method)</a>
+</li>
+      </ul></li>
   </ul></td>
 </tr></table>
 
@@ -815,9 +936,21 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="sconce.html#sconce.trainer.Trainer.test">test() (sconce.trainer.Trainer method)</a>, <a href="trainers.html#sconce.trainer.Trainer.test">[1]</a>
+
+      <ul>
+        <li><a href="trainers.html#sconce.trainers.AutoencoderTrainer.test">(sconce.trainers.AutoencoderTrainer method)</a>
 </li>
+        <li><a href="trainers.html#sconce.trainers.SingleClassImageClassifierTrainer.test">(sconce.trainers.SingleClassImageClassifierTrainer method)</a>
+</li>
+      </ul></li>
       <li><a href="sconce.html#sconce.trainer.Trainer.train">train() (sconce.trainer.Trainer method)</a>, <a href="trainers.html#sconce.trainer.Trainer.train">[1]</a>
+
+      <ul>
+        <li><a href="trainers.html#sconce.trainers.AutoencoderTrainer.train">(sconce.trainers.AutoencoderTrainer method)</a>
 </li>
+        <li><a href="trainers.html#sconce.trainers.SingleClassImageClassifierTrainer.train">(sconce.trainers.SingleClassImageClassifierTrainer method)</a>
+</li>
+      </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="sconce.html#sconce.trainer.Trainer">Trainer (class in sconce.trainer)</a>, <a href="trainers.html#sconce.trainer.Trainer">[1]</a>

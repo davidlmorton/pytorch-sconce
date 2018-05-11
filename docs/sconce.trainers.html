@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                master (0.9.4 )
+                master (0.10.0 )
               </div>
             
           
@@ -87,11 +87,17 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="data_generator.html">Data Generators</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="data_generator.html#datagenerator"><span class="hidden-section">DataGenerator</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="data_generator.html#imagedatagenerator"><span class="hidden-section">ImageDataGenerator</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_generator.html#imagedatagenerator-deprecated"><span class="hidden-section">ImageDataGenerator (deprecated)</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_generator.html#singleclassimagedatagenerator"><span class="hidden-section">SingleClassImageDataGenerator</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_generator.html#multiclassimagedatagenerator"><span class="hidden-section">MultiClassImageDataGenerator</span></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="datasets.html">Datasests</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="datasets.html#csvimagefolder"><span class="hidden-section">CsvImageFolder</span></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="transforms.html">Transforms</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="transforms.html#nhot"><span class="hidden-section">NHot</span></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="rate_controllers.html">Rate Controllers</a><ul>
@@ -125,7 +131,8 @@
 <li class="toctree-l1"><a class="reference internal" href="trainers.html">Trainers</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="trainers.html#basic-trainer"><span class="hidden-section">Basic Trainer</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="trainers.html#autoencodertrainer"><span class="hidden-section">AutoencoderTrainer</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="trainers.html#classifiertrainer"><span class="hidden-section">ClassifierTrainer</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="trainers.html#singleclassimageclassifiertrainer"><span class="hidden-section">SingleClassImageClassifierTrainer</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="trainers.html#classifiertrainer-deprecated"><span class="hidden-section">ClassifierTrainer (deprecated)</span></a></li>
 </ul>
 </li>
 </ul>
@@ -219,40 +226,96 @@
 </dd></dl>
 
 </div>
-<div class="section" id="module-sconce.trainers.classifier_trainer">
-<span id="sconce-trainers-classifier-trainer-module"></span><h2>sconce.trainers.classifier_trainer module<a class="headerlink" href="#module-sconce.trainers.classifier_trainer" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-sconce.trainers.single_class_image_classifier_trainer">
+<span id="sconce-trainers-single-class-image-classifier-trainer-module"></span><h2>sconce.trainers.single_class_image_classifier_trainer module<a class="headerlink" href="#module-sconce.trainers.single_class_image_classifier_trainer" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
-<dt id="sconce.trainers.classifier_trainer.ClassifierMixin">
-<em class="property">class </em><code class="descclassname">sconce.trainers.classifier_trainer.</code><code class="descname">ClassifierMixin</code><a class="reference internal" href="_modules/sconce/trainers/classifier_trainer.html#ClassifierMixin"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.trainers.classifier_trainer.ClassifierMixin" title="Permalink to this definition">¶</a></dt>
+<dt id="sconce.trainers.single_class_image_classifier_trainer.ClassifierTrainer">
+<em class="property">class </em><code class="descclassname">sconce.trainers.single_class_image_classifier_trainer.</code><code class="descname">ClassifierTrainer</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/trainers/single_class_image_classifier_trainer.html#ClassifierTrainer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.trainers.single_class_image_classifier_trainer.ClassifierTrainer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="trainers.html#sconce.trainer.Trainer" title="sconce.trainer.Trainer"><code class="xref py py-class docutils literal notranslate"><span class="pre">sconce.trainer.Trainer</span></code></a>, <a class="reference internal" href="#sconce.trainers.single_class_image_classifier_trainer.SingleClassImageClassifierMixin" title="sconce.trainers.single_class_image_classifier_trainer.SingleClassImageClassifierMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">sconce.trainers.single_class_image_classifier_trainer.SingleClassImageClassifierMixin</span></code></a></p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">This class has been deprecated for <a class="reference internal" href="trainers.html#sconce.trainers.SingleClassImageClassifierTrainer" title="sconce.trainers.SingleClassImageClassifierTrainer"><code class="xref py py-class docutils literal notranslate"><span class="pre">SingleClassImageClassifierTrainer</span></code></a> and will be
+removed soon.  It will continue to work for now, but please update your code accordingly.</p>
+</div>
+</dd></dl>
+
+<dl class="class">
+<dt id="sconce.trainers.single_class_image_classifier_trainer.SingleClassImageClassifierMixin">
+<em class="property">class </em><code class="descclassname">sconce.trainers.single_class_image_classifier_trainer.</code><code class="descname">SingleClassImageClassifierMixin</code><a class="reference internal" href="_modules/sconce/trainers/single_class_image_classifier_trainer.html#SingleClassImageClassifierMixin"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.trainers.single_class_image_classifier_trainer.SingleClassImageClassifierMixin" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/abc.html#abc.ABC" title="(in Python v3.6)"><code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></a></p>
 <dl class="method">
-<dt id="sconce.trainers.classifier_trainer.ClassifierMixin.get_classification_accuracy">
-<code class="descname">get_classification_accuracy</code><span class="sig-paren">(</span><em>data_generator=None</em>, <em>cache_results=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/trainers/classifier_trainer.html#ClassifierMixin.get_classification_accuracy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.trainers.classifier_trainer.ClassifierMixin.get_classification_accuracy" title="Permalink to this definition">¶</a></dt>
+<dt id="sconce.trainers.single_class_image_classifier_trainer.SingleClassImageClassifierMixin.get_classification_accuracy">
+<code class="descname">get_classification_accuracy</code><span class="sig-paren">(</span><em>data_generator=None</em>, <em>cache_results=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/trainers/single_class_image_classifier_trainer.html#SingleClassImageClassifierMixin.get_classification_accuracy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.trainers.single_class_image_classifier_trainer.SingleClassImageClassifierMixin.get_classification_accuracy" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
-<dt id="sconce.trainers.classifier_trainer.ClassifierMixin.get_confusion_matrix">
-<code class="descname">get_confusion_matrix</code><span class="sig-paren">(</span><em>data_generator=None</em>, <em>cache_results=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/trainers/classifier_trainer.html#ClassifierMixin.get_confusion_matrix"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.trainers.classifier_trainer.ClassifierMixin.get_confusion_matrix" title="Permalink to this definition">¶</a></dt>
+<dt id="sconce.trainers.single_class_image_classifier_trainer.SingleClassImageClassifierMixin.get_confusion_matrix">
+<code class="descname">get_confusion_matrix</code><span class="sig-paren">(</span><em>data_generator=None</em>, <em>cache_results=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/trainers/single_class_image_classifier_trainer.html#SingleClassImageClassifierMixin.get_confusion_matrix"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.trainers.single_class_image_classifier_trainer.SingleClassImageClassifierMixin.get_confusion_matrix" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
-<dt id="sconce.trainers.classifier_trainer.ClassifierMixin.plot_confusion_matrix">
-<code class="descname">plot_confusion_matrix</code><span class="sig-paren">(</span><em>data_generator=None</em>, <em>**heatmap_kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/trainers/classifier_trainer.html#ClassifierMixin.plot_confusion_matrix"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.trainers.classifier_trainer.ClassifierMixin.plot_confusion_matrix" title="Permalink to this definition">¶</a></dt>
+<dt id="sconce.trainers.single_class_image_classifier_trainer.SingleClassImageClassifierMixin.plot_confusion_matrix">
+<code class="descname">plot_confusion_matrix</code><span class="sig-paren">(</span><em>data_generator=None</em>, <em>**heatmap_kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/trainers/single_class_image_classifier_trainer.html#SingleClassImageClassifierMixin.plot_confusion_matrix"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.trainers.single_class_image_classifier_trainer.SingleClassImageClassifierMixin.plot_confusion_matrix" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
-<dt id="sconce.trainers.classifier_trainer.ClassifierMixin.plot_samples">
-<code class="descname">plot_samples</code><span class="sig-paren">(</span><em>predicted_label</em>, <em>true_label=None</em>, <em>data_generator=None</em>, <em>sort_by='rising predicted label score'</em>, <em>num_samples=7</em>, <em>num_cols=7</em>, <em>figure_width=15</em>, <em>image_height=3</em>, <em>cache_results=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/trainers/classifier_trainer.html#ClassifierMixin.plot_samples"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.trainers.classifier_trainer.ClassifierMixin.plot_samples" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dt id="sconce.trainers.single_class_image_classifier_trainer.SingleClassImageClassifierMixin.plot_samples">
+<code class="descname">plot_samples</code><span class="sig-paren">(</span><em>predicted_class</em>, <em>true_class=None</em>, <em>data_generator=None</em>, <em>sort_by='rising predicted class score'</em>, <em>num_samples=7</em>, <em>num_cols=7</em>, <em>figure_width=15</em>, <em>image_height=3</em>, <em>cache_results=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/trainers/single_class_image_classifier_trainer.html#SingleClassImageClassifierMixin.plot_samples"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.trainers.single_class_image_classifier_trainer.SingleClassImageClassifierMixin.plot_samples" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot samples of the dataset where the given &lt;predicted_class&gt; was predicted by the model.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>predicted_class</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a><em> or </em><em>string</em>) – the class string or the index of the class that was predicted by the model.</li>
+<li><strong>true_class</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a><em> or </em><em>string</em>) – the class string or the index of the class that the image actually belongs to.</li>
+<li><strong>data_generator</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">SingleClassImageDataGenerator</span></code>) – the data generator
+to use to find the samples.</li>
+<li><strong>sort_by</strong> (<em>string</em>) – one of the sort_by strings, see note below.</li>
+<li><strong>num_samples</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) – the number of sample images to plot.</li>
+<li><strong>num_cols</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) – the number of columns to plot, one image per column.</li>
+<li><strong>figure_width</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.6)"><em>float</em></a>) – the size, in matplotlib-inches, for the width of the whole figure.</li>
+<li><strong>image_height</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.6)"><em>float</em></a>) – the size, in matplotlib-inches, for the height of a single image.</li>
+<li><strong>cache_results</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.6)"><em>bool</em></a>) – keep the results in memory to make subsequent plots faster.  Beware, that on large
+datasets (like imagenet) this can cause your system to run out of memory.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<dl class="last docutils">
+<dt>The sort_by strings supported are:</dt>
+<dd><ul class="first last simple">
+<li>“rising predicted class score”: samples are plotted in order of the lowest predicted class score to
+the highest predicted class score.</li>
+<li>“falling predicted class score”: samples are plotted in order of the higest predicted class score to
+the lowest predicted class score.</li>
+<li>“rising true class score”: samples are plotted in order of the lowest true class score to
+the highest true class score.</li>
+<li>“falling true class score”: samples are plotted in order of the higest true class score to
+the lowest true class score.</li>
+</ul>
+</dd>
+</dl>
+</div>
+</dd></dl>
 
 </dd></dl>
 
 <dl class="class">
-<dt id="sconce.trainers.classifier_trainer.ClassifierTrainer">
-<em class="property">class </em><code class="descclassname">sconce.trainers.classifier_trainer.</code><code class="descname">ClassifierTrainer</code><span class="sig-paren">(</span><em>*</em>, <em>model</em>, <em>training_data_generator</em>, <em>test_data_generator</em>, <em>optimizer</em>, <em>monitor=None</em>, <em>rate_controller=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/trainers/classifier_trainer.html#ClassifierTrainer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.trainers.classifier_trainer.ClassifierTrainer" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="trainers.html#sconce.trainer.Trainer" title="sconce.trainer.Trainer"><code class="xref py py-class docutils literal notranslate"><span class="pre">sconce.trainer.Trainer</span></code></a>, <a class="reference internal" href="#sconce.trainers.classifier_trainer.ClassifierMixin" title="sconce.trainers.classifier_trainer.ClassifierMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">sconce.trainers.classifier_trainer.ClassifierMixin</span></code></a></p>
+<dt id="sconce.trainers.single_class_image_classifier_trainer.SingleClassImageClassifierTrainer">
+<em class="property">class </em><code class="descclassname">sconce.trainers.single_class_image_classifier_trainer.</code><code class="descname">SingleClassImageClassifierTrainer</code><span class="sig-paren">(</span><em>*</em>, <em>model</em>, <em>training_data_generator</em>, <em>test_data_generator</em>, <em>optimizer</em>, <em>monitor=None</em>, <em>rate_controller=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/trainers/single_class_image_classifier_trainer.html#SingleClassImageClassifierTrainer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.trainers.single_class_image_classifier_trainer.SingleClassImageClassifierTrainer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="trainers.html#sconce.trainer.Trainer" title="sconce.trainer.Trainer"><code class="xref py py-class docutils literal notranslate"><span class="pre">sconce.trainer.Trainer</span></code></a>, <a class="reference internal" href="#sconce.trainers.single_class_image_classifier_trainer.SingleClassImageClassifierMixin" title="sconce.trainers.single_class_image_classifier_trainer.SingleClassImageClassifierMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">sconce.trainers.single_class_image_classifier_trainer.SingleClassImageClassifierMixin</span></code></a></p>
+<p>A trainer with some methods that are handy when you’re training an image classifier model.  Specifically a model
+that classifies images into a single class per image.</p>
+<p>New in 0.10.0 (Used to be called ClassifierTrainer)</p>
 </dd></dl>
 
+</div>
+<div class="section" id="sconce-trainers-classifier-trainer-module-deprecated">
+<h2>sconce.trainers.classifier_trainer module (deprecated)<a class="headerlink" href="#sconce-trainers-classifier-trainer-module-deprecated" title="Permalink to this headline">¶</a></h2>
 </div>
 </div>
 
