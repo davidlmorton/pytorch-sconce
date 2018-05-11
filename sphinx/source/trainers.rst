@@ -26,10 +26,16 @@ Trainers
     :inherited-members:
 
 
-:hidden:`ClassifierTrainer`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
+:hidden:`SingleClassImageClassifierTrainer`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. autoclass:: ClassifierTrainer
+.. autoclass:: SingleClassImageClassifierTrainer
     :members:
     :show-inheritance:
     :inherited-members:
+
+
+:hidden:`ClassifierTrainer (deprecated)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. autoclass:: ClassifierTrainer

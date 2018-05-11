@@ -1,7 +1,7 @@
 # flake8: noqa
 from sconce.data_generators import ImageDataGenerator
 from sconce.rate_controllers import CosineRateController, TriangleRateController
-from sconce.trainers import ClassifierTrainer
+from sconce.trainers import SingleClassImageClassifierTrainer
 from sconce.models import MultilayerPerceptron
 from torch import optim
 
@@ -30,7 +30,7 @@ class TestMultilayerPerceptron(unittest.TestCase):
         optimizer = optim.SGD(model.parameters(), lr=1e-4,
                 momentum=0.9, weight_decay=1e-4)
 
-        trainer = ClassifierTrainer(model=model, optimizer=optimizer,
+        trainer = SingleClassImageClassifierTrainer(model=model, optimizer=optimizer,
             training_data_generator=training_generator,
             test_data_generator=test_generator)
 
@@ -62,7 +62,7 @@ class TestMultilayerPerceptron(unittest.TestCase):
         optimizer = optim.SGD(model.parameters(), lr=1e-4,
                 momentum=0.90, weight_decay=1e-4)
 
-        trainer = ClassifierTrainer(model=model, optimizer=optimizer,
+        trainer = SingleClassImageClassifierTrainer(model=model, optimizer=optimizer,
             training_data_generator=training_generator,
             test_data_generator=test_generator)
 

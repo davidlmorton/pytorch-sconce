@@ -7,10 +7,10 @@ import seaborn as sn
 import numpy as np
 
 
-__all__ = ['ClassifierMixin', 'ClassifierTrainer']
+__all__ = ['ClassifierTrainer', 'SingleClassImageClassifierMixin', 'SingleClassImageClassifierTrainer']
 
 
-class ClassifierMixin(ABC):
+class SingleClassImageClassifierMixin(ABC):
     def get_confusion_matrix(self, data_generator=None, cache_results=True):
         if data_generator is None:
             data_generator = self.test_data_generator
@@ -173,5 +173,23 @@ class ClassifierMixin(ABC):
                 return _class
 
 
-class ClassifierTrainer(Trainer, ClassifierMixin):
+class SingleClassImageClassifierTrainer(Trainer, SingleClassImageClassifierMixin):
+    """
+    A trainer with some methods that are handy when you're training an image classifier model.  Specifically a model
+    that classifies images into a single class per image.
+
+    New in 0.10.0 (Used to be called ClassifierTrainer)
+    """
     pass
+
+
+class ClassifierTrainer(Trainer, SingleClassImageClassifierMixin):
+    """
+    Warning:
+        This class has been deprecated for :py:class:`~sconce.trainers.SingleClassImageClassifierTrainer` and will be
+        removed soon.  It will continue to work for now, but please update your code accordingly.
+    """
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        print('WARNING: ClassifierTrainer is deprecated as of 0.10.0, and will be removed soon.  Use '
+            '"SingleClassImageClassifierTrainer" instead.')
