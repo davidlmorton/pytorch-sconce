@@ -1,4 +1,6 @@
 from abc import ABC, abstractmethod
+from torchvision import transforms
+from matplotlib import pyplot as plt
 
 import pandas as pd
 import seaborn as sns
@@ -77,3 +79,54 @@ class ImageMixin(ABC):
         df = self.get_image_size_df()
         return sns.jointplot(x="height", y="width",
                 kind='scatter', stat_func=None, data=df)
+
+    def _get_original_image(self, index):
+        real_dataset = self.real_dataset
+        old_transform = real_dataset.transform
+
+        real_dataset.transform = transforms.ToTensor()
+        image = self.dataset[index][0]
+
+        real_dataset.transform = old_transform
+        return image
+
+    def plot_transforms(self, index,
+            num_samples=5,
+            num_cols=5,
+            figure_width=15,
+            image_height=3,
+            return_fig=False):
+
+        original = self._get_original_image(index)
+        samples = [original] + [self.dataset[index][0] for i in range(num_samples - 1)]
+
+        num_rows = -(-num_samples // num_cols)
+        fig = plt.figure(figsize=(figure_width, image_height * num_rows))
+
+        for i in range(num_samples):
+            image = samples[i].cpu().data.numpy()
+
+            if image.shape[0] == 1:
+                # greyscale image
+                image = image[0]
+                cmap = 'gray'
+            else:
+                # color channels present
+                image = image.swapaxes(0, 2)
+                image = image.swapaxes(0, 1)
+                cmap = None
+
+            ax = fig.add_subplot(num_rows, num_cols, i + 1)
+            ax.imshow(image, cmap=cmap)
+            if i != 0:
+                if i != 1:
+                    ax.axis('off')
+                ax.set_title('transformed')
+            else:
+                ax.set_title('original')
+
+        plt.tight_layout()
+        fig.subplots_adjust(wspace=0.05)
+
+        if return_fig:
+            return fig
