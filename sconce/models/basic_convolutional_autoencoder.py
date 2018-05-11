@@ -48,7 +48,6 @@ class BasicConvolutionalAutoencoder(nn.Module):
                 out_channels=image_channels,
                 preactivate=True)
 
-
     def encode(self, x_in, **kwargs):
         x = self.conv1(x_in)
         x = self.conv2(x)
