@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                master (0.10.3 )
+                master (0.11.0 )
               </div>
             
           
@@ -96,6 +96,7 @@
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Datasests</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#csvimagefolder"><span class="hidden-section">CsvImageFolder</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#simpledots"><span class="hidden-section">SimpleDots</span></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="transforms.html">Transforms</a><ul>
@@ -239,6 +240,30 @@ E.g, <code class="docutils literal notranslate"><span class="pre">transforms.Ran
 </tr>
 </tbody>
 </table>
+</dd></dl>
+
+</div>
+<div class="section" id="simpledots">
+<h2><span class="hidden-section">SimpleDots</span><a class="headerlink" href="#simpledots" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="sconce.datasets.SimpleDots">
+<em class="property">class </em><code class="descclassname">sconce.datasets.</code><code class="descname">SimpleDots</code><span class="sig-paren">(</span><em>circle_radius=4</em>, <em>image_size=(30</em>, <em>30)</em>, <em>num_images=400</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/datasets/simple_dots.html#SimpleDots"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.datasets.SimpleDots" title="Permalink to this definition">¶</a></dt>
+<dd><p>A Dataset where each image is a white dot on a black background, the targets are the coordinates of the dot.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>image_size</strong> (<em>tuple of python:int</em>) – the size of the image (in pixels).</li>
+<li><strong>num_images</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) – the number of images to generate for this dataset.  Best if the sqrt of this number is an
+integer.</li>
+<li><strong>circle_radius</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.6)"><em>float</em></a>) – the size of the dot (in pixels).</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>New in 0.11.0</p>
 </dd></dl>
 
 </div>

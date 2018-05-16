@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                master (0.10.3 )
+                master (0.11.0 )
               </div>
             
           
@@ -94,6 +94,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="datasets.html">Datasests</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="datasets.html#csvimagefolder"><span class="hidden-section">CsvImageFolder</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.html#simpledots"><span class="hidden-section">SimpleDots</span></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="transforms.html">Transforms</a><ul>
@@ -201,9 +202,9 @@
             
   <div class="section" id="sconce-datasets-package">
 <h1>sconce.datasets package<a class="headerlink" href="#sconce-datasets-package" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="sconce-datasets-csv-image-folder-module">
-<h2>sconce.datasets.csv_image_folder module<a class="headerlink" href="#sconce-datasets-csv-image-folder-module" title="Permalink to this headline">¶</a></h2>
-<span class="target" id="module-sconce.datasets.csv_image_folder"></span><dl class="class">
+<div class="section" id="module-sconce.datasets.csv_image_folder">
+<span id="sconce-datasets-csv-image-folder-module"></span><h2>sconce.datasets.csv_image_folder module<a class="headerlink" href="#module-sconce.datasets.csv_image_folder" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
 <dt id="sconce.datasets.csv_image_folder.CsvImageFolder">
 <em class="property">class </em><code class="descclassname">sconce.datasets.csv_image_folder.</code><code class="descname">CsvImageFolder</code><span class="sig-paren">(</span><em>root, csv_path, filename_key='image_name', classes_key='tags', csv_delimiter=',', classes_delimiter=' ', loader=&lt;function default_loader&gt;, extensions=['.jpg', '.jpeg', '.png', '.ppm', '.bmp', '.pgm', '.tif'], transform=None, target_transform=&lt;class 'sconce.transforms.NHot'&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/datasets/csv_image_folder.html#CsvImageFolder"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.datasets.csv_image_folder.CsvImageFolder" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.utils.data.dataset.Dataset</span></code></p>
@@ -259,6 +260,36 @@ E.g, <code class="docutils literal notranslate"><span class="pre">transforms.Ran
 <dd></dd></dl>
 
 </dd></dl>
+
+</div>
+<div class="section" id="module-sconce.datasets.simple_dots">
+<span id="sconce-datasets-simple-dots-module"></span><h2>sconce.datasets.simple_dots module<a class="headerlink" href="#module-sconce.datasets.simple_dots" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="sconce.datasets.simple_dots.SimpleDots">
+<em class="property">class </em><code class="descclassname">sconce.datasets.simple_dots.</code><code class="descname">SimpleDots</code><span class="sig-paren">(</span><em>circle_radius=4</em>, <em>image_size=(30</em>, <em>30)</em>, <em>num_images=400</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/datasets/simple_dots.html#SimpleDots"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.datasets.simple_dots.SimpleDots" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.utils.data.dataset.Dataset</span></code></p>
+<p>A Dataset where each image is a white dot on a black background, the targets are the coordinates of the dot.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>image_size</strong> (<em>tuple of python:int</em>) – the size of the image (in pixels).</li>
+<li><strong>num_images</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) – the number of images to generate for this dataset.  Best if the sqrt of this number is an
+integer.</li>
+<li><strong>circle_radius</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.6)"><em>float</em></a>) – the size of the dot (in pixels).</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>New in 0.11.0</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="sconce.datasets.simple_dots.generate_circle_image">
+<code class="descclassname">sconce.datasets.simple_dots.</code><code class="descname">generate_circle_image</code><span class="sig-paren">(</span><em>x</em>, <em>y</em>, <em>image_size=(40</em>, <em>40)</em>, <em>circle_radius=4</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/datasets/simple_dots.html#generate_circle_image"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.datasets.simple_dots.generate_circle_image" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 </div>
 </div>

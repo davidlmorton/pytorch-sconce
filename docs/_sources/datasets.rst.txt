@@ -13,3 +13,9 @@ Datasests
 
 .. autoclass:: CsvImageFolder
     :members:
+
+:hidden:`SimpleDots`
+~~~~~~~~~~~~~~~~~~~~
+
+.. autoclass:: SimpleDots
+    :members:

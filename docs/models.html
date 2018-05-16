@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                master (0.10.3 )
+                master (0.11.0 )
               </div>
             
           
@@ -96,6 +96,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="datasets.html">Datasests</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="datasets.html#csvimagefolder"><span class="hidden-section">CsvImageFolder</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.html#simpledots"><span class="hidden-section">SimpleDots</span></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="transforms.html">Transforms</a><ul>
@@ -203,7 +204,7 @@
             
   <div class="section" id="module-sconce.models">
 <span id="models"></span><h1>Models<a class="headerlink" href="#module-sconce.models" title="Permalink to this headline">¶</a></h1>
-<p>A model in Sconce is just a <a class="reference external" href="https://pytorch.org/docs/master/nn.html#torch.nn.Module" title="(in PyTorch vmaster (0.5.0a0+dc0faab ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.Module</span></code></a> with a few restrictions
+<p>A model in Sconce is just a <a class="reference external" href="https://pytorch.org/docs/master/nn.html#torch.nn.Module" title="(in PyTorch vmaster (0.5.0a0+cd86d4c ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.Module</span></code></a> with a few restrictions
 (see note below).  Sconce comes with a few example models to get you started.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
@@ -213,13 +214,13 @@
 <cite>inputs</cite> and <cite>targets</cite>, but subclasses may modify that behavior to include other keyword arguments.</li>
 <li>It must return a dictionary from it’s <code class="docutils literal notranslate"><span class="pre">forward</span></code> method.  The dictionary is expected to include at least
 the key <cite>outputs</cite> but may include any other keys you like.  The value of the key <cite>outputs</cite> is expected to be
-the <a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (0.5.0a0+dc0faab ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">torch.Tensor</span></code></a> output of the model, used for calculating the loss.</li>
+the <a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (0.5.0a0+cd86d4c ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">torch.Tensor</span></code></a> output of the model, used for calculating the loss.</li>
 <li>It must define a <code class="docutils literal notranslate"><span class="pre">calculate_loss</span></code> method.  This method must accept arbitrary keyword arguments.  The base
 class of trainer will pass <cite>inputs</cite>, <cite>outputs</cite>, and <cite>targets</cite>, but subclasses may modify that behavior to
 include other keyword arguments.</li>
 <li>It must return a dictionary form it’s <code class="docutils literal notranslate"><span class="pre">calculate_loss</span></code> method.  The dictionary is expected to include at
 least the key ‘loss’, but may include any otehr keys you like.  The value of the key <cite>loss</cite> is expected to
-be the <a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (0.5.0a0+dc0faab ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">torch.Tensor</span></code></a> output of the loss function, used to back-propagate the
+be the <a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (0.5.0a0+cd86d4c ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">torch.Tensor</span></code></a> output of the loss function, used to back-propagate the
 gradients used by the optimizer.</li>
 <li>It may define a <code class="docutils literal notranslate"><span class="pre">calculate_metrics</span></code> method.  This method must accept arbitrary keyword arguments.  The
 base class of trainer will pass <cite>inputs</cite>, <cite>outputs</cite>, <cite>targets</cite>, and <cite>loss</cite>, but subclasses may modify that
