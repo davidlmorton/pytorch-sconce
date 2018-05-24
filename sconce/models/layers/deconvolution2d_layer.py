@@ -1,6 +1,13 @@
 from torch import nn
 
 
+def make_tuple(i):
+    if isinstance(i, int):
+        return (i, i)
+    else:
+        return i
+
+
 class Deconvolution2dLayer(nn.Module):
     def __init__(self, *, in_channels, out_channels,
             stride=2, kernel_size=3, padding=1,
@@ -9,12 +16,6 @@ class Deconvolution2dLayer(nn.Module):
             preactivate=False,
             with_batchnorm=True):
         super().__init__()
-
-        def make_tuple(i):
-            if isinstance(i, int):
-                return (i, i)
-            else:
-                return i
 
         self.stride = make_tuple(stride)
         self.kernel_size = make_tuple(kernel_size)
@@ -33,6 +34,25 @@ class Deconvolution2dLayer(nn.Module):
                 padding=self.padding,
                 output_padding=output_padding)
         self.relu = nn.ReLU(inplace=inplace_activation)
+
+    @classmethod
+    def matching_input_and_output_size(cls, input_size, output_size, **kwargs):
+        candidate = cls(**{**kwargs, 'output_padding': 0})
+        h, w = candidate.out_size(input_size)
+        output_padding = [output_size[0] - h, output_size[1] - w]
+        padding = list(make_tuple(kwargs.get('padding', 0)))
+
+        if output_padding[0] < 0:
+            padding[0] += 1
+            output_padding[0] += 2
+
+        if output_padding[1] < 0:
+            padding[1] += 1
+            output_padding[1] += 2
+
+        kwargs['padding'] = padding
+        kwargs['output_padding'] = output_padding
+        return cls(**kwargs)
 
     def out_height(self, in_height):
         return (in_height - 1) * self.stride[0] - 2 * self.padding[0] +\
