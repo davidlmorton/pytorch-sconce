@@ -2,7 +2,8 @@ from torch import nn
 
 
 class FullyConnectedLayer(nn.Module):
-    def __init__(self, in_size, out_size, activation,
+    def __init__(self, in_size, out_size,
+            activation=nn.ReLU(),
             with_batchnorm=True,
             dropout=0.0):
         super().__init__()
@@ -30,5 +31,6 @@ class FullyConnectedLayer(nn.Module):
         if self._dropout_value > 0.0:
             x = self.dropout(x)
 
-        x = self.activation(x)
+        if self.activation is not None:
+            x = self.activation(x)
         return x
