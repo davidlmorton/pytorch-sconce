@@ -41,6 +41,9 @@ class Convolution2dLayer(nn.Module):
                 (self.kernel_size[1] - 1) - 1)
         return (numerator // self.stride[1]) + 1
 
+    def out_size(self, in_size):
+        return (self.out_height(in_size[0]), self.out_width(in_size[1]))
+
     def forward(self, x):
         if self.with_batchnorm:
             x = self.bn(x)
