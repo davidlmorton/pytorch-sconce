@@ -1,0 +1,427 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>sconce.models.variational_autoencoder &mdash; Pytorch-Sconce master documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/pytorch_theme.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> Pytorch-Sconce
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                master (0.12.0 )
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Class Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../data_generator.html">Data Generators</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../data_generator.html#datagenerator"><span class="hidden-section">DataGenerator</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../data_generator.html#imagedatagenerator-deprecated"><span class="hidden-section">ImageDataGenerator (deprecated)</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../data_generator.html#singleclassimagedatagenerator"><span class="hidden-section">SingleClassImageDataGenerator</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../data_generator.html#multiclassimagedatagenerator"><span class="hidden-section">MultiClassImageDataGenerator</span></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../datasets.html">Datasests</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../datasets.html#csvimagefolder"><span class="hidden-section">CsvImageFolder</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../datasets.html#simpledots"><span class="hidden-section">SimpleDots</span></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../transforms.html">Transforms</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../transforms.html#nhot"><span class="hidden-section">NHot</span></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../rate_controllers.html">Rate Controllers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../rate_controllers.html#ratecontroller"><span class="hidden-section">RateController</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../rate_controllers.html#compositeratecontroller"><span class="hidden-section">CompositeRateController</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../rate_controllers.html#constantratecontroller"><span class="hidden-section">ConstantRateController</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../rate_controllers.html#cosineratecontroller"><span class="hidden-section">CosineRateController</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../rate_controllers.html#exponentialratecontroller"><span class="hidden-section">ExponentialRateController</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../rate_controllers.html#linearratecontroller"><span class="hidden-section">LinearRateController</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../rate_controllers.html#stepratecontroller"><span class="hidden-section">StepRateController</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../rate_controllers.html#triangleratecontroller"><span class="hidden-section">TriangleRateController</span></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../monitors.html">Monitors</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../monitors.html#monitor"><span class="hidden-section">Monitor</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../monitors.html#compositemonitor"><span class="hidden-section">CompositeMonitor</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../monitors.html#dataframemonitor"><span class="hidden-section">DataframeMonitor</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../monitors.html#losswisemonitor"><span class="hidden-section">LosswiseMonitor</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../monitors.html#ringbuffermonitor"><span class="hidden-section">RingbufferMonitor</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../monitors.html#stdoutmonitor"><span class="hidden-section">StdoutMonitor</span></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../models.html">Models</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../models.html#basicautoencoder"><span class="hidden-section">BasicAutoencoder</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../models.html#basicconvolutionalautoencoder"><span class="hidden-section">BasicConvolutionalAutoencoder</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../models.html#variationalautoencoder"><span class="hidden-section">VariationalAutoencoder</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../models.html#basicclassifer"><span class="hidden-section">BasicClassifer</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../models.html#multilayerperceptron"><span class="hidden-section">MultilayerPerceptron</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../models.html#wideresnetimageclassifier"><span class="hidden-section">WideResnetImageClassifier</span></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../trainers.html">Trainers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../trainers.html#basic-trainer"><span class="hidden-section">Basic Trainer</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../trainers.html#autoencodertrainer"><span class="hidden-section">AutoencoderTrainer</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../trainers.html#singleclassimageclassifiertrainer"><span class="hidden-section">SingleClassImageClassifierTrainer</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../trainers.html#classifiertrainer-deprecated"><span class="hidden-section">ClassifierTrainer (deprecated)</span></a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Pytorch-Sconce</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>sconce.models.variational_autoencoder</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for sconce.models.variational_autoencoder</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">torch</span> <span class="k">import</span> <span class="n">nn</span>
+<span class="kn">from</span> <span class="nn">torch.nn</span> <span class="k">import</span> <span class="n">functional</span> <span class="k">as</span> <span class="n">F</span>
+<span class="kn">from</span> <span class="nn">sconce.models.layers</span> <span class="k">import</span> <span class="n">Convolution2dLayer</span><span class="p">,</span> <span class="n">Deconvolution2dLayer</span><span class="p">,</span> <span class="n">FullyConnectedLayer</span>
+
+<span class="kn">import</span> <span class="nn">torch</span>
+
+
+<div class="viewcode-block" id="VariationalAutoencoder"><a class="viewcode-back" href="../../../models.html#sconce.models.VariationalAutoencoder">[docs]</a><span class="k">class</span> <span class="nc">VariationalAutoencoder</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A variational autoencoder built up of convolutional layers and dense layers in the encoder and decoder.</span>
+
+<span class="sd">    Loss:</span>
+<span class="sd">        This model uses binary cross entropy for the reconstruction loss and KL Divergence for the latent</span>
+<span class="sd">        representation loss.</span>
+
+<span class="sd">    Metrics:</span>
+<span class="sd">        None</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        image_channels (int): the number of channels in the input images.</span>
+<span class="sd">        conv_channels (list of int): a list (of length three) of integers describing the number of channels in each</span>
+<span class="sd">            of the three convolutional layers.</span>
+<span class="sd">        hidden_sizes (list of int): a list (of length two) of integers describing the number of hidden units in</span>
+<span class="sd">            each hidden layer.</span>
+<span class="sd">        latent_size (int): the size of the latent representation.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">image_size</span><span class="p">,</span> <span class="n">image_channels</span><span class="p">,</span>
+            <span class="n">conv_channels</span><span class="o">=</span><span class="p">[</span><span class="mi">32</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">32</span><span class="p">],</span>
+            <span class="n">hidden_sizes</span><span class="o">=</span><span class="p">[</span><span class="mi">256</span><span class="p">,</span> <span class="mi">256</span><span class="p">],</span>
+            <span class="n">latent_size</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+            <span class="n">beta</span><span class="o">=</span><span class="mf">1.0</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">image_size</span> <span class="o">=</span> <span class="n">image_size</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">image_channels</span> <span class="o">=</span> <span class="n">image_channels</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conv_channels</span> <span class="o">=</span> <span class="n">conv_channels</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hidden_sizes</span> <span class="o">=</span> <span class="n">hidden_sizes</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">latent_size</span> <span class="o">=</span> <span class="n">latent_size</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">beta</span> <span class="o">=</span> <span class="mf">1.0</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">conv1</span> <span class="o">=</span> <span class="n">Convolution2dLayer</span><span class="p">(</span>
+                <span class="n">padding</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                <span class="n">kernel_size</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+                <span class="n">in_channels</span><span class="o">=</span><span class="n">image_channels</span><span class="p">,</span>
+                <span class="n">out_channels</span><span class="o">=</span><span class="n">conv_channels</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">size1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conv1</span><span class="o">.</span><span class="n">out_size</span><span class="p">(</span><span class="n">image_size</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">conv2</span> <span class="o">=</span> <span class="n">Convolution2dLayer</span><span class="p">(</span>
+                <span class="n">padding</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                <span class="n">kernel_size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+                <span class="n">in_channels</span><span class="o">=</span><span class="n">conv_channels</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                <span class="n">out_channels</span><span class="o">=</span><span class="n">conv_channels</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">size2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conv2</span><span class="o">.</span><span class="n">out_size</span><span class="p">(</span><span class="n">size1</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">conv3</span> <span class="o">=</span> <span class="n">Convolution2dLayer</span><span class="p">(</span>
+                <span class="n">padding</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                <span class="n">kernel_size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+                <span class="n">in_channels</span><span class="o">=</span><span class="n">conv_channels</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+                <span class="n">out_channels</span><span class="o">=</span><span class="n">conv_channels</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+        <span class="n">size3</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conv3</span><span class="o">.</span><span class="n">out_size</span><span class="p">(</span><span class="n">size2</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">size3</span> <span class="o">=</span> <span class="n">size3</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_conv_activations</span> <span class="o">=</span> <span class="n">size3</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">size3</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">conv_channels</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">encoder_hidden1</span> <span class="o">=</span> <span class="n">FullyConnectedLayer</span><span class="p">(</span>
+                <span class="n">in_size</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">num_conv_activations</span><span class="p">,</span>
+                <span class="n">out_size</span><span class="o">=</span><span class="n">hidden_sizes</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">encoder_hidden2</span> <span class="o">=</span> <span class="n">FullyConnectedLayer</span><span class="p">(</span>
+                <span class="n">in_size</span><span class="o">=</span><span class="n">hidden_sizes</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                <span class="n">out_size</span><span class="o">=</span><span class="n">hidden_sizes</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">mean</span> <span class="o">=</span> <span class="n">FullyConnectedLayer</span><span class="p">(</span>
+                <span class="n">in_size</span><span class="o">=</span><span class="n">hidden_sizes</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+                <span class="n">out_size</span><span class="o">=</span><span class="n">latent_size</span><span class="p">,</span>
+                <span class="n">activation</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">log_variance</span> <span class="o">=</span> <span class="n">FullyConnectedLayer</span><span class="p">(</span>
+                <span class="n">in_size</span><span class="o">=</span><span class="n">hidden_sizes</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+                <span class="n">out_size</span><span class="o">=</span><span class="n">latent_size</span><span class="p">,</span>
+                <span class="n">activation</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">decoder_hidden_latent</span> <span class="o">=</span> <span class="n">FullyConnectedLayer</span><span class="p">(</span>
+                <span class="n">in_size</span><span class="o">=</span><span class="n">latent_size</span><span class="p">,</span>
+                <span class="n">out_size</span><span class="o">=</span><span class="n">hidden_sizes</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">decoder_hidden2</span> <span class="o">=</span> <span class="n">FullyConnectedLayer</span><span class="p">(</span>
+                <span class="n">in_size</span><span class="o">=</span><span class="n">hidden_sizes</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+                <span class="n">out_size</span><span class="o">=</span><span class="n">hidden_sizes</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">decoder_hidden1</span> <span class="o">=</span> <span class="n">FullyConnectedLayer</span><span class="p">(</span>
+                <span class="n">in_size</span><span class="o">=</span><span class="n">hidden_sizes</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                <span class="n">out_size</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">num_conv_activations</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">deconv3</span> <span class="o">=</span> <span class="n">Deconvolution2dLayer</span><span class="o">.</span><span class="n">matching_input_and_output_size</span><span class="p">(</span>
+                <span class="n">input_size</span><span class="o">=</span><span class="n">size3</span><span class="p">,</span>
+                <span class="n">output_size</span><span class="o">=</span><span class="n">size2</span><span class="p">,</span>
+                <span class="n">in_channels</span><span class="o">=</span><span class="n">conv_channels</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
+                <span class="n">out_channels</span><span class="o">=</span><span class="n">conv_channels</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+                <span class="n">kernel_size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+                <span class="n">padding</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">deconv2</span> <span class="o">=</span> <span class="n">Deconvolution2dLayer</span><span class="o">.</span><span class="n">matching_input_and_output_size</span><span class="p">(</span>
+                <span class="n">input_size</span><span class="o">=</span><span class="n">size2</span><span class="p">,</span>
+                <span class="n">output_size</span><span class="o">=</span><span class="n">size1</span><span class="p">,</span>
+                <span class="n">in_channels</span><span class="o">=</span><span class="n">conv_channels</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+                <span class="n">out_channels</span><span class="o">=</span><span class="n">conv_channels</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                <span class="n">padding</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                <span class="n">kernel_size</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+
+        <span class="c1"># preactivate so we can tack on the sigmoid activation afterwards.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">deconv1</span> <span class="o">=</span> <span class="n">Deconvolution2dLayer</span><span class="o">.</span><span class="n">matching_input_and_output_size</span><span class="p">(</span>
+                <span class="n">input_size</span><span class="o">=</span><span class="n">size1</span><span class="p">,</span>
+                <span class="n">output_size</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">image_size</span><span class="p">,</span>
+                <span class="n">in_channels</span><span class="o">=</span><span class="n">conv_channels</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                <span class="n">out_channels</span><span class="o">=</span><span class="n">image_channels</span><span class="p">,</span>
+                <span class="n">kernel_size</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+                <span class="n">padding</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                <span class="n">preactivate</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">reparameterize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="n">logvar</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">training</span><span class="p">:</span>
+            <span class="n">std</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">logvar</span><span class="p">)</span>
+            <span class="n">eps</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn_like</span><span class="p">(</span><span class="n">std</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">eps</span><span class="o">.</span><span class="n">mul</span><span class="p">(</span><span class="n">std</span><span class="p">)</span><span class="o">.</span><span class="n">add_</span><span class="p">(</span><span class="n">mu</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">mu</span>
+
+    <span class="k">def</span> <span class="nf">encode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x_in</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conv1</span><span class="p">(</span><span class="n">x_in</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conv2</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conv3</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_conv_activations</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">encoder_hidden1</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">encoder_hidden2</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">mu</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">logvar</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">log_variance</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">mu</span><span class="p">,</span> <span class="n">logvar</span>
+
+    <span class="k">def</span> <span class="nf">decode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x_latent</span><span class="p">):</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">decoder_hidden_latent</span><span class="p">(</span><span class="n">x_latent</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">decoder_hidden2</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">decoder_hidden1</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">conv_channels</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">size3</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">size3</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">deconv3</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">deconv2</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">deconv1</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">x_out</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sigmoid</span><span class="p">()(</span><span class="n">x</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">x_out</span>
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inputs</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">mu</span><span class="p">,</span> <span class="n">logvar</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span>
+        <span class="n">z</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">reparameterize</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span> <span class="n">logvar</span><span class="p">)</span>
+        <span class="n">x_out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;outputs&#39;</span><span class="p">:</span> <span class="n">x_out</span><span class="p">,</span> <span class="s1">&#39;mu&#39;</span><span class="p">:</span> <span class="n">mu</span><span class="p">,</span> <span class="s1">&#39;logvar&#39;</span><span class="p">:</span> <span class="n">logvar</span><span class="p">}</span>
+
+    <span class="k">def</span> <span class="nf">calculate_loss</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">outputs</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="n">logvar</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">reconstruction_loss</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">binary_cross_entropy</span><span class="p">(</span><span class="n">outputs</span><span class="p">,</span>
+                <span class="n">inputs</span><span class="o">.</span><span class="n">view_as</span><span class="p">(</span><span class="n">outputs</span><span class="p">))</span>
+
+        <span class="c1"># see Appendix B from VAE paper:</span>
+        <span class="c1"># Kingma and Welling. Auto-Encoding Variational Bayes. ICLR, 2014</span>
+        <span class="c1"># https://arxiv.org/abs/1312.6114</span>
+        <span class="n">latent_loss</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">torch</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">logvar</span> <span class="o">-</span> <span class="n">mu</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="n">logvar</span><span class="o">.</span><span class="n">exp</span><span class="p">())</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;loss&#39;</span><span class="p">:</span> <span class="n">reconstruction_loss</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">beta</span> <span class="o">*</span> <span class="n">latent_loss</span><span class="p">,</span>
+                <span class="s1">&#39;latent_loss&#39;</span><span class="p">:</span> <span class="n">latent_loss</span><span class="p">,</span>
+                <span class="s1">&#39;reconstruction_loss&#39;</span><span class="p">:</span> <span class="n">reconstruction_loss</span><span class="p">}</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Pytorch-Sconce Contributors.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'master',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          
+          SphinxRtdTheme.Navigation.enableSticky();
+          
+      });
+  </script> 
+
+</body>
+</html>

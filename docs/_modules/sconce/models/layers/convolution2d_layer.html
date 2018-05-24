@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                master (0.11.0 )
+                master (0.12.0 )
               </div>
             
           
@@ -124,6 +124,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../../models.html">Models</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../../models.html#basicautoencoder"><span class="hidden-section">BasicAutoencoder</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../models.html#basicconvolutionalautoencoder"><span class="hidden-section">BasicConvolutionalAutoencoder</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../models.html#variationalautoencoder"><span class="hidden-section">VariationalAutoencoder</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../models.html#basicclassifer"><span class="hidden-section">BasicClassifer</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../models.html#multilayerperceptron"><span class="hidden-section">MultilayerPerceptron</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../models.html#wideresnetimageclassifier"><span class="hidden-section">WideResnetImageClassifier</span></a></li>
@@ -241,6 +242,9 @@
         <span class="n">numerator</span> <span class="o">=</span> <span class="p">(</span><span class="n">in_width</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">padding</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span>
                 <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">kernel_size</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
         <span class="k">return</span> <span class="p">(</span><span class="n">numerator</span> <span class="o">//</span> <span class="bp">self</span><span class="o">.</span><span class="n">stride</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">+</span> <span class="mi">1</span></div>
+
+<div class="viewcode-block" id="Convolution2dLayer.out_size"><a class="viewcode-back" href="../../../../sconce.models.layers.html#sconce.models.layers.convolution2d_layer.Convolution2dLayer.out_size">[docs]</a>    <span class="k">def</span> <span class="nf">out_size</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">in_size</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">out_height</span><span class="p">(</span><span class="n">in_size</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="bp">self</span><span class="o">.</span><span class="n">out_width</span><span class="p">(</span><span class="n">in_size</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span></div>
 
 <div class="viewcode-block" id="Convolution2dLayer.forward"><a class="viewcode-back" href="../../../../sconce.models.layers.html#sconce.models.layers.convolution2d_layer.Convolution2dLayer.forward">[docs]</a>    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">with_batchnorm</span><span class="p">:</span>

@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                master (0.11.0 )
+                master (0.12.0 )
               </div>
             
           
@@ -124,6 +124,7 @@
 <li class="toctree-l1"><a class="reference internal" href="models.html">Models</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="models.html#basicautoencoder"><span class="hidden-section">BasicAutoencoder</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="models.html#basicconvolutionalautoencoder"><span class="hidden-section">BasicConvolutionalAutoencoder</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="models.html#variationalautoencoder"><span class="hidden-section">VariationalAutoencoder</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="models.html#basicclassifer"><span class="hidden-section">BasicClassifer</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="models.html#multilayerperceptron"><span class="hidden-section">MultilayerPerceptron</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="models.html#wideresnetimageclassifier"><span class="hidden-section">WideResnetImageClassifier</span></a></li>
@@ -219,6 +220,11 @@
 <dd></dd></dl>
 
 <dl class="method">
+<dt id="sconce.models.layers.convolution2d_layer.Convolution2dLayer.out_size">
+<code class="descname">out_size</code><span class="sig-paren">(</span><em>in_size</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/models/layers/convolution2d_layer.html#Convolution2dLayer.out_size"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.models.layers.convolution2d_layer.Convolution2dLayer.out_size" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
 <dt id="sconce.models.layers.convolution2d_layer.Convolution2dLayer.out_width">
 <code class="descname">out_width</code><span class="sig-paren">(</span><em>in_width</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/models/layers/convolution2d_layer.html#Convolution2dLayer.out_width"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.models.layers.convolution2d_layer.Convolution2dLayer.out_width" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -230,7 +236,7 @@
 <span id="sconce-models-layers-fully-connected-layer-module"></span><h2>sconce.models.layers.fully_connected_layer module<a class="headerlink" href="#module-sconce.models.layers.fully_connected_layer" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="sconce.models.layers.fully_connected_layer.FullyConnectedLayer">
-<em class="property">class </em><code class="descclassname">sconce.models.layers.fully_connected_layer.</code><code class="descname">FullyConnectedLayer</code><span class="sig-paren">(</span><em>in_size</em>, <em>out_size</em>, <em>activation</em>, <em>with_batchnorm=True</em>, <em>dropout=0.0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/models/layers/fully_connected_layer.html#FullyConnectedLayer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.models.layers.fully_connected_layer.FullyConnectedLayer" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">sconce.models.layers.fully_connected_layer.</code><code class="descname">FullyConnectedLayer</code><span class="sig-paren">(</span><em>in_size</em>, <em>out_size</em>, <em>activation=ReLU()</em>, <em>with_batchnorm=True</em>, <em>dropout=0.0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/models/layers/fully_connected_layer.html#FullyConnectedLayer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.models.layers.fully_connected_layer.FullyConnectedLayer" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
 <dl class="method">
 <dt id="sconce.models.layers.fully_connected_layer.FullyConnectedLayer.forward">
