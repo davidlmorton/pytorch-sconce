@@ -1,11 +1,12 @@
+from sconce.models.base import Model
+from sconce.models.layers import Convolution2dLayer, Deconvolution2dLayer, FullyConnectedLayer
 from torch import nn
 from torch.nn import functional as F
-from sconce.models.layers import Convolution2dLayer, Deconvolution2dLayer, FullyConnectedLayer
 
 import torch
 
 
-class VariationalAutoencoder(nn.Module):
+class VariationalAutoencoder(Model):
     """
     A variational autoencoder built up of convolutional layers and dense layers in the encoder and decoder.
 

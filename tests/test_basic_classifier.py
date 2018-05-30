@@ -1,6 +1,6 @@
 # flake8: noqa
 from sconce.data_generators import ImageDataGenerator
-from sconce.rate_controllers import CosineRateController
+from sconce.schedules import Cosine
 from sconce.trainers import ClassifierTrainer
 from sconce.models import BasicClassifier
 from torch import optim
@@ -28,19 +28,16 @@ class TestBasicClassifier(unittest.TestCase):
             training_generator.cuda()
             test_generator.cuda()
 
-        optimizer = optim.SGD(model.parameters(), lr=1e-4,
-                momentum=0.9, weight_decay=1e-4)
+        model.set_optimizer(optim.SGD, lr=1e-4, momentum=0.9, weight_decay=1e-4)
 
-        trainer = ClassifierTrainer(model=model, optimizer=optimizer,
+        trainer = ClassifierTrainer(model=model,
             training_data_generator=training_generator,
             test_data_generator=test_generator)
 
         self.assertLess(trainer.get_classification_accuracy(), 0.2)
 
-        rate_controller = CosineRateController(
-                max_learning_rate=1e-1,
-                min_learning_rate=3e-2)
-        trainer.train(num_epochs=3, rate_controller=rate_controller)
+        model.set_schedule('learning_rate', Cosine(initial_value=1e-1, final_value=3e-2))
+        trainer.train(num_epochs=3)
         trainer.monitor.dataframe_monitor.plot(skip_first=30, smooth_window=5)
 
         self.assertGreater(trainer.get_classification_accuracy(), 0.95)

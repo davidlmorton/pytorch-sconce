@@ -1,5 +1,5 @@
 from sconce.data_generators import SingleClassImageDataGenerator
-from sconce.rate_controllers import CosineRateController
+from sconce.schedules import Cosine
 from sconce.trainer import Trainer
 from sconce.models import BasicAutoencoder
 from torch import optim
@@ -21,10 +21,9 @@ class TestTrainer(unittest.TestCase):
             training_generator.cuda()
             test_generator.cuda()
 
-        optimizer = optim.SGD(model.parameters(), lr=1e-4,
-                momentum=0.9, weight_decay=1e-6)
+        model.set_optimizer(optim.SGD, lr=1e-4, momentum=0.9, weight_decay=1e-6)
 
-        trainer = Trainer(model=model, optimizer=optimizer,
+        trainer = Trainer(model=model,
                 training_data_generator=training_generator,
                 test_data_generator=test_generator)
 
@@ -32,10 +31,10 @@ class TestTrainer(unittest.TestCase):
                 min_learning_rate=1e-1, max_learning_rate=1e3)
         survey_monitor.dataframe_monitor.plot_learning_rate_survey()
 
-        rate_controller = CosineRateController(max_learning_rate=2)
-        trainer.train(num_epochs=1, rate_controller=rate_controller)
+        model.set_schedule('learning_rate', Cosine(initial_value=2, final_value=2 / 50))
+        trainer.train(num_epochs=1)
 
-        trainer.multi_train(num_cycles=4, rate_controller=rate_controller)
+        trainer.multi_train(num_cycles=4)
         trainer.monitor.dataframe_monitor.plot()
 
         test_monitor = trainer.test()

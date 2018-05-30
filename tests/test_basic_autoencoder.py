@@ -1,5 +1,5 @@
 from sconce.data_generators import SingleClassImageDataGenerator
-from sconce.rate_controllers import CosineRateController
+from sconce.schedules import Cosine
 from sconce.trainers import AutoencoderTrainer
 from sconce.models import BasicAutoencoder
 from torch import optim
@@ -12,6 +12,7 @@ class TestBasicAutoencoder(unittest.TestCase):
     def test_full_run(self):
         model = BasicAutoencoder(image_height=28, image_width=28,
                 hidden_size=200, latent_size=100)
+
         training_generator = SingleClassImageDataGenerator.from_torchvision(fraction=1 / 6)
         test_generator = SingleClassImageDataGenerator.from_torchvision(train=False, fraction=0.1)
 
@@ -20,10 +21,9 @@ class TestBasicAutoencoder(unittest.TestCase):
             training_generator.cuda()
             test_generator.cuda()
 
-        optimizer = optim.SGD(model.parameters(), lr=1e-4,
-                momentum=0.9, weight_decay=1e-6)
+        model.set_optimizer(optim.SGD, lr=1e-4, momentum=0.9, weight_decay=1e-6)
 
-        trainer = AutoencoderTrainer(model=model, optimizer=optimizer,
+        trainer = AutoencoderTrainer(model=model,
                 training_data_generator=training_generator,
                 test_data_generator=test_generator)
 
@@ -34,10 +34,10 @@ class TestBasicAutoencoder(unittest.TestCase):
         trainer.plot_input_output_pairs()
         trainer.plot_latent_space()
 
-        rate_controller = CosineRateController(max_learning_rate=2)
-        trainer.train(num_epochs=1, rate_controller=rate_controller)
+        model.set_schedule('learning_rate', Cosine(initial_value=2, final_value=2 / 50))
+        trainer.train(num_epochs=1)
 
-        trainer.multi_train(num_cycles=4, rate_controller=rate_controller)
+        trainer.multi_train(num_cycles=4)
         trainer.monitor.dataframe_monitor.plot()
 
         test_monitor = trainer.test()

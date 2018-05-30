@@ -1,4 +1,5 @@
 from .layers import FullyConnectedLayer
+from sconce.models.base import Model
 from torch import nn
 from torch.nn import functional as F
 
@@ -6,7 +7,7 @@ import numpy as np
 import yaml
 
 
-class MultilayerPerceptron(nn.Module):
+class MultilayerPerceptron(Model):
     """
     A basic 2D image multi-layer perceptron built up of a number of densly connected layers.
 
