@@ -1,11 +1,12 @@
 from .layers import Convolution2dLayer
+from sconce.models.base import Model
 from torch import nn
 from torch.nn import functional as F
 
 import numpy as np
 
 
-class AdaptiveAveragePooling2dLayer(nn.Module):
+class AdaptiveAveragePooling2dLayer(Model):
     def __init__(self, in_channels, output_size,
             inplace_activation=False,
             preactivate=False,

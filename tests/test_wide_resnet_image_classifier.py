@@ -1,6 +1,6 @@
 # flake8: noqa
 from sconce.data_generators import SingleClassImageDataGenerator
-from sconce.rate_controllers import TriangleRateController
+from sconce.schedules import Triangle
 from sconce.trainers import SingleClassImageClassifierTrainer
 from sconce.models import WideResnetImageClassifier
 from torch import optim
@@ -32,10 +32,9 @@ class TestWideResnetImageClassifier(unittest.TestCase):
 
         self.assertLess(trainer.get_classification_accuracy(), 0.2)
 
-        rate_controller = TriangleRateController(
-                max_learning_rate=5e-2,
-                min_learning_rate=5e-3)
-        trainer.train(num_epochs=2, rate_controller=rate_controller)
+        num_steps = trainer.get_num_steps(num_epochs=2)
+        schedule = Triangle('learning_rate', initial_value=5e-3, peak_value=5e-2, num_steps=num_steps)
+        trainer.train(schedule=schedule)
 
         acc = trainer.get_classification_accuracy()
         print(f"Accuracy: {acc}")

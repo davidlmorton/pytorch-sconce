@@ -1,4 +1,5 @@
 from .layers import FullyConnectedLayer, Convolution2dLayer
+from sconce.models.base import Model
 from torch import nn
 from torch.nn import functional as F
 
@@ -6,7 +7,7 @@ import numpy as np
 import yaml
 
 
-class BasicClassifier(nn.Module):
+class BasicClassifier(Model):
     """
     A basic 2D image classifier built up of some number of convolutional layers followed by some number of densly
     connected layers.

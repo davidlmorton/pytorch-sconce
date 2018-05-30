@@ -1,6 +1,6 @@
 # flake8: noqa
 from sconce.data_generators import SingleClassImageDataGenerator
-from sconce.rate_controllers import CosineRateController, TriangleRateController
+from sconce.schedules import Triangle, Cosine
 from sconce.trainers import SingleClassImageClassifierTrainer
 from sconce.models import MultilayerPerceptron
 from torch import optim
@@ -36,10 +36,9 @@ class TestMultilayerPerceptron(unittest.TestCase):
 
         self.assertLess(trainer.get_classification_accuracy(), 0.2)
 
-        rate_controller = CosineRateController(
-                max_learning_rate=1e-1,
-                min_learning_rate=3e-2)
-        trainer.train(num_epochs=3, rate_controller=rate_controller)
+        num_steps = trainer.get_num_steps(num_epochs=3)
+        schedule = Cosine('learning_rate', initial_value=1e-1, final_value=3e-2, num_steps=num_steps)
+        trainer.train(schedule=schedule)
         trainer.monitor.dataframe_monitor.plot(skip_first=30, smooth_window=5)
 
         acc = trainer.get_classification_accuracy()
@@ -74,11 +73,9 @@ class TestMultilayerPerceptron(unittest.TestCase):
 
         self.assertLess(trainer.get_classification_accuracy(), 0.2)
 
-        rate_controller = TriangleRateController(
-                max_learning_rate=5e-1,
-                min_learning_rate=5e-2)
-        trainer.train(num_epochs=3, rate_controller=rate_controller,
-                batch_multiplier=5)
+        num_steps = trainer.get_num_steps(num_epochs=3, batch_multiplier=5)
+        schedule = Triangle('learning_rate', initial_value=5e-2, final_value=5e-1, num_steps=num_steps)
+        trainer.train(schedule=schedule, batch_multiplier=5)
 
         acc = trainer.get_classification_accuracy()
         print(f"Accuracy: {acc}")

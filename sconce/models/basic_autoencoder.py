@@ -1,9 +1,10 @@
+from sconce.models.base import Model
+from sconce.models.layers import FullyConnectedLayer
 from torch import nn
 from torch.nn import functional as F
-from sconce.models.layers import FullyConnectedLayer
 
 
-class BasicAutoencoder(nn.Module):
+class BasicAutoencoder(Model):
     """
     A basic 2D image autoencoder built up of fully connected layers, three each in the encoder and the decoder.
 
