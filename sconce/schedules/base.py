@@ -50,12 +50,16 @@ class ScheduledMixin:
         if name in self.schedules:
             del self.schedules[name]
 
+    def start_session(self, num_steps):
+        for schedule in self.schedules.values():
+            schedule.set_num_steps(num_steps)
+
     def prepare_for_step(self, step, current_state):
         hyperparameters = {}
-        for name, schedule in self.schedules:
+        for name, schedule in self.schedules.items():
             set_method_name = f'set_{name}'
             set_method = getattr(self, set_method_name)
             value = schedule.get_value(step=step, current_state=current_state)
-            set_method(value=value)
+            set_method(value)
             hyperparameters[name] = value
         return hyperparameters

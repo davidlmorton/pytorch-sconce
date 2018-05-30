@@ -138,7 +138,7 @@ class Trainer:
     def get_num_steps(self, num_epochs, data_generator=None, batch_multiplier=1):
         if data_generator is None:
             data_generator = self.training_data_generator
-        num_samples = data_generator.num_samples
+        num_samples = num_epochs * data_generator.num_samples
         batch_size = data_generator.batch_size
         effective_batch_size = batch_size * batch_multiplier
         num_steps = num_samples // effective_batch_size
@@ -151,6 +151,7 @@ class Trainer:
     def _train(self, *, num_steps, monitor, test_to_train_ratio, batch_multiplier):
         self._reset_cache()
         monitor.start_session(num_steps)
+        self.model.start_session(num_steps)
 
         iterations_since_test = 0
 

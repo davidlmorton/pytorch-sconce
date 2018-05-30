@@ -20,25 +20,6 @@ class Model(ABC, nn.Module, ScheduledMixin):
         self.default_parameter_group_name = name = '__all__'
         self._parameter_groups = {name: ParameterGroup(parameters=parameters, name=name)}
 
-    @property
-    def default_parameter_group(self):
-        return self.get_parameter_group(self.default_parameter_group_name)
-
-    def get_parameter_group(self, name):
-        return self._parameter_groups[name]
-
-    def set_optimizer(self, *args, **kwargs):
-        return self.default_parameter_group.set_optimizer(*args, **kwargs)
-
-    def set_learning_rate(self, *args, **kwargs):
-        return self.default_parameter_group.set_learning_rate(*args, **kwargs)
-
-    def set_momentum(self, *args, **kwargs):
-        return self.default_parameter_group.set_momentum(*args, **kwargs)
-
-    def set_weight_decay(self, *args, **kwargs):
-        return self.default_parameter_group.set_weight_decay(*args, **kwargs)
-
     @abstractmethod
     def forward(self, *, inputs, targets, **kwargs):
         """
@@ -92,14 +73,6 @@ class Model(ABC, nn.Module, ScheduledMixin):
         """
         return sum([np.prod(p.size()) for p in self.get_trainable_parameters()])
 
-    def get_parameter_groups(self):
-        """
-        Return a dictionary of ParameterGroup objects
-        """
-        parameters = self.get_trainable_parameters()
-        name = '__all__'
-        return {name: ParameterGroup(parameters=parameters, name=name)}
-
     def prepare_for_step(self, step, current_state):
         """
         First, it handles any hyperparameter schedules added to the model itself before gathering up
@@ -107,7 +80,50 @@ class Model(ABC, nn.Module, ScheduledMixin):
         """
         model_hyperparameters = super().prepare_for_step(step=step, current_state=current_state)
         hyperparameters = {'model': model_hyperparameters}
-        for name, group in (self.get_parameter_groups()).items():
+        for name, group in self._parameter_groups.items():
             group_hyperparameters = group.prepare_for_step(step=step, current_state=current_state)
             hyperparameters[name] = group_hyperparameters
         return hyperparameters
+
+    def set_schedule(self, name, schedule):
+        if name in ('learning_rate', 'momentum', 'weight_decay'):
+            self.default_parameter_group.set_schedule(name=name, schedule=schedule)
+        else:
+            super().set_schedule(name=name, schedule=schedule)
+
+    @property
+    def default_parameter_group(self):
+        return self.get_parameter_group(self.default_parameter_group_name)
+
+    def get_parameter_group(self, name):
+        return self._parameter_groups[name]
+
+    def set_optimizer(self, *args, **kwargs):
+        return self.default_parameter_group.set_optimizer(*args, **kwargs)
+
+    def set_learning_rate(self, *args, **kwargs):
+        return self.default_parameter_group.set_learning_rate(*args, **kwargs)
+
+    def set_momentum(self, *args, **kwargs):
+        return self.default_parameter_group.set_momentum(*args, **kwargs)
+
+    def set_weight_decay(self, *args, **kwargs):
+        return self.default_parameter_group.set_weight_decay(*args, **kwargs)
+
+    def start_session(self, num_steps):
+        super().start_session(num_steps)
+        for group in self._parameter_groups.values():
+            if group.is_active:
+                group.start_session(num_steps)
+
+    def print_schedule_summary(self):
+        print('model')
+        print('=====')
+        for name, schedule in self.schedules.items():
+            print(f'{name}: {schedule}')
+
+        print('parameter groups')
+        print('================')
+        for group_name, group in self._parameter_groups.items():
+            for schedule_name, schedule in group.schedules.items():
+                print(f'{group_name}.{schedule_name}: {schedule}')

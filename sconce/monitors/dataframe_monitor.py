@@ -142,9 +142,9 @@ class DataframeMonitor(Monitor):
 
     def _plot_lr(self, ax, df):
         for column in df.columns:
-            if isinstance(column, tuple) and column[0] == 'learning_rate':
-                name = column[1]
-                df[('learning_rate', name)].fillna(method='backfill').plot(ax=ax, logy=True, linewidth=3, label=name)
+            if isinstance(column, tuple) and column[1] == 'learning_rate':
+                name = column[0]
+                df[column].fillna(method='backfill').plot(ax=ax, logy=True, linewidth=3, label=name)
                 ax.legend(loc='best')
             elif column == 'learning_rate':
                 df['learning_rate'].fillna(method='backfill').plot(ax=ax, logy=True, linewidth=3)
@@ -158,9 +158,10 @@ class DataframeMonitor(Monitor):
             fig = plt.figure(**figure_kwargs)
             ax = fig.add_subplot(1, 1, 1)
 
+        lr_key = ('__all__', 'learning_rate')
         df = self.df.groupby(
-                self.df['learning_rate'].fillna(method='backfill')).mean()
-        ax.loglog(df['learning_rate'], df['training_loss'], **plot_kwargs)
+                self.df[lr_key].fillna(method='backfill')).mean()
+        ax.loglog(df[lr_key], df['training_loss'], **plot_kwargs)
         ax.set_xlabel('Learning Rate (logscale)')
         ax.set_ylabel('Loss (logscale)')
         ax.set_title('Learning Rate Survey')
