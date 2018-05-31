@@ -82,16 +82,19 @@ class DataframeMonitor(Monitor):
     def plot(self, title="Training History", figsize=(15, 5),
                     skip_first=100, smooth_window=50,
                     metrics=['loss'],
+                    hyperparameters=['learning_rate'],
                     test_color='tomato',
                     training_color='mediumseagreen',
                     fig=None):
         if fig is None:
             fig = plt.figure(figsize=figsize)
-            metrics_ax = plt.subplot2grid((4, 1), (0, 0), rowspan=3, fig=fig)
-            lr_ax = plt.subplot2grid((4, 1), (3, 0), fig=fig)
+            num_rows = 2 + len(hyperparameters)
+            metrics_ax = plt.subplot2grid((num_rows, 1), (0, 0), rowspan=2, fig=fig)
+            hyperparameter_axes = [plt.subplot2grid((num_rows, 1), (2 + i, 0), fig=fig)
+                    for i in range(len(hyperparameters))]
         else:
             metrics_ax = fig.axes[0]
-            lr_ax = fig.axes[1]
+            hyperparameter_axes = fig.axes[1:]
 
         df = self.df.loc[skip_first:]
 
@@ -135,21 +138,27 @@ class DataframeMonitor(Monitor):
 
         metrics_ax.set_title(title)
 
-        self._plot_lr(ax=lr_ax, df=df)
+        for hyperparameter, ax in zip(hyperparameters, hyperparameter_axes):
+            if isinstance(hyperparameter, dict):
+                self._plot_hyperparameter(ax=ax, df=df, **hyperparameter)
+            else:
+                self._plot_hyperparameter(ax=ax, df=df, name=hyperparameter)
 
         plt.tight_layout()
         return fig
 
-    def _plot_lr(self, ax, df):
+    def _plot_hyperparameter(self, df, ax, name, **kwargs):
+        num_columns_plotted = 0
         for column in df.columns:
-            if isinstance(column, tuple) and column[0] == 'learning_rate':
-                name = column[1]
-                df[('learning_rate', name)].fillna(method='backfill').plot(ax=ax, logy=True, linewidth=3, label=name)
-                ax.legend(loc='best')
-            elif column == 'learning_rate':
-                df['learning_rate'].fillna(method='backfill').plot(ax=ax, logy=True, linewidth=3)
+            if isinstance(column, tuple) and column[1] == name:
+                label = column[0]
+                df[column].fillna(method='backfill').plot(ax=ax, linewidth=3, label=label, **kwargs)
+                num_columns_plotted += 1
 
-        ax.set_ylabel('Learning Rate')
+        if num_columns_plotted > 1:
+            ax.legend(loc='best')
+
+        ax.set_ylabel(name)
         return ax
 
     def plot_learning_rate_survey(self, ax=None, figure_kwargs={},
@@ -158,9 +167,17 @@ class DataframeMonitor(Monitor):
             fig = plt.figure(**figure_kwargs)
             ax = fig.add_subplot(1, 1, 1)
 
+        lr_key = None
+        for column in self.df.columns:
+            if isinstance(column, tuple) and column[1] == 'learning_rate':
+                lr_key = column
+
+        if lr_key is None:
+            raise RuntimeError("No learning rate information could be found for this Monitor")
+
         df = self.df.groupby(
-                self.df['learning_rate'].fillna(method='backfill')).mean()
-        ax.loglog(df['learning_rate'], df['training_loss'], **plot_kwargs)
+                self.df[lr_key].fillna(method='backfill')).mean()
+        ax.loglog(df[lr_key], df['training_loss'], **plot_kwargs)
         ax.set_xlabel('Learning Rate (logscale)')
         ax.set_ylabel('Loss (logscale)')
         ax.set_title('Learning Rate Survey')

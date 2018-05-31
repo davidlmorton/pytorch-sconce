@@ -15,9 +15,10 @@ Sconce Documentation
    data_generator
    datasets
    transforms
-   rate_controllers
    monitors
    models
+   parameter_group
+   schedules
    trainers
 
 Indices and tables

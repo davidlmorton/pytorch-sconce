@@ -160,3 +160,6 @@ class VariationalAutoencoder(Model):
         return {'loss': reconstruction_loss + self.beta * latent_loss,
                 'latent_loss': latent_loss,
                 'reconstruction_loss': reconstruction_loss}
+
+    def set_beta(self, value):
+        self.beta = float(value)
