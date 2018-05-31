@@ -1,9 +1,10 @@
+from sconce.models.base import Model
+from sconce.models.layers import Convolution2dLayer, Deconvolution2dLayer
 from torch import nn
 from torch.nn import functional as F
-from sconce.models.layers import Convolution2dLayer, Deconvolution2dLayer
 
 
-class BasicConvolutionalAutoencoder(nn.Module):
+class BasicConvolutionalAutoencoder(Model):
     """
     A basic 2D image autoencoder built up of convolutional layers, three each in the encoder and the decoder.
 

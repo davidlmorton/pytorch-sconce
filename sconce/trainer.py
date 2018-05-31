@@ -10,14 +10,10 @@ import torch
 
 class Trainer:
     """
-    A Class that is used to train pytorch models.
-    It defines the training loop and orchestrates the various other sconce
-    objects (:py:class:`~sconce.data_generators.base.DataGenerator`,
-    :py:class:`~sconce.monitors.base.Monitor`,
-    :py:class:`~sconce.rate_controllers.base.RateController`, ect).
+    A Class that is used to train sconce models.
 
     Keyword Arguments:
-        model (:py:class:`torch.nn.Module`): the torch model to be trained.  See :py:mod:`sconce.models` for examples.
+        model (:py:class:`~sconce.models.base.Model`): the sconce model to be trained.  See :py:mod:`sconce.models` for examples.
         training_data_generator (:py:class:`~sconce.data_generators.base.DataGenerator`): yields training `inputs` and
             `targets`.
         test_data_generator (:py:class:`~sconce.data_generators.base.DataGenerator`): yields test `inputs` and
