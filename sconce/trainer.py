@@ -294,7 +294,7 @@ class Trainer:
             stdout_monitor = monitors.StdoutMonitor(metric_names=metric_names)
             monitor = monitors.DataframeMonitor() + stdout_monitor
 
-        num_steps = len(self.training_data_generator)
+        num_steps = len(self.test_data_generator)
         monitor.start_session(num_steps)
 
         for step in range(1, num_steps + 1):
