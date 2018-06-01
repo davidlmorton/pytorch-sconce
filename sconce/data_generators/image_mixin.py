@@ -41,7 +41,6 @@ class ImageMixin(ABC):
         old_transform = dataset.transform
         try:
             dataset.transform = None
-            dataset.target_transform = None
             for image, _ in dataset:
                 info = get_image_size(image)
                 info_list.append(info)

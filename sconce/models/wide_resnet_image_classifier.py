@@ -1,4 +1,5 @@
 from .layers import Convolution2dLayer
+from sconce.models.base import Model
 from torch import nn
 from torch.nn import functional as F
 
@@ -99,7 +100,7 @@ class WideResnetGroup_3x3(nn.Module):
         return x
 
 
-class WideResnetImageClassifier(nn.Module):
+class WideResnetImageClassifier(Model):
     """
     A wide resnet image classifier, based on `this paper`_
 

@@ -7,6 +7,12 @@ Models
 .. currentmodule:: sconce.models
 .. automodule:: sconce.models
 
+:hidden:`Model`
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. autoclass:: Model
+    :members:
+
 :hidden:`BasicAutoencoder`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 

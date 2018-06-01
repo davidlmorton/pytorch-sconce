@@ -9,9 +9,9 @@ Subpackages
 
     sconce.data_generators
     sconce.datasets
-    sconce.models
     sconce.monitors
-    sconce.rate_controllers
+    sconce.models
+    sconce.schedules
     sconce.trainers
 
 Submodules
@@ -37,6 +37,14 @@ sconce.utils module
 -------------------
 
 .. automodule:: sconce.utils
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+sconce.parameter_group module
+-----------------------------
+
+.. automodule:: sconce.parameter_group
     :members:
     :undoc-members:
     :show-inheritance:
