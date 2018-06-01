@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                master (0.12.0 )
+                master (1.0.0 )
               </div>
             
           
@@ -101,17 +101,6 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../transforms.html#nhot"><span class="hidden-section">NHot</span></a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../../rate_controllers.html">Rate Controllers</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../rate_controllers.html#ratecontroller"><span class="hidden-section">RateController</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../rate_controllers.html#compositeratecontroller"><span class="hidden-section">CompositeRateController</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../rate_controllers.html#constantratecontroller"><span class="hidden-section">ConstantRateController</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../rate_controllers.html#cosineratecontroller"><span class="hidden-section">CosineRateController</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../rate_controllers.html#exponentialratecontroller"><span class="hidden-section">ExponentialRateController</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../rate_controllers.html#linearratecontroller"><span class="hidden-section">LinearRateController</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../rate_controllers.html#stepratecontroller"><span class="hidden-section">StepRateController</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../rate_controllers.html#triangleratecontroller"><span class="hidden-section">TriangleRateController</span></a></li>
-</ul>
-</li>
 <li class="toctree-l1"><a class="reference internal" href="../../../monitors.html">Monitors</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../monitors.html#monitor"><span class="hidden-section">Monitor</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../monitors.html#compositemonitor"><span class="hidden-section">CompositeMonitor</span></a></li>
@@ -122,12 +111,26 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../models.html">Models</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../models.html#model"><span class="hidden-section">Model</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../models.html#basicautoencoder"><span class="hidden-section">BasicAutoencoder</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../models.html#basicconvolutionalautoencoder"><span class="hidden-section">BasicConvolutionalAutoencoder</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../models.html#variationalautoencoder"><span class="hidden-section">VariationalAutoencoder</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../models.html#basicclassifer"><span class="hidden-section">BasicClassifer</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../models.html#multilayerperceptron"><span class="hidden-section">MultilayerPerceptron</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../models.html#wideresnetimageclassifier"><span class="hidden-section">WideResnetImageClassifier</span></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../parameter_group.html">Parameter Group</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../parameter_group.html#parametergroup"><span class="hidden-section">ParameterGroup</span></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../schedules.html">Schedules</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../schedules.html#schedule"><span class="hidden-section">Schedule</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../schedules.html#cosine"><span class="hidden-section">Cosine</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../schedules.html#exponential"><span class="hidden-section">Exponential</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../schedules.html#linear"><span class="hidden-section">Linear</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../schedules.html#step"><span class="hidden-section">Step</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../schedules.html#triangle"><span class="hidden-section">Triangle</span></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../trainers.html">Trainers</a><ul>
@@ -284,16 +287,19 @@
 <div class="viewcode-block" id="DataframeMonitor.plot"><a class="viewcode-back" href="../../../sconce.monitors.html#sconce.monitors.DataframeMonitor.plot">[docs]</a>    <span class="k">def</span> <span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Training History&quot;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span>
                     <span class="n">skip_first</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">smooth_window</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
                     <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;loss&#39;</span><span class="p">],</span>
+                    <span class="n">hyperparameters</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;learning_rate&#39;</span><span class="p">],</span>
                     <span class="n">test_color</span><span class="o">=</span><span class="s1">&#39;tomato&#39;</span><span class="p">,</span>
                     <span class="n">training_color</span><span class="o">=</span><span class="s1">&#39;mediumseagreen&#39;</span><span class="p">,</span>
                     <span class="n">fig</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">fig</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="n">figsize</span><span class="p">)</span>
-            <span class="n">metrics_ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot2grid</span><span class="p">((</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">rowspan</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">fig</span><span class="o">=</span><span class="n">fig</span><span class="p">)</span>
-            <span class="n">lr_ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot2grid</span><span class="p">((</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">fig</span><span class="o">=</span><span class="n">fig</span><span class="p">)</span>
+            <span class="n">num_rows</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">hyperparameters</span><span class="p">)</span>
+            <span class="n">metrics_ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot2grid</span><span class="p">((</span><span class="n">num_rows</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">rowspan</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">fig</span><span class="o">=</span><span class="n">fig</span><span class="p">)</span>
+            <span class="n">hyperparameter_axes</span> <span class="o">=</span> <span class="p">[</span><span class="n">plt</span><span class="o">.</span><span class="n">subplot2grid</span><span class="p">((</span><span class="n">num_rows</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span> <span class="o">+</span> <span class="n">i</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">fig</span><span class="o">=</span><span class="n">fig</span><span class="p">)</span>
+                    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">hyperparameters</span><span class="p">))]</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">metrics_ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-            <span class="n">lr_ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">hyperparameter_axes</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
 
         <span class="n">df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">skip_first</span><span class="p">:]</span>
 
@@ -337,21 +343,27 @@
 
         <span class="n">metrics_ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">_plot_lr</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">lr_ax</span><span class="p">,</span> <span class="n">df</span><span class="o">=</span><span class="n">df</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">hyperparameter</span><span class="p">,</span> <span class="n">ax</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">hyperparameters</span><span class="p">,</span> <span class="n">hyperparameter_axes</span><span class="p">):</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">hyperparameter</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_plot_hyperparameter</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">df</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="o">**</span><span class="n">hyperparameter</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_plot_hyperparameter</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">df</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">hyperparameter</span><span class="p">)</span>
 
         <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
         <span class="k">return</span> <span class="n">fig</span></div>
 
-    <span class="k">def</span> <span class="nf">_plot_lr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ax</span><span class="p">,</span> <span class="n">df</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_plot_hyperparameter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">ax</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">num_columns_plotted</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="k">for</span> <span class="n">column</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
-            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">column</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)</span> <span class="ow">and</span> <span class="n">column</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;learning_rate&#39;</span><span class="p">:</span>
-                <span class="n">name</span> <span class="o">=</span> <span class="n">column</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-                <span class="n">df</span><span class="p">[(</span><span class="s1">&#39;learning_rate&#39;</span><span class="p">,</span> <span class="n">name</span><span class="p">)]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;backfill&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">logy</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
-                <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;best&#39;</span><span class="p">)</span>
-            <span class="k">elif</span> <span class="n">column</span> <span class="o">==</span> <span class="s1">&#39;learning_rate&#39;</span><span class="p">:</span>
-                <span class="n">df</span><span class="p">[</span><span class="s1">&#39;learning_rate&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;backfill&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">logy</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">column</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)</span> <span class="ow">and</span> <span class="n">column</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">name</span><span class="p">:</span>
+                <span class="n">label</span> <span class="o">=</span> <span class="n">column</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="n">df</span><span class="p">[</span><span class="n">column</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;backfill&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+                <span class="n">num_columns_plotted</span> <span class="o">+=</span> <span class="mi">1</span>
 
-        <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Learning Rate&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">num_columns_plotted</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;best&#39;</span><span class="p">)</span>
+
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">ax</span>
 
 <div class="viewcode-block" id="DataframeMonitor.plot_learning_rate_survey"><a class="viewcode-back" href="../../../sconce.monitors.html#sconce.monitors.DataframeMonitor.plot_learning_rate_survey">[docs]</a>    <span class="k">def</span> <span class="nf">plot_learning_rate_survey</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">figure_kwargs</span><span class="o">=</span><span class="p">{},</span>
@@ -360,9 +372,17 @@
             <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="o">**</span><span class="n">figure_kwargs</span><span class="p">)</span>
             <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 
+        <span class="n">lr_key</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">for</span> <span class="n">column</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">column</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)</span> <span class="ow">and</span> <span class="n">column</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;learning_rate&#39;</span><span class="p">:</span>
+                <span class="n">lr_key</span> <span class="o">=</span> <span class="n">column</span>
+
+        <span class="k">if</span> <span class="n">lr_key</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;No learning rate information could be found for this Monitor&quot;</span><span class="p">)</span>
+
         <span class="n">df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;learning_rate&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;backfill&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
-        <span class="n">ax</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;learning_rate&#39;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;training_loss&#39;</span><span class="p">],</span> <span class="o">**</span><span class="n">plot_kwargs</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="p">[</span><span class="n">lr_key</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;backfill&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">lr_key</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;training_loss&#39;</span><span class="p">],</span> <span class="o">**</span><span class="n">plot_kwargs</span><span class="p">)</span>
         <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Learning Rate (logscale)&#39;</span><span class="p">)</span>
         <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Loss (logscale)&#39;</span><span class="p">)</span>
         <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Learning Rate Survey&#39;</span><span class="p">)</span>

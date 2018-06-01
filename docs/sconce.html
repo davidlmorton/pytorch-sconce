@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                master (0.12.0 )
+                master (1.0.0 )
               </div>
             
           
@@ -101,17 +101,6 @@
 <li class="toctree-l2"><a class="reference internal" href="transforms.html#nhot"><span class="hidden-section">NHot</span></a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="rate_controllers.html">Rate Controllers</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="rate_controllers.html#ratecontroller"><span class="hidden-section">RateController</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="rate_controllers.html#compositeratecontroller"><span class="hidden-section">CompositeRateController</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="rate_controllers.html#constantratecontroller"><span class="hidden-section">ConstantRateController</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="rate_controllers.html#cosineratecontroller"><span class="hidden-section">CosineRateController</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="rate_controllers.html#exponentialratecontroller"><span class="hidden-section">ExponentialRateController</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="rate_controllers.html#linearratecontroller"><span class="hidden-section">LinearRateController</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="rate_controllers.html#stepratecontroller"><span class="hidden-section">StepRateController</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="rate_controllers.html#triangleratecontroller"><span class="hidden-section">TriangleRateController</span></a></li>
-</ul>
-</li>
 <li class="toctree-l1"><a class="reference internal" href="monitors.html">Monitors</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="monitors.html#monitor"><span class="hidden-section">Monitor</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="monitors.html#compositemonitor"><span class="hidden-section">CompositeMonitor</span></a></li>
@@ -122,12 +111,26 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="models.html">Models</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="models.html#model"><span class="hidden-section">Model</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="models.html#basicautoencoder"><span class="hidden-section">BasicAutoencoder</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="models.html#basicconvolutionalautoencoder"><span class="hidden-section">BasicConvolutionalAutoencoder</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="models.html#variationalautoencoder"><span class="hidden-section">VariationalAutoencoder</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="models.html#basicclassifer"><span class="hidden-section">BasicClassifer</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="models.html#multilayerperceptron"><span class="hidden-section">MultilayerPerceptron</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="models.html#wideresnetimageclassifier"><span class="hidden-section">WideResnetImageClassifier</span></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="parameter_group.html">Parameter Group</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="parameter_group.html#parametergroup"><span class="hidden-section">ParameterGroup</span></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="schedules.html">Schedules</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="schedules.html#schedule"><span class="hidden-section">Schedule</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="schedules.html#cosine"><span class="hidden-section">Cosine</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="schedules.html#exponential"><span class="hidden-section">Exponential</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="schedules.html#linear"><span class="hidden-section">Linear</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="schedules.html#step"><span class="hidden-section">Step</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="schedules.html#triangle"><span class="hidden-section">Triangle</span></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="trainers.html">Trainers</a><ul>
@@ -209,9 +212,9 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="sconce.data_generators.html">sconce.data_generators package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sconce.datasets.html">sconce.datasets package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sconce.models.html">sconce.models package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sconce.monitors.html">sconce.monitors package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sconce.rate_controllers.html">sconce.rate_controllers package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sconce.models.html">sconce.models package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sconce.schedules.html">sconce.schedules package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sconce.trainers.html">sconce.trainers package</a></li>
 </ul>
 </div>
@@ -223,35 +226,26 @@
 <span id="sconce-trainer-module"></span><h2>sconce.trainer module<a class="headerlink" href="#module-sconce.trainer" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="sconce.trainer.Trainer">
-<em class="property">class </em><code class="descclassname">sconce.trainer.</code><code class="descname">Trainer</code><span class="sig-paren">(</span><em>*</em>, <em>model</em>, <em>training_data_generator</em>, <em>test_data_generator</em>, <em>optimizer</em>, <em>monitor=None</em>, <em>rate_controller=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/trainer.html#Trainer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.trainer.Trainer" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">sconce.trainer.</code><code class="descname">Trainer</code><span class="sig-paren">(</span><em>*</em>, <em>model</em>, <em>test_data_generator</em>, <em>training_data_generator</em>, <em>monitor=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/trainer.html#Trainer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.trainer.Trainer" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.6)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
-<p>A Class that is used to train pytorch models.
-It defines the training loop and orchestrates the various other sconce
-objects (<a class="reference internal" href="sconce.data_generators.html#sconce.data_generators.base.DataGenerator" title="sconce.data_generators.base.DataGenerator"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataGenerator</span></code></a>,
-<a class="reference internal" href="sconce.monitors.html#sconce.monitors.base.Monitor" title="sconce.monitors.base.Monitor"><code class="xref py py-class docutils literal notranslate"><span class="pre">Monitor</span></code></a>,
-<a class="reference internal" href="sconce.rate_controllers.html#sconce.rate_controllers.base.RateController" title="sconce.rate_controllers.base.RateController"><code class="xref py py-class docutils literal notranslate"><span class="pre">RateController</span></code></a>, ect).</p>
+<p>A Class that is used to train sconce models.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name" colspan="2">Keyword Arguments:</th></tr>
 <tr class="field-odd field"><td>&#160;</td><td class="field-body"><ul class="first last simple">
-<li><strong>model</strong> (<a class="reference external" href="https://pytorch.org/docs/master/nn.html#torch.nn.Module" title="(in PyTorch vmaster (0.5.0a0+6df371b ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.Module</span></code></a>) – the torch model to be trained.  See <a class="reference internal" href="models.html#module-sconce.models" title="sconce.models"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sconce.models</span></code></a> for examples.</li>
+<li><strong>model</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code>) – the sconce model to be trained.  See <a class="reference internal" href="models.html#module-sconce.models" title="sconce.models"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sconce.models</span></code></a>
+for examples.</li>
 <li><strong>training_data_generator</strong> (<a class="reference internal" href="sconce.data_generators.html#sconce.data_generators.base.DataGenerator" title="sconce.data_generators.base.DataGenerator"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataGenerator</span></code></a>) – yields training <cite>inputs</cite> and
 <cite>targets</cite>.</li>
 <li><strong>test_data_generator</strong> (<a class="reference internal" href="sconce.data_generators.html#sconce.data_generators.base.DataGenerator" title="sconce.data_generators.base.DataGenerator"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataGenerator</span></code></a>) – yields test <cite>inputs</cite> and
 <cite>targets</cite>.  These are never used for back-propagation.</li>
-<li><strong>optimizer</strong> (<a class="reference external" href="https://pytorch.org/docs/master/optim.html#torch.optim.Optimizer" title="(in PyTorch vmaster (0.5.0a0+6df371b ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">torch.optim.Optimizer</span></code></a>) – the torch optimizer that updates model parameters during
-training.</li>
 <li><strong>monitor</strong> (<a class="reference internal" href="sconce.monitors.html#sconce.monitors.base.Monitor" title="sconce.monitors.base.Monitor"><code class="xref py py-class docutils literal notranslate"><span class="pre">Monitor</span></code></a>, optional) – the sconce monitor that records data during
 training.  This data can be sent to external systems during training or kept until training completes
 allowing you to analyze training or make plots. If <code class="docutils literal notranslate"><span class="pre">None</span></code>, a composite monitor consisting of a
 <a class="reference internal" href="sconce.monitors.html#sconce.monitors.stdout_monitor.StdoutMonitor" title="sconce.monitors.stdout_monitor.StdoutMonitor"><code class="xref py py-class docutils literal notranslate"><span class="pre">StdoutMonitor</span></code></a> and a
 <a class="reference internal" href="sconce.monitors.html#sconce.monitors.dataframe_monitor.DataframeMonitor" title="sconce.monitors.dataframe_monitor.DataframeMonitor"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataframeMonitor</span></code></a> will be created for you and used.</li>
-<li><strong>rate_controller</strong> (<a class="reference internal" href="sconce.rate_controllers.html#sconce.rate_controllers.base.RateController" title="sconce.rate_controllers.base.RateController"><code class="xref py py-class docutils literal notranslate"><span class="pre">RateController</span></code></a>, optional) – a sconce rate_monitor
-that adjusts the optimizer’s learning rate during training. If <code class="docutils literal notranslate"><span class="pre">None</span></code>, a
-<a class="reference internal" href="sconce.rate_controllers.html#sconce.rate_controllers.cosine_rate_controller.CosineRateController" title="sconce.rate_controllers.cosine_rate_controller.CosineRateController"><code class="xref py py-class docutils literal notranslate"><span class="pre">CosineRateController</span></code></a> with
-max_learning_rate=1e-4 will be created for you and used.</li>
 </ul>
 </td>
 </tr>
@@ -270,6 +264,11 @@ max_learning_rate=1e-4 will be created for you and used.</li>
 </tbody>
 </table>
 </dd></dl>
+
+<dl class="method">
+<dt id="sconce.trainer.Trainer.get_num_steps">
+<code class="descname">get_num_steps</code><span class="sig-paren">(</span><em>num_epochs</em>, <em>data_generator=None</em>, <em>batch_multiplier=1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/trainer.html#Trainer.get_num_steps"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.trainer.Trainer.get_num_steps" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="method">
 <dt id="sconce.trainer.Trainer.load_model_state">
@@ -343,7 +342,7 @@ If <code class="docutils literal notranslate"><span class="pre">None</span></cod
 
 <dl class="method">
 <dt id="sconce.trainer.Trainer.survey_learning_rate">
-<code class="descname">survey_learning_rate</code><span class="sig-paren">(</span><em>*</em>, <em>num_epochs=1.0</em>, <em>min_learning_rate=1e-12</em>, <em>max_learning_rate=10</em>, <em>monitor=None</em>, <em>batch_multiplier=1</em>, <em>rate_controller_class=&lt;class 'sconce.rate_controllers.exponential_rate_controller.ExponentialRateController'&gt;</em>, <em>stop_factor=10</em>, <em>**rate_controller_kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/trainer.html#Trainer.survey_learning_rate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.trainer.Trainer.survey_learning_rate" title="Permalink to this definition">¶</a></dt>
+<code class="descname">survey_learning_rate</code><span class="sig-paren">(</span><em>*</em>, <em>num_epochs=1.0</em>, <em>min_learning_rate=1e-12</em>, <em>max_learning_rate=10</em>, <em>monitor=None</em>, <em>batch_multiplier=1</em>, <em>stop_factor=10</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/trainer.html#Trainer.survey_learning_rate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.trainer.Trainer.survey_learning_rate" title="Permalink to this definition">¶</a></dt>
 <dd><p>Checkpoints a model, then runs a learning rate survey, before restoring the model back.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -362,15 +361,8 @@ the learning rate survey.  If <code class="docutils literal notranslate"><span c
 training.  If greater than 1, this simulates large batch sizes without increasing memory usage.  For
 example, if the batch size were 100 and batch_multipler=10, the effective batch size would be 1,000, but
 the memory usage would be for a batch size of 100.</li>
-<li><strong>rate_controller_class</strong> (<em>class</em><em>, </em><em>optional</em>) – the subclass of
-<a class="reference internal" href="sconce.rate_controllers.html#sconce.rate_controllers.base.RateController" title="sconce.rate_controllers.base.RateController"><code class="xref py py-class docutils literal notranslate"><span class="pre">RateController</span></code></a> to be used during this learning rate survey.
-In practice, only
-<a class="reference internal" href="sconce.rate_controllers.html#sconce.rate_controllers.exponential_rate_controller.ExponentialRateController" title="sconce.rate_controllers.exponential_rate_controller.ExponentialRateController"><code class="xref py py-class docutils literal notranslate"><span class="pre">ExponentialRateController</span></code></a> and
-<a class="reference internal" href="sconce.rate_controllers.html#sconce.rate_controllers.linear_rate_controller.LinearRateController" title="sconce.rate_controllers.linear_rate_controller.LinearRateController"><code class="xref py py-class docutils literal notranslate"><span class="pre">LinearRateController</span></code></a> are typically used.</li>
 <li><strong>stop_factor</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.6)"><em>float</em></a>) – (1.0, inf) determines early stopping.  If the <cite>training loss</cite> rises by more than
 this factor from it’s minimum value, the survey will stop.</li>
-<li><strong>**rate_controller_kwargs</strong> – passed to the constructor of the <code class="docutils literal notranslate"><span class="pre">rate_controller_class</span></code> along with
-<code class="docutils literal notranslate"><span class="pre">min_learning_rate</span></code>, <code class="docutils literal notranslate"><span class="pre">max_learning_rate</span></code>, and <code class="docutils literal notranslate"><span class="pre">stop_factor</span></code>.</li>
 </ul>
 </td>
 </tr>
@@ -407,7 +399,7 @@ this testing.  If <code class="docutils literal notranslate"><span class="pre">N
 
 <dl class="method">
 <dt id="sconce.trainer.Trainer.train">
-<code class="descname">train</code><span class="sig-paren">(</span><em>*</em>, <em>num_epochs</em>, <em>monitor=None</em>, <em>rate_controller=None</em>, <em>test_to_train_ratio=None</em>, <em>batch_multiplier=1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/trainer.html#Trainer.train"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.trainer.Trainer.train" title="Permalink to this definition">¶</a></dt>
+<code class="descname">train</code><span class="sig-paren">(</span><em>*</em>, <em>num_epochs</em>, <em>monitor=None</em>, <em>test_to_train_ratio=None</em>, <em>batch_multiplier=1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/trainer.html#Trainer.train"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.trainer.Trainer.train" title="Permalink to this definition">¶</a></dt>
 <dd><p>Train the model for a given number of epochs.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -417,8 +409,6 @@ this testing.  If <code class="docutils literal notranslate"><span class="pre">N
 <li><strong>num_epochs</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.6)"><em>float</em></a>) – the number of epochs to train the model for.</li>
 <li><strong>monitor</strong> (<a class="reference internal" href="sconce.monitors.html#sconce.monitors.base.Monitor" title="sconce.monitors.base.Monitor"><code class="xref py py-class docutils literal notranslate"><span class="pre">Monitor</span></code></a>, optional) – a monitor to use for this training session.
 If <code class="docutils literal notranslate"><span class="pre">None</span></code>, then self.monitor will be used.</li>
-<li><strong>(</strong> (<em>rate_controller</em>) – py:class:<cite>~sconce.rate_controllers.base.RateController, optional): a rate_controller to
-use for this training session.  If ``None`</cite>, then self.rate_controller will be used.</li>
 <li><strong>test_to_train_ratio</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.6)"><em>float</em></a><em>, </em><em>optional</em>) – [0.0, 1.0] determines how often (relative to training samples) that
 test samples are run through the model during training.  If <code class="docutils literal notranslate"><span class="pre">None</span></code>, then the relative size of the
 training and test datasets is used.  For example, for MNIST with 60,000 training samples and 10,000 test
@@ -506,6 +496,75 @@ If <cite>name</cite> is in <cite>stateful_metrics</cite>,
 <cite>value_for_last_step</cite> will be displayed as-is.
 Else, an average of the metric over time will be displayed.</div></blockquote>
 </div></blockquote>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-sconce.parameter_group">
+<span id="sconce-parameter-group-module"></span><h2>sconce.parameter_group module<a class="headerlink" href="#module-sconce.parameter_group" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="sconce.parameter_group.ParameterGroup">
+<em class="property">class </em><code class="descclassname">sconce.parameter_group.</code><code class="descname">ParameterGroup</code><span class="sig-paren">(</span><em>parameters</em>, <em>name</em>, <em>is_active=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/parameter_group.html#ParameterGroup"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.parameter_group.ParameterGroup" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">sconce.schedules.base.ScheduledMixin</span></code></p>
+<p>A parameter group is the way that sconce models organize nn.Module parameters and their associated optimizers.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>parameters</strong> (iterable of <a class="reference external" href="https://pytorch.org/docs/master/nn.html#torch.nn.Parameter" title="(in PyTorch vmaster (0.5.0a0+436211e ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.Parameter</span></code></a>) – the parameters you want to group together.</li>
+<li><strong>name</strong> (<em>string</em>) – your name for this group</li>
+<li><strong>is_active</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.6)"><em>bool</em></a><em>, </em><em>optional</em>) – should this group be considered active (used during training)?</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="sconce.parameter_group.ParameterGroup.freeze">
+<code class="descname">freeze</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/parameter_group.html#ParameterGroup.freeze"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.parameter_group.ParameterGroup.freeze" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set <code class="docutils literal notranslate"><span class="pre">requires_grad</span> <span class="pre">=</span> <span class="pre">False</span></code> for all parameters in this group.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sconce.parameter_group.ParameterGroup.set_learning_rate">
+<code class="descname">set_learning_rate</code><span class="sig-paren">(</span><em>desired_learning_rate</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/parameter_group.html#ParameterGroup.set_learning_rate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.parameter_group.ParameterGroup.set_learning_rate" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sconce.parameter_group.ParameterGroup.set_momentum">
+<code class="descname">set_momentum</code><span class="sig-paren">(</span><em>desired_momentum</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/parameter_group.html#ParameterGroup.set_momentum"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.parameter_group.ParameterGroup.set_momentum" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sconce.parameter_group.ParameterGroup.set_optimizer">
+<code class="descname">set_optimizer</code><span class="sig-paren">(</span><em>optimizer_class</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/parameter_group.html#ParameterGroup.set_optimizer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.parameter_group.ParameterGroup.set_optimizer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set an optimizer on this parameter group.  If this parameter group is active (has <code class="docutils literal notranslate"><span class="pre">is_active=True</span></code>) then this
+optimizer will be used during training.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>optimizer_class</strong> (one of the <a class="reference external" href="https://pytorch.org/docs/master/optim.html#module-torch.optim" title="(in PyTorch vmaster (0.5.0a0+436211e ))"><code class="xref py py-mod docutils literal notranslate"><span class="pre">torch.optim</span></code></a> classes) – the class of optimizer to set.</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">All other arguments and keyword arguments are delivered to the optimizer_class’s constructor.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="sconce.parameter_group.ParameterGroup.set_weight_decay">
+<code class="descname">set_weight_decay</code><span class="sig-paren">(</span><em>desired_weight_decay</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/parameter_group.html#ParameterGroup.set_weight_decay"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.parameter_group.ParameterGroup.set_weight_decay" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sconce.parameter_group.ParameterGroup.unfreeze">
+<code class="descname">unfreeze</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/parameter_group.html#ParameterGroup.unfreeze"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.parameter_group.ParameterGroup.unfreeze" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set <code class="docutils literal notranslate"><span class="pre">requires_grad</span> <span class="pre">=</span> <span class="pre">True</span></code> for all parameters in this group.</p>
 </dd></dl>
 
 </dd></dl>

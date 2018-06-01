@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>sconce.rate_controllers.step_rate_controller &mdash; Pytorch-Sconce master documentation</title>
+  <title>sconce.schedules.step &mdash; Pytorch-Sconce master documentation</title>
   
 
   
@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                master (0.12.0 )
+                master (1.0.0 )
               </div>
             
           
@@ -101,17 +101,6 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../transforms.html#nhot"><span class="hidden-section">NHot</span></a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../../rate_controllers.html">Rate Controllers</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../rate_controllers.html#ratecontroller"><span class="hidden-section">RateController</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../rate_controllers.html#compositeratecontroller"><span class="hidden-section">CompositeRateController</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../rate_controllers.html#constantratecontroller"><span class="hidden-section">ConstantRateController</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../rate_controllers.html#cosineratecontroller"><span class="hidden-section">CosineRateController</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../rate_controllers.html#exponentialratecontroller"><span class="hidden-section">ExponentialRateController</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../rate_controllers.html#linearratecontroller"><span class="hidden-section">LinearRateController</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../rate_controllers.html#stepratecontroller"><span class="hidden-section">StepRateController</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../rate_controllers.html#triangleratecontroller"><span class="hidden-section">TriangleRateController</span></a></li>
-</ul>
-</li>
 <li class="toctree-l1"><a class="reference internal" href="../../../monitors.html">Monitors</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../monitors.html#monitor"><span class="hidden-section">Monitor</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../monitors.html#compositemonitor"><span class="hidden-section">CompositeMonitor</span></a></li>
@@ -122,12 +111,26 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../models.html">Models</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../models.html#model"><span class="hidden-section">Model</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../models.html#basicautoencoder"><span class="hidden-section">BasicAutoencoder</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../models.html#basicconvolutionalautoencoder"><span class="hidden-section">BasicConvolutionalAutoencoder</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../models.html#variationalautoencoder"><span class="hidden-section">VariationalAutoencoder</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../models.html#basicclassifer"><span class="hidden-section">BasicClassifer</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../models.html#multilayerperceptron"><span class="hidden-section">MultilayerPerceptron</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../models.html#wideresnetimageclassifier"><span class="hidden-section">WideResnetImageClassifier</span></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../parameter_group.html">Parameter Group</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../parameter_group.html#parametergroup"><span class="hidden-section">ParameterGroup</span></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../schedules.html">Schedules</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../schedules.html#schedule"><span class="hidden-section">Schedule</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../schedules.html#cosine"><span class="hidden-section">Cosine</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../schedules.html#exponential"><span class="hidden-section">Exponential</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../schedules.html#linear"><span class="hidden-section">Linear</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../schedules.html#step"><span class="hidden-section">Step</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../schedules.html#triangle"><span class="hidden-section">Triangle</span></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../trainers.html">Trainers</a><ul>
@@ -184,7 +187,7 @@
         
           <li><a href="../../index.html">Module code</a> &raquo;</li>
         
-      <li>sconce.rate_controllers.step_rate_controller</li>
+      <li>sconce.schedules.step</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -199,43 +202,46 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <h1>Source code for sconce.rate_controllers.step_rate_controller</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">sconce.rate_controllers.base</span> <span class="k">import</span> <span class="n">RateController</span>
+  <h1>Source code for sconce.schedules.step</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">pprint</span> <span class="k">import</span> <span class="n">pformat</span> <span class="k">as</span> <span class="n">pf</span>
+<span class="kn">from</span> <span class="nn">sconce.schedules.base</span> <span class="k">import</span> <span class="n">Schedule</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 
-<div class="viewcode-block" id="StepRateController"><a class="viewcode-back" href="../../../sconce.rate_controllers.html#sconce.rate_controllers.StepRateController">[docs]</a><span class="k">class</span> <span class="nc">StepRateController</span><span class="p">(</span><span class="n">RateController</span><span class="p">):</span>
+<div class="viewcode-block" id="Step"><a class="viewcode-back" href="../../../sconce.schedules.html#sconce.schedules.Step">[docs]</a><span class="k">class</span> <span class="nc">Step</span><span class="p">(</span><span class="n">Schedule</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    A Learning Rate that falls in &lt;num_drops&gt; drops from &lt;max_learning_rate&gt; to</span>
-<span class="sd">    &lt;min_learning_rate&gt; over the course of &lt;num_steps&gt;.  The Learning Rate is</span>
-<span class="sd">    constant between drops.</span>
+<span class="sd">    A Schedule where the value starts at &lt;initial_value&gt; and changes &lt;num_changes&gt; times over the</span>
+<span class="sd">    course of &lt;num_steps&gt; to a final value of &lt;final_value&gt;.</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        initial_value (float): the initial value of the hyperparameter.</span>
+<span class="sd">        final_value (float): the final value of the hyperparameter.</span>
+<span class="sd">        num_changes (int, optional): [1, &lt;num_steps&gt;-1] the number of times the hyperparameter&#39;s value will change.</span>
+
+<span class="sd">    Note:</span>
+<span class="sd">        The parameter &lt;num_steps&gt; is set during training based on the size of the batch_size and number of samples in</span>
+<span class="sd">        the training_data_generator, and the batch_multiplier value.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">max_learning_rate</span><span class="p">,</span> <span class="n">min_learning_rate</span><span class="p">,</span>
-            <span class="n">num_drops</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">min_learning_rate</span> <span class="o">=</span> <span class="n">min_learning_rate</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">max_learning_rate</span> <span class="o">=</span> <span class="n">max_learning_rate</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">initial_value</span><span class="p">,</span> <span class="n">final_value</span><span class="p">,</span> <span class="n">num_changes</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">initial_value</span> <span class="o">=</span> <span class="n">initial_value</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">final_value</span> <span class="o">=</span> <span class="n">final_value</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_changes</span> <span class="o">=</span> <span class="n">num_changes</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">num_regions</span> <span class="o">=</span> <span class="n">num_drops</span> <span class="o">+</span> <span class="mi">1</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">region_values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">max_learning_rate</span><span class="p">,</span>
-                <span class="n">min_learning_rate</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_regions</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">num_steps</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">f</span><span class="s1">&#39;</span><span class="si">{self.__class__.__name__}</span><span class="s1">(initial_value={pf(self.initial_value)}, &#39;</span>
+                <span class="n">f</span><span class="s1">&#39;final_value={pf(self.final_value)}, num_changes={pf(self.num_changes)})&#39;</span><span class="p">)</span>
 
-<div class="viewcode-block" id="StepRateController.start_session"><a class="viewcode-back" href="../../../sconce.rate_controllers.html#sconce.rate_controllers.StepRateController.start_session">[docs]</a>    <span class="k">def</span> <span class="nf">start_session</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_steps</span><span class="p">):</span>
+<div class="viewcode-block" id="Step.set_num_steps"><a class="viewcode-back" href="../../../sconce.schedules.html#sconce.schedules.Step.set_num_steps">[docs]</a>    <span class="k">def</span> <span class="nf">set_num_steps</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_steps</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">num_steps</span> <span class="o">=</span> <span class="n">num_steps</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">idxs</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span>
-                <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_regions</span> <span class="o">-</span> <span class="mf">1e-12</span><span class="p">,</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">num_steps</span><span class="p">)]</span></div>
 
-<div class="viewcode-block" id="StepRateController.new_learning_rate"><a class="viewcode-back" href="../../../sconce.rate_controllers.html#sconce.rate_controllers.StepRateController.new_learning_rate">[docs]</a>    <span class="k">def</span> <span class="nf">new_learning_rate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">step</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_steps</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;You must call &#39;start_session&#39; before calling &quot;</span>
-                    <span class="s2">&quot;&#39;new_learning_rate&#39;&quot;</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">step</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_steps</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;Argument step=</span><span class="si">{step}</span><span class="s2">, should not &quot;</span>
-                    <span class="n">f</span><span class="s2">&quot;exceed num_steps=</span><span class="si">{self.num_steps}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">num_regions</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_changes</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">region_values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">initial_value</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">final_value</span><span class="p">,</span> <span class="n">num_regions</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">indices</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">num_regions</span> <span class="o">-</span> <span class="mf">1e-12</span><span class="p">,</span> <span class="n">num_steps</span><span class="p">)]</span></div>
 
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">region_values</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">idxs</span><span class="p">[</span><span class="n">step</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]]</span></div></div>
+    <span class="k">def</span> <span class="nf">_get_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">step</span><span class="p">,</span> <span class="n">current_state</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">region_values</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">indices</span><span class="p">[</span><span class="n">step</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]]</span></div>
 </pre></div>
 
            </div>

@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                master (0.12.0 )
+                master (1.0.0 )
               </div>
             
           
@@ -101,17 +101,6 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../transforms.html#nhot"><span class="hidden-section">NHot</span></a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../../rate_controllers.html">Rate Controllers</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../rate_controllers.html#ratecontroller"><span class="hidden-section">RateController</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../rate_controllers.html#compositeratecontroller"><span class="hidden-section">CompositeRateController</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../rate_controllers.html#constantratecontroller"><span class="hidden-section">ConstantRateController</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../rate_controllers.html#cosineratecontroller"><span class="hidden-section">CosineRateController</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../rate_controllers.html#exponentialratecontroller"><span class="hidden-section">ExponentialRateController</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../rate_controllers.html#linearratecontroller"><span class="hidden-section">LinearRateController</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../rate_controllers.html#stepratecontroller"><span class="hidden-section">StepRateController</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../rate_controllers.html#triangleratecontroller"><span class="hidden-section">TriangleRateController</span></a></li>
-</ul>
-</li>
 <li class="toctree-l1"><a class="reference internal" href="../../../monitors.html">Monitors</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../monitors.html#monitor"><span class="hidden-section">Monitor</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../monitors.html#compositemonitor"><span class="hidden-section">CompositeMonitor</span></a></li>
@@ -122,12 +111,26 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../models.html">Models</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../models.html#model"><span class="hidden-section">Model</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../models.html#basicautoencoder"><span class="hidden-section">BasicAutoencoder</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../models.html#basicconvolutionalautoencoder"><span class="hidden-section">BasicConvolutionalAutoencoder</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../models.html#variationalautoencoder"><span class="hidden-section">VariationalAutoencoder</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../models.html#basicclassifer"><span class="hidden-section">BasicClassifer</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../models.html#multilayerperceptron"><span class="hidden-section">MultilayerPerceptron</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../models.html#wideresnetimageclassifier"><span class="hidden-section">WideResnetImageClassifier</span></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../parameter_group.html">Parameter Group</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../parameter_group.html#parametergroup"><span class="hidden-section">ParameterGroup</span></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../schedules.html">Schedules</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../schedules.html#schedule"><span class="hidden-section">Schedule</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../schedules.html#cosine"><span class="hidden-section">Cosine</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../schedules.html#exponential"><span class="hidden-section">Exponential</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../schedules.html#linear"><span class="hidden-section">Linear</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../schedules.html#step"><span class="hidden-section">Step</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../schedules.html#triangle"><span class="hidden-section">Triangle</span></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../trainers.html">Trainers</a><ul>
@@ -200,14 +203,15 @@
            <div itemprop="articleBody">
             
   <h1>Source code for sconce.models.variational_autoencoder</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">torch</span> <span class="k">import</span> <span class="n">nn</span>
-<span class="kn">from</span> <span class="nn">torch.nn</span> <span class="k">import</span> <span class="n">functional</span> <span class="k">as</span> <span class="n">F</span>
+<span></span><span class="kn">from</span> <span class="nn">sconce.models.base</span> <span class="k">import</span> <span class="n">Model</span>
 <span class="kn">from</span> <span class="nn">sconce.models.layers</span> <span class="k">import</span> <span class="n">Convolution2dLayer</span><span class="p">,</span> <span class="n">Deconvolution2dLayer</span><span class="p">,</span> <span class="n">FullyConnectedLayer</span>
+<span class="kn">from</span> <span class="nn">torch</span> <span class="k">import</span> <span class="n">nn</span>
+<span class="kn">from</span> <span class="nn">torch.nn</span> <span class="k">import</span> <span class="n">functional</span> <span class="k">as</span> <span class="n">F</span>
 
 <span class="kn">import</span> <span class="nn">torch</span>
 
 
-<div class="viewcode-block" id="VariationalAutoencoder"><a class="viewcode-back" href="../../../models.html#sconce.models.VariationalAutoencoder">[docs]</a><span class="k">class</span> <span class="nc">VariationalAutoencoder</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+<div class="viewcode-block" id="VariationalAutoencoder"><a class="viewcode-back" href="../../../models.html#sconce.models.VariationalAutoencoder">[docs]</a><span class="k">class</span> <span class="nc">VariationalAutoencoder</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A variational autoencoder built up of convolutional layers and dense layers in the encoder and decoder.</span>
 
@@ -360,7 +364,10 @@
         <span class="n">latent_loss</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">torch</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">logvar</span> <span class="o">-</span> <span class="n">mu</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="n">logvar</span><span class="o">.</span><span class="n">exp</span><span class="p">())</span>
         <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;loss&#39;</span><span class="p">:</span> <span class="n">reconstruction_loss</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">beta</span> <span class="o">*</span> <span class="n">latent_loss</span><span class="p">,</span>
                 <span class="s1">&#39;latent_loss&#39;</span><span class="p">:</span> <span class="n">latent_loss</span><span class="p">,</span>
-                <span class="s1">&#39;reconstruction_loss&#39;</span><span class="p">:</span> <span class="n">reconstruction_loss</span><span class="p">}</span></div>
+                <span class="s1">&#39;reconstruction_loss&#39;</span><span class="p">:</span> <span class="n">reconstruction_loss</span><span class="p">}</span>
+
+    <span class="k">def</span> <span class="nf">set_beta</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">beta</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">value</span><span class="p">)</span></div>
 </pre></div>
 
            </div>

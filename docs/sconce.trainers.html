@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                master (0.12.0 )
+                master (1.0.0 )
               </div>
             
           
@@ -101,17 +101,6 @@
 <li class="toctree-l2"><a class="reference internal" href="transforms.html#nhot"><span class="hidden-section">NHot</span></a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="rate_controllers.html">Rate Controllers</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="rate_controllers.html#ratecontroller"><span class="hidden-section">RateController</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="rate_controllers.html#compositeratecontroller"><span class="hidden-section">CompositeRateController</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="rate_controllers.html#constantratecontroller"><span class="hidden-section">ConstantRateController</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="rate_controllers.html#cosineratecontroller"><span class="hidden-section">CosineRateController</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="rate_controllers.html#exponentialratecontroller"><span class="hidden-section">ExponentialRateController</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="rate_controllers.html#linearratecontroller"><span class="hidden-section">LinearRateController</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="rate_controllers.html#stepratecontroller"><span class="hidden-section">StepRateController</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="rate_controllers.html#triangleratecontroller"><span class="hidden-section">TriangleRateController</span></a></li>
-</ul>
-</li>
 <li class="toctree-l1"><a class="reference internal" href="monitors.html">Monitors</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="monitors.html#monitor"><span class="hidden-section">Monitor</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="monitors.html#compositemonitor"><span class="hidden-section">CompositeMonitor</span></a></li>
@@ -122,12 +111,26 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="models.html">Models</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="models.html#model"><span class="hidden-section">Model</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="models.html#basicautoencoder"><span class="hidden-section">BasicAutoencoder</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="models.html#basicconvolutionalautoencoder"><span class="hidden-section">BasicConvolutionalAutoencoder</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="models.html#variationalautoencoder"><span class="hidden-section">VariationalAutoencoder</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="models.html#basicclassifer"><span class="hidden-section">BasicClassifer</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="models.html#multilayerperceptron"><span class="hidden-section">MultilayerPerceptron</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="models.html#wideresnetimageclassifier"><span class="hidden-section">WideResnetImageClassifier</span></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="parameter_group.html">Parameter Group</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="parameter_group.html#parametergroup"><span class="hidden-section">ParameterGroup</span></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="schedules.html">Schedules</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="schedules.html#schedule"><span class="hidden-section">Schedule</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="schedules.html#cosine"><span class="hidden-section">Cosine</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="schedules.html#exponential"><span class="hidden-section">Exponential</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="schedules.html#linear"><span class="hidden-section">Linear</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="schedules.html#step"><span class="hidden-section">Step</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="schedules.html#triangle"><span class="hidden-section">Triangle</span></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="trainers.html">Trainers</a><ul>
@@ -223,7 +226,7 @@
 
 <dl class="class">
 <dt id="sconce.trainers.autoencoder_trainer.AutoencoderTrainer">
-<em class="property">class </em><code class="descclassname">sconce.trainers.autoencoder_trainer.</code><code class="descname">AutoencoderTrainer</code><span class="sig-paren">(</span><em>*</em>, <em>model</em>, <em>training_data_generator</em>, <em>test_data_generator</em>, <em>optimizer</em>, <em>monitor=None</em>, <em>rate_controller=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/trainers/autoencoder_trainer.html#AutoencoderTrainer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.trainers.autoencoder_trainer.AutoencoderTrainer" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">sconce.trainers.autoencoder_trainer.</code><code class="descname">AutoencoderTrainer</code><span class="sig-paren">(</span><em>*</em>, <em>model</em>, <em>test_data_generator</em>, <em>training_data_generator</em>, <em>monitor=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/trainers/autoencoder_trainer.html#AutoencoderTrainer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.trainers.autoencoder_trainer.AutoencoderTrainer" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="trainers.html#sconce.trainer.Trainer" title="sconce.trainer.Trainer"><code class="xref py py-class docutils literal notranslate"><span class="pre">sconce.trainer.Trainer</span></code></a>, <a class="reference internal" href="#sconce.trainers.autoencoder_trainer.AutoencoderMixin" title="sconce.trainers.autoencoder_trainer.AutoencoderMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">sconce.trainers.autoencoder_trainer.AutoencoderMixin</span></code></a></p>
 </dd></dl>
 
@@ -308,7 +311,7 @@ the lowest true class score.</li>
 
 <dl class="class">
 <dt id="sconce.trainers.single_class_image_classifier_trainer.SingleClassImageClassifierTrainer">
-<em class="property">class </em><code class="descclassname">sconce.trainers.single_class_image_classifier_trainer.</code><code class="descname">SingleClassImageClassifierTrainer</code><span class="sig-paren">(</span><em>*</em>, <em>model</em>, <em>training_data_generator</em>, <em>test_data_generator</em>, <em>optimizer</em>, <em>monitor=None</em>, <em>rate_controller=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/trainers/single_class_image_classifier_trainer.html#SingleClassImageClassifierTrainer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.trainers.single_class_image_classifier_trainer.SingleClassImageClassifierTrainer" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">sconce.trainers.single_class_image_classifier_trainer.</code><code class="descname">SingleClassImageClassifierTrainer</code><span class="sig-paren">(</span><em>*</em>, <em>model</em>, <em>test_data_generator</em>, <em>training_data_generator</em>, <em>monitor=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/trainers/single_class_image_classifier_trainer.html#SingleClassImageClassifierTrainer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.trainers.single_class_image_classifier_trainer.SingleClassImageClassifierTrainer" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="trainers.html#sconce.trainer.Trainer" title="sconce.trainer.Trainer"><code class="xref py py-class docutils literal notranslate"><span class="pre">sconce.trainer.Trainer</span></code></a>, <a class="reference internal" href="#sconce.trainers.single_class_image_classifier_trainer.SingleClassImageClassifierMixin" title="sconce.trainers.single_class_image_classifier_trainer.SingleClassImageClassifierMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">sconce.trainers.single_class_image_classifier_trainer.SingleClassImageClassifierMixin</span></code></a></p>
 <p>A trainer with some methods that are handy when you’re training an image classifier model.  Specifically a model
 that classifies images into a single class per image.</p>

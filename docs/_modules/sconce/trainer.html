@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                master (0.12.0 )
+                master (1.0.0 )
               </div>
             
           
@@ -101,17 +101,6 @@
 <li class="toctree-l2"><a class="reference internal" href="../../transforms.html#nhot"><span class="hidden-section">NHot</span></a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../rate_controllers.html">Rate Controllers</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../rate_controllers.html#ratecontroller"><span class="hidden-section">RateController</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../rate_controllers.html#compositeratecontroller"><span class="hidden-section">CompositeRateController</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../rate_controllers.html#constantratecontroller"><span class="hidden-section">ConstantRateController</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../rate_controllers.html#cosineratecontroller"><span class="hidden-section">CosineRateController</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../rate_controllers.html#exponentialratecontroller"><span class="hidden-section">ExponentialRateController</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../rate_controllers.html#linearratecontroller"><span class="hidden-section">LinearRateController</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../rate_controllers.html#stepratecontroller"><span class="hidden-section">StepRateController</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../rate_controllers.html#triangleratecontroller"><span class="hidden-section">TriangleRateController</span></a></li>
-</ul>
-</li>
 <li class="toctree-l1"><a class="reference internal" href="../../monitors.html">Monitors</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../monitors.html#monitor"><span class="hidden-section">Monitor</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../monitors.html#compositemonitor"><span class="hidden-section">CompositeMonitor</span></a></li>
@@ -122,12 +111,26 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../models.html">Models</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../models.html#model"><span class="hidden-section">Model</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../models.html#basicautoencoder"><span class="hidden-section">BasicAutoencoder</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../models.html#basicconvolutionalautoencoder"><span class="hidden-section">BasicConvolutionalAutoencoder</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../models.html#variationalautoencoder"><span class="hidden-section">VariationalAutoencoder</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../models.html#basicclassifer"><span class="hidden-section">BasicClassifer</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../models.html#multilayerperceptron"><span class="hidden-section">MultilayerPerceptron</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../models.html#wideresnetimageclassifier"><span class="hidden-section">WideResnetImageClassifier</span></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../parameter_group.html">Parameter Group</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../parameter_group.html#parametergroup"><span class="hidden-section">ParameterGroup</span></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../schedules.html">Schedules</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../schedules.html#schedule"><span class="hidden-section">Schedule</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../schedules.html#cosine"><span class="hidden-section">Cosine</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../schedules.html#exponential"><span class="hidden-section">Exponential</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../schedules.html#linear"><span class="hidden-section">Linear</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../schedules.html#step"><span class="hidden-section">Step</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../schedules.html#triangle"><span class="hidden-section">Triangle</span></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../trainers.html">Trainers</a><ul>
@@ -200,11 +203,10 @@
            <div itemprop="articleBody">
             
   <h1>Source code for sconce.trainer</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="k">import</span> <span class="n">OrderedDict</span>
-<span class="kn">from</span> <span class="nn">sconce</span> <span class="k">import</span> <span class="n">monitors</span><span class="p">,</span> <span class="n">rate_controllers</span>
+<span></span><span class="kn">from</span> <span class="nn">sconce</span> <span class="k">import</span> <span class="n">monitors</span><span class="p">,</span> <span class="n">schedules</span>
+<span class="kn">from</span> <span class="nn">sconce.exceptions</span> <span class="k">import</span> <span class="n">StopTrainingError</span>
 
 <span class="kn">import</span> <span class="nn">copy</span>
-<span class="kn">import</span> <span class="nn">math</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">tempfile</span>
 <span class="kn">import</span> <span class="nn">torch</span>
@@ -212,37 +214,25 @@
 
 <div class="viewcode-block" id="Trainer"><a class="viewcode-back" href="../../trainers.html#sconce.trainer.Trainer">[docs]</a><span class="k">class</span> <span class="nc">Trainer</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    A Class that is used to train pytorch models.</span>
-<span class="sd">    It defines the training loop and orchestrates the various other sconce</span>
-<span class="sd">    objects (:py:class:`~sconce.data_generators.base.DataGenerator`,</span>
-<span class="sd">    :py:class:`~sconce.monitors.base.Monitor`,</span>
-<span class="sd">    :py:class:`~sconce.rate_controllers.base.RateController`, ect).</span>
+<span class="sd">    A Class that is used to train sconce models.</span>
 
 <span class="sd">    Keyword Arguments:</span>
-<span class="sd">        model (:py:class:`torch.nn.Module`): the torch model to be trained.  See :py:mod:`sconce.models` for examples.</span>
+<span class="sd">        model (:py:class:`~sconce.models.base.Model`): the sconce model to be trained.  See :py:mod:`sconce.models`</span>
+<span class="sd">            for examples.</span>
 <span class="sd">        training_data_generator (:py:class:`~sconce.data_generators.base.DataGenerator`): yields training `inputs` and</span>
 <span class="sd">            `targets`.</span>
 <span class="sd">        test_data_generator (:py:class:`~sconce.data_generators.base.DataGenerator`): yields test `inputs` and</span>
 <span class="sd">            `targets`.  These are never used for back-propagation.</span>
-<span class="sd">        optimizer (:py:class:`torch.optim.Optimizer`): the torch optimizer that updates model parameters during</span>
-<span class="sd">            training.</span>
 <span class="sd">        monitor (:py:class:`~sconce.monitors.base.Monitor`, optional): the sconce monitor that records data during</span>
 <span class="sd">            training.  This data can be sent to external systems during training or kept until training completes</span>
 <span class="sd">            allowing you to analyze training or make plots. If ``None``, a composite monitor consisting of a</span>
 <span class="sd">            :py:class:`~sconce.monitors.stdout_monitor.StdoutMonitor` and a</span>
 <span class="sd">            :py:class:`~sconce.monitors.dataframe_monitor.DataframeMonitor` will be created for you and used.</span>
-<span class="sd">        rate_controller (:py:class:`~sconce.rate_controllers.base.RateController`, optional): a sconce rate_monitor</span>
-<span class="sd">            that adjusts the optimizer&#39;s learning rate during training. If ``None``, a</span>
-<span class="sd">            :py:class:`~sconce.rate_controllers.cosine_rate_controller.CosineRateController` with</span>
-<span class="sd">            max_learning_rate=1e-4 will be created for you and used.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">training_data_generator</span><span class="p">,</span> <span class="n">test_data_generator</span><span class="p">,</span>
-                 <span class="n">optimizer</span><span class="p">,</span> <span class="n">monitor</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">rate_controller</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">test_data_generator</span><span class="p">,</span> <span class="n">training_data_generator</span><span class="p">,</span> <span class="n">monitor</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">model</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">training_data_generator</span> <span class="o">=</span> <span class="n">training_data_generator</span>
-
         <span class="bp">self</span><span class="o">.</span><span class="n">test_data_generator</span> <span class="o">=</span> <span class="n">test_data_generator</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">training_data_generator</span> <span class="o">=</span> <span class="n">training_data_generator</span>
 
         <span class="k">if</span> <span class="n">monitor</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">metric_names</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;training_loss&#39;</span><span class="p">:</span> <span class="s1">&#39;loss&#39;</span><span class="p">,</span> <span class="s1">&#39;test_loss&#39;</span><span class="p">:</span> <span class="s1">&#39;val_loss&#39;</span><span class="p">}</span>
@@ -250,15 +240,8 @@
             <span class="n">monitor</span> <span class="o">=</span> <span class="n">monitors</span><span class="o">.</span><span class="n">DataframeMonitor</span><span class="p">()</span> <span class="o">+</span> <span class="n">stdout_monitor</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">monitor</span> <span class="o">=</span> <span class="n">monitor</span>
 
-        <span class="k">if</span> <span class="n">rate_controller</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">rate_controller</span> <span class="o">=</span> <span class="n">rate_controllers</span><span class="o">.</span><span class="n">CosineRateController</span><span class="p">(</span>
-                    <span class="n">max_learning_rate</span><span class="o">=</span><span class="mf">1e-4</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">rate_controller</span> <span class="o">=</span> <span class="n">rate_controller</span>
-
         <span class="bp">self</span><span class="o">.</span><span class="n">test_to_train_ratio</span> <span class="o">=</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">test_data_generator</span><span class="p">)</span> <span class="o">/</span>
                                     <span class="nb">len</span><span class="p">(</span><span class="n">training_data_generator</span><span class="p">))</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">optimizer</span> <span class="o">=</span> <span class="n">optimizer</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">checkpoint_filename</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_reset_cache</span><span class="p">()</span>
@@ -316,7 +299,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">load_state_dict</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">filename</span><span class="p">))</span></div>
 
 <div class="viewcode-block" id="Trainer.train"><a class="viewcode-back" href="../../trainers.html#sconce.trainer.Trainer.train">[docs]</a>    <span class="k">def</span> <span class="nf">train</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">num_epochs</span><span class="p">,</span> <span class="n">monitor</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-            <span class="n">rate_controller</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">test_to_train_ratio</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="n">test_to_train_ratio</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
             <span class="n">batch_multiplier</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Train the model for a given number of epochs.</span>
@@ -325,8 +308,6 @@
 <span class="sd">            num_epochs (float): the number of epochs to train the model for.</span>
 <span class="sd">            monitor (:py:class:`~sconce.monitors.base.Monitor`, optional): a monitor to use for this training session.</span>
 <span class="sd">                If ``None``, then self.monitor will be used.</span>
-<span class="sd">            rate_controller (:py:class:`~sconce.rate_controllers.base.RateController, optional): a rate_controller to</span>
-<span class="sd">                use for this training session.  If ``None``, then self.rate_controller will be used.</span>
 <span class="sd">            test_to_train_ratio (float, optional): [0.0, 1.0] determines how often (relative to training samples) that</span>
 <span class="sd">                test samples are run through the model during training.  If ``None``, then the relative size of the</span>
 <span class="sd">                training and test datasets is used.  For example, for MNIST with 60,000 training samples and 10,000 test</span>
@@ -344,38 +325,50 @@
 
         <span class="k">if</span> <span class="n">monitor</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">monitor</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">monitor</span>
-        <span class="k">if</span> <span class="n">rate_controller</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">rate_controller</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rate_controller</span>
         <span class="k">if</span> <span class="n">test_to_train_ratio</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">test_to_train_ratio</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">test_to_train_ratio</span>
 
-        <span class="n">num_steps</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">num_epochs</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">training_data_generator</span><span class="p">))</span>
-        <span class="n">num_steps</span> <span class="o">//=</span> <span class="n">batch_multiplier</span>
+        <span class="n">num_steps</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_num_steps</span><span class="p">(</span><span class="n">num_epochs</span><span class="o">=</span><span class="n">num_epochs</span><span class="p">,</span>
+                <span class="n">data_generator</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">training_data_generator</span><span class="p">,</span>
+                <span class="n">batch_multiplier</span><span class="o">=</span><span class="n">batch_multiplier</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_train</span><span class="p">(</span><span class="n">num_steps</span><span class="o">=</span><span class="n">num_steps</span><span class="p">,</span>
                 <span class="n">monitor</span><span class="o">=</span><span class="n">monitor</span><span class="p">,</span>
-                <span class="n">rate_controller</span><span class="o">=</span><span class="n">rate_controller</span><span class="p">,</span>
                 <span class="n">test_to_train_ratio</span><span class="o">=</span><span class="n">test_to_train_ratio</span><span class="p">,</span>
                 <span class="n">batch_multiplier</span><span class="o">=</span><span class="n">batch_multiplier</span><span class="p">)</span></div>
 
-    <span class="k">def</span> <span class="nf">_train</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">num_steps</span><span class="p">,</span> <span class="n">rate_controller</span><span class="p">,</span> <span class="n">monitor</span><span class="p">,</span>
-            <span class="n">test_to_train_ratio</span><span class="p">,</span> <span class="n">batch_multiplier</span><span class="p">):</span>
+<div class="viewcode-block" id="Trainer.get_num_steps"><a class="viewcode-back" href="../../sconce.html#sconce.trainer.Trainer.get_num_steps">[docs]</a>    <span class="k">def</span> <span class="nf">get_num_steps</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_epochs</span><span class="p">,</span> <span class="n">data_generator</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">batch_multiplier</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">data_generator</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">data_generator</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">training_data_generator</span>
+        <span class="n">num_samples</span> <span class="o">=</span> <span class="n">num_epochs</span> <span class="o">*</span> <span class="n">data_generator</span><span class="o">.</span><span class="n">num_samples</span>
+        <span class="n">batch_size</span> <span class="o">=</span> <span class="n">data_generator</span><span class="o">.</span><span class="n">batch_size</span>
+        <span class="n">effective_batch_size</span> <span class="o">=</span> <span class="n">batch_size</span> <span class="o">*</span> <span class="n">batch_multiplier</span>
+        <span class="n">num_steps</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">num_samples</span> <span class="o">/</span> <span class="n">effective_batch_size</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">num_steps</span> <span class="o">*</span> <span class="n">effective_batch_size</span> <span class="o">&lt;</span> <span class="n">num_samples</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">num_steps</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">num_steps</span></div>
+
+    <span class="k">def</span> <span class="nf">_train</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">num_steps</span><span class="p">,</span> <span class="n">monitor</span><span class="p">,</span> <span class="n">test_to_train_ratio</span><span class="p">,</span> <span class="n">batch_multiplier</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_reset_cache</span><span class="p">()</span>
         <span class="n">monitor</span><span class="o">.</span><span class="n">start_session</span><span class="p">(</span><span class="n">num_steps</span><span class="p">)</span>
-        <span class="n">rate_controller</span><span class="o">.</span><span class="n">start_session</span><span class="p">(</span><span class="n">num_steps</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">start_session</span><span class="p">(</span><span class="n">num_steps</span><span class="p">)</span>
 
         <span class="n">iterations_since_test</span> <span class="o">=</span> <span class="mi">0</span>
 
-        <span class="n">monitor_data</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">current_state</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="k">for</span> <span class="n">step</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">num_steps</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
-            <span class="n">new_learning_rate</span> <span class="o">=</span> <span class="n">rate_controller</span><span class="o">.</span><span class="n">new_learning_rate</span><span class="p">(</span>
-                    <span class="n">step</span><span class="o">=</span><span class="n">step</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">monitor_data</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">new_learning_rate</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">hyperparameters</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">prepare_for_step</span><span class="p">(</span><span class="n">step</span><span class="o">=</span><span class="n">step</span><span class="p">,</span> <span class="n">current_state</span><span class="o">=</span><span class="n">current_state</span><span class="p">)</span>
+                <span class="n">current_state</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">hyperparameters</span><span class="p">)</span>
+            <span class="k">except</span> <span class="n">StopTrainingError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Scheduled training termination: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
                 <span class="k">break</span>
 
-            <span class="bp">self</span><span class="o">.</span><span class="n">_update_learning_rate</span><span class="p">(</span><span class="n">new_learning_rate</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">optimizer</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">get_optimizers</span><span class="p">():</span>
+                <span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
 
-            <span class="bp">self</span><span class="o">.</span><span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
             <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">batch_multiplier</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
                 <span class="n">inputs</span><span class="p">,</span> <span class="n">targets</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">training_data_generator</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
                 <span class="n">step_dict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_do_step</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">targets</span><span class="p">,</span> <span class="n">train</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -391,35 +384,27 @@
                     <span class="n">test_step_dict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_do_test_step</span><span class="p">()</span>
                     <span class="n">iterations_since_test</span> <span class="o">=</span> <span class="mi">0</span>
 
-                    <span class="n">monitor_data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;learning_rate&#39;</span><span class="p">:</span> <span class="n">new_learning_rate</span><span class="p">,</span>
-                            <span class="o">**</span><span class="n">training_step_dict</span><span class="p">,</span>
-                            <span class="o">**</span><span class="n">test_step_dict</span><span class="p">}</span>
+                    <span class="n">current_state</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="o">**</span><span class="n">training_step_dict</span><span class="p">,</span> <span class="o">**</span><span class="n">test_step_dict</span><span class="p">})</span>
                 <span class="k">else</span><span class="p">:</span>
-                    <span class="n">monitor_data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;learning_rate&#39;</span><span class="p">:</span> <span class="n">new_learning_rate</span><span class="p">,</span>
-                            <span class="o">**</span><span class="n">training_step_dict</span><span class="p">}</span>
+                    <span class="n">current_state</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">training_step_dict</span><span class="p">)</span>
 
                 <span class="n">fraction</span> <span class="o">=</span> <span class="n">i</span> <span class="o">/</span> <span class="n">batch_multiplier</span>
-                <span class="n">monitor</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">monitor_data</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="n">step</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">fraction</span><span class="p">)</span>
+                <span class="n">monitor</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">current_state</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="n">step</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">fraction</span><span class="p">)</span>
 
-            <span class="bp">self</span><span class="o">.</span><span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+            <span class="k">for</span> <span class="n">optimizer</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">get_optimizers</span><span class="p">():</span>
+                <span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
 
         <span class="n">monitor</span><span class="o">.</span><span class="n">end_session</span><span class="p">()</span>
 
         <span class="k">return</span> <span class="n">monitor</span>
 
-    <span class="k">def</span> <span class="nf">_update_learning_rate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_learning_rate</span><span class="p">):</span>
-        <span class="n">param_groups</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">optimizer</span><span class="o">.</span><span class="n">param_groups</span>
-        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">new_learning_rate</span><span class="p">,</span> <span class="n">OrderedDict</span><span class="p">):</span>
-            <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">new_learning_rate</span><span class="o">.</span><span class="n">values</span><span class="p">())</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">param_groups</span><span class="p">),</span>\
-                    <span class="s2">&quot;Expected the same number of learning rates as param_groups defined by the optimizer &quot;</span>\
-                    <span class="n">f</span><span class="s2">&quot;{len(param_groups)}, but found {len(new_learning_rate.values())} learning rates instead.&quot;</span>
-            <span class="k">for</span> <span class="n">param_group</span><span class="p">,</span> <span class="n">lr</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">param_groups</span><span class="p">,</span> <span class="n">new_learning_rate</span><span class="o">.</span><span class="n">values</span><span class="p">()):</span>
-                <span class="n">param_group</span><span class="p">[</span><span class="s1">&#39;lr&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">lr</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">for</span> <span class="n">param_group</span> <span class="ow">in</span> <span class="n">param_groups</span><span class="p">:</span>
-                <span class="n">param_group</span><span class="p">[</span><span class="s1">&#39;lr&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_learning_rate</span>
-
-        <span class="k">return</span> <span class="n">new_learning_rate</span>
+    <span class="k">def</span> <span class="nf">_set_current_state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">desired_state</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">desired_state</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">f</span><span class="s1">&#39;set_</span><span class="si">{key}</span><span class="s1">&#39;</span><span class="p">):</span>
+                <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">f</span><span class="s1">&#39;set_</span><span class="si">{key}</span><span class="s1">&#39;</span><span class="p">)(</span><span class="n">value</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="n">f</span><span class="s1">&#39;set_</span><span class="si">{key}</span><span class="s1">&#39;</span><span class="p">):</span>
+                <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="n">f</span><span class="s1">&#39;set_</span><span class="si">{key}</span><span class="s1">&#39;</span><span class="p">)(</span><span class="n">value</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">desired_state</span>
 
     <span class="k">def</span> <span class="nf">_do_step</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">targets</span><span class="p">,</span> <span class="n">train</span><span class="p">):</span>
         <span class="n">run_dict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_run_model</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">targets</span><span class="p">,</span> <span class="n">train</span><span class="o">=</span><span class="n">train</span><span class="p">)</span>
@@ -496,7 +481,7 @@
             <span class="n">stdout_monitor</span> <span class="o">=</span> <span class="n">monitors</span><span class="o">.</span><span class="n">StdoutMonitor</span><span class="p">(</span><span class="n">metric_names</span><span class="o">=</span><span class="n">metric_names</span><span class="p">)</span>
             <span class="n">monitor</span> <span class="o">=</span> <span class="n">monitors</span><span class="o">.</span><span class="n">DataframeMonitor</span><span class="p">()</span> <span class="o">+</span> <span class="n">stdout_monitor</span>
 
-        <span class="n">num_steps</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">training_data_generator</span><span class="p">)</span>
+        <span class="n">num_steps</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">test_data_generator</span><span class="p">)</span>
         <span class="n">monitor</span><span class="o">.</span><span class="n">start_session</span><span class="p">(</span><span class="n">num_steps</span><span class="p">)</span>
 
         <span class="k">for</span> <span class="n">step</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">num_steps</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
@@ -532,9 +517,7 @@
             <span class="n">max_learning_rate</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
             <span class="n">monitor</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
             <span class="n">batch_multiplier</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-            <span class="n">rate_controller_class</span><span class="o">=</span><span class="n">rate_controllers</span><span class="o">.</span><span class="n">ExponentialRateController</span><span class="p">,</span>
-            <span class="n">stop_factor</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
-            <span class="o">**</span><span class="n">rate_controller_kwargs</span><span class="p">):</span>
+            <span class="n">stop_factor</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Checkpoints a model, then runs a learning rate survey, before restoring the model back.</span>
 
@@ -550,15 +533,8 @@
 <span class="sd">                training.  If greater than 1, this simulates large batch sizes without increasing memory usage.  For</span>
 <span class="sd">                example, if the batch size were 100 and batch_multipler=10, the effective batch size would be 1,000, but</span>
 <span class="sd">                the memory usage would be for a batch size of 100.</span>
-<span class="sd">            rate_controller_class (class, optional): the subclass of</span>
-<span class="sd">                :py:class:`~sconce.rate_controllers.base.RateController` to be used during this learning rate survey.</span>
-<span class="sd">                In practice, only</span>
-<span class="sd">                :py:class:`~sconce.rate_controllers.exponential_rate_controller.ExponentialRateController` and</span>
-<span class="sd">                :py:class:`~sconce.rate_controllers.linear_rate_controller.LinearRateController` are typically used.</span>
 <span class="sd">            stop_factor (float): (1.0, inf) determines early stopping.  If the `training loss` rises by more than</span>
 <span class="sd">                this factor from it&#39;s minimum value, the survey will stop.</span>
-<span class="sd">            **rate_controller_kwargs: passed to the constructor of the ``rate_controller_class`` along with</span>
-<span class="sd">                ``min_learning_rate``, ``max_learning_rate``, and ``stop_factor``.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            monitor (:py:class:`~sconce.monitors.base.Monitor`): the monitor used during this learning rate survey.</span>
@@ -568,22 +544,31 @@
             <span class="n">stdout_monitor</span> <span class="o">=</span> <span class="n">monitors</span><span class="o">.</span><span class="n">StdoutMonitor</span><span class="p">(</span><span class="n">metric_names</span><span class="o">=</span><span class="n">metric_names</span><span class="p">)</span>
             <span class="n">monitor</span> <span class="o">=</span> <span class="n">monitors</span><span class="o">.</span><span class="n">DataframeMonitor</span><span class="p">()</span> <span class="o">+</span> <span class="n">stdout_monitor</span>
 
-        <span class="n">orig_model_state_dict</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">state_dict</span><span class="p">())</span>
-        <span class="n">orig_optimizer_state_dict</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">optimizer</span><span class="o">.</span><span class="n">state_dict</span><span class="p">())</span>
+        <span class="n">active_groups</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">active_parameter_groups</span>
+        <span class="n">orig_lr_schedules</span> <span class="o">=</span> <span class="p">[</span><span class="n">g</span><span class="o">.</span><span class="n">schedules</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;learning_rate&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">active_groups</span><span class="p">]</span>
 
-        <span class="n">rate_controller</span> <span class="o">=</span> <span class="n">rate_controller_class</span><span class="p">(</span>
-                <span class="n">min_learning_rate</span><span class="o">=</span><span class="n">min_learning_rate</span><span class="p">,</span>
-                <span class="n">max_learning_rate</span><span class="o">=</span><span class="n">max_learning_rate</span><span class="p">,</span>
-                <span class="n">stop_factor</span><span class="o">=</span><span class="n">stop_factor</span><span class="p">,</span>
-                <span class="o">**</span><span class="n">rate_controller_kwargs</span><span class="p">)</span>
+        <span class="n">orig_model_state_dict</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">state_dict</span><span class="p">())</span>
+        <span class="n">orig_optimizer_state_dicts</span> <span class="o">=</span> <span class="p">[</span><span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">optimizer</span><span class="o">.</span><span class="n">state_dict</span><span class="p">())</span> <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">active_groups</span><span class="p">]</span>
+
+        <span class="n">schedule</span> <span class="o">=</span> <span class="n">schedules</span><span class="o">.</span><span class="n">Exponential</span><span class="p">(</span><span class="n">initial_value</span><span class="o">=</span><span class="n">min_learning_rate</span><span class="p">,</span>
+                <span class="n">final_value</span><span class="o">=</span><span class="n">max_learning_rate</span><span class="p">,</span> <span class="n">stop_factor</span><span class="o">=</span><span class="n">stop_factor</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">group</span> <span class="ow">in</span> <span class="n">active_groups</span><span class="p">:</span>
+            <span class="n">group</span><span class="o">.</span><span class="n">set_schedule</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;learning_rate&#39;</span><span class="p">,</span> <span class="n">schedule</span><span class="o">=</span><span class="n">schedule</span><span class="p">)</span>
+
         <span class="bp">self</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">num_epochs</span><span class="o">=</span><span class="n">num_epochs</span><span class="p">,</span>
                 <span class="n">monitor</span><span class="o">=</span><span class="n">monitor</span><span class="p">,</span>
-                <span class="n">rate_controller</span><span class="o">=</span><span class="n">rate_controller</span><span class="p">,</span>
                 <span class="n">test_to_train_ratio</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
                 <span class="n">batch_multiplier</span><span class="o">=</span><span class="n">batch_multiplier</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">load_state_dict</span><span class="p">(</span><span class="n">orig_model_state_dict</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">optimizer</span><span class="o">.</span><span class="n">load_state_dict</span><span class="p">(</span><span class="n">orig_optimizer_state_dict</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">group</span><span class="p">,</span> <span class="n">orig_optimizer_state_dict</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">active_groups</span><span class="p">,</span> <span class="n">orig_optimizer_state_dicts</span><span class="p">):</span>
+            <span class="n">group</span><span class="o">.</span><span class="n">optimizer</span><span class="o">.</span><span class="n">load_state_dict</span><span class="p">(</span><span class="n">orig_optimizer_state_dict</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">group</span><span class="p">,</span> <span class="n">orig_lr_schedule</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">active_groups</span><span class="p">,</span> <span class="n">orig_lr_schedules</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">orig_lr_schedule</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">group</span><span class="o">.</span><span class="n">set_schedule</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;learning_rate&#39;</span><span class="p">,</span> <span class="n">schedule</span><span class="o">=</span><span class="n">orig_lr_schedule</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">group</span><span class="o">.</span><span class="n">remove_schedule</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;learning_rate&#39;</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="n">monitor</span></div>
 

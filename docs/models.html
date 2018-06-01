@@ -31,7 +31,7 @@
   <link rel="stylesheet" href="_static/css/pytorch_theme.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Trainers" href="trainers.html" />
+    <link rel="next" title="Parameter Group" href="parameter_group.html" />
     <link rel="prev" title="Monitors" href="monitors.html" /> 
 
   
@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                master (0.12.0 )
+                master (1.0.0 )
               </div>
             
           
@@ -103,17 +103,6 @@
 <li class="toctree-l2"><a class="reference internal" href="transforms.html#nhot"><span class="hidden-section">NHot</span></a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="rate_controllers.html">Rate Controllers</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="rate_controllers.html#ratecontroller"><span class="hidden-section">RateController</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="rate_controllers.html#compositeratecontroller"><span class="hidden-section">CompositeRateController</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="rate_controllers.html#constantratecontroller"><span class="hidden-section">ConstantRateController</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="rate_controllers.html#cosineratecontroller"><span class="hidden-section">CosineRateController</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="rate_controllers.html#exponentialratecontroller"><span class="hidden-section">ExponentialRateController</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="rate_controllers.html#linearratecontroller"><span class="hidden-section">LinearRateController</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="rate_controllers.html#stepratecontroller"><span class="hidden-section">StepRateController</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="rate_controllers.html#triangleratecontroller"><span class="hidden-section">TriangleRateController</span></a></li>
-</ul>
-</li>
 <li class="toctree-l1"><a class="reference internal" href="monitors.html">Monitors</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="monitors.html#monitor"><span class="hidden-section">Monitor</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="monitors.html#compositemonitor"><span class="hidden-section">CompositeMonitor</span></a></li>
@@ -124,12 +113,26 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Models</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#model"><span class="hidden-section">Model</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#basicautoencoder"><span class="hidden-section">BasicAutoencoder</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#basicconvolutionalautoencoder"><span class="hidden-section">BasicConvolutionalAutoencoder</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#variationalautoencoder"><span class="hidden-section">VariationalAutoencoder</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#basicclassifer"><span class="hidden-section">BasicClassifer</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#multilayerperceptron"><span class="hidden-section">MultilayerPerceptron</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#wideresnetimageclassifier"><span class="hidden-section">WideResnetImageClassifier</span></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="parameter_group.html">Parameter Group</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="parameter_group.html#parametergroup"><span class="hidden-section">ParameterGroup</span></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="schedules.html">Schedules</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="schedules.html#schedule"><span class="hidden-section">Schedule</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="schedules.html#cosine"><span class="hidden-section">Cosine</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="schedules.html#exponential"><span class="hidden-section">Exponential</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="schedules.html#linear"><span class="hidden-section">Linear</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="schedules.html#step"><span class="hidden-section">Step</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="schedules.html#triangle"><span class="hidden-section">Triangle</span></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="trainers.html">Trainers</a><ul>
@@ -205,30 +208,168 @@
             
   <div class="section" id="module-sconce.models">
 <span id="models"></span><h1>Models<a class="headerlink" href="#module-sconce.models" title="Permalink to this headline">¶</a></h1>
-<p>A model in Sconce is just a <a class="reference external" href="https://pytorch.org/docs/master/nn.html#torch.nn.Module" title="(in PyTorch vmaster (0.5.0a0+6df371b ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.Module</span></code></a> with a few restrictions
-(see note below).  Sconce comes with a few example models to get you started.</p>
+<div class="section" id="model">
+<h2><span class="hidden-section">Model</span><a class="headerlink" href="#model" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="sconce.models.Model">
+<em class="property">class </em><code class="descclassname">sconce.models.</code><code class="descname">Model</code><a class="reference internal" href="_modules/sconce/models/base.html#Model"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.models.Model" title="Permalink to this definition">¶</a></dt>
+<dd><p>The base class of all Models in Sconce.  It is only an interface, describing what must be implemented
+if you want to define a model.</p>
+<dl class="attribute">
+<dt id="sconce.models.Model.active_parameter_groups">
+<code class="descname">active_parameter_groups</code><a class="headerlink" href="#sconce.models.Model.active_parameter_groups" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list of all active parameter groups.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sconce.models.Model.add_parameter_group">
+<code class="descname">add_parameter_group</code><span class="sig-paren">(</span><em>group</em>, <em>inactivate_default=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/models/base.html#Model.add_parameter_group"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.models.Model.add_parameter_group" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a new parameter group to this model.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>(</strong> (<em>group</em>) – py:class:<a href="#id1"><span class="problematic" id="id2">`</span></a>~sconce.parameter_group.ParameterGroup): the parameter group to add.</li>
+<li><strong>inactivate_default</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.6)"><em>bool</em></a><em>, </em><em>optional</em>) – if <code class="docutils literal notranslate"><span class="pre">True</span></code>, then the default parameter group will have
+<code class="docutils literal notranslate"><span class="pre">is_active</span></code> set to <code class="docutils literal notranslate"><span class="pre">False</span></code>.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="sconce.models.Model.build_parameter_groups">
+<code class="descname">build_parameter_groups</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/models/base.html#Model.build_parameter_groups"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.models.Model.build_parameter_groups" title="Permalink to this definition">¶</a></dt>
+<dd><p>This can be overridden to build additional parameter groups.  This can be useful if you’re doing
+different layerwise optimization schedules.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sconce.models.Model.calculate_loss">
+<code class="descname">calculate_loss</code><span class="sig-paren">(</span><em>*</em>, <em>inputs</em>, <em>outputs</em>, <em>targets</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/models/base.html#Model.calculate_loss"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.models.Model.calculate_loss" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method must accept arbitrary keyword arguments.  The base class of trainer will pass <cite>inputs</cite>,
+<cite>outputs</cite>, and <cite>targets</cite>, but subclasses may modify that behavior to include other keyword arguments.</p>
+<p>It must return a dictionary.  The dictionary is expected to include at least the key ‘loss’, but may
+include any otehr keys you like.  The value of the key <cite>loss</cite> is expected to be the <a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (0.5.0a0+436211e ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">torch.Tensor</span></code></a>
+output of the loss function, used to back-propagate the gradients used by the optimizer.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sconce.models.Model.calculate_metrics">
+<code class="descname">calculate_metrics</code><span class="sig-paren">(</span><em>*</em>, <em>inputs</em>, <em>outputs</em>, <em>targets</em>, <em>loss</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/models/base.html#Model.calculate_metrics"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.models.Model.calculate_metrics" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method must accept arbitrary keyword arguments.  The base class of trainer will pass <cite>inputs</cite>,
+<cite>outputs</cite>, <cite>targets</cite>, and <cite>loss</cite>, but subclasses may modify that behavior to include other keyword arguments.</p>
+<p>It must return a dictionary.  No restrictions are made on the keys or values of this dictionary.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="sconce.models.Model.default_parameter_group">
+<code class="descname">default_parameter_group</code><a class="headerlink" href="#sconce.models.Model.default_parameter_group" title="Permalink to this definition">¶</a></dt>
+<dd><p>The default parameter group is created automatically and includes all of the
+trainable parameters for the model.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sconce.models.Model.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>*</em>, <em>inputs</em>, <em>targets</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/models/base.html#Model.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.models.Model.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>It must accept arbitrary keyword arguments.  The base class of trainer will pass
+<cite>inputs</cite> and <cite>targets</cite>, but subclasses may modify that behavior to include other keyword arguments.</p>
+<p>It must return a dictionary. The dictionary is expected to include at least the key <cite>outputs</cite>
+but may include any other keys you like.  The value of the key <cite>outputs</cite> is expected to be
+the <a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (0.5.0a0+436211e ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">torch.Tensor</span></code></a> output of the model, used for calculating the loss.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sconce.models.Model.get_num_trainable_parameters">
+<code class="descname">get_num_trainable_parameters</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/models/base.html#Model.get_num_trainable_parameters"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.models.Model.get_num_trainable_parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>The number of trainable parameters that the models has.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sconce.models.Model.get_optimizers">
+<code class="descname">get_optimizers</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/models/base.html#Model.get_optimizers"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.models.Model.get_optimizers" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list of optimizers for the parameters of this model.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sconce.models.Model.get_parameter_group">
+<code class="descname">get_parameter_group</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/models/base.html#Model.get_parameter_group"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.models.Model.get_parameter_group" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a parameter group by name.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sconce.models.Model.get_trainable_parameters">
+<code class="descname">get_trainable_parameters</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/models/base.html#Model.get_trainable_parameters"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.models.Model.get_trainable_parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>The trainable parameters that the models has.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="sconce.models.Model.parameter_groups">
+<code class="descname">parameter_groups</code><a class="headerlink" href="#sconce.models.Model.parameter_groups" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list of all parameter groups, inactive as well as active.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sconce.models.Model.prepare_for_step">
+<code class="descname">prepare_for_step</code><span class="sig-paren">(</span><em>step</em>, <em>current_state</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/models/base.html#Model.prepare_for_step"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.models.Model.prepare_for_step" title="Permalink to this definition">¶</a></dt>
+<dd><p>First, it handles any hyperparameter schedules added to the model itself before gathering up
+the results of calling ‘prepare_for_step’ on all the model’s parameter groups and combining the result.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sconce.models.Model.print_schedule_summary">
+<code class="descname">print_schedule_summary</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/models/base.html#Model.print_schedule_summary"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.models.Model.print_schedule_summary" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print out a summary of the scheduled hyperparameters on this model and it’s parameter groups.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sconce.models.Model.set_optimizer">
+<code class="descname">set_optimizer</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/models/base.html#Model.set_optimizer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.models.Model.set_optimizer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the optimizer for all of the active parameter groups on this model.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sconce.models.Model.set_schedule">
+<code class="descname">set_schedule</code><span class="sig-paren">(</span><em>name</em>, <em>schedule</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/models/base.html#Model.set_schedule"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.models.Model.set_schedule" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the schedule for a hyperparameter on this model.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>name</strong> (<em>string</em>) – the name of the hyperparameter you want to schedule.</li>
+<li><strong>(</strong> (<em>schedule</em>) – py:class:~sconce.schedules.base.Schedule): the schedule for that hyperparameter.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p>For a model to be used by a <a class="reference internal" href="trainers.html#sconce.trainer.Trainer" title="sconce.trainer.Trainer"><code class="xref py py-class docutils literal notranslate"><span class="pre">Trainer</span></code></a>, the model must satisfy a few constraints.</p>
-<ol class="last arabic simple">
-<li>It must accept arbitrary keyword arguments in it’s <code class="docutils literal notranslate"><span class="pre">forward</span></code> method.  The base class of trainer will pass
-<cite>inputs</cite> and <cite>targets</cite>, but subclasses may modify that behavior to include other keyword arguments.</li>
-<li>It must return a dictionary from it’s <code class="docutils literal notranslate"><span class="pre">forward</span></code> method.  The dictionary is expected to include at least
-the key <cite>outputs</cite> but may include any other keys you like.  The value of the key <cite>outputs</cite> is expected to be
-the <a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (0.5.0a0+6df371b ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">torch.Tensor</span></code></a> output of the model, used for calculating the loss.</li>
-<li>It must define a <code class="docutils literal notranslate"><span class="pre">calculate_loss</span></code> method.  This method must accept arbitrary keyword arguments.  The base
-class of trainer will pass <cite>inputs</cite>, <cite>outputs</cite>, and <cite>targets</cite>, but subclasses may modify that behavior to
-include other keyword arguments.</li>
-<li>It must return a dictionary form it’s <code class="docutils literal notranslate"><span class="pre">calculate_loss</span></code> method.  The dictionary is expected to include at
-least the key ‘loss’, but may include any otehr keys you like.  The value of the key <cite>loss</cite> is expected to
-be the <a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (0.5.0a0+6df371b ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">torch.Tensor</span></code></a> output of the loss function, used to back-propagate the
-gradients used by the optimizer.</li>
-<li>It may define a <code class="docutils literal notranslate"><span class="pre">calculate_metrics</span></code> method.  This method must accept arbitrary keyword arguments.  The
-base class of trainer will pass <cite>inputs</cite>, <cite>outputs</cite>, <cite>targets</cite>, and <cite>loss</cite>, but subclasses may modify that
-behavior to include other keyword arguments.</li>
-<li>If it defines a <code class="docutils literal notranslate"><span class="pre">calculate_metrics</span></code> method, it must return a dictionary.  No restrictions are made on the
-keys or values of this dictionary.</li>
-</ol>
+<p class="last">Some name values are interpreted specially.  Setting name to ‘learning_rate’, ‘momentum’, or ‘weight_decay’
+will delegate to setting schedules on all active parameter groups instead of on the model.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="sconce.models.Model.start_session">
+<code class="descname">start_session</code><span class="sig-paren">(</span><em>num_steps</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/models/base.html#Model.start_session"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.models.Model.start_session" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called by the :py:class:~sconce.trainer.Trainer when a training session starts.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>num_steps</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) – the number of steps the trainer will take during this training session.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
 </div>
 <div class="section" id="basicautoencoder">
 <h2><span class="hidden-section">BasicAutoencoder</span><a class="headerlink" href="#basicautoencoder" title="Permalink to this headline">¶</a></h2>
@@ -525,7 +666,7 @@ channels are in the network (see paper above for details).</li>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="trainers.html" class="btn btn-neutral float-right" title="Trainers" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="parameter_group.html" class="btn btn-neutral float-right" title="Parameter Group" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="monitors.html" class="btn btn-neutral" title="Monitors" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

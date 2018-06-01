@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                master (0.12.0 )
+                master (1.0.0 )
               </div>
             
           
@@ -102,17 +102,6 @@
 <li class="toctree-l2"><a class="reference internal" href="transforms.html#nhot"><span class="hidden-section">NHot</span></a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="rate_controllers.html">Rate Controllers</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="rate_controllers.html#ratecontroller"><span class="hidden-section">RateController</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="rate_controllers.html#compositeratecontroller"><span class="hidden-section">CompositeRateController</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="rate_controllers.html#constantratecontroller"><span class="hidden-section">ConstantRateController</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="rate_controllers.html#cosineratecontroller"><span class="hidden-section">CosineRateController</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="rate_controllers.html#exponentialratecontroller"><span class="hidden-section">ExponentialRateController</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="rate_controllers.html#linearratecontroller"><span class="hidden-section">LinearRateController</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="rate_controllers.html#stepratecontroller"><span class="hidden-section">StepRateController</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="rate_controllers.html#triangleratecontroller"><span class="hidden-section">TriangleRateController</span></a></li>
-</ul>
-</li>
 <li class="toctree-l1"><a class="reference internal" href="monitors.html">Monitors</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="monitors.html#monitor"><span class="hidden-section">Monitor</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="monitors.html#compositemonitor"><span class="hidden-section">CompositeMonitor</span></a></li>
@@ -123,12 +112,26 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="models.html">Models</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="models.html#model"><span class="hidden-section">Model</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="models.html#basicautoencoder"><span class="hidden-section">BasicAutoencoder</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="models.html#basicconvolutionalautoencoder"><span class="hidden-section">BasicConvolutionalAutoencoder</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="models.html#variationalautoencoder"><span class="hidden-section">VariationalAutoencoder</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="models.html#basicclassifer"><span class="hidden-section">BasicClassifer</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="models.html#multilayerperceptron"><span class="hidden-section">MultilayerPerceptron</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="models.html#wideresnetimageclassifier"><span class="hidden-section">WideResnetImageClassifier</span></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="parameter_group.html">Parameter Group</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="parameter_group.html#parametergroup"><span class="hidden-section">ParameterGroup</span></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="schedules.html">Schedules</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="schedules.html#schedule"><span class="hidden-section">Schedule</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="schedules.html#cosine"><span class="hidden-section">Cosine</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="schedules.html#exponential"><span class="hidden-section">Exponential</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="schedules.html#linear"><span class="hidden-section">Linear</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="schedules.html#step"><span class="hidden-section">Step</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="schedules.html#triangle"><span class="hidden-section">Triangle</span></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="trainers.html">Trainers</a><ul>
@@ -228,6 +231,8 @@
 <h2 id="A">A</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="models.html#sconce.models.Model.active_parameter_groups">active_parameter_groups (sconce.models.Model attribute)</a>
+</li>
       <li><a href="sconce.models.html#sconce.models.wide_resnet_image_classifier.AdaptiveAveragePooling2dLayer">AdaptiveAveragePooling2dLayer (class in sconce.models.wide_resnet_image_classifier)</a>
 </li>
       <li><a href="sconce.html#sconce.utils.Progbar.add">add() (sconce.utils.Progbar method)</a>
@@ -236,7 +241,7 @@
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="sconce.rate_controllers.html#sconce.rate_controllers.base.CompositeRateController.add_rate_controller">add_rate_controller() (sconce.rate_controllers.base.CompositeRateController method)</a>
+      <li><a href="models.html#sconce.models.Model.add_parameter_group">add_parameter_group() (sconce.models.Model method)</a>
 </li>
       <li><a href="sconce.trainers.html#sconce.trainers.autoencoder_trainer.AutoencoderMixin">AutoencoderMixin (class in sconce.trainers.autoencoder_trainer)</a>
 </li>
@@ -264,10 +269,10 @@
         <li><a href="sconce.models.html#sconce.models.basic_classifier.BasicClassifier">(class in sconce.models.basic_classifier)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="models.html#sconce.models.BasicConvolutionalAutoencoder">BasicConvolutionalAutoencoder (class in sconce.models)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="sconce.data_generators.html#sconce.data_generators.base.DataGenerator.batch_size">batch_size (sconce.data_generators.base.DataGenerator attribute)</a>
 
       <ul>
@@ -278,6 +283,8 @@
         <li><a href="data_generator.html#sconce.data_generators.SingleClassImageDataGenerator.batch_size">(sconce.data_generators.SingleClassImageDataGenerator attribute)</a>
 </li>
       </ul></li>
+      <li><a href="models.html#sconce.models.Model.build_parameter_groups">build_parameter_groups() (sconce.models.Model method)</a>
+</li>
   </ul></td>
 </tr></table>
 
@@ -287,6 +294,8 @@
       <li><a href="sconce.models.html#sconce.models.basic_autoencoder.BasicAutoencoder.calculate_loss">calculate_loss() (sconce.models.basic_autoencoder.BasicAutoencoder method)</a>
 
       <ul>
+        <li><a href="models.html#sconce.models.Model.calculate_loss">(sconce.models.Model method)</a>
+</li>
         <li><a href="sconce.models.html#sconce.models.basic_classifier.BasicClassifier.calculate_loss">(sconce.models.basic_classifier.BasicClassifier method)</a>
 </li>
         <li><a href="sconce.models.html#sconce.models.multilayer_perceptron.MultilayerPerceptron.calculate_loss">(sconce.models.multilayer_perceptron.MultilayerPerceptron method)</a>
@@ -297,6 +306,8 @@
       <li><a href="sconce.models.html#sconce.models.basic_classifier.BasicClassifier.calculate_metrics">calculate_metrics() (sconce.models.basic_classifier.BasicClassifier method)</a>
 
       <ul>
+        <li><a href="models.html#sconce.models.Model.calculate_metrics">(sconce.models.Model method)</a>
+</li>
         <li><a href="sconce.models.html#sconce.models.multilayer_perceptron.MultilayerPerceptron.calculate_metrics">(sconce.models.multilayer_perceptron.MultilayerPerceptron method)</a>
 </li>
         <li><a href="sconce.models.html#sconce.models.wide_resnet_image_classifier.WideResnetImageClassifier.calculate_metrics">(sconce.models.wide_resnet_image_classifier.WideResnetImageClassifier method)</a>
@@ -310,6 +321,8 @@
         <li><a href="trainers.html#sconce.trainers.SingleClassImageClassifierTrainer.checkpoint">(sconce.trainers.SingleClassImageClassifierTrainer method)</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="trainers.html#sconce.trainers.ClassifierTrainer">ClassifierTrainer (class in sconce.trainers)</a>
 
       <ul>
@@ -322,26 +335,12 @@
         <li><a href="sconce.monitors.html#sconce.monitors.base.CompositeMonitor">(class in sconce.monitors.base)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="rate_controllers.html#sconce.rate_controllers.CompositeRateController">CompositeRateController (class in sconce.rate_controllers)</a>
-
-      <ul>
-        <li><a href="sconce.rate_controllers.html#sconce.rate_controllers.base.CompositeRateController">(class in sconce.rate_controllers.base)</a>
-</li>
-      </ul></li>
-      <li><a href="rate_controllers.html#sconce.rate_controllers.ConstantRateController">ConstantRateController (class in sconce.rate_controllers)</a>
-
-      <ul>
-        <li><a href="sconce.rate_controllers.html#sconce.rate_controllers.constant_rate_controller.ConstantRateController">(class in sconce.rate_controllers.constant_rate_controller)</a>
-</li>
-      </ul></li>
       <li><a href="sconce.models.layers.html#sconce.models.layers.convolution2d_layer.Convolution2dLayer">Convolution2dLayer (class in sconce.models.layers.convolution2d_layer)</a>
 </li>
-      <li><a href="rate_controllers.html#sconce.rate_controllers.CosineRateController">CosineRateController (class in sconce.rate_controllers)</a>
+      <li><a href="schedules.html#sconce.schedules.Cosine">Cosine (class in sconce.schedules)</a>
 
       <ul>
-        <li><a href="sconce.rate_controllers.html#sconce.rate_controllers.cosine_rate_controller.CosineRateController">(class in sconce.rate_controllers.cosine_rate_controller)</a>
+        <li><a href="sconce.schedules.html#sconce.schedules.cosine.Cosine">(class in sconce.schedules.cosine)</a>
 </li>
       </ul></li>
       <li><a href="datasets.html#sconce.datasets.CsvImageFolder">CsvImageFolder (class in sconce.datasets)</a>
@@ -392,6 +391,8 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="sconce.models.html#sconce.models.basic_autoencoder.BasicAutoencoder.decode">decode() (sconce.models.basic_autoencoder.BasicAutoencoder method)</a>
 </li>
+      <li><a href="models.html#sconce.models.Model.default_parameter_group">default_parameter_group (sconce.models.Model attribute)</a>
+</li>
       <li><a href="sconce.monitors.html#sconce.monitors.dataframe_monitor.DataframeMonitor.df">df (sconce.monitors.dataframe_monitor.DataframeMonitor attribute)</a>
 </li>
   </ul></td>
@@ -412,10 +413,10 @@
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="rate_controllers.html#sconce.rate_controllers.ExponentialRateController">ExponentialRateController (class in sconce.rate_controllers)</a>
+      <li><a href="schedules.html#sconce.schedules.Exponential">Exponential (class in sconce.schedules)</a>
 
       <ul>
-        <li><a href="sconce.rate_controllers.html#sconce.rate_controllers.exponential_rate_controller.ExponentialRateController">(class in sconce.rate_controllers.exponential_rate_controller)</a>
+        <li><a href="sconce.schedules.html#sconce.schedules.exponential.Exponential">(class in sconce.schedules.exponential)</a>
 </li>
       </ul></li>
   </ul></td>
@@ -427,6 +428,8 @@
       <li><a href="sconce.models.html#sconce.models.basic_autoencoder.BasicAutoencoder.forward">forward() (sconce.models.basic_autoencoder.BasicAutoencoder method)</a>
 
       <ul>
+        <li><a href="models.html#sconce.models.Model.forward">(sconce.models.Model method)</a>
+</li>
         <li><a href="sconce.models.html#sconce.models.basic_classifier.BasicClassifier.forward">(sconce.models.basic_classifier.BasicClassifier method)</a>
 </li>
         <li><a href="sconce.models.layers.html#sconce.models.layers.convolution2d_layer.Convolution2dLayer.forward">(sconce.models.layers.convolution2d_layer.Convolution2dLayer method)</a>
@@ -448,6 +451,8 @@
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="parameter_group.html#sconce.parameter_group.ParameterGroup.freeze">freeze() (sconce.parameter_group.ParameterGroup method)</a>, <a href="sconce.html#sconce.parameter_group.ParameterGroup.freeze">[1]</a>
+</li>
       <li><a href="sconce.models.html#sconce.models.basic_classifier.BasicClassifier.freeze_batchnorm_layers">freeze_batchnorm_layers() (sconce.models.basic_classifier.BasicClassifier method)</a>
 </li>
       <li><a href="sconce.data_generators.html#sconce.data_generators.base.DataGenerator.from_dataset">from_dataset() (sconce.data_generators.base.DataGenerator class method)</a>
@@ -496,8 +501,6 @@
 </li>
       <li><a href="sconce.trainers.html#sconce.trainers.single_class_image_classifier_trainer.SingleClassImageClassifierMixin.get_confusion_matrix">get_confusion_matrix() (sconce.trainers.single_class_image_classifier_trainer.SingleClassImageClassifierMixin method)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="sconce.data_generators.html#sconce.data_generators.image_mixin.get_image_size">get_image_size() (in module sconce.data_generators.image_mixin)</a>
 </li>
       <li><a href="sconce.data_generators.html#sconce.data_generators.image_mixin.ImageMixin.get_image_size_df">get_image_size_df() (sconce.data_generators.image_mixin.ImageMixin method)</a>
@@ -508,9 +511,23 @@
         <li><a href="data_generator.html#sconce.data_generators.SingleClassImageDataGenerator.get_image_size_df">(sconce.data_generators.SingleClassImageDataGenerator method)</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="sconce.html#sconce.trainer.Trainer.get_num_steps">get_num_steps() (sconce.trainer.Trainer method)</a>
+</li>
+      <li><a href="models.html#sconce.models.Model.get_num_trainable_parameters">get_num_trainable_parameters() (sconce.models.Model method)</a>
+</li>
+      <li><a href="models.html#sconce.models.Model.get_optimizers">get_optimizers() (sconce.models.Model method)</a>
+</li>
+      <li><a href="models.html#sconce.models.Model.get_parameter_group">get_parameter_group() (sconce.models.Model method)</a>
+</li>
       <li><a href="sconce.datasets.html#sconce.datasets.csv_image_folder.CsvImageFolder.get_sample">get_sample() (sconce.datasets.csv_image_folder.CsvImageFolder method)</a>
 </li>
       <li><a href="sconce.datasets.html#sconce.datasets.csv_image_folder.CsvImageFolder.get_target">get_target() (sconce.datasets.csv_image_folder.CsvImageFolder method)</a>
+</li>
+      <li><a href="models.html#sconce.models.Model.get_trainable_parameters">get_trainable_parameters() (sconce.models.Model method)</a>
+</li>
+      <li><a href="schedules.html#sconce.schedules.Schedule.get_value">get_value() (sconce.schedules.Schedule method)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -534,10 +551,10 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="sconce.models.html#sconce.models.basic_classifier.BasicClassifier.layers">layers (sconce.models.basic_classifier.BasicClassifier attribute)</a>
 </li>
-      <li><a href="rate_controllers.html#sconce.rate_controllers.LinearRateController">LinearRateController (class in sconce.rate_controllers)</a>
+      <li><a href="schedules.html#sconce.schedules.Linear">Linear (class in sconce.schedules)</a>
 
       <ul>
-        <li><a href="sconce.rate_controllers.html#sconce.rate_controllers.linear_rate_controller.LinearRateController">(class in sconce.rate_controllers.linear_rate_controller)</a>
+        <li><a href="sconce.schedules.html#sconce.schedules.linear.Linear">(class in sconce.schedules.linear)</a>
 </li>
       </ul></li>
       <li><a href="sconce.html#sconce.trainer.Trainer.load_model_state">load_model_state() (sconce.trainer.Trainer method)</a>, <a href="trainers.html#sconce.trainer.Trainer.load_model_state">[1]</a>
@@ -563,6 +580,8 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="sconce.monitors.html#sconce.monitors.ringbuffer_monitor.RingbufferMonitor.mean">mean() (sconce.monitors.ringbuffer_monitor.RingbufferMonitor method)</a>
+</li>
+      <li><a href="models.html#sconce.models.Model">Model (class in sconce.models)</a>
 </li>
       <li><a href="monitors.html#sconce.monitors.Monitor">Monitor (class in sconce.monitors)</a>
 
@@ -620,32 +639,12 @@
         <li><a href="sconce.models.html#sconce.models.multilayer_perceptron.MultilayerPerceptron.new_from_yaml_filename">(sconce.models.multilayer_perceptron.MultilayerPerceptron class method)</a>
 </li>
       </ul></li>
-      <li><a href="sconce.rate_controllers.html#sconce.rate_controllers.base.CompositeRateController.new_learning_rate">new_learning_rate() (sconce.rate_controllers.base.CompositeRateController method)</a>
-
-      <ul>
-        <li><a href="rate_controllers.html#sconce.rate_controllers.RateController.new_learning_rate">(sconce.rate_controllers.RateController method)</a>
-</li>
-        <li><a href="sconce.rate_controllers.html#sconce.rate_controllers.base.RateController.new_learning_rate">(sconce.rate_controllers.base.RateController method)</a>
-</li>
-        <li><a href="sconce.rate_controllers.html#sconce.rate_controllers.constant_rate_controller.ConstantRateController.new_learning_rate">(sconce.rate_controllers.constant_rate_controller.ConstantRateController method)</a>
-</li>
-        <li><a href="sconce.rate_controllers.html#sconce.rate_controllers.cosine_rate_controller.CosineRateController.new_learning_rate">(sconce.rate_controllers.cosine_rate_controller.CosineRateController method)</a>
-</li>
-        <li><a href="sconce.rate_controllers.html#sconce.rate_controllers.exponential_rate_controller.ExponentialRateController.new_learning_rate">(sconce.rate_controllers.exponential_rate_controller.ExponentialRateController method)</a>
-</li>
-        <li><a href="sconce.rate_controllers.html#sconce.rate_controllers.linear_rate_controller.LinearRateController.new_learning_rate">(sconce.rate_controllers.linear_rate_controller.LinearRateController method)</a>
-</li>
-        <li><a href="sconce.rate_controllers.html#sconce.rate_controllers.step_rate_controller.StepRateController.new_learning_rate">(sconce.rate_controllers.step_rate_controller.StepRateController method)</a>
-</li>
-        <li><a href="sconce.rate_controllers.html#sconce.rate_controllers.triangle_rate_controller.TriangleRateController.new_learning_rate">(sconce.rate_controllers.triangle_rate_controller.TriangleRateController method)</a>
-</li>
-      </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="sconce.data_generators.html#sconce.data_generators.base.DataGenerator.next">next() (sconce.data_generators.base.DataGenerator method)</a>
 </li>
       <li><a href="sconce.html#sconce.transforms.NHot">NHot (class in sconce.transforms)</a>, <a href="transforms.html#sconce.transforms.NHot">[1]</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="sconce.data_generators.html#sconce.data_generators.image_mixin.ImageMixin.num_channels">num_channels (sconce.data_generators.image_mixin.ImageMixin attribute)</a>
 
       <ul>
@@ -694,6 +693,10 @@
 <h2 id="P">P</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="models.html#sconce.models.Model.parameter_groups">parameter_groups (sconce.models.Model attribute)</a>
+</li>
+      <li><a href="parameter_group.html#sconce.parameter_group.ParameterGroup">ParameterGroup (class in sconce.parameter_group)</a>, <a href="sconce.html#sconce.parameter_group.ParameterGroup">[1]</a>
+</li>
       <li><a href="sconce.monitors.html#sconce.monitors.dataframe_monitor.DataframeMonitor.plot">plot() (sconce.monitors.dataframe_monitor.DataframeMonitor method)</a>
 </li>
       <li><a href="sconce.data_generators.html#sconce.data_generators.image_mixin.ImageMixin.plot_class_summary">plot_class_summary() (sconce.data_generators.image_mixin.ImageMixin method)</a>
@@ -736,7 +739,11 @@
         <li><a href="data_generator.html#sconce.data_generators.SingleClassImageDataGenerator.plot_transforms">(sconce.data_generators.SingleClassImageDataGenerator method)</a>
 </li>
       </ul></li>
+      <li><a href="models.html#sconce.models.Model.prepare_for_step">prepare_for_step() (sconce.models.Model method)</a>
+</li>
       <li><a href="sconce.data_generators.html#sconce.data_generators.base.DataGenerator.preprocess">preprocess() (sconce.data_generators.base.DataGenerator method)</a>
+</li>
+      <li><a href="models.html#sconce.models.Model.print_schedule_summary">print_schedule_summary() (sconce.models.Model method)</a>
 </li>
       <li><a href="sconce.html#sconce.utils.Progbar">Progbar (class in sconce.utils)</a>
 </li>
@@ -746,12 +753,6 @@
 <h2 id="R">R</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="rate_controllers.html#sconce.rate_controllers.RateController">RateController (class in sconce.rate_controllers)</a>
-
-      <ul>
-        <li><a href="sconce.rate_controllers.html#sconce.rate_controllers.base.RateController">(class in sconce.rate_controllers.base)</a>
-</li>
-      </ul></li>
       <li><a href="sconce.data_generators.html#sconce.data_generators.base.DataGenerator.real_dataset">real_dataset (sconce.data_generators.base.DataGenerator attribute)</a>
 
       <ul>
@@ -774,8 +775,6 @@
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="sconce.rate_controllers.html#sconce.rate_controllers.constant_rate_controller.ConstantRateController.reset_monitor">reset_monitor() (sconce.rate_controllers.constant_rate_controller.ConstantRateController method)</a>
-</li>
       <li><a href="sconce.html#sconce.trainer.Trainer.restore">restore() (sconce.trainer.Trainer method)</a>, <a href="trainers.html#sconce.trainer.Trainer.restore">[1]</a>
 
       <ul>
@@ -806,6 +805,8 @@
         <li><a href="trainers.html#sconce.trainers.SingleClassImageClassifierTrainer.save_model_state">(sconce.trainers.SingleClassImageClassifierTrainer method)</a>
 </li>
       </ul></li>
+      <li><a href="schedules.html#sconce.schedules.Schedule">Schedule (class in sconce.schedules)</a>
+</li>
       <li><a href="sconce.data_generators.html#module-sconce.data_generators.base">sconce.data_generators.base (module)</a>
 </li>
       <li><a href="sconce.data_generators.html#module-sconce.data_generators.image_data_generator">sconce.data_generators.image_data_generator (module)</a>
@@ -844,19 +845,17 @@
 </li>
       <li><a href="sconce.monitors.html#module-sconce.monitors.stdout_monitor">sconce.monitors.stdout_monitor (module)</a>
 </li>
-      <li><a href="sconce.rate_controllers.html#module-sconce.rate_controllers.base">sconce.rate_controllers.base (module)</a>
+      <li><a href="sconce.html#module-sconce.parameter_group">sconce.parameter_group (module)</a>
 </li>
-      <li><a href="sconce.rate_controllers.html#module-sconce.rate_controllers.constant_rate_controller">sconce.rate_controllers.constant_rate_controller (module)</a>
+      <li><a href="sconce.schedules.html#module-sconce.schedules.cosine">sconce.schedules.cosine (module)</a>
 </li>
-      <li><a href="sconce.rate_controllers.html#module-sconce.rate_controllers.cosine_rate_controller">sconce.rate_controllers.cosine_rate_controller (module)</a>
+      <li><a href="sconce.schedules.html#module-sconce.schedules.exponential">sconce.schedules.exponential (module)</a>
 </li>
-      <li><a href="sconce.rate_controllers.html#module-sconce.rate_controllers.exponential_rate_controller">sconce.rate_controllers.exponential_rate_controller (module)</a>
+      <li><a href="sconce.schedules.html#module-sconce.schedules.linear">sconce.schedules.linear (module)</a>
 </li>
-      <li><a href="sconce.rate_controllers.html#module-sconce.rate_controllers.linear_rate_controller">sconce.rate_controllers.linear_rate_controller (module)</a>
+      <li><a href="sconce.schedules.html#module-sconce.schedules.step">sconce.schedules.step (module)</a>
 </li>
-      <li><a href="sconce.rate_controllers.html#module-sconce.rate_controllers.step_rate_controller">sconce.rate_controllers.step_rate_controller (module)</a>
-</li>
-      <li><a href="sconce.rate_controllers.html#module-sconce.rate_controllers.triangle_rate_controller">sconce.rate_controllers.triangle_rate_controller (module)</a>
+      <li><a href="sconce.schedules.html#module-sconce.schedules.triangle">sconce.schedules.triangle (module)</a>
 </li>
       <li><a href="sconce.html#module-sconce.trainer">sconce.trainer (module)</a>
 </li>
@@ -866,16 +865,40 @@
 </li>
       <li><a href="sconce.html#module-sconce.transforms">sconce.transforms (module)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="sconce.html#module-sconce.utils">sconce.utils (module)</a>
 </li>
-      <li><a href="sconce.rate_controllers.html#sconce.rate_controllers.exponential_rate_controller.ExponentialRateController.should_continue">should_continue() (sconce.rate_controllers.exponential_rate_controller.ExponentialRateController method)</a>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="sconce.html#sconce.parameter_group.ParameterGroup.set_learning_rate">set_learning_rate() (sconce.parameter_group.ParameterGroup method)</a>
+</li>
+      <li><a href="sconce.html#sconce.parameter_group.ParameterGroup.set_momentum">set_momentum() (sconce.parameter_group.ParameterGroup method)</a>
+</li>
+      <li><a href="sconce.schedules.html#sconce.schedules.cosine.Cosine.set_num_steps">set_num_steps() (sconce.schedules.cosine.Cosine method)</a>
 
       <ul>
-        <li><a href="sconce.rate_controllers.html#sconce.rate_controllers.linear_rate_controller.LinearRateController.should_continue">(sconce.rate_controllers.linear_rate_controller.LinearRateController method)</a>
+        <li><a href="schedules.html#sconce.schedules.Schedule.set_num_steps">(sconce.schedules.Schedule method)</a>
+</li>
+        <li><a href="sconce.schedules.html#sconce.schedules.exponential.Exponential.set_num_steps">(sconce.schedules.exponential.Exponential method)</a>
+</li>
+        <li><a href="sconce.schedules.html#sconce.schedules.linear.Linear.set_num_steps">(sconce.schedules.linear.Linear method)</a>
+</li>
+        <li><a href="sconce.schedules.html#sconce.schedules.step.Step.set_num_steps">(sconce.schedules.step.Step method)</a>
+</li>
+        <li><a href="sconce.schedules.html#sconce.schedules.triangle.Triangle.set_num_steps">(sconce.schedules.triangle.Triangle method)</a>
 </li>
       </ul></li>
+      <li><a href="models.html#sconce.models.Model.set_optimizer">set_optimizer() (sconce.models.Model method)</a>
+
+      <ul>
+        <li><a href="parameter_group.html#sconce.parameter_group.ParameterGroup.set_optimizer">(sconce.parameter_group.ParameterGroup method)</a>, <a href="sconce.html#sconce.parameter_group.ParameterGroup.set_optimizer">[1]</a>
+</li>
+      </ul></li>
+      <li><a href="models.html#sconce.models.Model.set_schedule">set_schedule() (sconce.models.Model method)</a>
+</li>
+      <li><a href="sconce.html#sconce.parameter_group.ParameterGroup.set_weight_decay">set_weight_decay() (sconce.parameter_group.ParameterGroup method)</a>
+</li>
+      <li><a href="sconce.schedules.html#sconce.schedules.exponential.Exponential.should_continue">should_continue() (sconce.schedules.exponential.Exponential method)</a>
+</li>
       <li><a href="datasets.html#sconce.datasets.SimpleDots">SimpleDots (class in sconce.datasets)</a>
 
       <ul>
@@ -896,10 +919,12 @@
         <li><a href="sconce.data_generators.html#sconce.data_generators.single_class_image_data_generator.SingleClassImageDataGenerator">(class in sconce.data_generators.single_class_image_data_generator)</a>
 </li>
       </ul></li>
-      <li><a href="sconce.monitors.html#sconce.monitors.base.CompositeMonitor.start_session">start_session() (sconce.monitors.base.CompositeMonitor method)</a>
+      <li><a href="models.html#sconce.models.Model.start_session">start_session() (sconce.models.Model method)</a>
 
       <ul>
         <li><a href="monitors.html#sconce.monitors.Monitor.start_session">(sconce.monitors.Monitor method)</a>
+</li>
+        <li><a href="sconce.monitors.html#sconce.monitors.base.CompositeMonitor.start_session">(sconce.monitors.base.CompositeMonitor method)</a>
 </li>
         <li><a href="sconce.monitors.html#sconce.monitors.base.Monitor.start_session">(sconce.monitors.base.Monitor method)</a>
 </li>
@@ -911,24 +936,6 @@
 </li>
         <li><a href="sconce.monitors.html#sconce.monitors.stdout_monitor.StdoutMonitor.start_session">(sconce.monitors.stdout_monitor.StdoutMonitor method)</a>
 </li>
-        <li><a href="rate_controllers.html#sconce.rate_controllers.RateController.start_session">(sconce.rate_controllers.RateController method)</a>
-</li>
-        <li><a href="sconce.rate_controllers.html#sconce.rate_controllers.base.CompositeRateController.start_session">(sconce.rate_controllers.base.CompositeRateController method)</a>
-</li>
-        <li><a href="sconce.rate_controllers.html#sconce.rate_controllers.base.RateController.start_session">(sconce.rate_controllers.base.RateController method)</a>
-</li>
-        <li><a href="sconce.rate_controllers.html#sconce.rate_controllers.constant_rate_controller.ConstantRateController.start_session">(sconce.rate_controllers.constant_rate_controller.ConstantRateController method)</a>
-</li>
-        <li><a href="sconce.rate_controllers.html#sconce.rate_controllers.cosine_rate_controller.CosineRateController.start_session">(sconce.rate_controllers.cosine_rate_controller.CosineRateController method)</a>
-</li>
-        <li><a href="sconce.rate_controllers.html#sconce.rate_controllers.exponential_rate_controller.ExponentialRateController.start_session">(sconce.rate_controllers.exponential_rate_controller.ExponentialRateController method)</a>
-</li>
-        <li><a href="sconce.rate_controllers.html#sconce.rate_controllers.linear_rate_controller.LinearRateController.start_session">(sconce.rate_controllers.linear_rate_controller.LinearRateController method)</a>
-</li>
-        <li><a href="sconce.rate_controllers.html#sconce.rate_controllers.step_rate_controller.StepRateController.start_session">(sconce.rate_controllers.step_rate_controller.StepRateController method)</a>
-</li>
-        <li><a href="sconce.rate_controllers.html#sconce.rate_controllers.triangle_rate_controller.TriangleRateController.start_session">(sconce.rate_controllers.triangle_rate_controller.TriangleRateController method)</a>
-</li>
       </ul></li>
       <li><a href="sconce.monitors.html#sconce.monitors.ringbuffer_monitor.RingbufferMonitor.std">std() (sconce.monitors.ringbuffer_monitor.RingbufferMonitor method)</a>
 </li>
@@ -938,10 +945,10 @@
         <li><a href="sconce.monitors.html#sconce.monitors.stdout_monitor.StdoutMonitor">(class in sconce.monitors.stdout_monitor)</a>
 </li>
       </ul></li>
-      <li><a href="rate_controllers.html#sconce.rate_controllers.StepRateController">StepRateController (class in sconce.rate_controllers)</a>
+      <li><a href="schedules.html#sconce.schedules.Step">Step (class in sconce.schedules)</a>
 
       <ul>
-        <li><a href="sconce.rate_controllers.html#sconce.rate_controllers.step_rate_controller.StepRateController">(class in sconce.rate_controllers.step_rate_controller)</a>
+        <li><a href="sconce.schedules.html#sconce.schedules.step.Step">(class in sconce.schedules.step)</a>
 </li>
       </ul></li>
       <li><a href="sconce.html#sconce.trainer.Trainer.survey_learning_rate">survey_learning_rate() (sconce.trainer.Trainer method)</a>, <a href="trainers.html#sconce.trainer.Trainer.survey_learning_rate">[1]</a>
@@ -978,10 +985,10 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="sconce.html#sconce.trainer.Trainer">Trainer (class in sconce.trainer)</a>, <a href="trainers.html#sconce.trainer.Trainer">[1]</a>
 </li>
-      <li><a href="rate_controllers.html#sconce.rate_controllers.TriangleRateController">TriangleRateController (class in sconce.rate_controllers)</a>
+      <li><a href="schedules.html#sconce.schedules.Triangle">Triangle (class in sconce.schedules)</a>
 
       <ul>
-        <li><a href="sconce.rate_controllers.html#sconce.rate_controllers.triangle_rate_controller.TriangleRateController">(class in sconce.rate_controllers.triangle_rate_controller)</a>
+        <li><a href="sconce.schedules.html#sconce.schedules.triangle.Triangle">(class in sconce.schedules.triangle)</a>
 </li>
       </ul></li>
   </ul></td>
@@ -990,10 +997,12 @@
 <h2 id="U">U</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="sconce.models.html#sconce.models.basic_classifier.BasicClassifier.unfreeze_batchnorm_layers">unfreeze_batchnorm_layers() (sconce.models.basic_classifier.BasicClassifier method)</a>
+      <li><a href="parameter_group.html#sconce.parameter_group.ParameterGroup.unfreeze">unfreeze() (sconce.parameter_group.ParameterGroup method)</a>, <a href="sconce.html#sconce.parameter_group.ParameterGroup.unfreeze">[1]</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="sconce.models.html#sconce.models.basic_classifier.BasicClassifier.unfreeze_batchnorm_layers">unfreeze_batchnorm_layers() (sconce.models.basic_classifier.BasicClassifier method)</a>
+</li>
       <li><a href="sconce.html#sconce.utils.Progbar.update">update() (sconce.utils.Progbar method)</a>
 </li>
   </ul></td>

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>sconce.transforms &mdash; Pytorch-Sconce master documentation</title>
+  <title>sconce.parameter_group &mdash; Pytorch-Sconce master documentation</title>
   
 
   
@@ -187,7 +187,7 @@
         
           <li><a href="../index.html">Module code</a> &raquo;</li>
         
-      <li>sconce.transforms</li>
+      <li>sconce.parameter_group</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -202,43 +202,71 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <h1>Source code for sconce.transforms</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-
-<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;NHot&#39;</span><span class="p">]</span>
+  <h1>Source code for sconce.parameter_group</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">sconce.schedules.base</span> <span class="k">import</span> <span class="n">ScheduledMixin</span>
 
 
-<div class="viewcode-block" id="NHot"><a class="viewcode-back" href="../../transforms.html#sconce.transforms.NHot">[docs]</a><span class="k">class</span> <span class="nc">NHot</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="viewcode-block" id="ParameterGroup"><a class="viewcode-back" href="../../sconce.html#sconce.parameter_group.ParameterGroup">[docs]</a><span class="k">class</span> <span class="nc">ParameterGroup</span><span class="p">(</span><span class="n">ScheduledMixin</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Converts a list of indices to a n-hot encoded vector.</span>
+<span class="sd">    A parameter group is the way that sconce models organize nn.Module parameters and their associated optimizers.</span>
 
-<span class="sd">    arguments:</span>
-<span class="sd">        size (int): the size of the returned array</span>
-
-<span class="sd">    example:</span>
-<span class="sd">        &gt;&gt;&gt; l = [3, 7, 2, 1]</span>
-<span class="sd">        &gt;&gt;&gt; t = NHot(size=10)</span>
-<span class="sd">        &gt;&gt;&gt; t(l)</span>
-<span class="sd">        array([0., 1., 1., 1., 0., 0., 0., 1., 0., 0.])</span>
+<span class="sd">    Arguments:</span>
+<span class="sd">        parameters (iterable of :py:class:`torch.nn.Parameter`): the parameters you want to group together.</span>
+<span class="sd">        name (string): your name for this group</span>
+<span class="sd">        is_active (bool, optional): should this group be considered active (used during training)?</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">size</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="n">size</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parameters</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">is_active</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span> <span class="o">=</span> <span class="n">parameters</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">optimizer</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">is_active</span> <span class="o">=</span> <span class="n">is_active</span>
 
-    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">indices</span><span class="p">):</span>
+<div class="viewcode-block" id="ParameterGroup.set_optimizer"><a class="viewcode-back" href="../../sconce.html#sconce.parameter_group.ParameterGroup.set_optimizer">[docs]</a>    <span class="k">def</span> <span class="nf">set_optimizer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">optimizer_class</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        arguments:</span>
-<span class="sd">            indices (iterable of integers): the indices of the classes that an image belongs to.</span>
+<span class="sd">        Set an optimizer on this parameter group.  If this parameter group is active (has ``is_active=True``) then this</span>
+<span class="sd">        optimizer will be used during training.</span>
 
-<span class="sd">        returns:</span>
-<span class="sd">            array: the n-hot encoded representation of the classes that an image belongs to.</span>
+<span class="sd">        Arguments:</span>
+<span class="sd">            optimizer_class (one of the :py:mod:`torch.optim` classes): the class of optimizer to set.</span>
+
+<span class="sd">        Note:</span>
+<span class="sd">            All other arguments and keyword arguments are delivered to the optimizer_class&#39;s constructor.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">indices_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">indices</span><span class="p">)</span>
-        <span class="n">target</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
-        <span class="n">target</span><span class="p">[</span><span class="n">indices_array</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
-        <span class="k">return</span> <span class="n">target</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">optimizer</span> <span class="o">=</span> <span class="n">optimizer_class</span><span class="p">(</span><span class="n">params</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">optimizer</span></div>
 
-    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">+</span> <span class="n">f</span><span class="s1">&#39;(size=</span><span class="si">{self.size}</span><span class="s1">)&#39;</span></div>
+<div class="viewcode-block" id="ParameterGroup.set_learning_rate"><a class="viewcode-back" href="../../sconce.html#sconce.parameter_group.ParameterGroup.set_learning_rate">[docs]</a>    <span class="k">def</span> <span class="nf">set_learning_rate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">desired_learning_rate</span><span class="p">):</span>
+        <span class="n">param_groups</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">optimizer</span><span class="o">.</span><span class="n">param_groups</span>
+        <span class="k">for</span> <span class="n">param_group</span> <span class="ow">in</span> <span class="n">param_groups</span><span class="p">:</span>
+            <span class="n">param_group</span><span class="p">[</span><span class="s1">&#39;lr&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">desired_learning_rate</span>
+        <span class="k">return</span> <span class="n">desired_learning_rate</span></div>
+
+<div class="viewcode-block" id="ParameterGroup.set_momentum"><a class="viewcode-back" href="../../sconce.html#sconce.parameter_group.ParameterGroup.set_momentum">[docs]</a>    <span class="k">def</span> <span class="nf">set_momentum</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">desired_momentum</span><span class="p">):</span>
+        <span class="n">param_groups</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">optimizer</span><span class="o">.</span><span class="n">param_groups</span>
+        <span class="k">for</span> <span class="n">param_group</span> <span class="ow">in</span> <span class="n">param_groups</span><span class="p">:</span>
+            <span class="n">param_group</span><span class="p">[</span><span class="s1">&#39;momentum&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">desired_momentum</span>
+        <span class="k">return</span> <span class="n">desired_momentum</span></div>
+
+<div class="viewcode-block" id="ParameterGroup.set_weight_decay"><a class="viewcode-back" href="../../sconce.html#sconce.parameter_group.ParameterGroup.set_weight_decay">[docs]</a>    <span class="k">def</span> <span class="nf">set_weight_decay</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">desired_weight_decay</span><span class="p">):</span>
+        <span class="n">param_groups</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">optimizer</span><span class="o">.</span><span class="n">param_groups</span>
+        <span class="k">for</span> <span class="n">param_group</span> <span class="ow">in</span> <span class="n">param_groups</span><span class="p">:</span>
+            <span class="n">param_group</span><span class="p">[</span><span class="s1">&#39;weight_decay&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">desired_weight_decay</span>
+        <span class="k">return</span> <span class="n">desired_weight_decay</span></div>
+
+<div class="viewcode-block" id="ParameterGroup.freeze"><a class="viewcode-back" href="../../sconce.html#sconce.parameter_group.ParameterGroup.freeze">[docs]</a>    <span class="k">def</span> <span class="nf">freeze</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Set ``requires_grad = False`` for all parameters in this group.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">parameter</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="p">:</span>
+            <span class="n">parameter</span><span class="o">.</span><span class="n">requires_grad</span> <span class="o">=</span> <span class="kc">False</span></div>
+
+<div class="viewcode-block" id="ParameterGroup.unfreeze"><a class="viewcode-back" href="../../sconce.html#sconce.parameter_group.ParameterGroup.unfreeze">[docs]</a>    <span class="k">def</span> <span class="nf">unfreeze</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Set ``requires_grad = True`` for all parameters in this group.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">parameter</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="p">:</span>
+            <span class="n">parameter</span><span class="o">.</span><span class="n">requires_grad</span> <span class="o">=</span> <span class="kc">True</span></div></div>
 </pre></div>
 
            </div>

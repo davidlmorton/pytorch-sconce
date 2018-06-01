@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>sconce.data_generators.multi_class_image_data_generator &mdash; Pytorch-Sconce master documentation</title>
+  <title>sconce.schedules.linear &mdash; Pytorch-Sconce master documentation</title>
   
 
   
@@ -187,7 +187,7 @@
         
           <li><a href="../../index.html">Module code</a> &raquo;</li>
         
-      <li>sconce.data_generators.multi_class_image_data_generator</li>
+      <li>sconce.schedules.linear</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -202,30 +202,34 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <h1>Source code for sconce.data_generators.multi_class_image_data_generator</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">sconce.data_generators</span> <span class="k">import</span> <span class="n">DataGenerator</span><span class="p">,</span> <span class="n">ImageMixin</span>
+  <h1>Source code for sconce.schedules.linear</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">pprint</span> <span class="k">import</span> <span class="n">pformat</span> <span class="k">as</span> <span class="n">pf</span>
+<span class="kn">from</span> <span class="nn">sconce.schedules.base</span> <span class="k">import</span> <span class="n">Schedule</span>
 
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 
-<div class="viewcode-block" id="MultiClassImageDataGenerator"><a class="viewcode-back" href="../../../sconce.data_generators.html#sconce.data_generators.MultiClassImageDataGenerator">[docs]</a><span class="k">class</span> <span class="nc">MultiClassImageDataGenerator</span><span class="p">(</span><span class="n">DataGenerator</span><span class="p">,</span> <span class="n">ImageMixin</span><span class="p">):</span>
+<div class="viewcode-block" id="Linear"><a class="viewcode-back" href="../../../sconce.schedules.html#sconce.schedules.Linear">[docs]</a><span class="k">class</span> <span class="nc">Linear</span><span class="p">(</span><span class="n">Schedule</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    An ImageDataGenerator class for use when each image may belong to more than one class.</span>
+<span class="sd">    A Schedule where the value begins with value &lt;initial_value&gt;, then changes linearly to &lt;final_value&gt;.</span>
 
-<span class="sd">    New in 0.10.0</span>
+<span class="sd">    Arguments:</span>
+<span class="sd">        initial_value (float): the initial value of the hyperparameter.</span>
+<span class="sd">        final_value (float): the final value of the hyperparameter.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="nf">_get_class_df</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">dataset</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">real_dataset</span>
-        <span class="n">rows</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">initial_value</span><span class="p">,</span> <span class="n">final_value</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">initial_value</span> <span class="o">=</span> <span class="n">initial_value</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">final_value</span> <span class="o">=</span> <span class="n">final_value</span>
 
-        <span class="k">for</span> <span class="n">target</span> <span class="ow">in</span> <span class="n">dataset</span><span class="o">.</span><span class="n">targets</span><span class="p">:</span>
-            <span class="n">row</span> <span class="o">=</span> <span class="p">{</span><span class="n">_class</span><span class="p">:</span> <span class="kc">False</span> <span class="k">for</span> <span class="n">_class</span> <span class="ow">in</span> <span class="n">dataset</span><span class="o">.</span><span class="n">classes</span><span class="p">}</span>
-            <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="n">target</span><span class="p">:</span>
-                <span class="n">_class</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">classes</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
-                <span class="n">row</span><span class="p">[</span><span class="n">_class</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
-            <span class="n">rows</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">f</span><span class="s1">&#39;</span><span class="si">{self.__class__.__name__}</span><span class="s1">(initial_value={pf(self.initial_value)}, final_value={pf(self.final_value)})&#39;</span>
 
-        <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">rows</span><span class="p">)</span></div>
+<div class="viewcode-block" id="Linear.set_num_steps"><a class="viewcode-back" href="../../../sconce.schedules.html#sconce.schedules.Linear.set_num_steps">[docs]</a>    <span class="k">def</span> <span class="nf">set_num_steps</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_steps</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_steps</span> <span class="o">=</span> <span class="n">num_steps</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">initial_value</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">final_value</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_steps</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">_get_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">step</span><span class="p">,</span> <span class="n">current_state</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="n">step</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span></div>
 </pre></div>
 
            </div>

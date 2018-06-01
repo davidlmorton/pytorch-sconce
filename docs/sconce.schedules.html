@@ -1,0 +1,431 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>sconce.schedules package &mdash; Pytorch-Sconce master documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato" type="text/css" />
+  <link rel="stylesheet" href="_static/css/pytorch_theme.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Pytorch-Sconce
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                master (1.0.0 )
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Class Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="data_generator.html">Data Generators</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="data_generator.html#datagenerator"><span class="hidden-section">DataGenerator</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_generator.html#imagedatagenerator-deprecated"><span class="hidden-section">ImageDataGenerator (deprecated)</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_generator.html#singleclassimagedatagenerator"><span class="hidden-section">SingleClassImageDataGenerator</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_generator.html#multiclassimagedatagenerator"><span class="hidden-section">MultiClassImageDataGenerator</span></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="datasets.html">Datasests</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="datasets.html#csvimagefolder"><span class="hidden-section">CsvImageFolder</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.html#simpledots"><span class="hidden-section">SimpleDots</span></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="transforms.html">Transforms</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="transforms.html#nhot"><span class="hidden-section">NHot</span></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="monitors.html">Monitors</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="monitors.html#monitor"><span class="hidden-section">Monitor</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="monitors.html#compositemonitor"><span class="hidden-section">CompositeMonitor</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="monitors.html#dataframemonitor"><span class="hidden-section">DataframeMonitor</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="monitors.html#losswisemonitor"><span class="hidden-section">LosswiseMonitor</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="monitors.html#ringbuffermonitor"><span class="hidden-section">RingbufferMonitor</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="monitors.html#stdoutmonitor"><span class="hidden-section">StdoutMonitor</span></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="models.html">Models</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="models.html#model"><span class="hidden-section">Model</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="models.html#basicautoencoder"><span class="hidden-section">BasicAutoencoder</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="models.html#basicconvolutionalautoencoder"><span class="hidden-section">BasicConvolutionalAutoencoder</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="models.html#variationalautoencoder"><span class="hidden-section">VariationalAutoencoder</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="models.html#basicclassifer"><span class="hidden-section">BasicClassifer</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="models.html#multilayerperceptron"><span class="hidden-section">MultilayerPerceptron</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="models.html#wideresnetimageclassifier"><span class="hidden-section">WideResnetImageClassifier</span></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="parameter_group.html">Parameter Group</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="parameter_group.html#parametergroup"><span class="hidden-section">ParameterGroup</span></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="schedules.html">Schedules</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="schedules.html#schedule"><span class="hidden-section">Schedule</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="schedules.html#cosine"><span class="hidden-section">Cosine</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="schedules.html#exponential"><span class="hidden-section">Exponential</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="schedules.html#linear"><span class="hidden-section">Linear</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="schedules.html#step"><span class="hidden-section">Step</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="schedules.html#triangle"><span class="hidden-section">Triangle</span></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="trainers.html">Trainers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="trainers.html#basic-trainer"><span class="hidden-section">Basic Trainer</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="trainers.html#autoencodertrainer"><span class="hidden-section">AutoencoderTrainer</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="trainers.html#singleclassimageclassifiertrainer"><span class="hidden-section">SingleClassImageClassifierTrainer</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="trainers.html#classifiertrainer-deprecated"><span class="hidden-section">ClassifierTrainer (deprecated)</span></a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Pytorch-Sconce</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>sconce.schedules package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/sconce.schedules.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="sconce-schedules-package">
+<h1>sconce.schedules package<a class="headerlink" href="#sconce-schedules-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="sconce-schedules-base-module">
+<h2>sconce.schedules.base module<a class="headerlink" href="#sconce-schedules-base-module" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-sconce.schedules.cosine">
+<span id="sconce-schedules-cosine-module"></span><h2>sconce.schedules.cosine module<a class="headerlink" href="#module-sconce.schedules.cosine" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="sconce.schedules.cosine.Cosine">
+<em class="property">class </em><code class="descclassname">sconce.schedules.cosine.</code><code class="descname">Cosine</code><span class="sig-paren">(</span><em>initial_value</em>, <em>final_value</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/schedules/cosine.html#Cosine"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.schedules.cosine.Cosine" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">sconce.schedules.base.Schedule</span></code></p>
+<p>A Schedule where the hyperparameter follows a scaled and shifted cosine function
+from [0, pi].  It will begin at &lt;initial_value&gt; and end at &lt;final_value&gt;, after &lt;num_steps&gt;.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>initial_value</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.6)"><em>float</em></a>) – the initial value of the hyperparameter.</li>
+<li><strong>final_value</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.6)"><em>float</em></a>) – the final value of the hyperparameter.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="sconce.schedules.cosine.Cosine.set_num_steps">
+<code class="descname">set_num_steps</code><span class="sig-paren">(</span><em>num_steps</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/schedules/cosine.html#Cosine.set_num_steps"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.schedules.cosine.Cosine.set_num_steps" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-sconce.schedules.exponential">
+<span id="sconce-schedules-exponential-module"></span><h2>sconce.schedules.exponential module<a class="headerlink" href="#module-sconce.schedules.exponential" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="sconce.schedules.exponential.Exponential">
+<em class="property">class </em><code class="descclassname">sconce.schedules.exponential.</code><code class="descname">Exponential</code><span class="sig-paren">(</span><em>initial_value</em>, <em>final_value</em>, <em>stop_factor=None</em>, <em>loss_key='training_loss'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/schedules/exponential.html#Exponential"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.schedules.exponential.Exponential" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">sconce.schedules.base.Schedule</span></code></p>
+<p>A Schedule where the value, adjusts exponentially from &lt;initial_value&gt;
+to &lt;final_value&gt;, over &lt;num_steps&gt;.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>initial_value</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.6)"><em>float</em></a>) – the initial value of the hyperparameter.</li>
+<li><strong>final_value</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.6)"><em>float</em></a>) – the final value of the hyperparameter.</li>
+<li><strong>stop_factor</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.6)"><em>float</em></a><em>, </em><em>optional</em>) – a StopTrainingError will be raised if &lt;loss_key&gt; rises to
+&lt;stop_factor&gt; above it’s observed minimum value so far.</li>
+<li><strong>loss_key</strong> (<em>string</em><em>, </em><em>optional</em>) – the name of the quantity (in <code class="docutils literal notranslate"><span class="pre">current_state</span></code>) to observe for &lt;stop_factor&gt;.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="sconce.schedules.exponential.Exponential.set_num_steps">
+<code class="descname">set_num_steps</code><span class="sig-paren">(</span><em>num_steps</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/schedules/exponential.html#Exponential.set_num_steps"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.schedules.exponential.Exponential.set_num_steps" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sconce.schedules.exponential.Exponential.should_continue">
+<code class="descname">should_continue</code><span class="sig-paren">(</span><em>current_state</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/schedules/exponential.html#Exponential.should_continue"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.schedules.exponential.Exponential.should_continue" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-sconce.schedules.linear">
+<span id="sconce-schedules-linear-module"></span><h2>sconce.schedules.linear module<a class="headerlink" href="#module-sconce.schedules.linear" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="sconce.schedules.linear.Linear">
+<em class="property">class </em><code class="descclassname">sconce.schedules.linear.</code><code class="descname">Linear</code><span class="sig-paren">(</span><em>initial_value</em>, <em>final_value</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/schedules/linear.html#Linear"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.schedules.linear.Linear" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">sconce.schedules.base.Schedule</span></code></p>
+<p>A Schedule where the value begins with value &lt;initial_value&gt;, then changes linearly to &lt;final_value&gt;.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>initial_value</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.6)"><em>float</em></a>) – the initial value of the hyperparameter.</li>
+<li><strong>final_value</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.6)"><em>float</em></a>) – the final value of the hyperparameter.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="sconce.schedules.linear.Linear.set_num_steps">
+<code class="descname">set_num_steps</code><span class="sig-paren">(</span><em>num_steps</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/schedules/linear.html#Linear.set_num_steps"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.schedules.linear.Linear.set_num_steps" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-sconce.schedules.step">
+<span id="sconce-schedules-step-module"></span><h2>sconce.schedules.step module<a class="headerlink" href="#module-sconce.schedules.step" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="sconce.schedules.step.Step">
+<em class="property">class </em><code class="descclassname">sconce.schedules.step.</code><code class="descname">Step</code><span class="sig-paren">(</span><em>initial_value</em>, <em>final_value</em>, <em>num_changes=1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/schedules/step.html#Step"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.schedules.step.Step" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">sconce.schedules.base.Schedule</span></code></p>
+<p>A Schedule where the value starts at &lt;initial_value&gt; and changes &lt;num_changes&gt; times over the
+course of &lt;num_steps&gt; to a final value of &lt;final_value&gt;.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>initial_value</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.6)"><em>float</em></a>) – the initial value of the hyperparameter.</li>
+<li><strong>final_value</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.6)"><em>float</em></a>) – the final value of the hyperparameter.</li>
+<li><strong>num_changes</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a><em>, </em><em>optional</em>) – [1, &lt;num_steps&gt;-1] the number of times the hyperparameter’s value will change.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The parameter &lt;num_steps&gt; is set during training based on the size of the batch_size and number of samples in
+the training_data_generator, and the batch_multiplier value.</p>
+</div>
+<dl class="method">
+<dt id="sconce.schedules.step.Step.set_num_steps">
+<code class="descname">set_num_steps</code><span class="sig-paren">(</span><em>num_steps</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/schedules/step.html#Step.set_num_steps"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.schedules.step.Step.set_num_steps" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-sconce.schedules.triangle">
+<span id="sconce-schedules-triangle-module"></span><h2>sconce.schedules.triangle module<a class="headerlink" href="#module-sconce.schedules.triangle" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="sconce.schedules.triangle.Triangle">
+<em class="property">class </em><code class="descclassname">sconce.schedules.triangle.</code><code class="descname">Triangle</code><span class="sig-paren">(</span><em>initial_value</em>, <em>peak_value</em>, <em>peak_fraction=0.5</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/schedules/triangle.html#Triangle"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.schedules.triangle.Triangle" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">sconce.schedules.base.Schedule</span></code></p>
+<p>A Schedule where the value begins with value &lt;initial_value&gt;, then changes linearly to &lt;peak_value&gt;,
+and then back to &lt;initial_value&gt; by the end of &lt;num_steps&gt;.  Peak value will occur after &lt;peak_steps&gt;.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>initial_value</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.6)"><em>float</em></a>) – the initial value of the hyperparameter.</li>
+<li><strong>peak_value</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.6)"><em>float</em></a>) – the value of the hyperparameter at it’s peak (maximum or minimum).</li>
+<li><strong>peak_fraction</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.6)"><em>float</em></a><em>, </em><em>optional</em>) – (0.0, 1.0) used to determine the number of steps before the hyperparameter’s
+value will become &lt;peak_value&gt;.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="sconce.schedules.triangle.Triangle.set_num_steps">
+<code class="descname">set_num_steps</code><span class="sig-paren">(</span><em>num_steps</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/schedules/triangle.html#Triangle.set_num_steps"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.schedules.triangle.Triangle.set_num_steps" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Pytorch-Sconce Contributors.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'master',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          
+          SphinxRtdTheme.Navigation.enableSticky();
+          
+      });
+  </script> 
+
+</body>
+</html>

@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                master (0.12.0 )
+                master (1.0.0 )
               </div>
             
           
@@ -101,17 +101,6 @@
 <li class="toctree-l2"><a class="reference internal" href="../transforms.html#nhot"><span class="hidden-section">NHot</span></a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../rate_controllers.html">Rate Controllers</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../rate_controllers.html#ratecontroller"><span class="hidden-section">RateController</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../rate_controllers.html#compositeratecontroller"><span class="hidden-section">CompositeRateController</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../rate_controllers.html#constantratecontroller"><span class="hidden-section">ConstantRateController</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../rate_controllers.html#cosineratecontroller"><span class="hidden-section">CosineRateController</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../rate_controllers.html#exponentialratecontroller"><span class="hidden-section">ExponentialRateController</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../rate_controllers.html#linearratecontroller"><span class="hidden-section">LinearRateController</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../rate_controllers.html#stepratecontroller"><span class="hidden-section">StepRateController</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../rate_controllers.html#triangleratecontroller"><span class="hidden-section">TriangleRateController</span></a></li>
-</ul>
-</li>
 <li class="toctree-l1"><a class="reference internal" href="../monitors.html">Monitors</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../monitors.html#monitor"><span class="hidden-section">Monitor</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../monitors.html#compositemonitor"><span class="hidden-section">CompositeMonitor</span></a></li>
@@ -122,12 +111,26 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../models.html">Models</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../models.html#model"><span class="hidden-section">Model</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../models.html#basicautoencoder"><span class="hidden-section">BasicAutoencoder</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../models.html#basicconvolutionalautoencoder"><span class="hidden-section">BasicConvolutionalAutoencoder</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../models.html#variationalautoencoder"><span class="hidden-section">VariationalAutoencoder</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../models.html#basicclassifer"><span class="hidden-section">BasicClassifer</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../models.html#multilayerperceptron"><span class="hidden-section">MultilayerPerceptron</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../models.html#wideresnetimageclassifier"><span class="hidden-section">WideResnetImageClassifier</span></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../parameter_group.html">Parameter Group</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../parameter_group.html#parametergroup"><span class="hidden-section">ParameterGroup</span></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../schedules.html">Schedules</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../schedules.html#schedule"><span class="hidden-section">Schedule</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../schedules.html#cosine"><span class="hidden-section">Cosine</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../schedules.html#exponential"><span class="hidden-section">Exponential</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../schedules.html#linear"><span class="hidden-section">Linear</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../schedules.html#step"><span class="hidden-section">Step</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../schedules.html#triangle"><span class="hidden-section">Triangle</span></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../trainers.html">Trainers</a><ul>
@@ -205,6 +208,7 @@
 <li><a href="sconce/data_generators/single_class_image_data_generator.html">sconce.data_generators.single_class_image_data_generator</a></li>
 <li><a href="sconce/datasets/csv_image_folder.html">sconce.datasets.csv_image_folder</a></li>
 <li><a href="sconce/datasets/simple_dots.html">sconce.datasets.simple_dots</a></li>
+<li><a href="sconce/models/base.html">sconce.models.base</a></li>
 <li><a href="sconce/models/basic_autoencoder.html">sconce.models.basic_autoencoder</a></li>
 <li><a href="sconce/models/basic_classifier.html">sconce.models.basic_classifier</a></li>
 <li><a href="sconce/models/basic_convolutional_autoencoder.html">sconce.models.basic_convolutional_autoencoder</a></li>
@@ -218,13 +222,13 @@
 <li><a href="sconce/monitors/losswise_monitor.html">sconce.monitors.losswise_monitor</a></li>
 <li><a href="sconce/monitors/ringbuffer_monitor.html">sconce.monitors.ringbuffer_monitor</a></li>
 <li><a href="sconce/monitors/stdout_monitor.html">sconce.monitors.stdout_monitor</a></li>
-<li><a href="sconce/rate_controllers/base.html">sconce.rate_controllers.base</a></li>
-<li><a href="sconce/rate_controllers/constant_rate_controller.html">sconce.rate_controllers.constant_rate_controller</a></li>
-<li><a href="sconce/rate_controllers/cosine_rate_controller.html">sconce.rate_controllers.cosine_rate_controller</a></li>
-<li><a href="sconce/rate_controllers/exponential_rate_controller.html">sconce.rate_controllers.exponential_rate_controller</a></li>
-<li><a href="sconce/rate_controllers/linear_rate_controller.html">sconce.rate_controllers.linear_rate_controller</a></li>
-<li><a href="sconce/rate_controllers/step_rate_controller.html">sconce.rate_controllers.step_rate_controller</a></li>
-<li><a href="sconce/rate_controllers/triangle_rate_controller.html">sconce.rate_controllers.triangle_rate_controller</a></li>
+<li><a href="sconce/parameter_group.html">sconce.parameter_group</a></li>
+<li><a href="sconce/schedules/base.html">sconce.schedules.base</a></li>
+<li><a href="sconce/schedules/cosine.html">sconce.schedules.cosine</a></li>
+<li><a href="sconce/schedules/exponential.html">sconce.schedules.exponential</a></li>
+<li><a href="sconce/schedules/linear.html">sconce.schedules.linear</a></li>
+<li><a href="sconce/schedules/step.html">sconce.schedules.step</a></li>
+<li><a href="sconce/schedules/triangle.html">sconce.schedules.triangle</a></li>
 <li><a href="sconce/trainer.html">sconce.trainer</a></li>
 <li><a href="sconce/trainers/autoencoder_trainer.html">sconce.trainers.autoencoder_trainer</a></li>
 <li><a href="sconce/trainers/single_class_image_classifier_trainer.html">sconce.trainers.single_class_image_classifier_trainer</a></li>
