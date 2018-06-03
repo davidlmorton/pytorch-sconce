@@ -15,7 +15,7 @@ class TestSchedules(unittest.TestCase):
         self.assertEqual('Cosine(initial_value=0, final_value=1)', str(s))
         s.set_num_steps(3)
 
-        expected_values = (1, 0.5, 0)
+        expected_values = (0, 0.5, 1)
         for i, expected_value in enumerate(expected_values):
             result = s.get_value(step=i + 1, current_state={})
             self.assertAlmostEqual(result, expected_value)

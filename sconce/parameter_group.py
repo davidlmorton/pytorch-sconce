@@ -53,6 +53,7 @@ class ParameterGroup(ScheduledMixin):
         """
         Set ``requires_grad = False`` for all parameters in this group.
         """
+        self.is_active = False
         for parameter in self.parameters:
             parameter.requires_grad = False
 
@@ -60,5 +61,6 @@ class ParameterGroup(ScheduledMixin):
         """
         Set ``requires_grad = True`` for all parameters in this group.
         """
+        self.is_active = True
         for parameter in self.parameters:
             parameter.requires_grad = True
