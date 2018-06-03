@@ -28,7 +28,7 @@ class Cosine(Schedule):
     def _get_value(self, step, current_state):
         progression = self.progressions[step - 1]
 
-        new_value = (self.initial_value +
-                (self.final_value - self.initial_value) *
+        new_value = (self.final_value +
+                (self.initial_value - self.final_value) *
                 (1 + math.cos(math.pi * progression)) / 2)
         return new_value
