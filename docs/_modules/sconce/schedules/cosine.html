@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                master (1.0.0 )
+                master (1.0.1 )
               </div>
             
           
@@ -233,8 +233,8 @@
     <span class="k">def</span> <span class="nf">_get_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">step</span><span class="p">,</span> <span class="n">current_state</span><span class="p">):</span>
         <span class="n">progression</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">progressions</span><span class="p">[</span><span class="n">step</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
 
-        <span class="n">new_value</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">initial_value</span> <span class="o">+</span>
-                <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">final_value</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">initial_value</span><span class="p">)</span> <span class="o">*</span>
+        <span class="n">new_value</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">final_value</span> <span class="o">+</span>
+                <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">initial_value</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">final_value</span><span class="p">)</span> <span class="o">*</span>
                 <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">progression</span><span class="p">))</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">new_value</span></div>
 </pre></div>

@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                master (1.0.0 )
+                master (1.0.1 )
               </div>
             
           
@@ -203,41 +203,12 @@
            <div itemprop="articleBody">
             
   <h1>Source code for sconce.models.wide_resnet_image_classifier</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">.layers</span> <span class="k">import</span> <span class="n">Convolution2dLayer</span>
+<span></span><span class="kn">from</span> <span class="nn">.layers</span> <span class="k">import</span> <span class="n">Convolution2dLayer</span><span class="p">,</span> <span class="n">AdaptiveAveragePooling2dLayer</span>
 <span class="kn">from</span> <span class="nn">sconce.models.base</span> <span class="k">import</span> <span class="n">Model</span>
 <span class="kn">from</span> <span class="nn">torch</span> <span class="k">import</span> <span class="n">nn</span>
 <span class="kn">from</span> <span class="nn">torch.nn</span> <span class="k">import</span> <span class="n">functional</span> <span class="k">as</span> <span class="n">F</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-
-
-<div class="viewcode-block" id="AdaptiveAveragePooling2dLayer"><a class="viewcode-back" href="../../../sconce.models.html#sconce.models.AdaptiveAveragePooling2dLayer">[docs]</a><span class="k">class</span> <span class="nc">AdaptiveAveragePooling2dLayer</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">in_channels</span><span class="p">,</span> <span class="n">output_size</span><span class="p">,</span>
-            <span class="n">inplace_activation</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-            <span class="n">preactivate</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-            <span class="n">with_batchnorm</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">preactivate</span> <span class="o">=</span> <span class="n">preactivate</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">with_batchnorm</span> <span class="o">=</span> <span class="n">with_batchnorm</span>
-        <span class="k">if</span> <span class="n">with_batchnorm</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">bn</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">BatchNorm2d</span><span class="p">(</span><span class="n">num_features</span><span class="o">=</span><span class="n">in_channels</span><span class="p">)</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">relu</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="n">inplace_activation</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">pool</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">AdaptiveAvgPool2d</span><span class="p">(</span><span class="n">output_size</span><span class="o">=</span><span class="n">output_size</span><span class="p">)</span>
-
-<div class="viewcode-block" id="AdaptiveAveragePooling2dLayer.forward"><a class="viewcode-back" href="../../../sconce.models.html#sconce.models.AdaptiveAveragePooling2dLayer.forward">[docs]</a>    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">with_batchnorm</span><span class="p">:</span>
-            <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bn</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">preactivate</span><span class="p">:</span>
-            <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-            <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pool</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pool</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-            <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-
-        <span class="k">return</span> <span class="n">x</span></div></div>
 
 
 <div class="viewcode-block" id="WideResnetBlock_3x3"><a class="viewcode-back" href="../../../sconce.models.html#sconce.models.WideResnetBlock_3x3">[docs]</a><span class="k">class</span> <span class="nc">WideResnetBlock_3x3</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
