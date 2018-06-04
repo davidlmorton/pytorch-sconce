@@ -1,4 +1,5 @@
 from torch.utils import data
+import torch
 
 
 class DataGenerator:
@@ -126,7 +127,8 @@ class DataGenerator:
             inputs = inputs.cuda(self._inputs_cuda)
 
         if self._targets_cuda is False:
-            targets = targets.cpu()
+            if isinstance(targets, torch.Tensor):
+                targets = targets.cpu()
         else:
             targets = targets.cuda(self._targets_cuda)
 
