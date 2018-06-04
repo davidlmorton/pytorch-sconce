@@ -1,4 +1,7 @@
 from torch.utils import data
+
+import copy
+import numpy as np
 import torch
 
 
@@ -143,15 +146,33 @@ class DataGenerator:
         return self.preprocess(inputs, targets)
 
     @classmethod
-    def from_dataset(cls, dataset, **kwargs):
+    def from_dataset(cls, dataset, split=None, **kwargs):
         """
         Create a DataGenerator from an instantiated dataset.
 
         Arguments:
             dataset (:py:class:`~torch.utils.data.Dataset`): the pytorch
                 dataset.
+            split (float, optional): If not ``None``, it specifies the fraction of the dataset that should be placed
+                into the first of two data_generators.  The remaining data is used for the second data_generator.  Both
+                data_generators will be returned.
             **kwargs: passed directly to the
                 :py:class:`~torch.utils.data.DataLoader`) constructor.
         """
-        data_loader = data.DataLoader(dataset, **kwargs)
-        return cls(data_loader)
+        if split is not None:
+            num_samples = len(dataset)
+            indices = np.arange(0, num_samples)
+            np.random.shuffle(indices)
+
+            dataset1 = dataset
+            dataset2 = copy.copy(dataset)
+
+            subset1 = data.dataset.Subset(dataset1, indices=indices[:int(num_samples * split)])
+            subset2 = data.dataset.Subset(dataset2, indices=indices[int(num_samples * split):])
+
+            loader1 = data.DataLoader(subset1, **kwargs)
+            loader2 = data.DataLoader(subset2, **kwargs)
+            return cls(loader1), cls(loader2)
+        else:
+            data_loader = data.DataLoader(dataset, **kwargs)
+            return cls(data_loader)
