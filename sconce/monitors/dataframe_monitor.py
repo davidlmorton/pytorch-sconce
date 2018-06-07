@@ -152,7 +152,7 @@ class DataframeMonitor(Monitor):
         for column in df.columns:
             if isinstance(column, tuple) and column[1] == name:
                 label = column[0]
-                df[column].fillna(method='backfill').plot(ax=ax, linewidth=3, label=label, **kwargs)
+                df[column].plot(ax=ax, linewidth=3, label=label, **kwargs)
                 num_columns_plotted += 1
 
         if num_columns_plotted > 1:
