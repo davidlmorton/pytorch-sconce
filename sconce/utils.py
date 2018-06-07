@@ -24,22 +24,25 @@ class Progbar(object):
     """
 
     def __init__(self, target, width=30, verbose=1, interval=0.05,
-                 stateful_metrics=None):
+                 stateful_metrics=None, alpha=0.05):
         self.target = target
         self.width = width
         self.verbose = verbose
         self.interval = interval
+
         if stateful_metrics:
             self.stateful_metrics = set(stateful_metrics)
         else:
             self.stateful_metrics = set()
+
+        self.alpha = alpha
 
         self._dynamic_display = ((hasattr(sys.stdout, 'isatty') and
                                   sys.stdout.isatty()) or
                                  'ipykernel' in sys.modules)
         self._total_width = 0
         self._seen_so_far = 0
-        self._values = collections.OrderedDict()
+        self._avg_values = {}
         self._start = time.time()
         self._last_update = 0
 
@@ -56,14 +59,10 @@ class Progbar(object):
         values = values or []
         for k, v in values:
             if k not in self.stateful_metrics:
-                if k not in self._values:
-                    self._values[k] = [v * (current - self._seen_so_far),
-                                       current - self._seen_so_far]
+                if k not in self._avg_values:
+                    self._avg_values[k] = v
                 else:
-                    self._values[k][0] += v * (current - self._seen_so_far)
-                    self._values[k][1] += (current - self._seen_so_far)
-            else:
-                self._values[k] = v
+                    self._avg_values[k] = (self.alpha * v) + ((1 - self.alpha) * self._avg_values[k])
         self._seen_so_far = current
 
         now = time.time()
@@ -122,17 +121,12 @@ class Progbar(object):
                 else:
                     info += ' %.0fus/step' % (time_per_unit * 1e6)
 
-            for k in self._values:
-                info += ' - %s:' % k
-                if isinstance(self._values[k], list):
-                    avg = np.mean(
-                        self._values[k][0] / max(1, self._values[k][1]))
-                    if abs(avg) > 1e-3:
-                        info += ' %.4f' % avg
-                    else:
-                        info += ' %.4e' % avg
+            for name, avg_value in self._avg_values.items():
+                info += ' - %s:' % name
+                if abs(avg_value) > 1e-3:
+                    info += ' %.4f' % avg_value
                 else:
-                    info += ' %s' % self._values[k]
+                    info += ' %.4e' % avg_value
 
             self._total_width += len(info)
             if prev_total_width > self._total_width:
@@ -146,14 +140,12 @@ class Progbar(object):
 
         elif self.verbose == 2:
             if self.target is None or current >= self.target:
-                for k in self._values:
-                    info += ' - %s:' % k
-                    avg = np.mean(
-                        self._values[k][0] / max(1, self._values[k][1]))
-                    if avg > 1e-3:
-                        info += ' %.4f' % avg
+                for name, avg_value in self._avg_values.items():
+                    info += ' - %s:' % name
+                    if abs(avg_value) > 1e-3:
+                        info += ' %.4f' % avg_value
                     else:
-                        info += ' %.4e' % avg
+                        info += ' %.4e' % avg_value
                 info += '\n'
 
                 sys.stdout.write(info)
