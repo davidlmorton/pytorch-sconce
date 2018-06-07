@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                master (1.0.3 )
+                master (1.1.0 )
               </div>
             
           
@@ -203,7 +203,8 @@
            <div itemprop="articleBody">
             
   <h1>Source code for sconce.data_generators.base</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">torch.utils</span> <span class="k">import</span> <span class="n">data</span>
+<span></span><span class="kn">from</span> <span class="nn">sconce.datasets</span> <span class="k">import</span> <span class="n">Subset</span>
+<span class="kn">from</span> <span class="nn">torch.utils</span> <span class="k">import</span> <span class="n">data</span>
 
 <span class="kn">import</span> <span class="nn">copy</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -291,20 +292,6 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_loader</span><span class="o">.</span><span class="n">dataset</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">real_dataset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        the wrapped data_loader&#39;s :py:class:`~torch.utils.data.Dataset` reaching through any Subsets</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_real_dataset</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">_real_dataset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataset</span><span class="p">):</span>
-        <span class="n">result</span> <span class="o">=</span> <span class="n">dataset</span>
-        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">Subset</span><span class="p">):</span>
-            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_real_dataset</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">dataset</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">result</span>
-
-    <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">batch_size</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        the wrapped data_loader&#39;s batch_size</span>
@@ -372,8 +359,8 @@
             <span class="n">dataset1</span> <span class="o">=</span> <span class="n">dataset</span>
             <span class="n">dataset2</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
 
-            <span class="n">subset1</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">Subset</span><span class="p">(</span><span class="n">dataset1</span><span class="p">,</span> <span class="n">indices</span><span class="o">=</span><span class="n">indices</span><span class="p">[:</span><span class="nb">int</span><span class="p">(</span><span class="n">num_samples</span> <span class="o">*</span> <span class="n">split</span><span class="p">)])</span>
-            <span class="n">subset2</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">Subset</span><span class="p">(</span><span class="n">dataset2</span><span class="p">,</span> <span class="n">indices</span><span class="o">=</span><span class="n">indices</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">num_samples</span> <span class="o">*</span> <span class="n">split</span><span class="p">):])</span>
+            <span class="n">subset1</span> <span class="o">=</span> <span class="n">Subset</span><span class="p">(</span><span class="n">dataset1</span><span class="p">,</span> <span class="n">indices</span><span class="o">=</span><span class="n">indices</span><span class="p">[:</span><span class="nb">int</span><span class="p">(</span><span class="n">num_samples</span> <span class="o">*</span> <span class="n">split</span><span class="p">)])</span>
+            <span class="n">subset2</span> <span class="o">=</span> <span class="n">Subset</span><span class="p">(</span><span class="n">dataset2</span><span class="p">,</span> <span class="n">indices</span><span class="o">=</span><span class="n">indices</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">num_samples</span> <span class="o">*</span> <span class="n">split</span><span class="p">):])</span>
 
             <span class="n">loader1</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">DataLoader</span><span class="p">(</span><span class="n">subset1</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
             <span class="n">loader2</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">DataLoader</span><span class="p">(</span><span class="n">subset2</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>

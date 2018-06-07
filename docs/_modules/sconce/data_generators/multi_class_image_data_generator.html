@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                master (1.0.3 )
+                master (1.1.0 )
               </div>
             
           
@@ -214,8 +214,10 @@
 
 <span class="sd">    New in 0.10.0</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="nf">_get_class_df</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">dataset</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">real_dataset</span>
+    <span class="k">def</span> <span class="nf">_get_class_df</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataset</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">dataset</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">dataset</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset</span>
+
         <span class="n">rows</span> <span class="o">=</span> <span class="p">[]</span>
 
         <span class="k">for</span> <span class="n">target</span> <span class="ow">in</span> <span class="n">dataset</span><span class="o">.</span><span class="n">targets</span><span class="p">:</span>

@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                master (1.0.3 )
+                master (1.1.0 )
               </div>
             
           
@@ -245,7 +245,7 @@
 
         <span class="n">matrix</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_confusion_matrix</span><span class="p">(</span><span class="n">data_generator</span><span class="o">=</span><span class="n">data_generator</span><span class="p">)</span>
 
-        <span class="n">dataset</span> <span class="o">=</span> <span class="n">data_generator</span><span class="o">.</span><span class="n">real_dataset</span>
+        <span class="n">dataset</span> <span class="o">=</span> <span class="n">data_generator</span><span class="o">.</span><span class="n">dataset</span>
         <span class="n">defaults</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;cmap&#39;</span><span class="p">:</span> <span class="s1">&#39;YlGnBu&#39;</span><span class="p">,</span> <span class="s1">&#39;annot&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;fmt&#39;</span><span class="p">:</span> <span class="s1">&#39;d&#39;</span><span class="p">,</span>
                     <span class="s1">&#39;xticklabels&#39;</span><span class="p">:</span> <span class="n">dataset</span><span class="o">.</span><span class="n">classes</span><span class="p">,</span>
                     <span class="s1">&#39;yticklabels&#39;</span><span class="p">:</span> <span class="n">dataset</span><span class="o">.</span><span class="n">classes</span><span class="p">}</span>
@@ -297,7 +297,7 @@
         <span class="k">if</span> <span class="n">data_generator</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">data_generator</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">test_data_generator</span>
 
-        <span class="n">dataset</span> <span class="o">=</span> <span class="n">data_generator</span><span class="o">.</span><span class="n">real_dataset</span>
+        <span class="n">dataset</span> <span class="o">=</span> <span class="n">data_generator</span><span class="o">.</span><span class="n">dataset</span>
         <span class="n">predicted_class</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_convert_to_class_index</span><span class="p">(</span><span class="n">predicted_class</span><span class="p">,</span> <span class="n">dataset</span><span class="p">)</span>
         <span class="n">true_class</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_convert_to_class_index</span><span class="p">(</span><span class="n">true_class</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="n">predicted_class</span><span class="p">)</span>
 

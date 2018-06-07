@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                master (1.0.3 )
+                master (1.1.0 )
               </div>
             
           
@@ -462,7 +462,7 @@ the memory usage would be for a batch size of 100.</li>
 <span id="sconce-utils-module"></span><h2>sconce.utils module<a class="headerlink" href="#module-sconce.utils" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="sconce.utils.Progbar">
-<em class="property">class </em><code class="descclassname">sconce.utils.</code><code class="descname">Progbar</code><span class="sig-paren">(</span><em>target</em>, <em>width=30</em>, <em>verbose=1</em>, <em>interval=0.05</em>, <em>stateful_metrics=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/utils.html#Progbar"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.utils.Progbar" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">sconce.utils.</code><code class="descname">Progbar</code><span class="sig-paren">(</span><em>target</em>, <em>width=30</em>, <em>verbose=1</em>, <em>interval=0.05</em>, <em>stateful_metrics=None</em>, <em>alpha=0.05</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/utils.html#Progbar"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.utils.Progbar" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.6)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Displays a progress bar.
 # Arguments</p>
@@ -513,7 +513,7 @@ Else, an average of the metric over time will be displayed.</div></blockquote>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>parameters</strong> (iterable of <a class="reference external" href="https://pytorch.org/docs/master/nn.html#torch.nn.Parameter" title="(in PyTorch vmaster (0.5.0a0+0ea2fa1 ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.Parameter</span></code></a>) – the parameters you want to group together.</li>
+<li><strong>parameters</strong> (iterable of <a class="reference external" href="https://pytorch.org/docs/master/nn.html#torch.nn.Parameter" title="(in PyTorch vmaster (0.5.0a0+14f5484 ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.Parameter</span></code></a>) – the parameters you want to group together.</li>
 <li><strong>name</strong> (<em>string</em>) – your name for this group</li>
 <li><strong>is_active</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.6)"><em>bool</em></a><em>, </em><em>optional</em>) – should this group be considered active (used during training)?</li>
 </ul>
@@ -546,7 +546,7 @@ optimizer will be used during training.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>optimizer_class</strong> (one of the <a class="reference external" href="https://pytorch.org/docs/master/optim.html#module-torch.optim" title="(in PyTorch vmaster (0.5.0a0+0ea2fa1 ))"><code class="xref py py-mod docutils literal notranslate"><span class="pre">torch.optim</span></code></a> classes) – the class of optimizer to set.</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>optimizer_class</strong> (one of the <a class="reference external" href="https://pytorch.org/docs/master/optim.html#module-torch.optim" title="(in PyTorch vmaster (0.5.0a0+14f5484 ))"><code class="xref py py-mod docutils literal notranslate"><span class="pre">torch.optim</span></code></a> classes) – the class of optimizer to set.</td>
 </tr>
 </tbody>
 </table>
