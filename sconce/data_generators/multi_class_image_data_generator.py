@@ -9,8 +9,10 @@ class MultiClassImageDataGenerator(DataGenerator, ImageMixin):
 
     New in 0.10.0
     """
-    def _get_class_df(self):
-        dataset = self.real_dataset
+    def _get_class_df(self, dataset=None):
+        if dataset is None:
+            dataset = self.dataset
+
         rows = []
 
         for target in dataset.targets:

@@ -40,7 +40,7 @@ class SingleClassImageClassifierMixin(ABC):
 
         matrix = self.get_confusion_matrix(data_generator=data_generator)
 
-        dataset = data_generator.real_dataset
+        dataset = data_generator.dataset
         defaults = {'cmap': 'YlGnBu', 'annot': True, 'fmt': 'd',
                     'xticklabels': dataset.classes,
                     'yticklabels': dataset.classes}
@@ -92,7 +92,7 @@ class SingleClassImageClassifierMixin(ABC):
         if data_generator is None:
             data_generator = self.test_data_generator
 
-        dataset = data_generator.real_dataset
+        dataset = data_generator.dataset
         predicted_class = self._convert_to_class_index(predicted_class, dataset)
         true_class = self._convert_to_class_index(true_class, dataset, default=predicted_class)
 

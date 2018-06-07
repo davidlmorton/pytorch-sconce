@@ -1,3 +1,4 @@
+from sconce.datasets import Subset
 from torch.utils import data
 
 import copy
@@ -86,20 +87,6 @@ class DataGenerator:
         return self.data_loader.dataset
 
     @property
-    def real_dataset(self):
-        """
-        the wrapped data_loader's :py:class:`~torch.utils.data.Dataset` reaching through any Subsets
-        """
-        return self._real_dataset(self.dataset)
-
-    def _real_dataset(self, dataset):
-        result = dataset
-        if isinstance(result, data.dataset.Subset):
-            return self._real_dataset(result.dataset)
-        else:
-            return result
-
-    @property
     def batch_size(self):
         """
         the wrapped data_loader's batch_size
@@ -167,8 +154,8 @@ class DataGenerator:
             dataset1 = dataset
             dataset2 = copy.copy(dataset)
 
-            subset1 = data.dataset.Subset(dataset1, indices=indices[:int(num_samples * split)])
-            subset2 = data.dataset.Subset(dataset2, indices=indices[int(num_samples * split):])
+            subset1 = Subset(dataset1, indices=indices[:int(num_samples * split)])
+            subset2 = Subset(dataset2, indices=indices[int(num_samples * split):])
 
             loader1 = data.DataLoader(subset1, **kwargs)
             loader2 = data.DataLoader(subset2, **kwargs)

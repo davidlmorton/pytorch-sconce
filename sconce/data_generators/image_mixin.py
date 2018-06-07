@@ -21,7 +21,7 @@ class ImageMixin(ABC):
         """
         The number of image channels, based on looking at the first image in the dataset.
         """
-        dataset = self.real_dataset
+        dataset = self.dataset
         for image, target in dataset:
             return image.shape[0]
 
@@ -36,7 +36,7 @@ class ImageMixin(ABC):
     def _get_image_size_df(self):
         info_list = []
 
-        dataset = self.real_dataset
+        dataset = self.dataset
 
         old_transform = dataset.transform
         try:
@@ -80,13 +80,13 @@ class ImageMixin(ABC):
                 kind='scatter', stat_func=None, data=df)
 
     def _get_original_image(self, index):
-        real_dataset = self.real_dataset
-        old_transform = real_dataset.transform
+        dataset = self.dataset
+        old_transform = dataset.transform
 
-        real_dataset.transform = transforms.ToTensor()
+        dataset.transform = transforms.ToTensor()
         image = self.dataset[index][0]
 
-        real_dataset.transform = old_transform
+        dataset.transform = old_transform
         return image
 
     def plot_transforms(self, index,

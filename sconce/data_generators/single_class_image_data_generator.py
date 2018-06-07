@@ -1,5 +1,5 @@
 from sconce.data_generators import DataGenerator, ImageMixin
-from torch.utils import data
+from sconce.datasets import Subset
 from torchvision import datasets, transforms
 
 import numpy as np
@@ -15,7 +15,7 @@ class SingleClassImageDataGenerator(DataGenerator, ImageMixin):
     New in 0.10.0
     """
     def _get_class_df(self):
-        dataset = self.real_dataset
+        dataset = self.dataset
         rows = []
 
         for target in dataset.targets:
@@ -81,7 +81,7 @@ class SingleClassImageDataGenerator(DataGenerator, ImageMixin):
                 start=0,
                 stop=len(dataset) - 1,
                 num=int(len(dataset) * fraction))]
-        subset = data.dataset.Subset(dataset, indices=indices)
+        subset = Subset(dataset, indices=indices)
         return cls.from_dataset(subset,
                 batch_size=batch_size,
                 num_workers=num_workers,
