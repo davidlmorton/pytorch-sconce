@@ -33,7 +33,7 @@ class Model(ABC, nn.Module, ScheduledMixin):
         Add a new parameter group to this model.
 
         Arguments:
-            group (:py:class:`~sconce.parameter_group.ParameterGroup): the parameter group to add.
+            group (:py:class:`~sconce.parameter_group.ParameterGroup`): the parameter group to add.
             inactivate_default (bool, optional): if ``True``, then the default parameter group will have
                 ``is_active`` set to ``False``.
         """

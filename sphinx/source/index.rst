@@ -13,6 +13,7 @@ Sconce Documentation
    :caption: Class Reference
 
    data_generator
+   data_feeds
    datasets
    transforms
    monitors

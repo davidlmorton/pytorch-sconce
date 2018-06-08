@@ -20,9 +20,15 @@ class DataGenerator:
     Arguments:
         data_loader (:py:class:`~torch.utils.data.DataLoader`): the wrapped
             data_loader.
+
+    Note:
+        DataGenerators are deprecated as of 1.2.0 and will be removed soon.  Please use a
+        :py:class:`~sconce.data_feeds.base.DataFeed` instead.
     """
 
     def __init__(self, data_loader):
+        print("WARNING: DataGenerators are deprecated as of 1.2.0 and will be removed soon.  "
+              "Please use a DataFeed instead")
         self.data_loader = data_loader
         self._inputs_cuda = False
         self._targets_cuda = False

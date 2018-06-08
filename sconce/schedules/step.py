@@ -16,7 +16,7 @@ class Step(Schedule):
 
     Note:
         The parameter <num_steps> is set during training based on the size of the batch_size and number of samples in
-        the training_data_generator, and the batch_multiplier value.
+        the training_feed, and the batch_multiplier value.
     """
     def __init__(self, initial_value, final_value, num_changes=1):
         self.initial_value = initial_value

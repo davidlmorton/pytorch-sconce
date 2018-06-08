@@ -10,7 +10,7 @@ __all__ = ['AutoencoderMixin', 'AutoencoderTrainer']
 class AutoencoderMixin(ABC):
     def plot_input_output_pairs(self, title='A Sampling of Autoencoder Results',
         num_cols=10, figsize=(15, 3.2)):
-        inputs, targets = self.test_data_generator.next()
+        inputs, targets = self.test_feed.next()
         out_dict = self._run_model(inputs, targets, train=True)
         outputs = out_dict['outputs']
 
@@ -41,9 +41,9 @@ class AutoencoderMixin(ABC):
         fig.suptitle(title, fontsize=20)
 
         self.model.train(False)
-        self.test_data_generator.reset()
-        for i in range(len(self.test_data_generator)):
-            inputs, targets = self.test_data_generator.next()
+        self.test_feed.reset()
+        for i in range(len(self.test_feed)):
+            inputs, targets = self.test_feed.next()
             x_latent = self.model.encode(inputs=inputs, targets=targets)
 
             x_latent_numpy = x_latent.cpu().data.numpy()
