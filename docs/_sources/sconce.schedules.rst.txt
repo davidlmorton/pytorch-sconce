@@ -4,7 +4,7 @@ sconce.schedules package
 sconce.schedules.base module
 ------------------------------------
 
-.. automodule:: sconce.rate_controllers.base
+.. automodule:: sconce.schedules.base
     :members:
     :undoc-members:
     :show-inheritance:

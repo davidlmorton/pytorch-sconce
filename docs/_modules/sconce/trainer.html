@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                master (1.1.0 )
+                master (1.2.0 )
               </div>
             
           
@@ -85,11 +85,18 @@
             
               <p class="caption"><span class="caption-text">Class Reference</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../data_generator.html">Data Generators</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../data_generator.html#datagenerator"><span class="hidden-section">DataGenerator</span></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data_generator.html">Data Generators (deprecated)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../data_generator.html#datagenerator-deprecated"><span class="hidden-section">DataGenerator (deprecated)</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../data_generator.html#imagedatagenerator-deprecated"><span class="hidden-section">ImageDataGenerator (deprecated)</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../data_generator.html#singleclassimagedatagenerator"><span class="hidden-section">SingleClassImageDataGenerator</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../data_generator.html#multiclassimagedatagenerator"><span class="hidden-section">MultiClassImageDataGenerator</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data_generator.html#singleclassimagedatagenerator-deprecated"><span class="hidden-section">SingleClassImageDataGenerator (deprecated)</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data_generator.html#multiclassimagedatagenerator-deprecated"><span class="hidden-section">MultiClassImageDataGenerator (deprecated)</span></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../data_feeds.html">Data Feeds</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../data_feeds.html#datafeed"><span class="hidden-section">DataFeed</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data_feeds.html#imagefeed"><span class="hidden-section">ImageFeed</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data_feeds.html#singleclassimagefeed"><span class="hidden-section">SingleClassImageFeed</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data_feeds.html#multiclassimagefeed"><span class="hidden-section">MultiClassImageFeed</span></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../datasets.html">Datasests</a><ul>
@@ -205,6 +212,8 @@
   <h1>Source code for sconce.trainer</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">sconce</span> <span class="k">import</span> <span class="n">monitors</span><span class="p">,</span> <span class="n">schedules</span>
 <span class="kn">from</span> <span class="nn">sconce.exceptions</span> <span class="k">import</span> <span class="n">StopTrainingError</span>
+<span class="kn">from</span> <span class="nn">sconce.data_feeds</span> <span class="k">import</span> <span class="n">print_deprecation_warning</span>
+
 
 <span class="kn">import</span> <span class="nn">copy</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -219,9 +228,13 @@
 <span class="sd">    Keyword Arguments:</span>
 <span class="sd">        model (:py:class:`~sconce.models.base.Model`): the sconce model to be trained.  See :py:mod:`sconce.models`</span>
 <span class="sd">            for examples.</span>
-<span class="sd">        training_data_generator (:py:class:`~sconce.data_generators.base.DataGenerator`): yields training `inputs` and</span>
+<span class="sd">        training_data_generator (:py:class:`~sconce.data_generators.base.DataGenerator`): DEPRECATED, use</span>
+<span class="sd">            training_feed argument instead.</span>
+<span class="sd">        training_feed (:py:class:`~sconce.data_feed.base.DataFeed`): used during training to provide `inputs` and</span>
 <span class="sd">            `targets`.</span>
-<span class="sd">        test_data_generator (:py:class:`~sconce.data_generators.base.DataGenerator`): yields test `inputs` and</span>
+<span class="sd">        test_data_generator (:py:class:`~sconce.data_generators.base.DataGenerator`): DEPRECATED, use</span>
+<span class="sd">            validation_feed argument instead.</span>
+<span class="sd">        validation_feed (:py:class:`~sconce.data_feed.base.DataFeed`) used during validation to provide `inputs` and</span>
 <span class="sd">            `targets`.  These are never used for back-propagation.</span>
 <span class="sd">        monitor (:py:class:`~sconce.monitors.base.Monitor`, optional): the sconce monitor that records data during</span>
 <span class="sd">            training.  This data can be sent to external systems during training or kept until training completes</span>
@@ -229,25 +242,40 @@
 <span class="sd">            :py:class:`~sconce.monitors.stdout_monitor.StdoutMonitor` and a</span>
 <span class="sd">            :py:class:`~sconce.monitors.dataframe_monitor.DataframeMonitor` will be created for you and used.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">test_data_generator</span><span class="p">,</span> <span class="n">training_data_generator</span><span class="p">,</span> <span class="n">monitor</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">validation_feed</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">training_feed</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="n">test_data_generator</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">training_data_generator</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">monitor</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">model</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">test_data_generator</span> <span class="o">=</span> <span class="n">test_data_generator</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">training_data_generator</span> <span class="o">=</span> <span class="n">training_data_generator</span>
+
+        <span class="k">if</span> <span class="n">test_data_generator</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">validation_feed</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;Missing required keyword argument: &#39;validation_feed&#39;&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">test_data_generator</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">print_deprecation_warning</span><span class="p">(</span><span class="s1">&#39;test_&#39;</span><span class="p">,</span> <span class="s1">&#39;validation_&#39;</span><span class="p">)</span>
+            <span class="n">validation_feed</span> <span class="o">=</span> <span class="n">test_data_generator</span>
+
+        <span class="k">if</span> <span class="n">training_data_generator</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">training_feed</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;Missing required keyword argument: &#39;training_feed&#39;&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">training_data_generator</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">print_deprecation_warning</span><span class="p">(</span><span class="s1">&#39;training_&#39;</span><span class="p">)</span>
+            <span class="n">training_feed</span> <span class="o">=</span> <span class="n">training_data_generator</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">validation_feed</span> <span class="o">=</span> <span class="n">validation_feed</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">training_feed</span> <span class="o">=</span> <span class="n">training_feed</span>
 
         <span class="k">if</span> <span class="n">monitor</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">metric_names</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;training_loss&#39;</span><span class="p">:</span> <span class="s1">&#39;loss&#39;</span><span class="p">,</span> <span class="s1">&#39;test_loss&#39;</span><span class="p">:</span> <span class="s1">&#39;val_loss&#39;</span><span class="p">}</span>
+            <span class="n">metric_names</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;training_loss&#39;</span><span class="p">:</span> <span class="s1">&#39;loss&#39;</span><span class="p">,</span> <span class="s1">&#39;validation_loss&#39;</span><span class="p">:</span> <span class="s1">&#39;val_loss&#39;</span><span class="p">}</span>
             <span class="n">stdout_monitor</span> <span class="o">=</span> <span class="n">monitors</span><span class="o">.</span><span class="n">StdoutMonitor</span><span class="p">(</span><span class="n">metric_names</span><span class="o">=</span><span class="n">metric_names</span><span class="p">)</span>
             <span class="n">monitor</span> <span class="o">=</span> <span class="n">monitors</span><span class="o">.</span><span class="n">DataframeMonitor</span><span class="p">()</span> <span class="o">+</span> <span class="n">stdout_monitor</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">monitor</span> <span class="o">=</span> <span class="n">monitor</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">test_to_train_ratio</span> <span class="o">=</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">test_data_generator</span><span class="p">)</span> <span class="o">/</span>
-                                    <span class="nb">len</span><span class="p">(</span><span class="n">training_data_generator</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">validation_to_train_ratio</span> <span class="o">=</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">validation_feed</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">training_feed</span><span class="p">))</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">checkpoint_filename</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_reset_cache</span><span class="p">()</span>
 
     <span class="k">def</span> <span class="nf">_reset_cache</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_cache_data_generator</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_cache_feed</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_inputs</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_targets</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_outputs</span> <span class="o">=</span> <span class="kc">None</span>
@@ -300,6 +328,7 @@
 
 <div class="viewcode-block" id="Trainer.train"><a class="viewcode-back" href="../../trainers.html#sconce.trainer.Trainer.train">[docs]</a>    <span class="k">def</span> <span class="nf">train</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">num_epochs</span><span class="p">,</span> <span class="n">monitor</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
             <span class="n">test_to_train_ratio</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="n">validation_to_train_ratio</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
             <span class="n">batch_multiplier</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Train the model for a given number of epochs.</span>
@@ -323,25 +352,35 @@
         <span class="k">assert</span> <span class="n">batch_multiplier</span> <span class="o">&gt;</span> <span class="mi">0</span>
         <span class="k">assert</span> <span class="nb">int</span><span class="p">(</span><span class="n">batch_multiplier</span><span class="p">)</span> <span class="o">==</span> <span class="n">batch_multiplier</span>
 
+        <span class="k">if</span> <span class="n">test_to_train_ratio</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;WARNING: The test_to_train_ratio argument is deprecated as of 1.2.0.  &quot;</span>
+                  <span class="s2">&quot;Please use validation_to_train_ratio instead.&quot;</span><span class="p">)</span>
+            <span class="n">validation_to_train_ratio</span> <span class="o">=</span> <span class="n">test_to_train_ratio</span>
+
         <span class="k">if</span> <span class="n">monitor</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">monitor</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">monitor</span>
-        <span class="k">if</span> <span class="n">test_to_train_ratio</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">test_to_train_ratio</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">test_to_train_ratio</span>
+        <span class="k">if</span> <span class="n">validation_to_train_ratio</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">validation_to_train_ratio</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">validation_to_train_ratio</span>
 
         <span class="n">num_steps</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_num_steps</span><span class="p">(</span><span class="n">num_epochs</span><span class="o">=</span><span class="n">num_epochs</span><span class="p">,</span>
-                <span class="n">data_generator</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">training_data_generator</span><span class="p">,</span>
+                <span class="n">feed</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">training_feed</span><span class="p">,</span>
                 <span class="n">batch_multiplier</span><span class="o">=</span><span class="n">batch_multiplier</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_train</span><span class="p">(</span><span class="n">num_steps</span><span class="o">=</span><span class="n">num_steps</span><span class="p">,</span>
                 <span class="n">monitor</span><span class="o">=</span><span class="n">monitor</span><span class="p">,</span>
-                <span class="n">test_to_train_ratio</span><span class="o">=</span><span class="n">test_to_train_ratio</span><span class="p">,</span>
+                <span class="n">validation_to_train_ratio</span><span class="o">=</span><span class="n">validation_to_train_ratio</span><span class="p">,</span>
                 <span class="n">batch_multiplier</span><span class="o">=</span><span class="n">batch_multiplier</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Trainer.get_num_steps"><a class="viewcode-back" href="../../sconce.html#sconce.trainer.Trainer.get_num_steps">[docs]</a>    <span class="k">def</span> <span class="nf">get_num_steps</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_epochs</span><span class="p">,</span> <span class="n">data_generator</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">batch_multiplier</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">data_generator</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">data_generator</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">training_data_generator</span>
-        <span class="n">num_samples</span> <span class="o">=</span> <span class="n">num_epochs</span> <span class="o">*</span> <span class="n">data_generator</span><span class="o">.</span><span class="n">num_samples</span>
-        <span class="n">batch_size</span> <span class="o">=</span> <span class="n">data_generator</span><span class="o">.</span><span class="n">batch_size</span>
+<div class="viewcode-block" id="Trainer.get_num_steps"><a class="viewcode-back" href="../../sconce.html#sconce.trainer.Trainer.get_num_steps">[docs]</a>    <span class="k">def</span> <span class="nf">get_num_steps</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_epochs</span><span class="p">,</span> <span class="n">data_generator</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">feed</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">batch_multiplier</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">data_generator</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">print_deprecation_warning</span><span class="p">()</span>
+            <span class="n">feed</span> <span class="o">=</span> <span class="n">data_generator</span>
+
+        <span class="k">if</span> <span class="n">feed</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">feed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">training_feed</span>
+
+        <span class="n">num_samples</span> <span class="o">=</span> <span class="n">num_epochs</span> <span class="o">*</span> <span class="n">feed</span><span class="o">.</span><span class="n">num_samples</span>
+        <span class="n">batch_size</span> <span class="o">=</span> <span class="n">feed</span><span class="o">.</span><span class="n">batch_size</span>
         <span class="n">effective_batch_size</span> <span class="o">=</span> <span class="n">batch_size</span> <span class="o">*</span> <span class="n">batch_multiplier</span>
         <span class="n">num_steps</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">num_samples</span> <span class="o">/</span> <span class="n">effective_batch_size</span><span class="p">)</span>
 
@@ -350,7 +389,7 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">num_steps</span></div>
 
-    <span class="k">def</span> <span class="nf">_train</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">num_steps</span><span class="p">,</span> <span class="n">monitor</span><span class="p">,</span> <span class="n">test_to_train_ratio</span><span class="p">,</span> <span class="n">batch_multiplier</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_train</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">num_steps</span><span class="p">,</span> <span class="n">monitor</span><span class="p">,</span> <span class="n">validation_to_train_ratio</span><span class="p">,</span> <span class="n">batch_multiplier</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_reset_cache</span><span class="p">()</span>
         <span class="n">monitor</span><span class="o">.</span><span class="n">start_session</span><span class="p">(</span><span class="n">num_steps</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">start_session</span><span class="p">(</span><span class="n">num_steps</span><span class="p">)</span>
@@ -370,7 +409,7 @@
                 <span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
 
             <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">batch_multiplier</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
-                <span class="n">inputs</span><span class="p">,</span> <span class="n">targets</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">training_data_generator</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+                <span class="n">inputs</span><span class="p">,</span> <span class="n">targets</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">training_feed</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
                 <span class="n">step_dict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_do_step</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">targets</span><span class="p">,</span> <span class="n">train</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
                 <span class="n">loss</span> <span class="o">=</span> <span class="n">step_dict</span><span class="p">[</span><span class="s1">&#39;loss&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">batch_multiplier</span>
@@ -380,11 +419,11 @@
                         <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">step_dict</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
 
                 <span class="n">iterations_since_test</span> <span class="o">+=</span> <span class="mi">1</span>
-                <span class="k">if</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">iterations_since_test</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">test_to_train_ratio</span><span class="p">:</span>
-                    <span class="n">test_step_dict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_do_test_step</span><span class="p">()</span>
+                <span class="k">if</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">iterations_since_test</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">validation_to_train_ratio</span><span class="p">:</span>
+                    <span class="n">validation_step_dict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_do_validation_step</span><span class="p">()</span>
                     <span class="n">iterations_since_test</span> <span class="o">=</span> <span class="mi">0</span>
 
-                    <span class="n">current_state</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="o">**</span><span class="n">training_step_dict</span><span class="p">,</span> <span class="o">**</span><span class="n">test_step_dict</span><span class="p">})</span>
+                    <span class="n">current_state</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="o">**</span><span class="n">training_step_dict</span><span class="p">,</span> <span class="o">**</span><span class="n">validation_step_dict</span><span class="p">})</span>
                 <span class="k">else</span><span class="p">:</span>
                     <span class="n">current_state</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">training_step_dict</span><span class="p">)</span>
 
@@ -424,9 +463,9 @@
         <span class="n">out_dict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">(</span><span class="o">**</span><span class="n">in_dict</span><span class="p">)</span>
         <span class="k">return</span> <span class="p">{</span><span class="o">**</span><span class="n">out_dict</span><span class="p">,</span> <span class="o">**</span><span class="n">in_dict</span><span class="p">}</span>
 
-    <span class="k">def</span> <span class="nf">_run_model_on_generator</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_generator</span><span class="p">,</span>
+    <span class="k">def</span> <span class="nf">_run_model_on_feed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">feed</span><span class="p">,</span>
             <span class="n">cache_results</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cache_data_generator</span> <span class="ow">is</span> <span class="n">data_generator</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">feed</span> <span class="ow">is</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cache_feed</span><span class="p">:</span>
             <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;inputs&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_inputs</span><span class="p">,</span>
                     <span class="s1">&#39;targets&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_targets</span><span class="p">,</span>
                     <span class="s1">&#39;outputs&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_outputs</span><span class="p">}</span>
@@ -435,9 +474,9 @@
         <span class="n">targets</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="n">outputs</span> <span class="o">=</span> <span class="p">[]</span>
 
-        <span class="n">data_generator</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
-        <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data_generator</span><span class="p">)):</span>
-            <span class="n">i</span><span class="p">,</span> <span class="n">t</span> <span class="o">=</span> <span class="n">data_generator</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+        <span class="n">feed</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">feed</span><span class="p">)):</span>
+            <span class="n">i</span><span class="p">,</span> <span class="n">t</span> <span class="o">=</span> <span class="n">feed</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
             <span class="n">out_dict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_run_model</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">train</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
             <span class="n">inputs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">numpy</span><span class="p">())</span>
@@ -449,7 +488,7 @@
         <span class="n">outputs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">outputs</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">cache_results</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_cache_data_generator</span> <span class="o">=</span> <span class="n">data_generator</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_cache_feed</span> <span class="o">=</span> <span class="n">feed</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_inputs</span> <span class="o">=</span> <span class="n">inputs</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_targets</span> <span class="o">=</span> <span class="n">targets</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_outputs</span> <span class="o">=</span> <span class="n">outputs</span>
@@ -458,14 +497,34 @@
                 <span class="s1">&#39;targets&#39;</span><span class="p">:</span> <span class="n">targets</span><span class="p">,</span>
                 <span class="s1">&#39;outputs&#39;</span><span class="p">:</span> <span class="n">outputs</span><span class="p">}</span>
 
-    <span class="k">def</span> <span class="nf">_do_test_step</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">inputs</span><span class="p">,</span> <span class="n">targets</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">test_data_generator</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+    <span class="k">def</span> <span class="nf">_do_validation_step</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">inputs</span><span class="p">,</span> <span class="n">targets</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">validation_feed</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
         <span class="n">step_dict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_do_step</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">targets</span><span class="p">,</span> <span class="n">train</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-        <span class="k">return</span> <span class="p">{</span><span class="n">f</span><span class="s1">&#39;test_</span><span class="si">{k}</span><span class="s1">&#39;</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">step_dict</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+        <span class="k">return</span> <span class="p">{</span><span class="n">f</span><span class="s1">&#39;validation_</span><span class="si">{k}</span><span class="s1">&#39;</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">step_dict</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
 
 <div class="viewcode-block" id="Trainer.test"><a class="viewcode-back" href="../../trainers.html#sconce.trainer.Trainer.test">[docs]</a>    <span class="k">def</span> <span class="nf">test</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">monitor</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Run all samples of self.test_data_generator through the model in test (inference) mode.</span>
+<span class="sd">        Run all samples of self.validation_feed through the model in test (inference) mode.</span>
+
+<span class="sd">        Arguments:</span>
+<span class="sd">            monitor (:py:class:`~sconce.monitors.base.Monitor`, optional): the sconce monitor that records data during</span>
+<span class="sd">                this testing.  If ``None``, a composite monitor consisting of a</span>
+<span class="sd">                :py:class:`~sconce.monitors.stdout_monitor.StdoutMonitor` and a</span>
+<span class="sd">                :py:class:`~sconce.monitors.dataframe_monitor.DataframeMonitor` will be created for you and used.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            monitor (:py:class:`~sconce.monitors.base.Monitor`): the monitor used during this testing.</span>
+
+<span class="sd">        Note:</span>
+<span class="sd">            This method has been deprecated since 1.2.0.  Please use the ``validate()`` method instead.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;WARNING: Trainer.test() is deprecated as of 1.2.0.  &quot;</span>
+              <span class="s2">&quot;Please use Trainer.validate() instead.&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">validate</span><span class="p">(</span><span class="n">monitor</span><span class="o">=</span><span class="n">monitor</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Trainer.validate"><a class="viewcode-back" href="../../trainers.html#sconce.trainer.Trainer.validate">[docs]</a>    <span class="k">def</span> <span class="nf">validate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">monitor</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Run all samples of self.validation_feed through the model in test (inference) mode.</span>
 
 <span class="sd">        Arguments:</span>
 <span class="sd">            monitor (:py:class:`~sconce.monitors.base.Monitor`, optional): the sconce monitor that records data during</span>
@@ -477,15 +536,15 @@
 <span class="sd">            monitor (:py:class:`~sconce.monitors.base.Monitor`): the monitor used during this testing.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">monitor</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">metric_names</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;test_loss&#39;</span><span class="p">:</span> <span class="s1">&#39;loss&#39;</span><span class="p">}</span>
+            <span class="n">metric_names</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;validation_loss&#39;</span><span class="p">:</span> <span class="s1">&#39;val_loss&#39;</span><span class="p">}</span>
             <span class="n">stdout_monitor</span> <span class="o">=</span> <span class="n">monitors</span><span class="o">.</span><span class="n">StdoutMonitor</span><span class="p">(</span><span class="n">metric_names</span><span class="o">=</span><span class="n">metric_names</span><span class="p">)</span>
             <span class="n">monitor</span> <span class="o">=</span> <span class="n">monitors</span><span class="o">.</span><span class="n">DataframeMonitor</span><span class="p">()</span> <span class="o">+</span> <span class="n">stdout_monitor</span>
 
-        <span class="n">num_steps</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">test_data_generator</span><span class="p">)</span>
+        <span class="n">num_steps</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">validation_feed</span><span class="p">)</span>
         <span class="n">monitor</span><span class="o">.</span><span class="n">start_session</span><span class="p">(</span><span class="n">num_steps</span><span class="p">)</span>
 
         <span class="k">for</span> <span class="n">step</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">num_steps</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
-            <span class="n">step_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_do_test_step</span><span class="p">()</span>
+            <span class="n">step_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_do_validation_step</span><span class="p">()</span>
 
             <span class="n">monitor</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">step_data</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="n">step</span><span class="p">)</span>
         <span class="n">monitor</span><span class="o">.</span><span class="n">end_session</span><span class="p">()</span>
@@ -557,7 +616,7 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">num_epochs</span><span class="o">=</span><span class="n">num_epochs</span><span class="p">,</span>
                 <span class="n">monitor</span><span class="o">=</span><span class="n">monitor</span><span class="p">,</span>
-                <span class="n">test_to_train_ratio</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                <span class="n">validation_to_train_ratio</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
                 <span class="n">batch_multiplier</span><span class="o">=</span><span class="n">batch_multiplier</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">load_state_dict</span><span class="p">(</span><span class="n">orig_model_state_dict</span><span class="p">)</span>

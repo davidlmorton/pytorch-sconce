@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                master (1.1.0 )
+                master (1.2.0 )
               </div>
             
           
@@ -85,11 +85,18 @@
             
               <p class="caption"><span class="caption-text">Class Reference</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../data_generator.html">Data Generators</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../data_generator.html#datagenerator"><span class="hidden-section">DataGenerator</span></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../data_generator.html">Data Generators (deprecated)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../data_generator.html#datagenerator-deprecated"><span class="hidden-section">DataGenerator (deprecated)</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../data_generator.html#imagedatagenerator-deprecated"><span class="hidden-section">ImageDataGenerator (deprecated)</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../data_generator.html#singleclassimagedatagenerator"><span class="hidden-section">SingleClassImageDataGenerator</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../data_generator.html#multiclassimagedatagenerator"><span class="hidden-section">MultiClassImageDataGenerator</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../data_generator.html#singleclassimagedatagenerator-deprecated"><span class="hidden-section">SingleClassImageDataGenerator (deprecated)</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../data_generator.html#multiclassimagedatagenerator-deprecated"><span class="hidden-section">MultiClassImageDataGenerator (deprecated)</span></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../data_feeds.html">Data Feeds</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../data_feeds.html#datafeed"><span class="hidden-section">DataFeed</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../data_feeds.html#imagefeed"><span class="hidden-section">ImageFeed</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../data_feeds.html#singleclassimagefeed"><span class="hidden-section">SingleClassImageFeed</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../data_feeds.html#multiclassimagefeed"><span class="hidden-section">MultiClassImageFeed</span></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../datasets.html">Datasests</a><ul>
@@ -221,7 +228,7 @@
 
 <span class="sd">    Note:</span>
 <span class="sd">        The parameter &lt;num_steps&gt; is set during training based on the size of the batch_size and number of samples in</span>
-<span class="sd">        the training_data_generator, and the batch_multiplier value.</span>
+<span class="sd">        the training_feed, and the batch_multiplier value.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">initial_value</span><span class="p">,</span> <span class="n">final_value</span><span class="p">,</span> <span class="n">num_changes</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">initial_value</span> <span class="o">=</span> <span class="n">initial_value</span>

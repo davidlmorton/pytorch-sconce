@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                master (1.1.0 )
+                master (1.2.0 )
               </div>
             
           
@@ -87,11 +87,18 @@
             
               <p class="caption"><span class="caption-text">Class Reference</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="data_generator.html">Data Generators</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="data_generator.html#datagenerator"><span class="hidden-section">DataGenerator</span></a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_generator.html">Data Generators (deprecated)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="data_generator.html#datagenerator-deprecated"><span class="hidden-section">DataGenerator (deprecated)</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="data_generator.html#imagedatagenerator-deprecated"><span class="hidden-section">ImageDataGenerator (deprecated)</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="data_generator.html#singleclassimagedatagenerator"><span class="hidden-section">SingleClassImageDataGenerator</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="data_generator.html#multiclassimagedatagenerator"><span class="hidden-section">MultiClassImageDataGenerator</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_generator.html#singleclassimagedatagenerator-deprecated"><span class="hidden-section">SingleClassImageDataGenerator (deprecated)</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_generator.html#multiclassimagedatagenerator-deprecated"><span class="hidden-section">MultiClassImageDataGenerator (deprecated)</span></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="data_feeds.html">Data Feeds</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="data_feeds.html#datafeed"><span class="hidden-section">DataFeed</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_feeds.html#imagefeed"><span class="hidden-section">ImageFeed</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_feeds.html#singleclassimagefeed"><span class="hidden-section">SingleClassImageFeed</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_feeds.html#multiclassimagefeed"><span class="hidden-section">MultiClassImageFeed</span></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="datasets.html">Datasests</a><ul>
@@ -230,7 +237,7 @@ if you want to define a model.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>(</strong> (<em>group</em>) – py:class:<a href="#id1"><span class="problematic" id="id2">`</span></a>~sconce.parameter_group.ParameterGroup): the parameter group to add.</li>
+<li><strong>group</strong> (<a class="reference internal" href="sconce.html#sconce.parameter_group.ParameterGroup" title="sconce.parameter_group.ParameterGroup"><code class="xref py py-class docutils literal notranslate"><span class="pre">ParameterGroup</span></code></a>) – the parameter group to add.</li>
 <li><strong>inactivate_default</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.6)"><em>bool</em></a><em>, </em><em>optional</em>) – if <code class="docutils literal notranslate"><span class="pre">True</span></code>, then the default parameter group will have
 <code class="docutils literal notranslate"><span class="pre">is_active</span></code> set to <code class="docutils literal notranslate"><span class="pre">False</span></code>.</li>
 </ul>
@@ -253,7 +260,7 @@ different layerwise optimization schedules.</p>
 <dd><p>This method must accept arbitrary keyword arguments.  The base class of trainer will pass <cite>inputs</cite>,
 <cite>outputs</cite>, and <cite>targets</cite>, but subclasses may modify that behavior to include other keyword arguments.</p>
 <p>It must return a dictionary.  The dictionary is expected to include at least the key ‘loss’, but may
-include any otehr keys you like.  The value of the key <cite>loss</cite> is expected to be the <a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (0.5.0a0+14f5484 ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">torch.Tensor</span></code></a>
+include any otehr keys you like.  The value of the key <cite>loss</cite> is expected to be the <a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (0.5.0a0+efba555 ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">torch.Tensor</span></code></a>
 output of the loss function, used to back-propagate the gradients used by the optimizer.</p>
 </dd></dl>
 
@@ -279,7 +286,7 @@ trainable parameters for the model.</p>
 <cite>inputs</cite> and <cite>targets</cite>, but subclasses may modify that behavior to include other keyword arguments.</p>
 <p>It must return a dictionary. The dictionary is expected to include at least the key <cite>outputs</cite>
 but may include any other keys you like.  The value of the key <cite>outputs</cite> is expected to be
-the <a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (0.5.0a0+14f5484 ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">torch.Tensor</span></code></a> output of the model, used for calculating the loss.</p>
+the <a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (0.5.0a0+efba555 ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">torch.Tensor</span></code></a> output of the model, used for calculating the loss.</p>
 </dd></dl>
 
 <dl class="method">

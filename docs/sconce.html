@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                master (1.1.0 )
+                master (1.2.0 )
               </div>
             
           
@@ -85,11 +85,18 @@
             
               <p class="caption"><span class="caption-text">Class Reference</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="data_generator.html">Data Generators</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="data_generator.html#datagenerator"><span class="hidden-section">DataGenerator</span></a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_generator.html">Data Generators (deprecated)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="data_generator.html#datagenerator-deprecated"><span class="hidden-section">DataGenerator (deprecated)</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="data_generator.html#imagedatagenerator-deprecated"><span class="hidden-section">ImageDataGenerator (deprecated)</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="data_generator.html#singleclassimagedatagenerator"><span class="hidden-section">SingleClassImageDataGenerator</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="data_generator.html#multiclassimagedatagenerator"><span class="hidden-section">MultiClassImageDataGenerator</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_generator.html#singleclassimagedatagenerator-deprecated"><span class="hidden-section">SingleClassImageDataGenerator (deprecated)</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_generator.html#multiclassimagedatagenerator-deprecated"><span class="hidden-section">MultiClassImageDataGenerator (deprecated)</span></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="data_feeds.html">Data Feeds</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="data_feeds.html#datafeed"><span class="hidden-section">DataFeed</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_feeds.html#imagefeed"><span class="hidden-section">ImageFeed</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_feeds.html#singleclassimagefeed"><span class="hidden-section">SingleClassImageFeed</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_feeds.html#multiclassimagefeed"><span class="hidden-section">MultiClassImageFeed</span></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="datasets.html">Datasests</a><ul>
@@ -210,7 +217,8 @@
 <h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="sconce.data_generators.html">sconce.data_generators package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sconce.data_generators.html">sconce.data_generators package (deprecated)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sconce.data_feeds.html">sconce.data_feeds package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sconce.datasets.html">sconce.datasets package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sconce.monitors.html">sconce.monitors package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sconce.models.html">sconce.models package</a></li>
@@ -226,7 +234,7 @@
 <span id="sconce-trainer-module"></span><h2>sconce.trainer module<a class="headerlink" href="#module-sconce.trainer" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="sconce.trainer.Trainer">
-<em class="property">class </em><code class="descclassname">sconce.trainer.</code><code class="descname">Trainer</code><span class="sig-paren">(</span><em>*</em>, <em>model</em>, <em>test_data_generator</em>, <em>training_data_generator</em>, <em>monitor=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/trainer.html#Trainer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.trainer.Trainer" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">sconce.trainer.</code><code class="descname">Trainer</code><span class="sig-paren">(</span><em>*</em>, <em>model</em>, <em>validation_feed=None</em>, <em>training_feed=None</em>, <em>test_data_generator=None</em>, <em>training_data_generator=None</em>, <em>monitor=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/trainer.html#Trainer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.trainer.Trainer" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.6)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>A Class that is used to train sconce models.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -237,10 +245,13 @@
 <tr class="field-odd field"><td>&#160;</td><td class="field-body"><ul class="first last simple">
 <li><strong>model</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code>) – the sconce model to be trained.  See <a class="reference internal" href="models.html#module-sconce.models" title="sconce.models"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sconce.models</span></code></a>
 for examples.</li>
-<li><strong>training_data_generator</strong> (<a class="reference internal" href="sconce.data_generators.html#sconce.data_generators.base.DataGenerator" title="sconce.data_generators.base.DataGenerator"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataGenerator</span></code></a>) – yields training <cite>inputs</cite> and
+<li><strong>training_data_generator</strong> (<a class="reference internal" href="sconce.data_generators.html#sconce.data_generators.base.DataGenerator" title="sconce.data_generators.base.DataGenerator"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataGenerator</span></code></a>) – DEPRECATED, use
+training_feed argument instead.</li>
+<li><strong>training_feed</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">DataFeed</span></code>) – used during training to provide <cite>inputs</cite> and
 <cite>targets</cite>.</li>
-<li><strong>test_data_generator</strong> (<a class="reference internal" href="sconce.data_generators.html#sconce.data_generators.base.DataGenerator" title="sconce.data_generators.base.DataGenerator"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataGenerator</span></code></a>) – yields test <cite>inputs</cite> and
-<cite>targets</cite>.  These are never used for back-propagation.</li>
+<li><strong>test_data_generator</strong> (<a class="reference internal" href="sconce.data_generators.html#sconce.data_generators.base.DataGenerator" title="sconce.data_generators.base.DataGenerator"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataGenerator</span></code></a>) – DEPRECATED, use
+validation_feed argument instead.</li>
+<li><strong>validation_feed</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">DataFeed</span></code>) – <cite>targets</cite>.  These are never used for back-propagation.</li>
 <li><strong>monitor</strong> (<a class="reference internal" href="sconce.monitors.html#sconce.monitors.base.Monitor" title="sconce.monitors.base.Monitor"><code class="xref py py-class docutils literal notranslate"><span class="pre">Monitor</span></code></a>, optional) – the sconce monitor that records data during
 training.  This data can be sent to external systems during training or kept until training completes
 allowing you to analyze training or make plots. If <code class="docutils literal notranslate"><span class="pre">None</span></code>, a composite monitor consisting of a
@@ -267,7 +278,7 @@ allowing you to analyze training or make plots. If <code class="docutils literal
 
 <dl class="method">
 <dt id="sconce.trainer.Trainer.get_num_steps">
-<code class="descname">get_num_steps</code><span class="sig-paren">(</span><em>num_epochs</em>, <em>data_generator=None</em>, <em>batch_multiplier=1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/trainer.html#Trainer.get_num_steps"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.trainer.Trainer.get_num_steps" title="Permalink to this definition">¶</a></dt>
+<code class="descname">get_num_steps</code><span class="sig-paren">(</span><em>num_epochs</em>, <em>data_generator=None</em>, <em>feed=None</em>, <em>batch_multiplier=1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/trainer.html#Trainer.get_num_steps"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.trainer.Trainer.get_num_steps" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -379,7 +390,7 @@ this factor from it’s minimum value, the survey will stop.</li>
 <dl class="method">
 <dt id="sconce.trainer.Trainer.test">
 <code class="descname">test</code><span class="sig-paren">(</span><em>*</em>, <em>monitor=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/trainer.html#Trainer.test"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.trainer.Trainer.test" title="Permalink to this definition">¶</a></dt>
-<dd><p>Run all samples of self.test_data_generator through the model in test (inference) mode.</p>
+<dd><p>Run all samples of self.validation_feed through the model in test (inference) mode.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -395,11 +406,15 @@ this testing.  If <code class="docutils literal notranslate"><span class="pre">N
 </tr>
 </tbody>
 </table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This method has been deprecated since 1.2.0.  Please use the <code class="docutils literal notranslate"><span class="pre">validate()</span></code> method instead.</p>
+</div>
 </dd></dl>
 
 <dl class="method">
 <dt id="sconce.trainer.Trainer.train">
-<code class="descname">train</code><span class="sig-paren">(</span><em>*</em>, <em>num_epochs</em>, <em>monitor=None</em>, <em>test_to_train_ratio=None</em>, <em>batch_multiplier=1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/trainer.html#Trainer.train"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.trainer.Trainer.train" title="Permalink to this definition">¶</a></dt>
+<code class="descname">train</code><span class="sig-paren">(</span><em>*</em>, <em>num_epochs</em>, <em>monitor=None</em>, <em>test_to_train_ratio=None</em>, <em>validation_to_train_ratio=None</em>, <em>batch_multiplier=1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/trainer.html#Trainer.train"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.trainer.Trainer.train" title="Permalink to this definition">¶</a></dt>
 <dd><p>Train the model for a given number of epochs.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -425,6 +440,27 @@ the memory usage would be for a batch size of 100.</li>
 </tr>
 <tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">monitor (<a class="reference internal" href="sconce.monitors.html#sconce.monitors.base.Monitor" title="sconce.monitors.base.Monitor"><code class="xref py py-class docutils literal notranslate"><span class="pre">Monitor</span></code></a>)</p>
 </td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="sconce.trainer.Trainer.validate">
+<code class="descname">validate</code><span class="sig-paren">(</span><em>*</em>, <em>monitor=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/trainer.html#Trainer.validate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.trainer.Trainer.validate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run all samples of self.validation_feed through the model in test (inference) mode.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>monitor</strong> (<a class="reference internal" href="sconce.monitors.html#sconce.monitors.base.Monitor" title="sconce.monitors.base.Monitor"><code class="xref py py-class docutils literal notranslate"><span class="pre">Monitor</span></code></a>, optional) – the sconce monitor that records data during
+this testing.  If <code class="docutils literal notranslate"><span class="pre">None</span></code>, a composite monitor consisting of a
+<a class="reference internal" href="sconce.monitors.html#sconce.monitors.stdout_monitor.StdoutMonitor" title="sconce.monitors.stdout_monitor.StdoutMonitor"><code class="xref py py-class docutils literal notranslate"><span class="pre">StdoutMonitor</span></code></a> and a
+<a class="reference internal" href="sconce.monitors.html#sconce.monitors.dataframe_monitor.DataframeMonitor" title="sconce.monitors.dataframe_monitor.DataframeMonitor"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataframeMonitor</span></code></a> will be created for you and used.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">the monitor used during this testing.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">monitor (<a class="reference internal" href="sconce.monitors.html#sconce.monitors.base.Monitor" title="sconce.monitors.base.Monitor"><code class="xref py py-class docutils literal notranslate"><span class="pre">Monitor</span></code></a>)</td>
 </tr>
 </tbody>
 </table>
@@ -464,19 +500,26 @@ the memory usage would be for a batch size of 100.</li>
 <dt id="sconce.utils.Progbar">
 <em class="property">class </em><code class="descclassname">sconce.utils.</code><code class="descname">Progbar</code><span class="sig-paren">(</span><em>target</em>, <em>width=30</em>, <em>verbose=1</em>, <em>interval=0.05</em>, <em>stateful_metrics=None</em>, <em>alpha=0.05</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/utils.html#Progbar"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.utils.Progbar" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.6)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
-<p>Displays a progress bar.
-# Arguments</p>
-<blockquote>
-<div><p>target: Total number of steps expected, None if unknown.
-width: Progress bar width on screen.
-verbose: Verbosity mode, 0 (silent), 1 (verbose), 2 (semi-verbose)
-stateful_metrics: Iterable of string names of metrics that</p>
-<blockquote>
-<div>should <em>not</em> be averaged over time. Metrics in this list
+<p>Displays a progress bar.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>target</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) – Total number of steps expected, None if unknown.</li>
+<li><strong>width</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.6)"><em>float</em></a>) – Progress bar width on screen.</li>
+<li><strong>verbose</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) – Verbosity mode, 0 (silent), 1 (verbose), 2 (semi-verbose)</li>
+<li><strong>stateful_metrics</strong> (<em>list string</em>) – Iterable of string names of metrics that
+should <em>not</em> be averaged over time. Metrics in this list
 will be displayed as-is. All others will be averaged
-by the progbar before display.</div></blockquote>
-<p>interval: Minimum visual progress update interval (in seconds).</p>
-</div></blockquote>
+by the progbar before display.</li>
+<li><strong>interval</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.6)"><em>float</em></a>) – Minimum visual progress update interval (in seconds).</li>
+<li><strong>alpha</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.6)"><em>float</em></a>) – The coefficient for exponentially weighted moving averages.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
 <dl class="method">
 <dt id="sconce.utils.Progbar.add">
 <code class="descname">add</code><span class="sig-paren">(</span><em>n</em>, <em>values=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/utils.html#Progbar.add"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.utils.Progbar.add" title="Permalink to this definition">¶</a></dt>
@@ -485,17 +528,24 @@ by the progbar before display.</div></blockquote>
 <dl class="method">
 <dt id="sconce.utils.Progbar.update">
 <code class="descname">update</code><span class="sig-paren">(</span><em>current</em>, <em>values=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/utils.html#Progbar.update"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.utils.Progbar.update" title="Permalink to this definition">¶</a></dt>
-<dd><p>Updates the progress bar.
-# Arguments</p>
-<blockquote>
-<div><p>current: Index of current step.
-values: List of tuples:</p>
-<blockquote>
-<div><cite>(name, value_for_last_step)</cite>.
-If <cite>name</cite> is in <cite>stateful_metrics</cite>,
-<cite>value_for_last_step</cite> will be displayed as-is.
-Else, an average of the metric over time will be displayed.</div></blockquote>
-</div></blockquote>
+<dd><p>Updates the progress bar.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>current</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) – Index of current step.</li>
+<li><strong>values</strong> (<em>list tuples</em>) – List of tuples like <code class="docutils literal notranslate"><span class="pre">(name,</span> <span class="pre">value_for_last_step)</span></code>.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">If <code class="docutils literal notranslate"><span class="pre">name</span></code> is in <code class="docutils literal notranslate"><span class="pre">stateful_metrics</span></code>, <code class="docutils literal notranslate"><span class="pre">value_for_last_step</span></code> will be displayed as-is.
+Else, an average of the metric over time will be displayed.</p>
+</div>
 </dd></dl>
 
 </dd></dl>
@@ -506,14 +556,14 @@ Else, an average of the metric over time will be displayed.</div></blockquote>
 <dl class="class">
 <dt id="sconce.parameter_group.ParameterGroup">
 <em class="property">class </em><code class="descclassname">sconce.parameter_group.</code><code class="descname">ParameterGroup</code><span class="sig-paren">(</span><em>parameters</em>, <em>name</em>, <em>is_active=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/parameter_group.html#ParameterGroup"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.parameter_group.ParameterGroup" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">sconce.schedules.base.ScheduledMixin</span></code></p>
+<dd><p>Bases: <a class="reference internal" href="sconce.schedules.html#sconce.schedules.base.ScheduledMixin" title="sconce.schedules.base.ScheduledMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">sconce.schedules.base.ScheduledMixin</span></code></a></p>
 <p>A parameter group is the way that sconce models organize nn.Module parameters and their associated optimizers.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>parameters</strong> (iterable of <a class="reference external" href="https://pytorch.org/docs/master/nn.html#torch.nn.Parameter" title="(in PyTorch vmaster (0.5.0a0+14f5484 ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.Parameter</span></code></a>) – the parameters you want to group together.</li>
+<li><strong>parameters</strong> (iterable of <a class="reference external" href="https://pytorch.org/docs/master/nn.html#torch.nn.Parameter" title="(in PyTorch vmaster (0.5.0a0+efba555 ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.Parameter</span></code></a>) – the parameters you want to group together.</li>
 <li><strong>name</strong> (<em>string</em>) – your name for this group</li>
 <li><strong>is_active</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.6)"><em>bool</em></a><em>, </em><em>optional</em>) – should this group be considered active (used during training)?</li>
 </ul>
@@ -546,7 +596,7 @@ optimizer will be used during training.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>optimizer_class</strong> (one of the <a class="reference external" href="https://pytorch.org/docs/master/optim.html#module-torch.optim" title="(in PyTorch vmaster (0.5.0a0+14f5484 ))"><code class="xref py py-mod docutils literal notranslate"><span class="pre">torch.optim</span></code></a> classes) – the class of optimizer to set.</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>optimizer_class</strong> (one of the <a class="reference external" href="https://pytorch.org/docs/master/optim.html#module-torch.optim" title="(in PyTorch vmaster (0.5.0a0+efba555 ))"><code class="xref py py-mod docutils literal notranslate"><span class="pre">torch.optim</span></code></a> classes) – the class of optimizer to set.</td>
 </tr>
 </tbody>
 </table>

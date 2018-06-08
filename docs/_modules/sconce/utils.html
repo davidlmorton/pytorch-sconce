@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                master (1.1.0 )
+                master (1.2.0 )
               </div>
             
           
@@ -85,11 +85,18 @@
             
               <p class="caption"><span class="caption-text">Class Reference</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../data_generator.html">Data Generators</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../data_generator.html#datagenerator"><span class="hidden-section">DataGenerator</span></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data_generator.html">Data Generators (deprecated)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../data_generator.html#datagenerator-deprecated"><span class="hidden-section">DataGenerator (deprecated)</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../data_generator.html#imagedatagenerator-deprecated"><span class="hidden-section">ImageDataGenerator (deprecated)</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../data_generator.html#singleclassimagedatagenerator"><span class="hidden-section">SingleClassImageDataGenerator</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../data_generator.html#multiclassimagedatagenerator"><span class="hidden-section">MultiClassImageDataGenerator</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data_generator.html#singleclassimagedatagenerator-deprecated"><span class="hidden-section">SingleClassImageDataGenerator (deprecated)</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data_generator.html#multiclassimagedatagenerator-deprecated"><span class="hidden-section">MultiClassImageDataGenerator (deprecated)</span></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../data_feeds.html">Data Feeds</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../data_feeds.html#datafeed"><span class="hidden-section">DataFeed</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data_feeds.html#imagefeed"><span class="hidden-section">ImageFeed</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data_feeds.html#singleclassimagefeed"><span class="hidden-section">SingleClassImageFeed</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data_feeds.html#multiclassimagefeed"><span class="hidden-section">MultiClassImageFeed</span></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../datasets.html">Datasests</a><ul>
@@ -217,15 +224,17 @@
 
 <div class="viewcode-block" id="Progbar"><a class="viewcode-back" href="../../sconce.html#sconce.utils.Progbar">[docs]</a><span class="k">class</span> <span class="nc">Progbar</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Displays a progress bar.</span>
-<span class="sd">    # Arguments</span>
-<span class="sd">        target: Total number of steps expected, None if unknown.</span>
-<span class="sd">        width: Progress bar width on screen.</span>
-<span class="sd">        verbose: Verbosity mode, 0 (silent), 1 (verbose), 2 (semi-verbose)</span>
-<span class="sd">        stateful_metrics: Iterable of string names of metrics that</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        target (int): Total number of steps expected, None if unknown.</span>
+<span class="sd">        width (float): Progress bar width on screen.</span>
+<span class="sd">        verbose (int): Verbosity mode, 0 (silent), 1 (verbose), 2 (semi-verbose)</span>
+<span class="sd">        stateful_metrics (list string): Iterable of string names of metrics that</span>
 <span class="sd">            should *not* be averaged over time. Metrics in this list</span>
 <span class="sd">            will be displayed as-is. All others will be averaged</span>
 <span class="sd">            by the progbar before display.</span>
-<span class="sd">        interval: Minimum visual progress update interval (in seconds).</span>
+<span class="sd">        interval (float): Minimum visual progress update interval (in seconds).</span>
+<span class="sd">        alpha (float): The coefficient for exponentially weighted moving averages.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">interval</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span>
@@ -253,13 +262,14 @@
 
 <div class="viewcode-block" id="Progbar.update"><a class="viewcode-back" href="../../sconce.html#sconce.utils.Progbar.update">[docs]</a>    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">current</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Updates the progress bar.</span>
-<span class="sd">        # Arguments</span>
-<span class="sd">            current: Index of current step.</span>
-<span class="sd">            values: List of tuples:</span>
-<span class="sd">                `(name, value_for_last_step)`.</span>
-<span class="sd">                If `name` is in `stateful_metrics`,</span>
-<span class="sd">                `value_for_last_step` will be displayed as-is.</span>
-<span class="sd">                Else, an average of the metric over time will be displayed.</span>
+
+<span class="sd">        Arguments:</span>
+<span class="sd">            current (int): Index of current step.</span>
+<span class="sd">            values (list tuples): List of tuples like ``(name, value_for_last_step)``.</span>
+
+<span class="sd">        Note:</span>
+<span class="sd">            If ``name`` is in ``stateful_metrics``, ``value_for_last_step`` will be displayed as-is.</span>
+<span class="sd">            Else, an average of the metric over time will be displayed.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">values</span> <span class="o">=</span> <span class="n">values</span> <span class="ow">or</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">values</span><span class="p">:</span>

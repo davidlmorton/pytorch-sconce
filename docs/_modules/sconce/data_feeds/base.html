@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>sconce.data_generators.base &mdash; Pytorch-Sconce master documentation</title>
+  <title>sconce.data_feeds.base &mdash; Pytorch-Sconce master documentation</title>
   
 
   
@@ -194,7 +194,7 @@
         
           <li><a href="../../index.html">Module code</a> &raquo;</li>
         
-      <li>sconce.data_generators.base</li>
+      <li>sconce.data_feeds.base</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -209,7 +209,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <h1>Source code for sconce.data_generators.base</h1><div class="highlight"><pre>
+  <h1>Source code for sconce.data_feeds.base</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">sconce.datasets</span> <span class="k">import</span> <span class="n">Subset</span>
 <span class="kn">from</span> <span class="nn">torch.utils</span> <span class="k">import</span> <span class="n">data</span>
 
@@ -218,37 +218,31 @@
 <span class="kn">import</span> <span class="nn">torch</span>
 
 
-<div class="viewcode-block" id="DataGenerator"><a class="viewcode-back" href="../../../sconce.data_generators.html#sconce.data_generators.DataGenerator">[docs]</a><span class="k">class</span> <span class="nc">DataGenerator</span><span class="p">:</span>
+<div class="viewcode-block" id="DataFeed"><a class="viewcode-back" href="../../../sconce.data_feeds.html#sconce.data_feeds.DataFeed">[docs]</a><span class="k">class</span> <span class="nc">DataFeed</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A thin wrapper around a :py:class:`~torch.utils.data.DataLoader` that</span>
 <span class="sd">    automatically yields tuples of :py:class:`torch.Tensor` (that</span>
 <span class="sd">    live on cpu or on cuda).</span>
-<span class="sd">    A DataGenerator will iterate endlessly.</span>
+<span class="sd">    A DataFeed will iterate endlessly.</span>
 
 <span class="sd">    Like the underlying :py:class:`~torch.utils.data.DataLoader`, a</span>
-<span class="sd">    DataGenerator&#39;s ``__next__`` method yields two values, which we refer to as</span>
+<span class="sd">    DataFeed&#39;s ``__next__`` method yields two values, which we refer to as</span>
 <span class="sd">    the `inputs` and the `targets`.</span>
 
 <span class="sd">    Arguments:</span>
 <span class="sd">        data_loader (:py:class:`~torch.utils.data.DataLoader`): the wrapped</span>
 <span class="sd">            data_loader.</span>
-
-<span class="sd">    Note:</span>
-<span class="sd">        DataGenerators are deprecated as of 1.2.0 and will be removed soon.  Please use a</span>
-<span class="sd">        :py:class:`~sconce.data_feeds.base.DataFeed` instead.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_loader</span><span class="p">):</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;WARNING: DataGenerators are deprecated as of 1.2.0 and will be removed soon.  &quot;</span>
-              <span class="s2">&quot;Please use a DataFeed instead&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">data_loader</span> <span class="o">=</span> <span class="n">data_loader</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_inputs_cuda</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_targets_cuda</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
 
-<div class="viewcode-block" id="DataGenerator.cuda"><a class="viewcode-back" href="../../../sconce.data_generators.html#sconce.data_generators.DataGenerator.cuda">[docs]</a>    <span class="k">def</span> <span class="nf">cuda</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="DataFeed.cuda"><a class="viewcode-back" href="../../../sconce.data_feeds.html#sconce.data_feeds.DataFeed.cuda">[docs]</a>    <span class="k">def</span> <span class="nf">cuda</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Put the `inputs` and `targets` (yielded by this DataGenerator) on the</span>
+<span class="sd">        Put the `inputs` and `targets` (yielded by this DataFeed) on the</span>
 <span class="sd">        specified device.</span>
 
 <span class="sd">        Arguments:</span>
@@ -258,7 +252,7 @@
 <span class="sd">                :py:meth:`torch.Tensor.cuda` for details.</span>
 
 <span class="sd">        Example:</span>
-<span class="sd">            &gt;&gt;&gt; g = DataGenerator.from_dataset(dataset, batch_size=100)</span>
+<span class="sd">            &gt;&gt;&gt; g = DataFeed.from_dataset(dataset, batch_size=100)</span>
 <span class="sd">            &gt;&gt;&gt; g.cuda()</span>
 <span class="sd">            &gt;&gt;&gt; g.next()</span>
 <span class="sd">            (Tensor containing:</span>
@@ -291,7 +285,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">_inputs_cuda</span> <span class="o">=</span> <span class="n">device</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_targets_cuda</span> <span class="o">=</span> <span class="n">device</span></div>
 
-<div class="viewcode-block" id="DataGenerator.reset"><a class="viewcode-back" href="../../../sconce.data_generators.html#sconce.data_generators.DataGenerator.reset">[docs]</a>    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="DataFeed.reset"><a class="viewcode-back" href="../../../sconce.data_feeds.html#sconce.data_feeds.DataFeed.reset">[docs]</a>    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Start iterating through the data_loader from the begining.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -328,7 +322,7 @@
     <span class="k">def</span> <span class="nf">__next__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
 
-<div class="viewcode-block" id="DataGenerator.preprocess"><a class="viewcode-back" href="../../../sconce.data_generators.html#sconce.data_generators.DataGenerator.preprocess">[docs]</a>    <span class="k">def</span> <span class="nf">preprocess</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">targets</span><span class="p">):</span>
+<div class="viewcode-block" id="DataFeed.preprocess"><a class="viewcode-back" href="../../../sconce.data_feeds.html#sconce.data_feeds.DataFeed.preprocess">[docs]</a>    <span class="k">def</span> <span class="nf">preprocess</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">targets</span><span class="p">):</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_inputs_cuda</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">:</span>
             <span class="n">inputs</span> <span class="o">=</span> <span class="n">inputs</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span>
         <span class="k">else</span><span class="p">:</span>
@@ -342,7 +336,7 @@
 
         <span class="k">return</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">targets</span></div>
 
-<div class="viewcode-block" id="DataGenerator.next"><a class="viewcode-back" href="../../../sconce.data_generators.html#sconce.data_generators.DataGenerator.next">[docs]</a>    <span class="k">def</span> <span class="nf">next</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="DataFeed.next"><a class="viewcode-back" href="../../../sconce.data_feeds.html#sconce.data_feeds.DataFeed.next">[docs]</a>    <span class="k">def</span> <span class="nf">next</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">inputs</span><span class="p">,</span> <span class="n">targets</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_iterator</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
         <span class="k">except</span> <span class="ne">StopIteration</span><span class="p">:</span>
@@ -350,17 +344,17 @@
             <span class="n">inputs</span><span class="p">,</span> <span class="n">targets</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_iterator</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">preprocess</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">targets</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="DataGenerator.from_dataset"><a class="viewcode-back" href="../../../sconce.data_generators.html#sconce.data_generators.DataGenerator.from_dataset">[docs]</a>    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="DataFeed.from_dataset"><a class="viewcode-back" href="../../../sconce.data_feeds.html#sconce.data_feeds.DataFeed.from_dataset">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">from_dataset</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">split</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Create a DataGenerator from an instantiated dataset.</span>
+<span class="sd">        Create a DataFeed from an instantiated dataset.</span>
 
 <span class="sd">        Arguments:</span>
 <span class="sd">            dataset (:py:class:`~torch.utils.data.Dataset`): the pytorch</span>
 <span class="sd">                dataset.</span>
 <span class="sd">            split (float, optional): If not ``None``, it specifies the fraction of the dataset that should be placed</span>
-<span class="sd">                into the first of two data_generators.  The remaining data is used for the second data_generator.  Both</span>
-<span class="sd">                data_generators will be returned.</span>
+<span class="sd">                into the first of two data_feeds.  The remaining data is used for the second data_feed.  Both</span>
+<span class="sd">                data_feeds will be returned.</span>
 <span class="sd">            **kwargs: passed directly to the</span>
 <span class="sd">                :py:class:`~torch.utils.data.DataLoader`) constructor.</span>
 <span class="sd">        &quot;&quot;&quot;</span>

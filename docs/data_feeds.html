@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Data Generators (deprecated) &mdash; Pytorch-Sconce master documentation</title>
+  <title>Data Feeds &mdash; Pytorch-Sconce master documentation</title>
   
 
   
@@ -31,8 +31,8 @@
   <link rel="stylesheet" href="_static/css/pytorch_theme.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Data Feeds" href="data_feeds.html" />
-    <link rel="prev" title="Sconce Documentation" href="index.html" /> 
+    <link rel="next" title="Datasests" href="datasets.html" />
+    <link rel="prev" title="Data Generators (deprecated)" href="data_generator.html" /> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -87,18 +87,18 @@
             
               <p class="caption"><span class="caption-text">Class Reference</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Data Generators (deprecated)</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#datagenerator-deprecated"><span class="hidden-section">DataGenerator (deprecated)</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#imagedatagenerator-deprecated"><span class="hidden-section">ImageDataGenerator (deprecated)</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#singleclassimagedatagenerator-deprecated"><span class="hidden-section">SingleClassImageDataGenerator (deprecated)</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#multiclassimagedatagenerator-deprecated"><span class="hidden-section">MultiClassImageDataGenerator (deprecated)</span></a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_generator.html">Data Generators (deprecated)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="data_generator.html#datagenerator-deprecated"><span class="hidden-section">DataGenerator (deprecated)</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_generator.html#imagedatagenerator-deprecated"><span class="hidden-section">ImageDataGenerator (deprecated)</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_generator.html#singleclassimagedatagenerator-deprecated"><span class="hidden-section">SingleClassImageDataGenerator (deprecated)</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_generator.html#multiclassimagedatagenerator-deprecated"><span class="hidden-section">MultiClassImageDataGenerator (deprecated)</span></a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="data_feeds.html">Data Feeds</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="data_feeds.html#datafeed"><span class="hidden-section">DataFeed</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="data_feeds.html#imagefeed"><span class="hidden-section">ImageFeed</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="data_feeds.html#singleclassimagefeed"><span class="hidden-section">SingleClassImageFeed</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="data_feeds.html#multiclassimagefeed"><span class="hidden-section">MultiClassImageFeed</span></a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Data Feeds</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#datafeed"><span class="hidden-section">DataFeed</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#imagefeed"><span class="hidden-section">ImageFeed</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#singleclassimagefeed"><span class="hidden-section">SingleClassImageFeed</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#multiclassimagefeed"><span class="hidden-section">MultiClassImageFeed</span></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="datasets.html">Datasests</a><ul>
@@ -194,13 +194,13 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>Data Generators (deprecated)</li>
+      <li>Data Feeds</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="_sources/data_generator.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/data_feeds.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -213,19 +213,19 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="data-generators-deprecated">
-<h1>Data Generators (deprecated)<a class="headerlink" href="#data-generators-deprecated" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="datagenerator-deprecated">
-<h2><span class="hidden-section">DataGenerator (deprecated)</span><a class="headerlink" href="#datagenerator-deprecated" title="Permalink to this headline">¶</a></h2>
+  <div class="section" id="data-feeds">
+<h1>Data Feeds<a class="headerlink" href="#data-feeds" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="datafeed">
+<h2><span class="hidden-section">DataFeed</span><a class="headerlink" href="#datafeed" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
-<dt id="sconce.data_generators.DataGenerator">
-<em class="property">class </em><code class="descclassname">sconce.data_generators.</code><code class="descname">DataGenerator</code><span class="sig-paren">(</span><em>data_loader</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/data_generators/base.html#DataGenerator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.data_generators.DataGenerator" title="Permalink to this definition">¶</a></dt>
+<dt id="sconce.data_feeds.DataFeed">
+<em class="property">class </em><code class="descclassname">sconce.data_feeds.</code><code class="descname">DataFeed</code><span class="sig-paren">(</span><em>data_loader</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/data_feeds/base.html#DataFeed"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.data_feeds.DataFeed" title="Permalink to this definition">¶</a></dt>
 <dd><p>A thin wrapper around a <a class="reference external" href="https://pytorch.org/docs/master/data.html#torch.utils.data.DataLoader" title="(in PyTorch vmaster (0.5.0a0+efba555 ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataLoader</span></code></a> that
 automatically yields tuples of <a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (0.5.0a0+efba555 ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">torch.Tensor</span></code></a> (that
 live on cpu or on cuda).
-A DataGenerator will iterate endlessly.</p>
+A DataFeed will iterate endlessly.</p>
 <p>Like the underlying <a class="reference external" href="https://pytorch.org/docs/master/data.html#torch.utils.data.DataLoader" title="(in PyTorch vmaster (0.5.0a0+efba555 ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataLoader</span></code></a>, a
-DataGenerator’s <code class="docutils literal notranslate"><span class="pre">__next__</span></code> method yields two values, which we refer to as
+DataFeed’s <code class="docutils literal notranslate"><span class="pre">__next__</span></code> method yields two values, which we refer to as
 the <cite>inputs</cite> and the <cite>targets</cite>.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -236,21 +236,16 @@ data_loader.</td>
 </tr>
 </tbody>
 </table>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">DataGenerators are deprecated as of 1.2.0 and will be removed soon.  Please use a
-<a class="reference internal" href="sconce.data_feeds.html#sconce.data_feeds.base.DataFeed" title="sconce.data_feeds.base.DataFeed"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFeed</span></code></a> instead.</p>
-</div>
 <dl class="attribute">
-<dt id="sconce.data_generators.DataGenerator.batch_size">
-<code class="descname">batch_size</code><a class="headerlink" href="#sconce.data_generators.DataGenerator.batch_size" title="Permalink to this definition">¶</a></dt>
+<dt id="sconce.data_feeds.DataFeed.batch_size">
+<code class="descname">batch_size</code><a class="headerlink" href="#sconce.data_feeds.DataFeed.batch_size" title="Permalink to this definition">¶</a></dt>
 <dd><p>the wrapped data_loader’s batch_size</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="sconce.data_generators.DataGenerator.cuda">
-<code class="descname">cuda</code><span class="sig-paren">(</span><em>device=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/data_generators/base.html#DataGenerator.cuda"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.data_generators.DataGenerator.cuda" title="Permalink to this definition">¶</a></dt>
-<dd><p>Put the <cite>inputs</cite> and <cite>targets</cite> (yielded by this DataGenerator) on the
+<dt id="sconce.data_feeds.DataFeed.cuda">
+<code class="descname">cuda</code><span class="sig-paren">(</span><em>device=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/data_feeds/base.html#DataFeed.cuda"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.data_feeds.DataFeed.cuda" title="Permalink to this definition">¶</a></dt>
+<dd><p>Put the <cite>inputs</cite> and <cite>targets</cite> (yielded by this DataFeed) on the
 specified device.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -264,7 +259,7 @@ dictionary with keys {‘inputs’, ‘targets’} instead. See
 </tbody>
 </table>
 <p class="rubric">Example</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">g</span> <span class="o">=</span> <span class="n">DataGenerator</span><span class="o">.</span><span class="n">from_dataset</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">g</span> <span class="o">=</span> <span class="n">DataFeed</span><span class="o">.</span><span class="n">from_dataset</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">g</span><span class="o">.</span><span class="n">cuda</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">g</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
 <span class="go">(Tensor containing:</span>
@@ -288,15 +283,15 @@ dictionary with keys {‘inputs’, ‘targets’} instead. See
 </dd></dl>
 
 <dl class="attribute">
-<dt id="sconce.data_generators.DataGenerator.dataset">
-<code class="descname">dataset</code><a class="headerlink" href="#sconce.data_generators.DataGenerator.dataset" title="Permalink to this definition">¶</a></dt>
+<dt id="sconce.data_feeds.DataFeed.dataset">
+<code class="descname">dataset</code><a class="headerlink" href="#sconce.data_feeds.DataFeed.dataset" title="Permalink to this definition">¶</a></dt>
 <dd><p>the wrapped data_loader’s <a class="reference external" href="https://pytorch.org/docs/master/data.html#torch.utils.data.Dataset" title="(in PyTorch vmaster (0.5.0a0+efba555 ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dataset</span></code></a></p>
 </dd></dl>
 
 <dl class="classmethod">
-<dt id="sconce.data_generators.DataGenerator.from_dataset">
-<em class="property">classmethod </em><code class="descname">from_dataset</code><span class="sig-paren">(</span><em>dataset</em>, <em>split=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/data_generators/base.html#DataGenerator.from_dataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.data_generators.DataGenerator.from_dataset" title="Permalink to this definition">¶</a></dt>
-<dd><p>Create a DataGenerator from an instantiated dataset.</p>
+<dt id="sconce.data_feeds.DataFeed.from_dataset">
+<em class="property">classmethod </em><code class="descname">from_dataset</code><span class="sig-paren">(</span><em>dataset</em>, <em>split=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/data_feeds/base.html#DataFeed.from_dataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.data_feeds.DataFeed.from_dataset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a DataFeed from an instantiated dataset.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -305,8 +300,8 @@ dictionary with keys {‘inputs’, ‘targets’} instead. See
 <li><strong>dataset</strong> (<a class="reference external" href="https://pytorch.org/docs/master/data.html#torch.utils.data.Dataset" title="(in PyTorch vmaster (0.5.0a0+efba555 ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dataset</span></code></a>) – the pytorch
 dataset.</li>
 <li><strong>split</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.6)"><em>float</em></a><em>, </em><em>optional</em>) – If not <code class="docutils literal notranslate"><span class="pre">None</span></code>, it specifies the fraction of the dataset that should be placed
-into the first of two data_generators.  The remaining data is used for the second data_generator.  Both
-data_generators will be returned.</li>
+into the first of two data_feeds.  The remaining data is used for the second data_feed.  Both
+data_feeds will be returned.</li>
 <li><strong>**kwargs</strong> – passed directly to the
 <a class="reference external" href="https://pytorch.org/docs/master/data.html#torch.utils.data.DataLoader" title="(in PyTorch vmaster (0.5.0a0+efba555 ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataLoader</span></code></a>) constructor.</li>
 </ul>
@@ -317,52 +312,47 @@ data_generators will be returned.</li>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="sconce.data_generators.DataGenerator.num_samples">
-<code class="descname">num_samples</code><a class="headerlink" href="#sconce.data_generators.DataGenerator.num_samples" title="Permalink to this definition">¶</a></dt>
+<dt id="sconce.data_feeds.DataFeed.num_samples">
+<code class="descname">num_samples</code><a class="headerlink" href="#sconce.data_feeds.DataFeed.num_samples" title="Permalink to this definition">¶</a></dt>
 <dd><p>the <code class="docutils literal notranslate"><span class="pre">len</span></code> of the wrapped data_loader’s
 <a class="reference external" href="https://pytorch.org/docs/master/data.html#torch.utils.data.Dataset" title="(in PyTorch vmaster (0.5.0a0+efba555 ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dataset</span></code></a></p>
 </dd></dl>
 
 <dl class="method">
-<dt id="sconce.data_generators.DataGenerator.reset">
-<code class="descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/data_generators/base.html#DataGenerator.reset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.data_generators.DataGenerator.reset" title="Permalink to this definition">¶</a></dt>
+<dt id="sconce.data_feeds.DataFeed.reset">
+<code class="descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/data_feeds/base.html#DataFeed.reset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.data_feeds.DataFeed.reset" title="Permalink to this definition">¶</a></dt>
 <dd><p>Start iterating through the data_loader from the begining.</p>
 </dd></dl>
 
 </dd></dl>
 
 </div>
-<div class="section" id="imagedatagenerator-deprecated">
-<h2><span class="hidden-section">ImageDataGenerator (deprecated)</span><a class="headerlink" href="#imagedatagenerator-deprecated" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="imagefeed">
+<h2><span class="hidden-section">ImageFeed</span><a class="headerlink" href="#imagefeed" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
-<dt id="sconce.data_generators.ImageDataGenerator">
-<em class="property">class </em><code class="descclassname">sconce.data_generators.</code><code class="descname">ImageDataGenerator</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/data_generators/image_data_generator.html#ImageDataGenerator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.data_generators.ImageDataGenerator" title="Permalink to this definition">¶</a></dt>
-<dd><div class="admonition warning">
-<p class="first admonition-title">Warning</p>
-<p class="last">This class has been deprecated for <a class="reference internal" href="#sconce.data_generators.SingleClassImageDataGenerator" title="sconce.data_generators.SingleClassImageDataGenerator"><code class="xref py py-class docutils literal notranslate"><span class="pre">SingleClassImageDataGenerator</span></code></a> and will be
-removed soon.  It will continue to work for now, but please update your code accordingly.</p>
-</div>
+<dt id="sconce.data_feeds.ImageFeed">
+<em class="property">class </em><code class="descclassname">sconce.data_feeds.</code><code class="descname">ImageFeed</code><span class="sig-paren">(</span><em>data_loader</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/data_feeds/image.html#ImageFeed"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.data_feeds.ImageFeed" title="Permalink to this definition">¶</a></dt>
+<dd><p>A Datafeed with some handy methods for image type data.</p>
 </dd></dl>
 
 </div>
-<div class="section" id="singleclassimagedatagenerator-deprecated">
-<h2><span class="hidden-section">SingleClassImageDataGenerator (deprecated)</span><a class="headerlink" href="#singleclassimagedatagenerator-deprecated" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="singleclassimagefeed">
+<h2><span class="hidden-section">SingleClassImageFeed</span><a class="headerlink" href="#singleclassimagefeed" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
-<dt id="sconce.data_generators.SingleClassImageDataGenerator">
-<em class="property">class </em><code class="descclassname">sconce.data_generators.</code><code class="descname">SingleClassImageDataGenerator</code><span class="sig-paren">(</span><em>data_loader</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/data_generators/single_class_image_data_generator.html#SingleClassImageDataGenerator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.data_generators.SingleClassImageDataGenerator" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="sconce.data_generators.html#sconce.data_generators.base.DataGenerator" title="sconce.data_generators.base.DataGenerator"><code class="xref py py-class docutils literal notranslate"><span class="pre">sconce.data_generators.base.DataGenerator</span></code></a>, <a class="reference internal" href="sconce.data_generators.html#sconce.data_generators.image_mixin.ImageMixin" title="sconce.data_generators.image_mixin.ImageMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">sconce.data_generators.image_mixin.ImageMixin</span></code></a></p>
-<p>An ImageDataGenerator class for use when each image belongs to exactly one class.</p>
-<p>New in 0.10.0</p>
+<dt id="sconce.data_feeds.SingleClassImageFeed">
+<em class="property">class </em><code class="descclassname">sconce.data_feeds.</code><code class="descname">SingleClassImageFeed</code><span class="sig-paren">(</span><em>data_loader</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/data_feeds/single_class_image.html#SingleClassImageFeed"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.data_feeds.SingleClassImageFeed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">sconce.data_feeds.image.ImageFeed</span></code></p>
+<p>An ImageFeed class for use when each image belongs to exactly one class.</p>
 <dl class="attribute">
-<dt id="sconce.data_generators.SingleClassImageDataGenerator.batch_size">
-<code class="descname">batch_size</code><a class="headerlink" href="#sconce.data_generators.SingleClassImageDataGenerator.batch_size" title="Permalink to this definition">¶</a></dt>
+<dt id="sconce.data_feeds.SingleClassImageFeed.batch_size">
+<code class="descname">batch_size</code><a class="headerlink" href="#sconce.data_feeds.SingleClassImageFeed.batch_size" title="Permalink to this definition">¶</a></dt>
 <dd><p>the wrapped data_loader’s batch_size</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="sconce.data_generators.SingleClassImageDataGenerator.cuda">
-<code class="descname">cuda</code><span class="sig-paren">(</span><em>device=None</em><span class="sig-paren">)</span><a class="headerlink" href="#sconce.data_generators.SingleClassImageDataGenerator.cuda" title="Permalink to this definition">¶</a></dt>
-<dd><p>Put the <cite>inputs</cite> and <cite>targets</cite> (yielded by this DataGenerator) on the
+<dt id="sconce.data_feeds.SingleClassImageFeed.cuda">
+<code class="descname">cuda</code><span class="sig-paren">(</span><em>device=None</em><span class="sig-paren">)</span><a class="headerlink" href="#sconce.data_feeds.SingleClassImageFeed.cuda" title="Permalink to this definition">¶</a></dt>
+<dd><p>Put the <cite>inputs</cite> and <cite>targets</cite> (yielded by this DataFeed) on the
 specified device.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -376,7 +366,7 @@ dictionary with keys {‘inputs’, ‘targets’} instead. See
 </tbody>
 </table>
 <p class="rubric">Example</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">g</span> <span class="o">=</span> <span class="n">DataGenerator</span><span class="o">.</span><span class="n">from_dataset</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">g</span> <span class="o">=</span> <span class="n">DataFeed</span><span class="o">.</span><span class="n">from_dataset</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">g</span><span class="o">.</span><span class="n">cuda</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">g</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
 <span class="go">(Tensor containing:</span>
@@ -400,15 +390,15 @@ dictionary with keys {‘inputs’, ‘targets’} instead. See
 </dd></dl>
 
 <dl class="attribute">
-<dt id="sconce.data_generators.SingleClassImageDataGenerator.dataset">
-<code class="descname">dataset</code><a class="headerlink" href="#sconce.data_generators.SingleClassImageDataGenerator.dataset" title="Permalink to this definition">¶</a></dt>
+<dt id="sconce.data_feeds.SingleClassImageFeed.dataset">
+<code class="descname">dataset</code><a class="headerlink" href="#sconce.data_feeds.SingleClassImageFeed.dataset" title="Permalink to this definition">¶</a></dt>
 <dd><p>the wrapped data_loader’s <a class="reference external" href="https://pytorch.org/docs/master/data.html#torch.utils.data.Dataset" title="(in PyTorch vmaster (0.5.0a0+efba555 ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dataset</span></code></a></p>
 </dd></dl>
 
 <dl class="classmethod">
-<dt id="sconce.data_generators.SingleClassImageDataGenerator.from_dataset">
-<em class="property">classmethod </em><code class="descname">from_dataset</code><span class="sig-paren">(</span><em>dataset</em>, <em>split=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#sconce.data_generators.SingleClassImageDataGenerator.from_dataset" title="Permalink to this definition">¶</a></dt>
-<dd><p>Create a DataGenerator from an instantiated dataset.</p>
+<dt id="sconce.data_feeds.SingleClassImageFeed.from_dataset">
+<em class="property">classmethod </em><code class="descname">from_dataset</code><span class="sig-paren">(</span><em>dataset</em>, <em>split=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#sconce.data_feeds.SingleClassImageFeed.from_dataset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a DataFeed from an instantiated dataset.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -417,8 +407,8 @@ dictionary with keys {‘inputs’, ‘targets’} instead. See
 <li><strong>dataset</strong> (<a class="reference external" href="https://pytorch.org/docs/master/data.html#torch.utils.data.Dataset" title="(in PyTorch vmaster (0.5.0a0+efba555 ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dataset</span></code></a>) – the pytorch
 dataset.</li>
 <li><strong>split</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.6)"><em>float</em></a><em>, </em><em>optional</em>) – If not <code class="docutils literal notranslate"><span class="pre">None</span></code>, it specifies the fraction of the dataset that should be placed
-into the first of two data_generators.  The remaining data is used for the second data_generator.  Both
-data_generators will be returned.</li>
+into the first of two data_feeds.  The remaining data is used for the second data_feed.  Both
+data_feeds will be returned.</li>
 <li><strong>**kwargs</strong> – passed directly to the
 <a class="reference external" href="https://pytorch.org/docs/master/data.html#torch.utils.data.DataLoader" title="(in PyTorch vmaster (0.5.0a0+efba555 ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataLoader</span></code></a>) constructor.</li>
 </ul>
@@ -429,9 +419,9 @@ data_generators will be returned.</li>
 </dd></dl>
 
 <dl class="classmethod">
-<dt id="sconce.data_generators.SingleClassImageDataGenerator.from_image_folder">
-<em class="property">classmethod </em><code class="descname">from_image_folder</code><span class="sig-paren">(</span><em>root</em>, <em>loader_kwargs=None</em>, <em>**dataset_kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/data_generators/single_class_image_data_generator.html#SingleClassImageDataGenerator.from_image_folder"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.data_generators.SingleClassImageDataGenerator.from_image_folder" title="Permalink to this definition">¶</a></dt>
-<dd><p>Create a DataGenerator from a folder of images.  See <a class="reference external" href="https://pytorch.org/docs/master/torchvision/datasets.html#torchvision.datasets.ImageFolder" title="(in PyTorch vmaster (0.5.0a0+efba555 ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">torchvision.datasets.ImageFolder</span></code></a>.</p>
+<dt id="sconce.data_feeds.SingleClassImageFeed.from_image_folder">
+<em class="property">classmethod </em><code class="descname">from_image_folder</code><span class="sig-paren">(</span><em>root</em>, <em>loader_kwargs=None</em>, <em>**dataset_kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/data_feeds/single_class_image.html#SingleClassImageFeed.from_image_folder"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.data_feeds.SingleClassImageFeed.from_image_folder" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a Datafeed from a folder of images.  See <a class="reference external" href="https://pytorch.org/docs/master/torchvision/datasets.html#torchvision.datasets.ImageFolder" title="(in PyTorch vmaster (0.5.0a0+efba555 ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">torchvision.datasets.ImageFolder</span></code></a>.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -448,9 +438,9 @@ data_generators will be returned.</li>
 </dd></dl>
 
 <dl class="classmethod">
-<dt id="sconce.data_generators.SingleClassImageDataGenerator.from_torchvision">
-<em class="property">classmethod </em><code class="descname">from_torchvision</code><span class="sig-paren">(</span><em>batch_size=500</em>, <em>data_location=None</em>, <em>dataset_class=&lt;class 'torchvision.datasets.mnist.MNIST'&gt;</em>, <em>fraction=1.0</em>, <em>num_workers=0</em>, <em>pin_memory=True</em>, <em>shuffle=True</em>, <em>train=True</em>, <em>transform=ToTensor()</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/data_generators/single_class_image_data_generator.html#SingleClassImageDataGenerator.from_torchvision"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.data_generators.SingleClassImageDataGenerator.from_torchvision" title="Permalink to this definition">¶</a></dt>
-<dd><p>Create a DataGenerator from a torchvision dataset class.</p>
+<dt id="sconce.data_feeds.SingleClassImageFeed.from_torchvision">
+<em class="property">classmethod </em><code class="descname">from_torchvision</code><span class="sig-paren">(</span><em>batch_size=500</em>, <em>data_location=None</em>, <em>dataset_class=&lt;class 'torchvision.datasets.mnist.MNIST'&gt;</em>, <em>fraction=1.0</em>, <em>num_workers=0</em>, <em>pin_memory=True</em>, <em>shuffle=True</em>, <em>train=True</em>, <em>transform=ToTensor()</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/data_feeds/single_class_image.html#SingleClassImageFeed.from_torchvision"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.data_feeds.SingleClassImageFeed.from_torchvision" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a Datafeed from a torchvision dataset class.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -485,46 +475,46 @@ image and returns a transformed version.</li>
 </dd></dl>
 
 <dl class="method">
-<dt id="sconce.data_generators.SingleClassImageDataGenerator.get_class_df">
-<code class="descname">get_class_df</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sconce.data_generators.SingleClassImageDataGenerator.get_class_df" title="Permalink to this definition">¶</a></dt>
+<dt id="sconce.data_feeds.SingleClassImageFeed.get_class_df">
+<code class="descname">get_class_df</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sconce.data_feeds.SingleClassImageFeed.get_class_df" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return a pandas dataframe that contains the classes in the dataset.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="sconce.data_generators.SingleClassImageDataGenerator.get_image_size_df">
-<code class="descname">get_image_size_df</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sconce.data_generators.SingleClassImageDataGenerator.get_image_size_df" title="Permalink to this definition">¶</a></dt>
+<dt id="sconce.data_feeds.SingleClassImageFeed.get_image_size_df">
+<code class="descname">get_image_size_df</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sconce.data_feeds.SingleClassImageFeed.get_image_size_df" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return a pandas dataframe that contains the image sizes in the dataset (before transforms).</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="sconce.data_generators.SingleClassImageDataGenerator.num_channels">
-<code class="descname">num_channels</code><a class="headerlink" href="#sconce.data_generators.SingleClassImageDataGenerator.num_channels" title="Permalink to this definition">¶</a></dt>
+<dt id="sconce.data_feeds.SingleClassImageFeed.num_channels">
+<code class="descname">num_channels</code><a class="headerlink" href="#sconce.data_feeds.SingleClassImageFeed.num_channels" title="Permalink to this definition">¶</a></dt>
 <dd><p>The number of image channels, based on looking at the first image in the dataset.</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="sconce.data_generators.SingleClassImageDataGenerator.num_samples">
-<code class="descname">num_samples</code><a class="headerlink" href="#sconce.data_generators.SingleClassImageDataGenerator.num_samples" title="Permalink to this definition">¶</a></dt>
+<dt id="sconce.data_feeds.SingleClassImageFeed.num_samples">
+<code class="descname">num_samples</code><a class="headerlink" href="#sconce.data_feeds.SingleClassImageFeed.num_samples" title="Permalink to this definition">¶</a></dt>
 <dd><p>the <code class="docutils literal notranslate"><span class="pre">len</span></code> of the wrapped data_loader’s
 <a class="reference external" href="https://pytorch.org/docs/master/data.html#torch.utils.data.Dataset" title="(in PyTorch vmaster (0.5.0a0+efba555 ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dataset</span></code></a></p>
 </dd></dl>
 
 <dl class="method">
-<dt id="sconce.data_generators.SingleClassImageDataGenerator.plot_class_summary">
-<code class="descname">plot_class_summary</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#sconce.data_generators.SingleClassImageDataGenerator.plot_class_summary" title="Permalink to this definition">¶</a></dt>
+<dt id="sconce.data_feeds.SingleClassImageFeed.plot_class_summary">
+<code class="descname">plot_class_summary</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#sconce.data_feeds.SingleClassImageFeed.plot_class_summary" title="Permalink to this definition">¶</a></dt>
 <dd><p>Generate a barchart showing how many images of each class there are.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="sconce.data_generators.SingleClassImageDataGenerator.plot_image_size_summary">
-<code class="descname">plot_image_size_summary</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sconce.data_generators.SingleClassImageDataGenerator.plot_image_size_summary" title="Permalink to this definition">¶</a></dt>
+<dt id="sconce.data_feeds.SingleClassImageFeed.plot_image_size_summary">
+<code class="descname">plot_image_size_summary</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sconce.data_feeds.SingleClassImageFeed.plot_image_size_summary" title="Permalink to this definition">¶</a></dt>
 <dd><p>Generate a scatter plot showing the sizes of the images in the dataset.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="sconce.data_generators.SingleClassImageDataGenerator.plot_transforms">
-<code class="descname">plot_transforms</code><span class="sig-paren">(</span><em>index</em>, <em>num_samples=5</em>, <em>num_cols=5</em>, <em>figure_width=15</em>, <em>image_height=3</em>, <em>return_fig=False</em><span class="sig-paren">)</span><a class="headerlink" href="#sconce.data_generators.SingleClassImageDataGenerator.plot_transforms" title="Permalink to this definition">¶</a></dt>
-<dd><p>Plot the same image from this DataGenerator multiple times to see how the transforms affect them.</p>
+<dt id="sconce.data_feeds.SingleClassImageFeed.plot_transforms">
+<code class="descname">plot_transforms</code><span class="sig-paren">(</span><em>index</em>, <em>num_samples=5</em>, <em>num_cols=5</em>, <em>figure_width=15</em>, <em>image_height=3</em>, <em>return_fig=False</em><span class="sig-paren">)</span><a class="headerlink" href="#sconce.data_feeds.SingleClassImageFeed.plot_transforms" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot the same image from this Datafeed multiple times to see how the transforms affect them.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -543,36 +533,34 @@ variations).</li>
 </tr>
 </tbody>
 </table>
-<p>New in 0.10.3</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="sconce.data_generators.SingleClassImageDataGenerator.reset">
-<code class="descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sconce.data_generators.SingleClassImageDataGenerator.reset" title="Permalink to this definition">¶</a></dt>
+<dt id="sconce.data_feeds.SingleClassImageFeed.reset">
+<code class="descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sconce.data_feeds.SingleClassImageFeed.reset" title="Permalink to this definition">¶</a></dt>
 <dd><p>Start iterating through the data_loader from the begining.</p>
 </dd></dl>
 
 </dd></dl>
 
 </div>
-<div class="section" id="multiclassimagedatagenerator-deprecated">
-<h2><span class="hidden-section">MultiClassImageDataGenerator (deprecated)</span><a class="headerlink" href="#multiclassimagedatagenerator-deprecated" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="multiclassimagefeed">
+<h2><span class="hidden-section">MultiClassImageFeed</span><a class="headerlink" href="#multiclassimagefeed" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
-<dt id="sconce.data_generators.MultiClassImageDataGenerator">
-<em class="property">class </em><code class="descclassname">sconce.data_generators.</code><code class="descname">MultiClassImageDataGenerator</code><span class="sig-paren">(</span><em>data_loader</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/data_generators/multi_class_image_data_generator.html#MultiClassImageDataGenerator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.data_generators.MultiClassImageDataGenerator" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="sconce.data_generators.html#sconce.data_generators.base.DataGenerator" title="sconce.data_generators.base.DataGenerator"><code class="xref py py-class docutils literal notranslate"><span class="pre">sconce.data_generators.base.DataGenerator</span></code></a>, <a class="reference internal" href="sconce.data_generators.html#sconce.data_generators.image_mixin.ImageMixin" title="sconce.data_generators.image_mixin.ImageMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">sconce.data_generators.image_mixin.ImageMixin</span></code></a></p>
-<p>An ImageDataGenerator class for use when each image may belong to more than one class.</p>
-<p>New in 0.10.0</p>
+<dt id="sconce.data_feeds.MultiClassImageFeed">
+<em class="property">class </em><code class="descclassname">sconce.data_feeds.</code><code class="descname">MultiClassImageFeed</code><span class="sig-paren">(</span><em>data_loader</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/data_feeds/multi_class_image.html#MultiClassImageFeed"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.data_feeds.MultiClassImageFeed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">sconce.data_feeds.image.ImageFeed</span></code></p>
+<p>An ImageFeed class for use when each image may belong to more than one class.</p>
 <dl class="attribute">
-<dt id="sconce.data_generators.MultiClassImageDataGenerator.batch_size">
-<code class="descname">batch_size</code><a class="headerlink" href="#sconce.data_generators.MultiClassImageDataGenerator.batch_size" title="Permalink to this definition">¶</a></dt>
+<dt id="sconce.data_feeds.MultiClassImageFeed.batch_size">
+<code class="descname">batch_size</code><a class="headerlink" href="#sconce.data_feeds.MultiClassImageFeed.batch_size" title="Permalink to this definition">¶</a></dt>
 <dd><p>the wrapped data_loader’s batch_size</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="sconce.data_generators.MultiClassImageDataGenerator.cuda">
-<code class="descname">cuda</code><span class="sig-paren">(</span><em>device=None</em><span class="sig-paren">)</span><a class="headerlink" href="#sconce.data_generators.MultiClassImageDataGenerator.cuda" title="Permalink to this definition">¶</a></dt>
-<dd><p>Put the <cite>inputs</cite> and <cite>targets</cite> (yielded by this DataGenerator) on the
+<dt id="sconce.data_feeds.MultiClassImageFeed.cuda">
+<code class="descname">cuda</code><span class="sig-paren">(</span><em>device=None</em><span class="sig-paren">)</span><a class="headerlink" href="#sconce.data_feeds.MultiClassImageFeed.cuda" title="Permalink to this definition">¶</a></dt>
+<dd><p>Put the <cite>inputs</cite> and <cite>targets</cite> (yielded by this DataFeed) on the
 specified device.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -586,7 +574,7 @@ dictionary with keys {‘inputs’, ‘targets’} instead. See
 </tbody>
 </table>
 <p class="rubric">Example</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">g</span> <span class="o">=</span> <span class="n">DataGenerator</span><span class="o">.</span><span class="n">from_dataset</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">g</span> <span class="o">=</span> <span class="n">DataFeed</span><span class="o">.</span><span class="n">from_dataset</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">g</span><span class="o">.</span><span class="n">cuda</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">g</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
 <span class="go">(Tensor containing:</span>
@@ -610,15 +598,15 @@ dictionary with keys {‘inputs’, ‘targets’} instead. See
 </dd></dl>
 
 <dl class="attribute">
-<dt id="sconce.data_generators.MultiClassImageDataGenerator.dataset">
-<code class="descname">dataset</code><a class="headerlink" href="#sconce.data_generators.MultiClassImageDataGenerator.dataset" title="Permalink to this definition">¶</a></dt>
+<dt id="sconce.data_feeds.MultiClassImageFeed.dataset">
+<code class="descname">dataset</code><a class="headerlink" href="#sconce.data_feeds.MultiClassImageFeed.dataset" title="Permalink to this definition">¶</a></dt>
 <dd><p>the wrapped data_loader’s <a class="reference external" href="https://pytorch.org/docs/master/data.html#torch.utils.data.Dataset" title="(in PyTorch vmaster (0.5.0a0+efba555 ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dataset</span></code></a></p>
 </dd></dl>
 
 <dl class="classmethod">
-<dt id="sconce.data_generators.MultiClassImageDataGenerator.from_dataset">
-<em class="property">classmethod </em><code class="descname">from_dataset</code><span class="sig-paren">(</span><em>dataset</em>, <em>split=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#sconce.data_generators.MultiClassImageDataGenerator.from_dataset" title="Permalink to this definition">¶</a></dt>
-<dd><p>Create a DataGenerator from an instantiated dataset.</p>
+<dt id="sconce.data_feeds.MultiClassImageFeed.from_dataset">
+<em class="property">classmethod </em><code class="descname">from_dataset</code><span class="sig-paren">(</span><em>dataset</em>, <em>split=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#sconce.data_feeds.MultiClassImageFeed.from_dataset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a DataFeed from an instantiated dataset.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -627,8 +615,8 @@ dictionary with keys {‘inputs’, ‘targets’} instead. See
 <li><strong>dataset</strong> (<a class="reference external" href="https://pytorch.org/docs/master/data.html#torch.utils.data.Dataset" title="(in PyTorch vmaster (0.5.0a0+efba555 ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dataset</span></code></a>) – the pytorch
 dataset.</li>
 <li><strong>split</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.6)"><em>float</em></a><em>, </em><em>optional</em>) – If not <code class="docutils literal notranslate"><span class="pre">None</span></code>, it specifies the fraction of the dataset that should be placed
-into the first of two data_generators.  The remaining data is used for the second data_generator.  Both
-data_generators will be returned.</li>
+into the first of two data_feeds.  The remaining data is used for the second data_feed.  Both
+data_feeds will be returned.</li>
 <li><strong>**kwargs</strong> – passed directly to the
 <a class="reference external" href="https://pytorch.org/docs/master/data.html#torch.utils.data.DataLoader" title="(in PyTorch vmaster (0.5.0a0+efba555 ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataLoader</span></code></a>) constructor.</li>
 </ul>
@@ -639,46 +627,46 @@ data_generators will be returned.</li>
 </dd></dl>
 
 <dl class="method">
-<dt id="sconce.data_generators.MultiClassImageDataGenerator.get_class_df">
-<code class="descname">get_class_df</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sconce.data_generators.MultiClassImageDataGenerator.get_class_df" title="Permalink to this definition">¶</a></dt>
+<dt id="sconce.data_feeds.MultiClassImageFeed.get_class_df">
+<code class="descname">get_class_df</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sconce.data_feeds.MultiClassImageFeed.get_class_df" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return a pandas dataframe that contains the classes in the dataset.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="sconce.data_generators.MultiClassImageDataGenerator.get_image_size_df">
-<code class="descname">get_image_size_df</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sconce.data_generators.MultiClassImageDataGenerator.get_image_size_df" title="Permalink to this definition">¶</a></dt>
+<dt id="sconce.data_feeds.MultiClassImageFeed.get_image_size_df">
+<code class="descname">get_image_size_df</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sconce.data_feeds.MultiClassImageFeed.get_image_size_df" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return a pandas dataframe that contains the image sizes in the dataset (before transforms).</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="sconce.data_generators.MultiClassImageDataGenerator.num_channels">
-<code class="descname">num_channels</code><a class="headerlink" href="#sconce.data_generators.MultiClassImageDataGenerator.num_channels" title="Permalink to this definition">¶</a></dt>
+<dt id="sconce.data_feeds.MultiClassImageFeed.num_channels">
+<code class="descname">num_channels</code><a class="headerlink" href="#sconce.data_feeds.MultiClassImageFeed.num_channels" title="Permalink to this definition">¶</a></dt>
 <dd><p>The number of image channels, based on looking at the first image in the dataset.</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="sconce.data_generators.MultiClassImageDataGenerator.num_samples">
-<code class="descname">num_samples</code><a class="headerlink" href="#sconce.data_generators.MultiClassImageDataGenerator.num_samples" title="Permalink to this definition">¶</a></dt>
+<dt id="sconce.data_feeds.MultiClassImageFeed.num_samples">
+<code class="descname">num_samples</code><a class="headerlink" href="#sconce.data_feeds.MultiClassImageFeed.num_samples" title="Permalink to this definition">¶</a></dt>
 <dd><p>the <code class="docutils literal notranslate"><span class="pre">len</span></code> of the wrapped data_loader’s
 <a class="reference external" href="https://pytorch.org/docs/master/data.html#torch.utils.data.Dataset" title="(in PyTorch vmaster (0.5.0a0+efba555 ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dataset</span></code></a></p>
 </dd></dl>
 
 <dl class="method">
-<dt id="sconce.data_generators.MultiClassImageDataGenerator.plot_class_summary">
-<code class="descname">plot_class_summary</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#sconce.data_generators.MultiClassImageDataGenerator.plot_class_summary" title="Permalink to this definition">¶</a></dt>
+<dt id="sconce.data_feeds.MultiClassImageFeed.plot_class_summary">
+<code class="descname">plot_class_summary</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#sconce.data_feeds.MultiClassImageFeed.plot_class_summary" title="Permalink to this definition">¶</a></dt>
 <dd><p>Generate a barchart showing how many images of each class there are.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="sconce.data_generators.MultiClassImageDataGenerator.plot_image_size_summary">
-<code class="descname">plot_image_size_summary</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sconce.data_generators.MultiClassImageDataGenerator.plot_image_size_summary" title="Permalink to this definition">¶</a></dt>
+<dt id="sconce.data_feeds.MultiClassImageFeed.plot_image_size_summary">
+<code class="descname">plot_image_size_summary</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sconce.data_feeds.MultiClassImageFeed.plot_image_size_summary" title="Permalink to this definition">¶</a></dt>
 <dd><p>Generate a scatter plot showing the sizes of the images in the dataset.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="sconce.data_generators.MultiClassImageDataGenerator.plot_transforms">
-<code class="descname">plot_transforms</code><span class="sig-paren">(</span><em>index</em>, <em>num_samples=5</em>, <em>num_cols=5</em>, <em>figure_width=15</em>, <em>image_height=3</em>, <em>return_fig=False</em><span class="sig-paren">)</span><a class="headerlink" href="#sconce.data_generators.MultiClassImageDataGenerator.plot_transforms" title="Permalink to this definition">¶</a></dt>
-<dd><p>Plot the same image from this DataGenerator multiple times to see how the transforms affect them.</p>
+<dt id="sconce.data_feeds.MultiClassImageFeed.plot_transforms">
+<code class="descname">plot_transforms</code><span class="sig-paren">(</span><em>index</em>, <em>num_samples=5</em>, <em>num_cols=5</em>, <em>figure_width=15</em>, <em>image_height=3</em>, <em>return_fig=False</em><span class="sig-paren">)</span><a class="headerlink" href="#sconce.data_feeds.MultiClassImageFeed.plot_transforms" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot the same image from this Datafeed multiple times to see how the transforms affect them.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -697,12 +685,11 @@ variations).</li>
 </tr>
 </tbody>
 </table>
-<p>New in 0.10.3</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="sconce.data_generators.MultiClassImageDataGenerator.reset">
-<code class="descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sconce.data_generators.MultiClassImageDataGenerator.reset" title="Permalink to this definition">¶</a></dt>
+<dt id="sconce.data_feeds.MultiClassImageFeed.reset">
+<code class="descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sconce.data_feeds.MultiClassImageFeed.reset" title="Permalink to this definition">¶</a></dt>
 <dd><p>Start iterating through the data_loader from the begining.</p>
 </dd></dl>
 
@@ -719,10 +706,10 @@ variations).</li>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="data_feeds.html" class="btn btn-neutral float-right" title="Data Feeds" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="datasets.html" class="btn btn-neutral float-right" title="Datasests" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="index.html" class="btn btn-neutral" title="Sconce Documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="data_generator.html" class="btn btn-neutral" title="Data Generators (deprecated)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

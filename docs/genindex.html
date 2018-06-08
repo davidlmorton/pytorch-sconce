@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                master (1.1.0 )
+                master (1.2.0 )
               </div>
             
           
@@ -86,11 +86,18 @@
             
               <p class="caption"><span class="caption-text">Class Reference</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="data_generator.html">Data Generators</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="data_generator.html#datagenerator"><span class="hidden-section">DataGenerator</span></a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_generator.html">Data Generators (deprecated)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="data_generator.html#datagenerator-deprecated"><span class="hidden-section">DataGenerator (deprecated)</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="data_generator.html#imagedatagenerator-deprecated"><span class="hidden-section">ImageDataGenerator (deprecated)</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="data_generator.html#singleclassimagedatagenerator"><span class="hidden-section">SingleClassImageDataGenerator</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="data_generator.html#multiclassimagedatagenerator"><span class="hidden-section">MultiClassImageDataGenerator</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_generator.html#singleclassimagedatagenerator-deprecated"><span class="hidden-section">SingleClassImageDataGenerator (deprecated)</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_generator.html#multiclassimagedatagenerator-deprecated"><span class="hidden-section">MultiClassImageDataGenerator (deprecated)</span></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="data_feeds.html">Data Feeds</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="data_feeds.html#datafeed"><span class="hidden-section">DataFeed</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_feeds.html#imagefeed"><span class="hidden-section">ImageFeed</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_feeds.html#singleclassimagefeed"><span class="hidden-section">SingleClassImageFeed</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_feeds.html#multiclassimagefeed"><span class="hidden-section">MultiClassImageFeed</span></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="datasets.html">Datasests</a><ul>
@@ -269,18 +276,26 @@
       </ul></li>
       <li><a href="models.html#sconce.models.BasicConvolutionalAutoencoder">BasicConvolutionalAutoencoder (class in sconce.models)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="sconce.data_generators.html#sconce.data_generators.base.DataGenerator.batch_size">batch_size (sconce.data_generators.base.DataGenerator attribute)</a>
+      <li><a href="sconce.data_feeds.html#sconce.data_feeds.base.DataFeed.batch_size">batch_size (sconce.data_feeds.base.DataFeed attribute)</a>
 
       <ul>
+        <li><a href="data_feeds.html#sconce.data_feeds.DataFeed.batch_size">(sconce.data_feeds.DataFeed attribute)</a>
+</li>
+        <li><a href="data_feeds.html#sconce.data_feeds.MultiClassImageFeed.batch_size">(sconce.data_feeds.MultiClassImageFeed attribute)</a>
+</li>
+        <li><a href="data_feeds.html#sconce.data_feeds.SingleClassImageFeed.batch_size">(sconce.data_feeds.SingleClassImageFeed attribute)</a>
+</li>
         <li><a href="data_generator.html#sconce.data_generators.DataGenerator.batch_size">(sconce.data_generators.DataGenerator attribute)</a>
 </li>
         <li><a href="data_generator.html#sconce.data_generators.MultiClassImageDataGenerator.batch_size">(sconce.data_generators.MultiClassImageDataGenerator attribute)</a>
 </li>
         <li><a href="data_generator.html#sconce.data_generators.SingleClassImageDataGenerator.batch_size">(sconce.data_generators.SingleClassImageDataGenerator attribute)</a>
 </li>
+        <li><a href="sconce.data_generators.html#sconce.data_generators.base.DataGenerator.batch_size">(sconce.data_generators.base.DataGenerator attribute)</a>
+</li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="models.html#sconce.models.Model.build_parameter_groups">build_parameter_groups() (sconce.models.Model method)</a>
 </li>
   </ul></td>
@@ -319,14 +334,14 @@
         <li><a href="trainers.html#sconce.trainers.SingleClassImageClassifierTrainer.checkpoint">(sconce.trainers.SingleClassImageClassifierTrainer method)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="trainers.html#sconce.trainers.ClassifierTrainer">ClassifierTrainer (class in sconce.trainers)</a>
 
       <ul>
         <li><a href="sconce.trainers.html#sconce.trainers.single_class_image_classifier_trainer.ClassifierTrainer">(class in sconce.trainers.single_class_image_classifier_trainer)</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="monitors.html#sconce.monitors.CompositeMonitor">CompositeMonitor (class in sconce.monitors)</a>
 
       <ul>
@@ -347,14 +362,22 @@
         <li><a href="sconce.datasets.html#sconce.datasets.csv_image_folder.CsvImageFolder">(class in sconce.datasets.csv_image_folder)</a>
 </li>
       </ul></li>
-      <li><a href="sconce.data_generators.html#sconce.data_generators.base.DataGenerator.cuda">cuda() (sconce.data_generators.base.DataGenerator method)</a>
+      <li><a href="sconce.data_feeds.html#sconce.data_feeds.base.DataFeed.cuda">cuda() (sconce.data_feeds.base.DataFeed method)</a>
 
       <ul>
+        <li><a href="data_feeds.html#sconce.data_feeds.DataFeed.cuda">(sconce.data_feeds.DataFeed method)</a>
+</li>
+        <li><a href="data_feeds.html#sconce.data_feeds.MultiClassImageFeed.cuda">(sconce.data_feeds.MultiClassImageFeed method)</a>
+</li>
+        <li><a href="data_feeds.html#sconce.data_feeds.SingleClassImageFeed.cuda">(sconce.data_feeds.SingleClassImageFeed method)</a>
+</li>
         <li><a href="data_generator.html#sconce.data_generators.DataGenerator.cuda">(sconce.data_generators.DataGenerator method)</a>
 </li>
         <li><a href="data_generator.html#sconce.data_generators.MultiClassImageDataGenerator.cuda">(sconce.data_generators.MultiClassImageDataGenerator method)</a>
 </li>
         <li><a href="data_generator.html#sconce.data_generators.SingleClassImageDataGenerator.cuda">(sconce.data_generators.SingleClassImageDataGenerator method)</a>
+</li>
+        <li><a href="sconce.data_generators.html#sconce.data_generators.base.DataGenerator.cuda">(sconce.data_generators.base.DataGenerator method)</a>
 </li>
       </ul></li>
   </ul></td>
@@ -363,6 +386,12 @@
 <h2 id="D">D</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="data_feeds.html#sconce.data_feeds.DataFeed">DataFeed (class in sconce.data_feeds)</a>
+
+      <ul>
+        <li><a href="sconce.data_feeds.html#sconce.data_feeds.base.DataFeed">(class in sconce.data_feeds.base)</a>
+</li>
+      </ul></li>
       <li><a href="monitors.html#sconce.monitors.DataframeMonitor">DataframeMonitor (class in sconce.monitors)</a>
 
       <ul>
@@ -375,14 +404,22 @@
         <li><a href="sconce.data_generators.html#sconce.data_generators.base.DataGenerator">(class in sconce.data_generators.base)</a>
 </li>
       </ul></li>
-      <li><a href="sconce.data_generators.html#sconce.data_generators.base.DataGenerator.dataset">dataset (sconce.data_generators.base.DataGenerator attribute)</a>
+      <li><a href="sconce.data_feeds.html#sconce.data_feeds.base.DataFeed.dataset">dataset (sconce.data_feeds.base.DataFeed attribute)</a>
 
       <ul>
+        <li><a href="data_feeds.html#sconce.data_feeds.DataFeed.dataset">(sconce.data_feeds.DataFeed attribute)</a>
+</li>
+        <li><a href="data_feeds.html#sconce.data_feeds.MultiClassImageFeed.dataset">(sconce.data_feeds.MultiClassImageFeed attribute)</a>
+</li>
+        <li><a href="data_feeds.html#sconce.data_feeds.SingleClassImageFeed.dataset">(sconce.data_feeds.SingleClassImageFeed attribute)</a>
+</li>
         <li><a href="data_generator.html#sconce.data_generators.DataGenerator.dataset">(sconce.data_generators.DataGenerator attribute)</a>
 </li>
         <li><a href="data_generator.html#sconce.data_generators.MultiClassImageDataGenerator.dataset">(sconce.data_generators.MultiClassImageDataGenerator attribute)</a>
 </li>
         <li><a href="data_generator.html#sconce.data_generators.SingleClassImageDataGenerator.dataset">(sconce.data_generators.SingleClassImageDataGenerator attribute)</a>
+</li>
+        <li><a href="sconce.data_generators.html#sconce.data_generators.base.DataGenerator.dataset">(sconce.data_generators.base.DataGenerator attribute)</a>
 </li>
       </ul></li>
   </ul></td>
@@ -447,32 +484,48 @@
 </li>
       <li><a href="parameter_group.html#sconce.parameter_group.ParameterGroup.freeze">freeze() (sconce.parameter_group.ParameterGroup method)</a>, <a href="sconce.html#sconce.parameter_group.ParameterGroup.freeze">[1]</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="sconce.models.html#sconce.models.basic_classifier.BasicClassifier.freeze_batchnorm_layers">freeze_batchnorm_layers() (sconce.models.basic_classifier.BasicClassifier method)</a>
 </li>
-      <li><a href="sconce.data_generators.html#sconce.data_generators.base.DataGenerator.from_dataset">from_dataset() (sconce.data_generators.base.DataGenerator class method)</a>
+      <li><a href="sconce.data_feeds.html#sconce.data_feeds.base.DataFeed.from_dataset">from_dataset() (sconce.data_feeds.base.DataFeed class method)</a>
 
       <ul>
+        <li><a href="data_feeds.html#sconce.data_feeds.DataFeed.from_dataset">(sconce.data_feeds.DataFeed class method)</a>
+</li>
+        <li><a href="data_feeds.html#sconce.data_feeds.MultiClassImageFeed.from_dataset">(sconce.data_feeds.MultiClassImageFeed class method)</a>
+</li>
+        <li><a href="data_feeds.html#sconce.data_feeds.SingleClassImageFeed.from_dataset">(sconce.data_feeds.SingleClassImageFeed class method)</a>
+</li>
         <li><a href="data_generator.html#sconce.data_generators.DataGenerator.from_dataset">(sconce.data_generators.DataGenerator class method)</a>
 </li>
         <li><a href="data_generator.html#sconce.data_generators.MultiClassImageDataGenerator.from_dataset">(sconce.data_generators.MultiClassImageDataGenerator class method)</a>
 </li>
         <li><a href="data_generator.html#sconce.data_generators.SingleClassImageDataGenerator.from_dataset">(sconce.data_generators.SingleClassImageDataGenerator class method)</a>
 </li>
+        <li><a href="sconce.data_generators.html#sconce.data_generators.base.DataGenerator.from_dataset">(sconce.data_generators.base.DataGenerator class method)</a>
+</li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="sconce.monitors.html#sconce.monitors.dataframe_monitor.DataframeMonitor.from_file">from_file() (sconce.monitors.dataframe_monitor.DataframeMonitor class method)</a>
 </li>
-      <li><a href="sconce.data_generators.html#sconce.data_generators.single_class_image_data_generator.SingleClassImageDataGenerator.from_image_folder">from_image_folder() (sconce.data_generators.single_class_image_data_generator.SingleClassImageDataGenerator class method)</a>
+      <li><a href="sconce.data_feeds.html#sconce.data_feeds.single_class_image.SingleClassImageFeed.from_image_folder">from_image_folder() (sconce.data_feeds.single_class_image.SingleClassImageFeed class method)</a>
 
       <ul>
+        <li><a href="data_feeds.html#sconce.data_feeds.SingleClassImageFeed.from_image_folder">(sconce.data_feeds.SingleClassImageFeed class method)</a>
+</li>
         <li><a href="data_generator.html#sconce.data_generators.SingleClassImageDataGenerator.from_image_folder">(sconce.data_generators.SingleClassImageDataGenerator class method)</a>
 </li>
+        <li><a href="sconce.data_generators.html#sconce.data_generators.single_class_image_data_generator.SingleClassImageDataGenerator.from_image_folder">(sconce.data_generators.single_class_image_data_generator.SingleClassImageDataGenerator class method)</a>
+</li>
       </ul></li>
-      <li><a href="sconce.data_generators.html#sconce.data_generators.single_class_image_data_generator.SingleClassImageDataGenerator.from_torchvision">from_torchvision() (sconce.data_generators.single_class_image_data_generator.SingleClassImageDataGenerator class method)</a>
+      <li><a href="sconce.data_feeds.html#sconce.data_feeds.single_class_image.SingleClassImageFeed.from_torchvision">from_torchvision() (sconce.data_feeds.single_class_image.SingleClassImageFeed class method)</a>
 
       <ul>
+        <li><a href="data_feeds.html#sconce.data_feeds.SingleClassImageFeed.from_torchvision">(sconce.data_feeds.SingleClassImageFeed class method)</a>
+</li>
         <li><a href="data_generator.html#sconce.data_generators.SingleClassImageDataGenerator.from_torchvision">(sconce.data_generators.SingleClassImageDataGenerator class method)</a>
+</li>
+        <li><a href="sconce.data_generators.html#sconce.data_generators.single_class_image_data_generator.SingleClassImageDataGenerator.from_torchvision">(sconce.data_generators.single_class_image_data_generator.SingleClassImageDataGenerator class method)</a>
 </li>
       </ul></li>
       <li><a href="sconce.models.layers.html#sconce.models.layers.fully_connected_layer.FullyConnectedLayer">FullyConnectedLayer (class in sconce.models.layers.fully_connected_layer)</a>
@@ -485,12 +538,16 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="sconce.datasets.html#sconce.datasets.simple_dots.generate_circle_image">generate_circle_image() (in module sconce.datasets.simple_dots)</a>
 </li>
-      <li><a href="sconce.data_generators.html#sconce.data_generators.image_mixin.ImageMixin.get_class_df">get_class_df() (sconce.data_generators.image_mixin.ImageMixin method)</a>
+      <li><a href="data_feeds.html#sconce.data_feeds.MultiClassImageFeed.get_class_df">get_class_df() (sconce.data_feeds.MultiClassImageFeed method)</a>
 
       <ul>
+        <li><a href="data_feeds.html#sconce.data_feeds.SingleClassImageFeed.get_class_df">(sconce.data_feeds.SingleClassImageFeed method)</a>
+</li>
         <li><a href="data_generator.html#sconce.data_generators.MultiClassImageDataGenerator.get_class_df">(sconce.data_generators.MultiClassImageDataGenerator method)</a>
 </li>
         <li><a href="data_generator.html#sconce.data_generators.SingleClassImageDataGenerator.get_class_df">(sconce.data_generators.SingleClassImageDataGenerator method)</a>
+</li>
+        <li><a href="sconce.data_generators.html#sconce.data_generators.image_mixin.ImageMixin.get_class_df">(sconce.data_generators.image_mixin.ImageMixin method)</a>
 </li>
       </ul></li>
       <li><a href="sconce.trainers.html#sconce.trainers.single_class_image_classifier_trainer.SingleClassImageClassifierMixin.get_classification_accuracy">get_classification_accuracy() (sconce.trainers.single_class_image_classifier_trainer.SingleClassImageClassifierMixin method)</a>
@@ -499,12 +556,16 @@
 </li>
       <li><a href="sconce.data_generators.html#sconce.data_generators.image_mixin.get_image_size">get_image_size() (in module sconce.data_generators.image_mixin)</a>
 </li>
-      <li><a href="sconce.data_generators.html#sconce.data_generators.image_mixin.ImageMixin.get_image_size_df">get_image_size_df() (sconce.data_generators.image_mixin.ImageMixin method)</a>
+      <li><a href="data_feeds.html#sconce.data_feeds.MultiClassImageFeed.get_image_size_df">get_image_size_df() (sconce.data_feeds.MultiClassImageFeed method)</a>
 
       <ul>
+        <li><a href="data_feeds.html#sconce.data_feeds.SingleClassImageFeed.get_image_size_df">(sconce.data_feeds.SingleClassImageFeed method)</a>
+</li>
         <li><a href="data_generator.html#sconce.data_generators.MultiClassImageDataGenerator.get_image_size_df">(sconce.data_generators.MultiClassImageDataGenerator method)</a>
 </li>
         <li><a href="data_generator.html#sconce.data_generators.SingleClassImageDataGenerator.get_image_size_df">(sconce.data_generators.SingleClassImageDataGenerator method)</a>
+</li>
+        <li><a href="sconce.data_generators.html#sconce.data_generators.image_mixin.ImageMixin.get_image_size_df">(sconce.data_generators.image_mixin.ImageMixin method)</a>
 </li>
       </ul></li>
   </ul></td>
@@ -523,8 +584,12 @@
 </li>
       <li><a href="models.html#sconce.models.Model.get_trainable_parameters">get_trainable_parameters() (sconce.models.Model method)</a>
 </li>
-      <li><a href="schedules.html#sconce.schedules.Schedule.get_value">get_value() (sconce.schedules.Schedule method)</a>
+      <li><a href="sconce.schedules.html#sconce.schedules.base.Schedule.get_value">get_value() (sconce.schedules.base.Schedule method)</a>
+
+      <ul>
+        <li><a href="schedules.html#sconce.schedules.Schedule.get_value">(sconce.schedules.Schedule method)</a>
 </li>
+      </ul></li>
   </ul></td>
 </tr></table>
 
@@ -532,6 +597,8 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="data_generator.html#sconce.data_generators.ImageDataGenerator">ImageDataGenerator (class in sconce.data_generators)</a>
+</li>
+      <li><a href="data_feeds.html#sconce.data_feeds.ImageFeed">ImageFeed (class in sconce.data_feeds)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
@@ -603,6 +670,12 @@
         <li><a href="sconce.data_generators.html#sconce.data_generators.multi_class_image_data_generator.MultiClassImageDataGenerator">(class in sconce.data_generators.multi_class_image_data_generator)</a>
 </li>
       </ul></li>
+      <li><a href="data_feeds.html#sconce.data_feeds.MultiClassImageFeed">MultiClassImageFeed (class in sconce.data_feeds)</a>
+
+      <ul>
+        <li><a href="sconce.data_feeds.html#sconce.data_feeds.multi_class_image.MultiClassImageFeed">(class in sconce.data_feeds.multi_class_image)</a>
+</li>
+      </ul></li>
       <li><a href="models.html#sconce.models.MultilayerPerceptron">MultilayerPerceptron (class in sconce.models)</a>
 
       <ul>
@@ -635,30 +708,46 @@
         <li><a href="sconce.models.html#sconce.models.multilayer_perceptron.MultilayerPerceptron.new_from_yaml_filename">(sconce.models.multilayer_perceptron.MultilayerPerceptron class method)</a>
 </li>
       </ul></li>
-      <li><a href="sconce.data_generators.html#sconce.data_generators.base.DataGenerator.next">next() (sconce.data_generators.base.DataGenerator method)</a>
-</li>
-      <li><a href="sconce.html#sconce.transforms.NHot">NHot (class in sconce.transforms)</a>, <a href="transforms.html#sconce.transforms.NHot">[1]</a>
-</li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="sconce.data_generators.html#sconce.data_generators.image_mixin.ImageMixin.num_channels">num_channels (sconce.data_generators.image_mixin.ImageMixin attribute)</a>
+      <li><a href="sconce.data_feeds.html#sconce.data_feeds.base.DataFeed.next">next() (sconce.data_feeds.base.DataFeed method)</a>
 
       <ul>
+        <li><a href="sconce.data_generators.html#sconce.data_generators.base.DataGenerator.next">(sconce.data_generators.base.DataGenerator method)</a>
+</li>
+      </ul></li>
+      <li><a href="sconce.html#sconce.transforms.NHot">NHot (class in sconce.transforms)</a>, <a href="transforms.html#sconce.transforms.NHot">[1]</a>
+</li>
+      <li><a href="data_feeds.html#sconce.data_feeds.MultiClassImageFeed.num_channels">num_channels (sconce.data_feeds.MultiClassImageFeed attribute)</a>
+
+      <ul>
+        <li><a href="data_feeds.html#sconce.data_feeds.SingleClassImageFeed.num_channels">(sconce.data_feeds.SingleClassImageFeed attribute)</a>
+</li>
         <li><a href="data_generator.html#sconce.data_generators.MultiClassImageDataGenerator.num_channels">(sconce.data_generators.MultiClassImageDataGenerator attribute)</a>
 </li>
         <li><a href="data_generator.html#sconce.data_generators.SingleClassImageDataGenerator.num_channels">(sconce.data_generators.SingleClassImageDataGenerator attribute)</a>
 </li>
+        <li><a href="sconce.data_generators.html#sconce.data_generators.image_mixin.ImageMixin.num_channels">(sconce.data_generators.image_mixin.ImageMixin attribute)</a>
+</li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="sconce.datasets.html#sconce.datasets.csv_image_folder.CsvImageFolder.num_classes">num_classes (sconce.datasets.csv_image_folder.CsvImageFolder attribute)</a>
 </li>
-      <li><a href="sconce.data_generators.html#sconce.data_generators.base.DataGenerator.num_samples">num_samples (sconce.data_generators.base.DataGenerator attribute)</a>
+      <li><a href="sconce.data_feeds.html#sconce.data_feeds.base.DataFeed.num_samples">num_samples (sconce.data_feeds.base.DataFeed attribute)</a>
 
       <ul>
+        <li><a href="data_feeds.html#sconce.data_feeds.DataFeed.num_samples">(sconce.data_feeds.DataFeed attribute)</a>
+</li>
+        <li><a href="data_feeds.html#sconce.data_feeds.MultiClassImageFeed.num_samples">(sconce.data_feeds.MultiClassImageFeed attribute)</a>
+</li>
+        <li><a href="data_feeds.html#sconce.data_feeds.SingleClassImageFeed.num_samples">(sconce.data_feeds.SingleClassImageFeed attribute)</a>
+</li>
         <li><a href="data_generator.html#sconce.data_generators.DataGenerator.num_samples">(sconce.data_generators.DataGenerator attribute)</a>
 </li>
         <li><a href="data_generator.html#sconce.data_generators.MultiClassImageDataGenerator.num_samples">(sconce.data_generators.MultiClassImageDataGenerator attribute)</a>
 </li>
         <li><a href="data_generator.html#sconce.data_generators.SingleClassImageDataGenerator.num_samples">(sconce.data_generators.SingleClassImageDataGenerator attribute)</a>
+</li>
+        <li><a href="sconce.data_generators.html#sconce.data_generators.base.DataGenerator.num_samples">(sconce.data_generators.base.DataGenerator attribute)</a>
 </li>
       </ul></li>
       <li><a href="sconce.html#sconce.trainer.Trainer.num_trainable_parameters">num_trainable_parameters (sconce.trainer.Trainer attribute)</a>, <a href="trainers.html#sconce.trainer.Trainer.num_trainable_parameters">[1]</a>
@@ -695,22 +784,30 @@
 </li>
       <li><a href="sconce.monitors.html#sconce.monitors.dataframe_monitor.DataframeMonitor.plot">plot() (sconce.monitors.dataframe_monitor.DataframeMonitor method)</a>
 </li>
-      <li><a href="sconce.data_generators.html#sconce.data_generators.image_mixin.ImageMixin.plot_class_summary">plot_class_summary() (sconce.data_generators.image_mixin.ImageMixin method)</a>
+      <li><a href="data_feeds.html#sconce.data_feeds.MultiClassImageFeed.plot_class_summary">plot_class_summary() (sconce.data_feeds.MultiClassImageFeed method)</a>
 
       <ul>
+        <li><a href="data_feeds.html#sconce.data_feeds.SingleClassImageFeed.plot_class_summary">(sconce.data_feeds.SingleClassImageFeed method)</a>
+</li>
         <li><a href="data_generator.html#sconce.data_generators.MultiClassImageDataGenerator.plot_class_summary">(sconce.data_generators.MultiClassImageDataGenerator method)</a>
 </li>
         <li><a href="data_generator.html#sconce.data_generators.SingleClassImageDataGenerator.plot_class_summary">(sconce.data_generators.SingleClassImageDataGenerator method)</a>
 </li>
+        <li><a href="sconce.data_generators.html#sconce.data_generators.image_mixin.ImageMixin.plot_class_summary">(sconce.data_generators.image_mixin.ImageMixin method)</a>
+</li>
       </ul></li>
       <li><a href="sconce.trainers.html#sconce.trainers.single_class_image_classifier_trainer.SingleClassImageClassifierMixin.plot_confusion_matrix">plot_confusion_matrix() (sconce.trainers.single_class_image_classifier_trainer.SingleClassImageClassifierMixin method)</a>
 </li>
-      <li><a href="sconce.data_generators.html#sconce.data_generators.image_mixin.ImageMixin.plot_image_size_summary">plot_image_size_summary() (sconce.data_generators.image_mixin.ImageMixin method)</a>
+      <li><a href="data_feeds.html#sconce.data_feeds.MultiClassImageFeed.plot_image_size_summary">plot_image_size_summary() (sconce.data_feeds.MultiClassImageFeed method)</a>
 
       <ul>
+        <li><a href="data_feeds.html#sconce.data_feeds.SingleClassImageFeed.plot_image_size_summary">(sconce.data_feeds.SingleClassImageFeed method)</a>
+</li>
         <li><a href="data_generator.html#sconce.data_generators.MultiClassImageDataGenerator.plot_image_size_summary">(sconce.data_generators.MultiClassImageDataGenerator method)</a>
 </li>
         <li><a href="data_generator.html#sconce.data_generators.SingleClassImageDataGenerator.plot_image_size_summary">(sconce.data_generators.SingleClassImageDataGenerator method)</a>
+</li>
+        <li><a href="sconce.data_generators.html#sconce.data_generators.image_mixin.ImageMixin.plot_image_size_summary">(sconce.data_generators.image_mixin.ImageMixin method)</a>
 </li>
       </ul></li>
       <li><a href="sconce.trainers.html#sconce.trainers.autoencoder_trainer.AutoencoderMixin.plot_input_output_pairs">plot_input_output_pairs() (sconce.trainers.autoencoder_trainer.AutoencoderMixin method)</a>
@@ -727,18 +824,30 @@
         <li><a href="trainers.html#sconce.trainers.SingleClassImageClassifierTrainer.plot_samples">(sconce.trainers.SingleClassImageClassifierTrainer method)</a>
 </li>
       </ul></li>
-      <li><a href="sconce.data_generators.html#sconce.data_generators.image_mixin.ImageMixin.plot_transforms">plot_transforms() (sconce.data_generators.image_mixin.ImageMixin method)</a>
+      <li><a href="data_feeds.html#sconce.data_feeds.MultiClassImageFeed.plot_transforms">plot_transforms() (sconce.data_feeds.MultiClassImageFeed method)</a>
 
       <ul>
+        <li><a href="data_feeds.html#sconce.data_feeds.SingleClassImageFeed.plot_transforms">(sconce.data_feeds.SingleClassImageFeed method)</a>
+</li>
         <li><a href="data_generator.html#sconce.data_generators.MultiClassImageDataGenerator.plot_transforms">(sconce.data_generators.MultiClassImageDataGenerator method)</a>
 </li>
         <li><a href="data_generator.html#sconce.data_generators.SingleClassImageDataGenerator.plot_transforms">(sconce.data_generators.SingleClassImageDataGenerator method)</a>
 </li>
+        <li><a href="sconce.data_generators.html#sconce.data_generators.image_mixin.ImageMixin.plot_transforms">(sconce.data_generators.image_mixin.ImageMixin method)</a>
+</li>
       </ul></li>
       <li><a href="models.html#sconce.models.Model.prepare_for_step">prepare_for_step() (sconce.models.Model method)</a>
+
+      <ul>
+        <li><a href="sconce.schedules.html#sconce.schedules.base.ScheduledMixin.prepare_for_step">(sconce.schedules.base.ScheduledMixin method)</a>
 </li>
-      <li><a href="sconce.data_generators.html#sconce.data_generators.base.DataGenerator.preprocess">preprocess() (sconce.data_generators.base.DataGenerator method)</a>
+      </ul></li>
+      <li><a href="sconce.data_feeds.html#sconce.data_feeds.base.DataFeed.preprocess">preprocess() (sconce.data_feeds.base.DataFeed method)</a>
+
+      <ul>
+        <li><a href="sconce.data_generators.html#sconce.data_generators.base.DataGenerator.preprocess">(sconce.data_generators.base.DataGenerator method)</a>
 </li>
+      </ul></li>
       <li><a href="models.html#sconce.models.Model.print_schedule_summary">print_schedule_summary() (sconce.models.Model method)</a>
 </li>
       <li><a href="sconce.html#sconce.utils.Progbar">Progbar (class in sconce.utils)</a>
@@ -749,14 +858,24 @@
 <h2 id="R">R</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="sconce.data_generators.html#sconce.data_generators.base.DataGenerator.reset">reset() (sconce.data_generators.base.DataGenerator method)</a>
+      <li><a href="sconce.schedules.html#sconce.schedules.base.ScheduledMixin.remove_schedule">remove_schedule() (sconce.schedules.base.ScheduledMixin method)</a>
+</li>
+      <li><a href="sconce.data_feeds.html#sconce.data_feeds.base.DataFeed.reset">reset() (sconce.data_feeds.base.DataFeed method)</a>
 
       <ul>
+        <li><a href="data_feeds.html#sconce.data_feeds.DataFeed.reset">(sconce.data_feeds.DataFeed method)</a>
+</li>
+        <li><a href="data_feeds.html#sconce.data_feeds.MultiClassImageFeed.reset">(sconce.data_feeds.MultiClassImageFeed method)</a>
+</li>
+        <li><a href="data_feeds.html#sconce.data_feeds.SingleClassImageFeed.reset">(sconce.data_feeds.SingleClassImageFeed method)</a>
+</li>
         <li><a href="data_generator.html#sconce.data_generators.DataGenerator.reset">(sconce.data_generators.DataGenerator method)</a>
 </li>
         <li><a href="data_generator.html#sconce.data_generators.MultiClassImageDataGenerator.reset">(sconce.data_generators.MultiClassImageDataGenerator method)</a>
 </li>
         <li><a href="data_generator.html#sconce.data_generators.SingleClassImageDataGenerator.reset">(sconce.data_generators.SingleClassImageDataGenerator method)</a>
+</li>
+        <li><a href="sconce.data_generators.html#sconce.data_generators.base.DataGenerator.reset">(sconce.data_generators.base.DataGenerator method)</a>
 </li>
       </ul></li>
   </ul></td>
@@ -792,6 +911,20 @@
 </li>
       </ul></li>
       <li><a href="schedules.html#sconce.schedules.Schedule">Schedule (class in sconce.schedules)</a>
+
+      <ul>
+        <li><a href="sconce.schedules.html#sconce.schedules.base.Schedule">(class in sconce.schedules.base)</a>
+</li>
+      </ul></li>
+      <li><a href="sconce.schedules.html#sconce.schedules.base.ScheduledMixin">ScheduledMixin (class in sconce.schedules.base)</a>
+</li>
+      <li><a href="sconce.data_feeds.html#module-sconce.data_feeds.base">sconce.data_feeds.base (module)</a>
+</li>
+      <li><a href="sconce.data_feeds.html#module-sconce.data_feeds.image">sconce.data_feeds.image (module)</a>
+</li>
+      <li><a href="sconce.data_feeds.html#module-sconce.data_feeds.multi_class_image">sconce.data_feeds.multi_class_image (module)</a>
+</li>
+      <li><a href="sconce.data_feeds.html#module-sconce.data_feeds.single_class_image">sconce.data_feeds.single_class_image (module)</a>
 </li>
       <li><a href="sconce.data_generators.html#module-sconce.data_generators.base">sconce.data_generators.base (module)</a>
 </li>
@@ -833,6 +966,8 @@
 </li>
       <li><a href="sconce.html#module-sconce.parameter_group">sconce.parameter_group (module)</a>
 </li>
+      <li><a href="sconce.schedules.html#module-sconce.schedules.base">sconce.schedules.base (module)</a>
+</li>
       <li><a href="sconce.schedules.html#module-sconce.schedules.cosine">sconce.schedules.cosine (module)</a>
 </li>
       <li><a href="sconce.schedules.html#module-sconce.schedules.exponential">sconce.schedules.exponential (module)</a>
@@ -851,18 +986,20 @@
 </li>
       <li><a href="sconce.html#module-sconce.transforms">sconce.transforms (module)</a>
 </li>
-      <li><a href="sconce.html#module-sconce.utils">sconce.utils (module)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="sconce.html#module-sconce.utils">sconce.utils (module)</a>
+</li>
       <li><a href="sconce.html#sconce.parameter_group.ParameterGroup.set_learning_rate">set_learning_rate() (sconce.parameter_group.ParameterGroup method)</a>
 </li>
       <li><a href="sconce.html#sconce.parameter_group.ParameterGroup.set_momentum">set_momentum() (sconce.parameter_group.ParameterGroup method)</a>
 </li>
-      <li><a href="sconce.schedules.html#sconce.schedules.cosine.Cosine.set_num_steps">set_num_steps() (sconce.schedules.cosine.Cosine method)</a>
+      <li><a href="sconce.schedules.html#sconce.schedules.base.Schedule.set_num_steps">set_num_steps() (sconce.schedules.base.Schedule method)</a>
 
       <ul>
         <li><a href="schedules.html#sconce.schedules.Schedule.set_num_steps">(sconce.schedules.Schedule method)</a>
+</li>
+        <li><a href="sconce.schedules.html#sconce.schedules.cosine.Cosine.set_num_steps">(sconce.schedules.cosine.Cosine method)</a>
 </li>
         <li><a href="sconce.schedules.html#sconce.schedules.exponential.Exponential.set_num_steps">(sconce.schedules.exponential.Exponential method)</a>
 </li>
@@ -880,7 +1017,11 @@
 </li>
       </ul></li>
       <li><a href="models.html#sconce.models.Model.set_schedule">set_schedule() (sconce.models.Model method)</a>
+
+      <ul>
+        <li><a href="sconce.schedules.html#sconce.schedules.base.ScheduledMixin.set_schedule">(sconce.schedules.base.ScheduledMixin method)</a>
 </li>
+      </ul></li>
       <li><a href="sconce.html#sconce.parameter_group.ParameterGroup.set_weight_decay">set_weight_decay() (sconce.parameter_group.ParameterGroup method)</a>
 </li>
       <li><a href="sconce.schedules.html#sconce.schedules.exponential.Exponential.should_continue">should_continue() (sconce.schedules.exponential.Exponential method)</a>
@@ -905,6 +1046,12 @@
         <li><a href="sconce.data_generators.html#sconce.data_generators.single_class_image_data_generator.SingleClassImageDataGenerator">(class in sconce.data_generators.single_class_image_data_generator)</a>
 </li>
       </ul></li>
+      <li><a href="data_feeds.html#sconce.data_feeds.SingleClassImageFeed">SingleClassImageFeed (class in sconce.data_feeds)</a>
+
+      <ul>
+        <li><a href="sconce.data_feeds.html#sconce.data_feeds.single_class_image.SingleClassImageFeed">(class in sconce.data_feeds.single_class_image)</a>
+</li>
+      </ul></li>
       <li><a href="models.html#sconce.models.Model.start_session">start_session() (sconce.models.Model method)</a>
 
       <ul>
@@ -921,6 +1068,8 @@
         <li><a href="sconce.monitors.html#sconce.monitors.ringbuffer_monitor.RingbufferMonitor.start_session">(sconce.monitors.ringbuffer_monitor.RingbufferMonitor method)</a>
 </li>
         <li><a href="sconce.monitors.html#sconce.monitors.stdout_monitor.StdoutMonitor.start_session">(sconce.monitors.stdout_monitor.StdoutMonitor method)</a>
+</li>
+        <li><a href="sconce.schedules.html#sconce.schedules.base.ScheduledMixin.start_session">(sconce.schedules.base.ScheduledMixin method)</a>
 </li>
       </ul></li>
       <li><a href="sconce.monitors.html#sconce.monitors.ringbuffer_monitor.RingbufferMonitor.std">std() (sconce.monitors.ringbuffer_monitor.RingbufferMonitor method)</a>
@@ -996,6 +1145,16 @@
 
 <h2 id="V">V</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="sconce.html#sconce.trainer.Trainer.validate">validate() (sconce.trainer.Trainer method)</a>, <a href="trainers.html#sconce.trainer.Trainer.validate">[1]</a>
+
+      <ul>
+        <li><a href="trainers.html#sconce.trainers.AutoencoderTrainer.validate">(sconce.trainers.AutoencoderTrainer method)</a>
+</li>
+        <li><a href="trainers.html#sconce.trainers.SingleClassImageClassifierTrainer.validate">(sconce.trainers.SingleClassImageClassifierTrainer method)</a>
+</li>
+      </ul></li>
+  </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="models.html#sconce.models.VariationalAutoencoder">VariationalAutoencoder (class in sconce.models)</a>
 </li>

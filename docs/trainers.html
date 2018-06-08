@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                master (1.1.0 )
+                master (1.2.0 )
               </div>
             
           
@@ -86,11 +86,18 @@
             
               <p class="caption"><span class="caption-text">Class Reference</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="data_generator.html">Data Generators</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="data_generator.html#datagenerator"><span class="hidden-section">DataGenerator</span></a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_generator.html">Data Generators (deprecated)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="data_generator.html#datagenerator-deprecated"><span class="hidden-section">DataGenerator (deprecated)</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="data_generator.html#imagedatagenerator-deprecated"><span class="hidden-section">ImageDataGenerator (deprecated)</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="data_generator.html#singleclassimagedatagenerator"><span class="hidden-section">SingleClassImageDataGenerator</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="data_generator.html#multiclassimagedatagenerator"><span class="hidden-section">MultiClassImageDataGenerator</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_generator.html#singleclassimagedatagenerator-deprecated"><span class="hidden-section">SingleClassImageDataGenerator (deprecated)</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_generator.html#multiclassimagedatagenerator-deprecated"><span class="hidden-section">MultiClassImageDataGenerator (deprecated)</span></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="data_feeds.html">Data Feeds</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="data_feeds.html#datafeed"><span class="hidden-section">DataFeed</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_feeds.html#imagefeed"><span class="hidden-section">ImageFeed</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_feeds.html#singleclassimagefeed"><span class="hidden-section">SingleClassImageFeed</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_feeds.html#multiclassimagefeed"><span class="hidden-section">MultiClassImageFeed</span></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="datasets.html">Datasests</a><ul>
@@ -211,7 +218,7 @@
 <h2><span class="hidden-section">Basic Trainer</span><a class="headerlink" href="#basic-trainer" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="sconce.trainer.Trainer">
-<em class="property">class </em><code class="descclassname">sconce.trainer.</code><code class="descname">Trainer</code><span class="sig-paren">(</span><em>*</em>, <em>model</em>, <em>test_data_generator</em>, <em>training_data_generator</em>, <em>monitor=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/trainer.html#Trainer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.trainer.Trainer" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">sconce.trainer.</code><code class="descname">Trainer</code><span class="sig-paren">(</span><em>*</em>, <em>model</em>, <em>validation_feed=None</em>, <em>training_feed=None</em>, <em>test_data_generator=None</em>, <em>training_data_generator=None</em>, <em>monitor=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/trainer.html#Trainer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.trainer.Trainer" title="Permalink to this definition">¶</a></dt>
 <dd><p>A Class that is used to train sconce models.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -221,10 +228,13 @@
 <tr class="field-odd field"><td>&#160;</td><td class="field-body"><ul class="first last simple">
 <li><strong>model</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code>) – the sconce model to be trained.  See <a class="reference internal" href="models.html#module-sconce.models" title="sconce.models"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sconce.models</span></code></a>
 for examples.</li>
-<li><strong>training_data_generator</strong> (<a class="reference internal" href="sconce.data_generators.html#sconce.data_generators.base.DataGenerator" title="sconce.data_generators.base.DataGenerator"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataGenerator</span></code></a>) – yields training <cite>inputs</cite> and
+<li><strong>training_data_generator</strong> (<a class="reference internal" href="sconce.data_generators.html#sconce.data_generators.base.DataGenerator" title="sconce.data_generators.base.DataGenerator"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataGenerator</span></code></a>) – DEPRECATED, use
+training_feed argument instead.</li>
+<li><strong>training_feed</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">DataFeed</span></code>) – used during training to provide <cite>inputs</cite> and
 <cite>targets</cite>.</li>
-<li><strong>test_data_generator</strong> (<a class="reference internal" href="sconce.data_generators.html#sconce.data_generators.base.DataGenerator" title="sconce.data_generators.base.DataGenerator"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataGenerator</span></code></a>) – yields test <cite>inputs</cite> and
-<cite>targets</cite>.  These are never used for back-propagation.</li>
+<li><strong>test_data_generator</strong> (<a class="reference internal" href="sconce.data_generators.html#sconce.data_generators.base.DataGenerator" title="sconce.data_generators.base.DataGenerator"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataGenerator</span></code></a>) – DEPRECATED, use
+validation_feed argument instead.</li>
+<li><strong>validation_feed</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">DataFeed</span></code>) – <cite>targets</cite>.  These are never used for back-propagation.</li>
 <li><strong>monitor</strong> (<a class="reference internal" href="sconce.monitors.html#sconce.monitors.base.Monitor" title="sconce.monitors.base.Monitor"><code class="xref py py-class docutils literal notranslate"><span class="pre">Monitor</span></code></a>, optional) – the sconce monitor that records data during
 training.  This data can be sent to external systems during training or kept until training completes
 allowing you to analyze training or make plots. If <code class="docutils literal notranslate"><span class="pre">None</span></code>, a composite monitor consisting of a
@@ -358,7 +368,7 @@ this factor from it’s minimum value, the survey will stop.</li>
 <dl class="method">
 <dt id="sconce.trainer.Trainer.test">
 <code class="descname">test</code><span class="sig-paren">(</span><em>*</em>, <em>monitor=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/trainer.html#Trainer.test"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.trainer.Trainer.test" title="Permalink to this definition">¶</a></dt>
-<dd><p>Run all samples of self.test_data_generator through the model in test (inference) mode.</p>
+<dd><p>Run all samples of self.validation_feed through the model in test (inference) mode.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -374,11 +384,15 @@ this testing.  If <code class="docutils literal notranslate"><span class="pre">N
 </tr>
 </tbody>
 </table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This method has been deprecated since 1.2.0.  Please use the <code class="docutils literal notranslate"><span class="pre">validate()</span></code> method instead.</p>
+</div>
 </dd></dl>
 
 <dl class="method">
 <dt id="sconce.trainer.Trainer.train">
-<code class="descname">train</code><span class="sig-paren">(</span><em>*</em>, <em>num_epochs</em>, <em>monitor=None</em>, <em>test_to_train_ratio=None</em>, <em>batch_multiplier=1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/trainer.html#Trainer.train"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.trainer.Trainer.train" title="Permalink to this definition">¶</a></dt>
+<code class="descname">train</code><span class="sig-paren">(</span><em>*</em>, <em>num_epochs</em>, <em>monitor=None</em>, <em>test_to_train_ratio=None</em>, <em>validation_to_train_ratio=None</em>, <em>batch_multiplier=1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/trainer.html#Trainer.train"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.trainer.Trainer.train" title="Permalink to this definition">¶</a></dt>
 <dd><p>Train the model for a given number of epochs.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -409,6 +423,27 @@ the memory usage would be for a batch size of 100.</li>
 </table>
 </dd></dl>
 
+<dl class="method">
+<dt id="sconce.trainer.Trainer.validate">
+<code class="descname">validate</code><span class="sig-paren">(</span><em>*</em>, <em>monitor=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/trainer.html#Trainer.validate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.trainer.Trainer.validate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run all samples of self.validation_feed through the model in test (inference) mode.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>monitor</strong> (<a class="reference internal" href="sconce.monitors.html#sconce.monitors.base.Monitor" title="sconce.monitors.base.Monitor"><code class="xref py py-class docutils literal notranslate"><span class="pre">Monitor</span></code></a>, optional) – the sconce monitor that records data during
+this testing.  If <code class="docutils literal notranslate"><span class="pre">None</span></code>, a composite monitor consisting of a
+<a class="reference internal" href="sconce.monitors.html#sconce.monitors.stdout_monitor.StdoutMonitor" title="sconce.monitors.stdout_monitor.StdoutMonitor"><code class="xref py py-class docutils literal notranslate"><span class="pre">StdoutMonitor</span></code></a> and a
+<a class="reference internal" href="sconce.monitors.html#sconce.monitors.dataframe_monitor.DataframeMonitor" title="sconce.monitors.dataframe_monitor.DataframeMonitor"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataframeMonitor</span></code></a> will be created for you and used.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">the monitor used during this testing.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">monitor (<a class="reference internal" href="sconce.monitors.html#sconce.monitors.base.Monitor" title="sconce.monitors.base.Monitor"><code class="xref py py-class docutils literal notranslate"><span class="pre">Monitor</span></code></a>)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 </dd></dl>
 
 </div>
@@ -416,7 +451,7 @@ the memory usage would be for a batch size of 100.</li>
 <h2><span class="hidden-section">AutoencoderTrainer</span><a class="headerlink" href="#autoencodertrainer" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="sconce.trainers.AutoencoderTrainer">
-<em class="property">class </em><code class="descclassname">sconce.trainers.</code><code class="descname">AutoencoderTrainer</code><span class="sig-paren">(</span><em>*</em>, <em>model</em>, <em>test_data_generator</em>, <em>training_data_generator</em>, <em>monitor=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/trainers/autoencoder_trainer.html#AutoencoderTrainer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.trainers.AutoencoderTrainer" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">sconce.trainers.</code><code class="descname">AutoencoderTrainer</code><span class="sig-paren">(</span><em>*</em>, <em>model</em>, <em>validation_feed=None</em>, <em>training_feed=None</em>, <em>test_data_generator=None</em>, <em>training_data_generator=None</em>, <em>monitor=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/trainers/autoencoder_trainer.html#AutoencoderTrainer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.trainers.AutoencoderTrainer" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#sconce.trainer.Trainer" title="sconce.trainer.Trainer"><code class="xref py py-class docutils literal notranslate"><span class="pre">sconce.trainer.Trainer</span></code></a>, <a class="reference internal" href="sconce.trainers.html#sconce.trainers.autoencoder_trainer.AutoencoderMixin" title="sconce.trainers.autoencoder_trainer.AutoencoderMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">sconce.trainers.autoencoder_trainer.AutoencoderMixin</span></code></a></p>
 <dl class="method">
 <dt id="sconce.trainers.AutoencoderTrainer.checkpoint">
@@ -541,7 +576,7 @@ this factor from it’s minimum value, the survey will stop.</li>
 <dl class="method">
 <dt id="sconce.trainers.AutoencoderTrainer.test">
 <code class="descname">test</code><span class="sig-paren">(</span><em>*</em>, <em>monitor=None</em><span class="sig-paren">)</span><a class="headerlink" href="#sconce.trainers.AutoencoderTrainer.test" title="Permalink to this definition">¶</a></dt>
-<dd><p>Run all samples of self.test_data_generator through the model in test (inference) mode.</p>
+<dd><p>Run all samples of self.validation_feed through the model in test (inference) mode.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -557,11 +592,15 @@ this testing.  If <code class="docutils literal notranslate"><span class="pre">N
 </tr>
 </tbody>
 </table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This method has been deprecated since 1.2.0.  Please use the <code class="docutils literal notranslate"><span class="pre">validate()</span></code> method instead.</p>
+</div>
 </dd></dl>
 
 <dl class="method">
 <dt id="sconce.trainers.AutoencoderTrainer.train">
-<code class="descname">train</code><span class="sig-paren">(</span><em>*</em>, <em>num_epochs</em>, <em>monitor=None</em>, <em>test_to_train_ratio=None</em>, <em>batch_multiplier=1</em><span class="sig-paren">)</span><a class="headerlink" href="#sconce.trainers.AutoencoderTrainer.train" title="Permalink to this definition">¶</a></dt>
+<code class="descname">train</code><span class="sig-paren">(</span><em>*</em>, <em>num_epochs</em>, <em>monitor=None</em>, <em>test_to_train_ratio=None</em>, <em>validation_to_train_ratio=None</em>, <em>batch_multiplier=1</em><span class="sig-paren">)</span><a class="headerlink" href="#sconce.trainers.AutoencoderTrainer.train" title="Permalink to this definition">¶</a></dt>
 <dd><p>Train the model for a given number of epochs.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -592,6 +631,27 @@ the memory usage would be for a batch size of 100.</li>
 </table>
 </dd></dl>
 
+<dl class="method">
+<dt id="sconce.trainers.AutoencoderTrainer.validate">
+<code class="descname">validate</code><span class="sig-paren">(</span><em>*</em>, <em>monitor=None</em><span class="sig-paren">)</span><a class="headerlink" href="#sconce.trainers.AutoencoderTrainer.validate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run all samples of self.validation_feed through the model in test (inference) mode.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>monitor</strong> (<a class="reference internal" href="sconce.monitors.html#sconce.monitors.base.Monitor" title="sconce.monitors.base.Monitor"><code class="xref py py-class docutils literal notranslate"><span class="pre">Monitor</span></code></a>, optional) – the sconce monitor that records data during
+this testing.  If <code class="docutils literal notranslate"><span class="pre">None</span></code>, a composite monitor consisting of a
+<a class="reference internal" href="sconce.monitors.html#sconce.monitors.stdout_monitor.StdoutMonitor" title="sconce.monitors.stdout_monitor.StdoutMonitor"><code class="xref py py-class docutils literal notranslate"><span class="pre">StdoutMonitor</span></code></a> and a
+<a class="reference internal" href="sconce.monitors.html#sconce.monitors.dataframe_monitor.DataframeMonitor" title="sconce.monitors.dataframe_monitor.DataframeMonitor"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataframeMonitor</span></code></a> will be created for you and used.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">the monitor used during this testing.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">monitor (<a class="reference internal" href="sconce.monitors.html#sconce.monitors.base.Monitor" title="sconce.monitors.base.Monitor"><code class="xref py py-class docutils literal notranslate"><span class="pre">Monitor</span></code></a>)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 </dd></dl>
 
 </div>
@@ -599,7 +659,7 @@ the memory usage would be for a batch size of 100.</li>
 <h2><span class="hidden-section">SingleClassImageClassifierTrainer</span><a class="headerlink" href="#singleclassimageclassifiertrainer" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="sconce.trainers.SingleClassImageClassifierTrainer">
-<em class="property">class </em><code class="descclassname">sconce.trainers.</code><code class="descname">SingleClassImageClassifierTrainer</code><span class="sig-paren">(</span><em>*</em>, <em>model</em>, <em>test_data_generator</em>, <em>training_data_generator</em>, <em>monitor=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/trainers/single_class_image_classifier_trainer.html#SingleClassImageClassifierTrainer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.trainers.SingleClassImageClassifierTrainer" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">sconce.trainers.</code><code class="descname">SingleClassImageClassifierTrainer</code><span class="sig-paren">(</span><em>*</em>, <em>model</em>, <em>validation_feed=None</em>, <em>training_feed=None</em>, <em>test_data_generator=None</em>, <em>training_data_generator=None</em>, <em>monitor=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/trainers/single_class_image_classifier_trainer.html#SingleClassImageClassifierTrainer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.trainers.SingleClassImageClassifierTrainer" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#sconce.trainer.Trainer" title="sconce.trainer.Trainer"><code class="xref py py-class docutils literal notranslate"><span class="pre">sconce.trainer.Trainer</span></code></a>, <a class="reference internal" href="sconce.trainers.html#sconce.trainers.single_class_image_classifier_trainer.SingleClassImageClassifierMixin" title="sconce.trainers.single_class_image_classifier_trainer.SingleClassImageClassifierMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">sconce.trainers.single_class_image_classifier_trainer.SingleClassImageClassifierMixin</span></code></a></p>
 <p>A trainer with some methods that are handy when you’re training an image classifier model.  Specifically a model
 that classifies images into a single class per image.</p>
@@ -665,7 +725,7 @@ multiplied by <code class="docutils literal notranslate"><span class="pre">cycle
 
 <dl class="method">
 <dt id="sconce.trainers.SingleClassImageClassifierTrainer.plot_samples">
-<code class="descname">plot_samples</code><span class="sig-paren">(</span><em>predicted_class</em>, <em>true_class=None</em>, <em>data_generator=None</em>, <em>sort_by='rising predicted class score'</em>, <em>num_samples=7</em>, <em>num_cols=7</em>, <em>figure_width=15</em>, <em>image_height=3</em>, <em>cache_results=True</em><span class="sig-paren">)</span><a class="headerlink" href="#sconce.trainers.SingleClassImageClassifierTrainer.plot_samples" title="Permalink to this definition">¶</a></dt>
+<code class="descname">plot_samples</code><span class="sig-paren">(</span><em>predicted_class</em>, <em>true_class=None</em>, <em>data_generator=None</em>, <em>feed=None</em>, <em>sort_by='rising predicted class score'</em>, <em>num_samples=7</em>, <em>num_cols=7</em>, <em>figure_width=15</em>, <em>image_height=3</em>, <em>cache_results=True</em><span class="sig-paren">)</span><a class="headerlink" href="#sconce.trainers.SingleClassImageClassifierTrainer.plot_samples" title="Permalink to this definition">¶</a></dt>
 <dd><p>Plot samples of the dataset where the given &lt;predicted_class&gt; was predicted by the model.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -674,8 +734,9 @@ multiplied by <code class="docutils literal notranslate"><span class="pre">cycle
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>predicted_class</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a><em> or </em><em>string</em>) – the class string or the index of the class that was predicted by the model.</li>
 <li><strong>true_class</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a><em> or </em><em>string</em>) – the class string or the index of the class that the image actually belongs to.</li>
-<li><strong>data_generator</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">SingleClassImageDataGenerator</span></code>) – the data generator
-to use to find the samples.</li>
+<li><strong>data_generator</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">SingleClassImageDataGenerator</span></code>) – DEPRECATED,
+use feed argument instead.</li>
+<li><strong>feed</strong> (<a class="reference internal" href="sconce.data_feeds.html#sconce.data_feeds.base.DataFeed" title="sconce.data_feeds.base.DataFeed"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFeed</span></code></a>) – the DataFeed to use to find the samples.</li>
 <li><strong>sort_by</strong> (<em>string</em>) – one of the sort_by strings, see note below.</li>
 <li><strong>num_samples</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) – the number of sample images to plot.</li>
 <li><strong>num_cols</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) – the number of columns to plot, one image per column.</li>
@@ -771,7 +832,7 @@ this factor from it’s minimum value, the survey will stop.</li>
 <dl class="method">
 <dt id="sconce.trainers.SingleClassImageClassifierTrainer.test">
 <code class="descname">test</code><span class="sig-paren">(</span><em>*</em>, <em>monitor=None</em><span class="sig-paren">)</span><a class="headerlink" href="#sconce.trainers.SingleClassImageClassifierTrainer.test" title="Permalink to this definition">¶</a></dt>
-<dd><p>Run all samples of self.test_data_generator through the model in test (inference) mode.</p>
+<dd><p>Run all samples of self.validation_feed through the model in test (inference) mode.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -787,11 +848,15 @@ this testing.  If <code class="docutils literal notranslate"><span class="pre">N
 </tr>
 </tbody>
 </table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This method has been deprecated since 1.2.0.  Please use the <code class="docutils literal notranslate"><span class="pre">validate()</span></code> method instead.</p>
+</div>
 </dd></dl>
 
 <dl class="method">
 <dt id="sconce.trainers.SingleClassImageClassifierTrainer.train">
-<code class="descname">train</code><span class="sig-paren">(</span><em>*</em>, <em>num_epochs</em>, <em>monitor=None</em>, <em>test_to_train_ratio=None</em>, <em>batch_multiplier=1</em><span class="sig-paren">)</span><a class="headerlink" href="#sconce.trainers.SingleClassImageClassifierTrainer.train" title="Permalink to this definition">¶</a></dt>
+<code class="descname">train</code><span class="sig-paren">(</span><em>*</em>, <em>num_epochs</em>, <em>monitor=None</em>, <em>test_to_train_ratio=None</em>, <em>validation_to_train_ratio=None</em>, <em>batch_multiplier=1</em><span class="sig-paren">)</span><a class="headerlink" href="#sconce.trainers.SingleClassImageClassifierTrainer.train" title="Permalink to this definition">¶</a></dt>
 <dd><p>Train the model for a given number of epochs.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -817,6 +882,27 @@ the memory usage would be for a batch size of 100.</li>
 </tr>
 <tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">monitor (<a class="reference internal" href="sconce.monitors.html#sconce.monitors.base.Monitor" title="sconce.monitors.base.Monitor"><code class="xref py py-class docutils literal notranslate"><span class="pre">Monitor</span></code></a>)</p>
 </td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="sconce.trainers.SingleClassImageClassifierTrainer.validate">
+<code class="descname">validate</code><span class="sig-paren">(</span><em>*</em>, <em>monitor=None</em><span class="sig-paren">)</span><a class="headerlink" href="#sconce.trainers.SingleClassImageClassifierTrainer.validate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run all samples of self.validation_feed through the model in test (inference) mode.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>monitor</strong> (<a class="reference internal" href="sconce.monitors.html#sconce.monitors.base.Monitor" title="sconce.monitors.base.Monitor"><code class="xref py py-class docutils literal notranslate"><span class="pre">Monitor</span></code></a>, optional) – the sconce monitor that records data during
+this testing.  If <code class="docutils literal notranslate"><span class="pre">None</span></code>, a composite monitor consisting of a
+<a class="reference internal" href="sconce.monitors.html#sconce.monitors.stdout_monitor.StdoutMonitor" title="sconce.monitors.stdout_monitor.StdoutMonitor"><code class="xref py py-class docutils literal notranslate"><span class="pre">StdoutMonitor</span></code></a> and a
+<a class="reference internal" href="sconce.monitors.html#sconce.monitors.dataframe_monitor.DataframeMonitor" title="sconce.monitors.dataframe_monitor.DataframeMonitor"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataframeMonitor</span></code></a> will be created for you and used.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">the monitor used during this testing.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">monitor (<a class="reference internal" href="sconce.monitors.html#sconce.monitors.base.Monitor" title="sconce.monitors.base.Monitor"><code class="xref py py-class docutils literal notranslate"><span class="pre">Monitor</span></code></a>)</td>
 </tr>
 </tbody>
 </table>

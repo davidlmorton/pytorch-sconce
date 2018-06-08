@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                master (1.1.0 )
+                master (1.2.0 )
               </div>
             
           
@@ -85,11 +85,18 @@
             
               <p class="caption"><span class="caption-text">Class Reference</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../data_generator.html">Data Generators</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../data_generator.html#datagenerator"><span class="hidden-section">DataGenerator</span></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../data_generator.html">Data Generators (deprecated)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../data_generator.html#datagenerator-deprecated"><span class="hidden-section">DataGenerator (deprecated)</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../data_generator.html#imagedatagenerator-deprecated"><span class="hidden-section">ImageDataGenerator (deprecated)</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../data_generator.html#singleclassimagedatagenerator"><span class="hidden-section">SingleClassImageDataGenerator</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../data_generator.html#multiclassimagedatagenerator"><span class="hidden-section">MultiClassImageDataGenerator</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../data_generator.html#singleclassimagedatagenerator-deprecated"><span class="hidden-section">SingleClassImageDataGenerator (deprecated)</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../data_generator.html#multiclassimagedatagenerator-deprecated"><span class="hidden-section">MultiClassImageDataGenerator (deprecated)</span></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../data_feeds.html">Data Feeds</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../data_feeds.html#datafeed"><span class="hidden-section">DataFeed</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../data_feeds.html#imagefeed"><span class="hidden-section">ImageFeed</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../data_feeds.html#singleclassimagefeed"><span class="hidden-section">SingleClassImageFeed</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../data_feeds.html#multiclassimagefeed"><span class="hidden-section">MultiClassImageFeed</span></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../datasets.html">Datasests</a><ul>
@@ -257,7 +264,7 @@
 
 <span class="sd">        Arguments:</span>
 <span class="sd">            data (dict): the output of the training/evaluation step.  The keys</span>
-<span class="sd">                may include, but are not limited to: {&#39;training_loss&#39;, &#39;test_loss&#39;,</span>
+<span class="sd">                may include, but are not limited to: {&#39;training_loss&#39;, &#39;validation_loss&#39;,</span>
 <span class="sd">                &#39;learning_rate&#39;}.</span>
 <span class="sd">            step (float): (0.0, inf) the step that was just completed.</span>
 <span class="sd">                Fractional steps are possible (see batch_multiplier option on</span>
@@ -276,7 +283,7 @@
 <span class="sd">    method and have it use all of the composed monitors.  Composed monitors can be accessed using their name like so:</span>
 
 <span class="sd">        &gt;&gt;&gt; from sconce import monitors</span>
-<span class="sd">        &gt;&gt;&gt; metric_names = {&#39;training_loss&#39;: &#39;loss&#39;, &#39;test_loss&#39;: &#39;val_loss&#39;}</span>
+<span class="sd">        &gt;&gt;&gt; metric_names = {&#39;training_loss&#39;: &#39;loss&#39;, &#39;validation_loss&#39;: &#39;val_loss&#39;}</span>
 <span class="sd">        &gt;&gt;&gt; stdout_monitor = monitors.StdoutMonitor(metric_names=metric_names)</span>
 <span class="sd">        &gt;&gt;&gt; dataframe_monitor = monitors.DataframeMonitor()</span>
 <span class="sd">        &gt;&gt;&gt; monitor = dataframe_monitor + stdout_monitor</span>

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>sconce.data_generators.single_class_image_data_generator &mdash; Pytorch-Sconce master documentation</title>
+  <title>sconce.data_feeds.single_class_image &mdash; Pytorch-Sconce master documentation</title>
   
 
   
@@ -194,7 +194,7 @@
         
           <li><a href="../../index.html">Module code</a> &raquo;</li>
         
-      <li>sconce.data_generators.single_class_image_data_generator</li>
+      <li>sconce.data_feeds.single_class_image</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -209,8 +209,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <h1>Source code for sconce.data_generators.single_class_image_data_generator</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">sconce.data_generators</span> <span class="k">import</span> <span class="n">DataGenerator</span><span class="p">,</span> <span class="n">ImageMixin</span>
+  <h1>Source code for sconce.data_feeds.single_class_image</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">sconce.data_feeds</span> <span class="k">import</span> <span class="n">ImageFeed</span>
 <span class="kn">from</span> <span class="nn">sconce.datasets</span> <span class="k">import</span> <span class="n">Subset</span>
 <span class="kn">from</span> <span class="nn">torchvision</span> <span class="k">import</span> <span class="n">datasets</span><span class="p">,</span> <span class="n">transforms</span>
 
@@ -220,11 +220,9 @@
 <span class="kn">import</span> <span class="nn">tempfile</span>
 
 
-<div class="viewcode-block" id="SingleClassImageDataGenerator"><a class="viewcode-back" href="../../../sconce.data_generators.html#sconce.data_generators.SingleClassImageDataGenerator">[docs]</a><span class="k">class</span> <span class="nc">SingleClassImageDataGenerator</span><span class="p">(</span><span class="n">DataGenerator</span><span class="p">,</span> <span class="n">ImageMixin</span><span class="p">):</span>
+<div class="viewcode-block" id="SingleClassImageFeed"><a class="viewcode-back" href="../../../sconce.data_feeds.html#sconce.data_feeds.SingleClassImageFeed">[docs]</a><span class="k">class</span> <span class="nc">SingleClassImageFeed</span><span class="p">(</span><span class="n">ImageFeed</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    An ImageDataGenerator class for use when each image belongs to exactly one class.</span>
-
-<span class="sd">    New in 0.10.0</span>
+<span class="sd">    An ImageFeed class for use when each image belongs to exactly one class.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">_get_class_df</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">dataset</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset</span>
@@ -241,7 +239,7 @@
             <span class="n">rows</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">rows</span><span class="p">)</span>
 
-<div class="viewcode-block" id="SingleClassImageDataGenerator.from_torchvision"><a class="viewcode-back" href="../../../sconce.data_generators.html#sconce.data_generators.SingleClassImageDataGenerator.from_torchvision">[docs]</a>    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="SingleClassImageFeed.from_torchvision"><a class="viewcode-back" href="../../../sconce.data_feeds.html#sconce.data_feeds.SingleClassImageFeed.from_torchvision">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">from_torchvision</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span>
             <span class="n">batch_size</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span>
             <span class="n">data_location</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -253,7 +251,7 @@
             <span class="n">train</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
             <span class="n">transform</span><span class="o">=</span><span class="n">transforms</span><span class="o">.</span><span class="n">ToTensor</span><span class="p">()):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Create a DataGenerator from a torchvision dataset class.</span>
+<span class="sd">        Create a Datafeed from a torchvision dataset class.</span>
 
 <span class="sd">        Arguments:</span>
 <span class="sd">            batch_size (int): how large the yielded `inputs` and `targets`</span>
@@ -300,10 +298,10 @@
                 <span class="n">pin_memory</span><span class="o">=</span><span class="n">pin_memory</span><span class="p">,</span>
                 <span class="n">shuffle</span><span class="o">=</span><span class="n">shuffle</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="SingleClassImageDataGenerator.from_image_folder"><a class="viewcode-back" href="../../../sconce.data_generators.html#sconce.data_generators.SingleClassImageDataGenerator.from_image_folder">[docs]</a>    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="SingleClassImageFeed.from_image_folder"><a class="viewcode-back" href="../../../sconce.data_feeds.html#sconce.data_feeds.SingleClassImageFeed.from_image_folder">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">from_image_folder</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">root</span><span class="p">,</span> <span class="n">loader_kwargs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">dataset_kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Create a DataGenerator from a folder of images.  See :py:class:`torchvision.datasets.ImageFolder`.</span>
+<span class="sd">        Create a Datafeed from a folder of images.  See :py:class:`torchvision.datasets.ImageFolder`.</span>
 
 <span class="sd">        Arguments:</span>
 <span class="sd">            root (path): the root directory path.</span>

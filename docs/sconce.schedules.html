@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                master (1.1.0 )
+                master (1.2.0 )
               </div>
             
           
@@ -85,11 +85,18 @@
             
               <p class="caption"><span class="caption-text">Class Reference</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="data_generator.html">Data Generators</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="data_generator.html#datagenerator"><span class="hidden-section">DataGenerator</span></a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_generator.html">Data Generators (deprecated)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="data_generator.html#datagenerator-deprecated"><span class="hidden-section">DataGenerator (deprecated)</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="data_generator.html#imagedatagenerator-deprecated"><span class="hidden-section">ImageDataGenerator (deprecated)</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="data_generator.html#singleclassimagedatagenerator"><span class="hidden-section">SingleClassImageDataGenerator</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="data_generator.html#multiclassimagedatagenerator"><span class="hidden-section">MultiClassImageDataGenerator</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_generator.html#singleclassimagedatagenerator-deprecated"><span class="hidden-section">SingleClassImageDataGenerator (deprecated)</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_generator.html#multiclassimagedatagenerator-deprecated"><span class="hidden-section">MultiClassImageDataGenerator (deprecated)</span></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="data_feeds.html">Data Feeds</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="data_feeds.html#datafeed"><span class="hidden-section">DataFeed</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_feeds.html#imagefeed"><span class="hidden-section">ImageFeed</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_feeds.html#singleclassimagefeed"><span class="hidden-section">SingleClassImageFeed</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_feeds.html#multiclassimagefeed"><span class="hidden-section">MultiClassImageFeed</span></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="datasets.html">Datasests</a><ul>
@@ -206,15 +213,79 @@
             
   <div class="section" id="sconce-schedules-package">
 <h1>sconce.schedules package<a class="headerlink" href="#sconce-schedules-package" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="sconce-schedules-base-module">
-<h2>sconce.schedules.base module<a class="headerlink" href="#sconce-schedules-base-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-sconce.schedules.base">
+<span id="sconce-schedules-base-module"></span><h2>sconce.schedules.base module<a class="headerlink" href="#module-sconce.schedules.base" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="sconce.schedules.base.Schedule">
+<em class="property">class </em><code class="descclassname">sconce.schedules.base.</code><code class="descname">Schedule</code><a class="reference internal" href="_modules/sconce/schedules/base.html#Schedule"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.schedules.base.Schedule" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/abc.html#abc.ABC" title="(in Python v3.6)"><code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></a></p>
+<p>The base class for all schedules in Sconce.  It is only an interface, describing what must be implemented
+if you want to define a schedule.</p>
+<dl class="method">
+<dt id="sconce.schedules.base.Schedule.get_value">
+<code class="descname">get_value</code><span class="sig-paren">(</span><em>step</em>, <em>current_state</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/schedules/base.html#Schedule.get_value"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.schedules.base.Schedule.get_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the value one should set, based on this schedule.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>step</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.6)"><em>float</em></a>) – (0.0, inf) the training step that is about to be completed.
+Fractional steps are possible (see batch_multiplier option on
+<a class="reference internal" href="trainers.html#sconce.trainer.Trainer.train" title="sconce.trainer.Trainer.train"><code class="xref py py-meth docutils literal notranslate"><span class="pre">sconce.trainer.Trainer.train()</span></code></a>).</li>
+<li><strong>current_state</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.6)"><em>dict</em></a>) – a dictionary describing the current training state.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="sconce.schedules.base.Schedule.set_num_steps">
+<code class="descname">set_num_steps</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/schedules/base.html#Schedule.set_num_steps"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.schedules.base.Schedule.set_num_steps" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>This is the canonical method to set num_steps, taking care of setting any other state needed</dt>
+<dd>by the schedule as well.</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="sconce.schedules.base.ScheduledMixin">
+<em class="property">class </em><code class="descclassname">sconce.schedules.base.</code><code class="descname">ScheduledMixin</code><a class="reference internal" href="_modules/sconce/schedules/base.html#ScheduledMixin"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.schedules.base.ScheduledMixin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.6)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>This mixin defines the interface for scheduled objects in Sconce.</p>
+<dl class="method">
+<dt id="sconce.schedules.base.ScheduledMixin.prepare_for_step">
+<code class="descname">prepare_for_step</code><span class="sig-paren">(</span><em>step</em>, <em>current_state</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/schedules/base.html#ScheduledMixin.prepare_for_step"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.schedules.base.ScheduledMixin.prepare_for_step" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sconce.schedules.base.ScheduledMixin.remove_schedule">
+<code class="descname">remove_schedule</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/schedules/base.html#ScheduledMixin.remove_schedule"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.schedules.base.ScheduledMixin.remove_schedule" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sconce.schedules.base.ScheduledMixin.set_schedule">
+<code class="descname">set_schedule</code><span class="sig-paren">(</span><em>name</em>, <em>schedule</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/schedules/base.html#ScheduledMixin.set_schedule"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.schedules.base.ScheduledMixin.set_schedule" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sconce.schedules.base.ScheduledMixin.start_session">
+<code class="descname">start_session</code><span class="sig-paren">(</span><em>num_steps</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/schedules/base.html#ScheduledMixin.start_session"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.schedules.base.ScheduledMixin.start_session" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 </div>
 <div class="section" id="module-sconce.schedules.cosine">
 <span id="sconce-schedules-cosine-module"></span><h2>sconce.schedules.cosine module<a class="headerlink" href="#module-sconce.schedules.cosine" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="sconce.schedules.cosine.Cosine">
 <em class="property">class </em><code class="descclassname">sconce.schedules.cosine.</code><code class="descname">Cosine</code><span class="sig-paren">(</span><em>initial_value</em>, <em>final_value</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/schedules/cosine.html#Cosine"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.schedules.cosine.Cosine" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">sconce.schedules.base.Schedule</span></code></p>
+<dd><p>Bases: <a class="reference internal" href="#sconce.schedules.base.Schedule" title="sconce.schedules.base.Schedule"><code class="xref py py-class docutils literal notranslate"><span class="pre">sconce.schedules.base.Schedule</span></code></a></p>
 <p>A Schedule where the hyperparameter follows a scaled and shifted cosine function
 from [0, pi].  It will begin at &lt;initial_value&gt; and end at &lt;final_value&gt;, after &lt;num_steps&gt;.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -242,7 +313,7 @@ from [0, pi].  It will begin at &lt;initial_value&gt; and end at &lt;final_value
 <dl class="class">
 <dt id="sconce.schedules.exponential.Exponential">
 <em class="property">class </em><code class="descclassname">sconce.schedules.exponential.</code><code class="descname">Exponential</code><span class="sig-paren">(</span><em>initial_value</em>, <em>final_value</em>, <em>stop_factor=None</em>, <em>loss_key='training_loss'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/schedules/exponential.html#Exponential"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.schedules.exponential.Exponential" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">sconce.schedules.base.Schedule</span></code></p>
+<dd><p>Bases: <a class="reference internal" href="#sconce.schedules.base.Schedule" title="sconce.schedules.base.Schedule"><code class="xref py py-class docutils literal notranslate"><span class="pre">sconce.schedules.base.Schedule</span></code></a></p>
 <p>A Schedule where the value, adjusts exponentially from &lt;initial_value&gt;
 to &lt;final_value&gt;, over &lt;num_steps&gt;.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -278,7 +349,7 @@ to &lt;final_value&gt;, over &lt;num_steps&gt;.</p>
 <dl class="class">
 <dt id="sconce.schedules.linear.Linear">
 <em class="property">class </em><code class="descclassname">sconce.schedules.linear.</code><code class="descname">Linear</code><span class="sig-paren">(</span><em>initial_value</em>, <em>final_value</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/schedules/linear.html#Linear"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.schedules.linear.Linear" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">sconce.schedules.base.Schedule</span></code></p>
+<dd><p>Bases: <a class="reference internal" href="#sconce.schedules.base.Schedule" title="sconce.schedules.base.Schedule"><code class="xref py py-class docutils literal notranslate"><span class="pre">sconce.schedules.base.Schedule</span></code></a></p>
 <p>A Schedule where the value begins with value &lt;initial_value&gt;, then changes linearly to &lt;final_value&gt;.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -305,7 +376,7 @@ to &lt;final_value&gt;, over &lt;num_steps&gt;.</p>
 <dl class="class">
 <dt id="sconce.schedules.step.Step">
 <em class="property">class </em><code class="descclassname">sconce.schedules.step.</code><code class="descname">Step</code><span class="sig-paren">(</span><em>initial_value</em>, <em>final_value</em>, <em>num_changes=1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/schedules/step.html#Step"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.schedules.step.Step" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">sconce.schedules.base.Schedule</span></code></p>
+<dd><p>Bases: <a class="reference internal" href="#sconce.schedules.base.Schedule" title="sconce.schedules.base.Schedule"><code class="xref py py-class docutils literal notranslate"><span class="pre">sconce.schedules.base.Schedule</span></code></a></p>
 <p>A Schedule where the value starts at &lt;initial_value&gt; and changes &lt;num_changes&gt; times over the
 course of &lt;num_steps&gt; to a final value of &lt;final_value&gt;.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -324,7 +395,7 @@ course of &lt;num_steps&gt; to a final value of &lt;final_value&gt;.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">The parameter &lt;num_steps&gt; is set during training based on the size of the batch_size and number of samples in
-the training_data_generator, and the batch_multiplier value.</p>
+the training_feed, and the batch_multiplier value.</p>
 </div>
 <dl class="method">
 <dt id="sconce.schedules.step.Step.set_num_steps">
@@ -339,7 +410,7 @@ the training_data_generator, and the batch_multiplier value.</p>
 <dl class="class">
 <dt id="sconce.schedules.triangle.Triangle">
 <em class="property">class </em><code class="descclassname">sconce.schedules.triangle.</code><code class="descname">Triangle</code><span class="sig-paren">(</span><em>initial_value</em>, <em>peak_value</em>, <em>peak_fraction=0.5</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/schedules/triangle.html#Triangle"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.schedules.triangle.Triangle" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">sconce.schedules.base.Schedule</span></code></p>
+<dd><p>Bases: <a class="reference internal" href="#sconce.schedules.base.Schedule" title="sconce.schedules.base.Schedule"><code class="xref py py-class docutils literal notranslate"><span class="pre">sconce.schedules.base.Schedule</span></code></a></p>
 <p>A Schedule where the value begins with value &lt;initial_value&gt;, then changes linearly to &lt;peak_value&gt;,
 and then back to &lt;initial_value&gt; by the end of &lt;num_steps&gt;.  Peak value will occur after &lt;peak_steps&gt;.</p>
 <table class="docutils field-list" frame="void" rules="none">

@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                master (1.1.0 )
+                master (1.2.0 )
               </div>
             
           
@@ -87,11 +87,18 @@
             
               <p class="caption"><span class="caption-text">Class Reference</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="data_generator.html">Data Generators</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="data_generator.html#datagenerator"><span class="hidden-section">DataGenerator</span></a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_generator.html">Data Generators (deprecated)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="data_generator.html#datagenerator-deprecated"><span class="hidden-section">DataGenerator (deprecated)</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="data_generator.html#imagedatagenerator-deprecated"><span class="hidden-section">ImageDataGenerator (deprecated)</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="data_generator.html#singleclassimagedatagenerator"><span class="hidden-section">SingleClassImageDataGenerator</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="data_generator.html#multiclassimagedatagenerator"><span class="hidden-section">MultiClassImageDataGenerator</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_generator.html#singleclassimagedatagenerator-deprecated"><span class="hidden-section">SingleClassImageDataGenerator (deprecated)</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_generator.html#multiclassimagedatagenerator-deprecated"><span class="hidden-section">MultiClassImageDataGenerator (deprecated)</span></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="data_feeds.html">Data Feeds</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="data_feeds.html#datafeed"><span class="hidden-section">DataFeed</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_feeds.html#imagefeed"><span class="hidden-section">ImageFeed</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_feeds.html#singleclassimagefeed"><span class="hidden-section">SingleClassImageFeed</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_feeds.html#multiclassimagefeed"><span class="hidden-section">MultiClassImageFeed</span></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="datasets.html">Datasests</a><ul>
@@ -269,7 +276,7 @@ training/evaluation session just after the training/evaluation step.</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>data</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.6)"><em>dict</em></a>) – the output of the training/evaluation step.  The keys
-may include, but are not limited to: {‘training_loss’, ‘test_loss’,
+may include, but are not limited to: {‘training_loss’, ‘validation_loss’,
 ‘learning_rate’}.</li>
 <li><strong>step</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.6)"><em>float</em></a>) – (0.0, inf) the step that was just completed.
 Fractional steps are possible (see batch_multiplier option on
@@ -293,7 +300,7 @@ Fractional steps are possible (see batch_multiplier option on
 <dd><p>A monitor composed of two or more monitors.  Using this allows you to pass a single monitor object to a trainer
 method and have it use all of the composed monitors.  Composed monitors can be accessed using their name like so:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sconce</span> <span class="k">import</span> <span class="n">monitors</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">metric_names</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;training_loss&#39;</span><span class="p">:</span> <span class="s1">&#39;loss&#39;</span><span class="p">,</span> <span class="s1">&#39;test_loss&#39;</span><span class="p">:</span> <span class="s1">&#39;val_loss&#39;</span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">metric_names</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;training_loss&#39;</span><span class="p">:</span> <span class="s1">&#39;loss&#39;</span><span class="p">,</span> <span class="s1">&#39;validation_loss&#39;</span><span class="p">:</span> <span class="s1">&#39;val_loss&#39;</span><span class="p">}</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">stdout_monitor</span> <span class="o">=</span> <span class="n">monitors</span><span class="o">.</span><span class="n">StdoutMonitor</span><span class="p">(</span><span class="n">metric_names</span><span class="o">=</span><span class="n">metric_names</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">dataframe_monitor</span> <span class="o">=</span> <span class="n">monitors</span><span class="o">.</span><span class="n">DataframeMonitor</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">monitor</span> <span class="o">=</span> <span class="n">dataframe_monitor</span> <span class="o">+</span> <span class="n">stdout_monitor</span>
@@ -326,7 +333,7 @@ method and have it use all of the composed monitors.  Composed monitors can be a
 <h2><span class="hidden-section">LosswiseMonitor</span><a class="headerlink" href="#losswisemonitor" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="sconce.monitors.LosswiseMonitor">
-<em class="property">class </em><code class="descclassname">sconce.monitors.</code><code class="descname">LosswiseMonitor</code><span class="sig-paren">(</span><em>api_key</em>, <em>tag</em>, <em>params={}</em>, <em>min_graphs={'loss': {'training_loss': 'Training Loss'</em>, <em>'test_loss': 'Test Loss'}</em>, <em>'lr': {'learning_rate': 'Learning Rate'}}</em>, <em>max_graphs={}</em>, <em>name='losswise_monitor'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/monitors/losswise_monitor.html#LosswiseMonitor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.monitors.LosswiseMonitor" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">sconce.monitors.</code><code class="descname">LosswiseMonitor</code><span class="sig-paren">(</span><em>api_key</em>, <em>tag</em>, <em>params={}</em>, <em>min_graphs={'loss': {'training_loss': 'Training Loss'</em>, <em>'validation_loss': 'Validation Loss'}</em>, <em>'lr': {'learning_rate': 'Learning Rate'}}</em>, <em>max_graphs={}</em>, <em>name='losswise_monitor'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/monitors/losswise_monitor.html#LosswiseMonitor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.monitors.LosswiseMonitor" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </div>
