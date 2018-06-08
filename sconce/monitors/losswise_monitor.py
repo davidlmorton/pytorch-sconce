@@ -10,7 +10,7 @@ class LosswiseMonitor(Monitor):
             min_graphs={
                 'loss': {
                     'training_loss': 'Training Loss',
-                    'test_loss': 'Test Loss',
+                    'validation_loss': 'Validation Loss',
                 },
                 'lr': {
                     'learning_rate': 'Learning Rate',

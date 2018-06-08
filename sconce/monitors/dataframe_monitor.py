@@ -83,9 +83,16 @@ class DataframeMonitor(Monitor):
                     skip_first=100, smooth_window=50,
                     metrics=['loss'],
                     hyperparameters=['learning_rate'],
-                    test_color='tomato',
+                    test_color=None,
+                    validation_color='tomato',
                     training_color='mediumseagreen',
                     fig=None):
+
+        if test_color is not None:
+            print("WARNING: The test_color argument is deprecated as of 1.2.0.  "
+                  "Please use validation_color instead.")
+            validation_color = test_color
+
         if fig is None:
             fig = plt.figure(figsize=figsize)
             num_rows = 2 + len(hyperparameters)
@@ -103,11 +110,11 @@ class DataframeMonitor(Monitor):
             training_df.interpolate().plot(ax=metrics_ax,
                     color=training_color, label='', alpha=0.35)
 
-            test_key = 'test_%s' % metric
-            if test_key in df:
-                test_df = df[test_key]
-                test_df.interpolate().plot(ax=metrics_ax,
-                        color=test_color, label='', alpha=0.35)
+            val_key = 'validation_%s' % metric
+            if val_key in df:
+                val_df = df[val_key]
+                val_df.interpolate().plot(ax=metrics_ax,
+                        color=validation_color, label='', alpha=0.35)
 
             training_smooth_df = training_df.rolling(smooth_window,
                     min_periods=1).mean()
@@ -120,11 +127,11 @@ class DataframeMonitor(Monitor):
                     color=training_color, path_effects=my_path_effects,
                     label='Training')
 
-            if test_key in df:
-                test_smooth_df = test_df.rolling(smooth_window,
+            if val_key in df:
+                val_smooth_df = val_df.rolling(smooth_window,
                         min_periods=1).mean()
-                test_smooth_df.interpolate().plot(ax=metrics_ax, linewidth=3,
-                        color=test_color, path_effects=my_path_effects,
+                val_smooth_df.interpolate().plot(ax=metrics_ax, linewidth=3,
+                        color=validation_color, path_effects=my_path_effects,
                         label='Test')
 
             metrics_ax.set_ylabel(stringcase.titlecase(metric))

@@ -21,8 +21,8 @@ class Trainer:
         training_feed (:py:class:`~sconce.data_feed.base.DataFeed`): used during training to provide `inputs` and
             `targets`.
         test_data_generator (:py:class:`~sconce.data_generators.base.DataGenerator`): DEPRECATED, use
-            test_feed argument instead.
-        test_feed (:py:class:`~sconce.data_feed.base.DataFeed`) used during validation to provide `inputs` and
+            validation_feed argument instead.
+        validation_feed (:py:class:`~sconce.data_feed.base.DataFeed`) used during validation to provide `inputs` and
             `targets`.  These are never used for back-propagation.
         monitor (:py:class:`~sconce.monitors.base.Monitor`, optional): the sconce monitor that records data during
             training.  This data can be sent to external systems during training or kept until training completes
@@ -30,16 +30,16 @@ class Trainer:
             :py:class:`~sconce.monitors.stdout_monitor.StdoutMonitor` and a
             :py:class:`~sconce.monitors.dataframe_monitor.DataframeMonitor` will be created for you and used.
     """
-    def __init__(self, *, model, test_feed=None, training_feed=None,
+    def __init__(self, *, model, validation_feed=None, training_feed=None,
             test_data_generator=None, training_data_generator=None, monitor=None):
         self.model = model
 
-        if test_data_generator is None and test_feed is None:
-            raise TypeError("Missing required keyword argument: 'test_feed'")
+        if test_data_generator is None and validation_feed is None:
+            raise TypeError("Missing required keyword argument: 'validation_feed'")
 
         if test_data_generator is not None:
-            print_deprecation_warning('test_')
-            test_feed = test_data_generator
+            print_deprecation_warning('test_', 'validation_')
+            validation_feed = test_data_generator
 
         if training_data_generator is None and training_feed is None:
             raise TypeError("Missing required keyword argument: 'training_feed'")
@@ -48,16 +48,16 @@ class Trainer:
             print_deprecation_warning('training_')
             training_feed = training_data_generator
 
-        self.test_feed = test_feed
+        self.validation_feed = validation_feed
         self.training_feed = training_feed
 
         if monitor is None:
-            metric_names = {'training_loss': 'loss', 'test_loss': 'val_loss'}
+            metric_names = {'training_loss': 'loss', 'validation_loss': 'val_loss'}
             stdout_monitor = monitors.StdoutMonitor(metric_names=metric_names)
             monitor = monitors.DataframeMonitor() + stdout_monitor
         self.monitor = monitor
 
-        self.test_to_train_ratio = (len(test_feed) / len(training_feed))
+        self.validation_to_train_ratio = (len(validation_feed) / len(training_feed))
 
         self.checkpoint_filename = None
         self._reset_cache()
@@ -116,6 +116,7 @@ class Trainer:
 
     def train(self, *, num_epochs, monitor=None,
             test_to_train_ratio=None,
+            validation_to_train_ratio=None,
             batch_multiplier=1):
         """
         Train the model for a given number of epochs.
@@ -139,10 +140,15 @@ class Trainer:
         assert batch_multiplier > 0
         assert int(batch_multiplier) == batch_multiplier
 
+        if test_to_train_ratio is not None:
+            print("WARNING: The test_to_train_ratio argument is deprecated as of 1.2.0.  "
+                  "Please use validation_to_train_ratio instead.")
+            validation_to_train_ratio = test_to_train_ratio
+
         if monitor is None:
             monitor = self.monitor
-        if test_to_train_ratio is None:
-            test_to_train_ratio = self.test_to_train_ratio
+        if validation_to_train_ratio is None:
+            validation_to_train_ratio = self.validation_to_train_ratio
 
         num_steps = self.get_num_steps(num_epochs=num_epochs,
                 feed=self.training_feed,
@@ -150,7 +156,7 @@ class Trainer:
 
         return self._train(num_steps=num_steps,
                 monitor=monitor,
-                test_to_train_ratio=test_to_train_ratio,
+                validation_to_train_ratio=validation_to_train_ratio,
                 batch_multiplier=batch_multiplier)
 
     def get_num_steps(self, num_epochs, data_generator=None, feed=None, batch_multiplier=1):
@@ -171,7 +177,7 @@ class Trainer:
         else:
             return num_steps
 
-    def _train(self, *, num_steps, monitor, test_to_train_ratio, batch_multiplier):
+    def _train(self, *, num_steps, monitor, validation_to_train_ratio, batch_multiplier):
         self._reset_cache()
         monitor.start_session(num_steps)
         self.model.start_session(num_steps)
@@ -201,11 +207,11 @@ class Trainer:
                         for k, v in step_dict.items()}
 
                 iterations_since_test += 1
-                if (1 / iterations_since_test) <= test_to_train_ratio:
-                    test_step_dict = self._do_test_step()
+                if (1 / iterations_since_test) <= validation_to_train_ratio:
+                    validation_step_dict = self._do_validation_step()
                     iterations_since_test = 0
 
-                    current_state.update({**training_step_dict, **test_step_dict})
+                    current_state.update({**training_step_dict, **validation_step_dict})
                 else:
                     current_state.update(training_step_dict)
 
@@ -279,14 +285,34 @@ class Trainer:
                 'targets': targets,
                 'outputs': outputs}
 
-    def _do_test_step(self):
-        inputs, targets = self.test_feed.next()
+    def _do_validation_step(self):
+        inputs, targets = self.validation_feed.next()
         step_dict = self._do_step(inputs, targets, train=False)
-        return {f'test_{k}': v for k, v in step_dict.items()}
+        return {f'validation_{k}': v for k, v in step_dict.items()}
 
     def test(self, *, monitor=None):
         """
-        Run all samples of self.test_feed through the model in test (inference) mode.
+        Run all samples of self.validation_feed through the model in test (inference) mode.
+
+        Arguments:
+            monitor (:py:class:`~sconce.monitors.base.Monitor`, optional): the sconce monitor that records data during
+                this testing.  If ``None``, a composite monitor consisting of a
+                :py:class:`~sconce.monitors.stdout_monitor.StdoutMonitor` and a
+                :py:class:`~sconce.monitors.dataframe_monitor.DataframeMonitor` will be created for you and used.
+
+        Returns:
+            monitor (:py:class:`~sconce.monitors.base.Monitor`): the monitor used during this testing.
+
+        Note:
+            This method has been deprecated since 1.2.0.  Please use the ``validate()`` method instead.
+        """
+        print("WARNING: Trainer.test() is deprecated as of 1.2.0.  "
+              "Please use Trainer.validate() instead.")
+        return self.validate(monitor=monitor)
+
+    def validate(self, *, monitor=None):
+        """
+        Run all samples of self.validation_feed through the model in test (inference) mode.
 
         Arguments:
             monitor (:py:class:`~sconce.monitors.base.Monitor`, optional): the sconce monitor that records data during
@@ -298,15 +324,15 @@ class Trainer:
             monitor (:py:class:`~sconce.monitors.base.Monitor`): the monitor used during this testing.
         """
         if monitor is None:
-            metric_names = {'test_loss': 'loss'}
+            metric_names = {'validation_loss': 'val_loss'}
             stdout_monitor = monitors.StdoutMonitor(metric_names=metric_names)
             monitor = monitors.DataframeMonitor() + stdout_monitor
 
-        num_steps = len(self.test_feed)
+        num_steps = len(self.validation_feed)
         monitor.start_session(num_steps)
 
         for step in range(1, num_steps + 1):
-            step_data = self._do_test_step()
+            step_data = self._do_validation_step()
 
             monitor.write(data=step_data, step=step)
         monitor.end_session()
@@ -378,7 +404,7 @@ class Trainer:
 
         self.train(num_epochs=num_epochs,
                 monitor=monitor,
-                test_to_train_ratio=0,
+                validation_to_train_ratio=0,
                 batch_multiplier=batch_multiplier)
 
         self.model.load_state_dict(orig_model_state_dict)

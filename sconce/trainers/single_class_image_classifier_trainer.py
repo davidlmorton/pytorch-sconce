@@ -18,7 +18,7 @@ class SingleClassImageClassifierMixin(ABC):
             feed = data_generator
 
         if feed is None:
-            feed = self.test_feed
+            feed = self.validation_feed
 
         run_model_results = self._run_model_on_feed(feed, cache_results=cache_results)
 
@@ -35,7 +35,7 @@ class SingleClassImageClassifierMixin(ABC):
             feed = data_generator
 
         if feed is None:
-            feed = self.test_feed
+            feed = self.validation_feed
 
         matrix = self.get_confusion_matrix(feed=feed, cache_results=cache_results)
         num_correct = np.trace(matrix)
@@ -47,7 +47,7 @@ class SingleClassImageClassifierMixin(ABC):
             feed = data_generator
 
         if feed is None:
-            feed = self.test_feed
+            feed = self.validation_feed
 
         matrix = self.get_confusion_matrix(feed=feed)
 
@@ -107,7 +107,7 @@ class SingleClassImageClassifierMixin(ABC):
             feed = data_generator
 
         if feed is None:
-            feed = self.test_feed
+            feed = self.validation_feed
 
         dataset = feed.dataset
         predicted_class = self._convert_to_class_index(predicted_class, dataset)

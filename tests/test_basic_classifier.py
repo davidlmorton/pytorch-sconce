@@ -1,5 +1,6 @@
 # flake8: noqa
 from sconce.data_generators import ImageDataGenerator
+from sconce.data_feeds import SingleClassImageFeed
 from sconce.schedules import Cosine
 from sconce.trainers import ClassifierTrainer
 from sconce.models import BasicClassifier
@@ -21,18 +22,18 @@ class TestBasicClassifier(unittest.TestCase):
         model = BasicClassifier.new_from_yaml_filename(filename)
 
         training_generator = ImageDataGenerator.from_torchvision()
-        test_generator = ImageDataGenerator.from_torchvision(train=False)
+        validation_feed = SingleClassImageFeed.from_torchvision(train=False)
 
         if torch.cuda.is_available():
             model.cuda()
             training_generator.cuda()
-            test_generator.cuda()
+            validation_feed.cuda()
 
         model.set_optimizer(optim.SGD, lr=1e-4, momentum=0.9, weight_decay=1e-4)
 
         trainer = ClassifierTrainer(model=model,
             training_data_generator=training_generator,
-            test_data_generator=test_generator)
+            validation_feed=validation_feed)
 
         self.assertLess(trainer.get_classification_accuracy(), 0.2)
 
