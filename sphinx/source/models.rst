@@ -8,7 +8,7 @@ Models
 .. automodule:: sconce.models
 
 :hidden:`Model`
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~
 
 .. autoclass:: Model
     :members:
@@ -20,7 +20,7 @@ Models
     :members:
 
 :hidden:`BasicConvolutionalAutoencoder`
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. autoclass:: BasicConvolutionalAutoencoder
     :members:

@@ -8,7 +8,7 @@ Parameter Group
 
 
 :hidden:`ParameterGroup`
-~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. autoclass:: ParameterGroup
     :members:

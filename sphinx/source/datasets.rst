@@ -9,7 +9,7 @@ Datasests
 
 
 :hidden:`CsvImageFolder`
-~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. autoclass:: CsvImageFolder
     :members:
