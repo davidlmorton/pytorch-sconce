@@ -6,29 +6,23 @@ import numpy as np
 import torch
 
 
-class DataGenerator:
+class DataFeed:
     """
     A thin wrapper around a :py:class:`~torch.utils.data.DataLoader` that
     automatically yields tuples of :py:class:`torch.Tensor` (that
     live on cpu or on cuda).
-    A DataGenerator will iterate endlessly.
+    A DataFeed will iterate endlessly.
 
     Like the underlying :py:class:`~torch.utils.data.DataLoader`, a
-    DataGenerator's ``__next__`` method yields two values, which we refer to as
+    DataFeed's ``__next__`` method yields two values, which we refer to as
     the `inputs` and the `targets`.
 
     Arguments:
         data_loader (:py:class:`~torch.utils.data.DataLoader`): the wrapped
             data_loader.
-
-    Note:
-        DataGenerators are deprecated as of 1.2.0 and will be removed soon.  Please use a
-        :py:class:`~sconce.data_feeds.base.DataFeed` instead.
     """
 
     def __init__(self, data_loader):
-        print("WARNING: DataGenerators are deprecated as of 1.2.0 and will be removed soon.  "
-              "Please use a DataFeed instead")
         self.data_loader = data_loader
         self._inputs_cuda = False
         self._targets_cuda = False
@@ -36,7 +30,7 @@ class DataGenerator:
 
     def cuda(self, device=None):
         """
-        Put the `inputs` and `targets` (yielded by this DataGenerator) on the
+        Put the `inputs` and `targets` (yielded by this DataFeed) on the
         specified device.
 
         Arguments:
@@ -46,7 +40,7 @@ class DataGenerator:
                 :py:meth:`torch.Tensor.cuda` for details.
 
         Example:
-            >>> g = DataGenerator.from_dataset(dataset, batch_size=100)
+            >>> g = DataFeed.from_dataset(dataset, batch_size=100)
             >>> g.cuda()
             >>> g.next()
             (Tensor containing:
@@ -141,14 +135,14 @@ class DataGenerator:
     @classmethod
     def from_dataset(cls, dataset, split=None, **kwargs):
         """
-        Create a DataGenerator from an instantiated dataset.
+        Create a DataFeed from an instantiated dataset.
 
         Arguments:
             dataset (:py:class:`~torch.utils.data.Dataset`): the pytorch
                 dataset.
             split (float, optional): If not ``None``, it specifies the fraction of the dataset that should be placed
-                into the first of two data_generators.  The remaining data is used for the second data_generator.  Both
-                data_generators will be returned.
+                into the first of two data_feeds.  The remaining data is used for the second data_feed.  Both
+                data_feeds will be returned.
             **kwargs: passed directly to the
                 :py:class:`~torch.utils.data.DataLoader`) constructor.
         """

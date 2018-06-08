@@ -2,25 +2,25 @@
     :class: hidden-section
 
 
-Data Generators
-===============
+Data Generators (deprecated)
+============================
 
 .. currentmodule:: sconce.data_generators
 
 
-:hidden:`DataGenerator`
-~~~~~~~~~~~~~~~~~~~~~~~
+:hidden:`DataGenerator (deprecated)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. autoclass:: DataGenerator
     :members:
 
 :hidden:`ImageDataGenerator (deprecated)`
-~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. autoclass:: ImageDataGenerator
 
-:hidden:`SingleClassImageDataGenerator`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+:hidden:`SingleClassImageDataGenerator (deprecated)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. autoclass:: SingleClassImageDataGenerator
     :members:
@@ -28,8 +28,8 @@ Data Generators
     :inherited-members:
 
 
-:hidden:`MultiClassImageDataGenerator`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+:hidden:`MultiClassImageDataGenerator (deprecated)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. autoclass:: MultiClassImageDataGenerator
     :members:

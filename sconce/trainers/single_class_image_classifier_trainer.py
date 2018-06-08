@@ -1,7 +1,8 @@
 from abc import ABC
-from scipy import sparse
-from sconce.trainer import Trainer
 from matplotlib import pyplot as plt
+from scipy import sparse
+from sconce.data_feeds import print_deprecation_warning
+from sconce.trainer import Trainer
 
 import seaborn as sn
 import numpy as np
@@ -11,12 +12,15 @@ __all__ = ['ClassifierTrainer', 'SingleClassImageClassifierMixin', 'SingleClassI
 
 
 class SingleClassImageClassifierMixin(ABC):
-    def get_confusion_matrix(self, data_generator=None, cache_results=True):
-        if data_generator is None:
-            data_generator = self.test_data_generator
+    def get_confusion_matrix(self, data_generator=None, feed=None, cache_results=True):
+        if data_generator is not None:
+            print_deprecation_warning()
+            feed = data_generator
 
-        run_model_results = self._run_model_on_generator(data_generator,
-                cache_results=cache_results)
+        if feed is None:
+            feed = self.validation_feed
+
+        run_model_results = self._run_model_on_feed(feed, cache_results=cache_results)
 
         targets = run_model_results['targets']
         predicted_targets = np.argmax(run_model_results['outputs'], axis=1)
@@ -24,23 +28,30 @@ class SingleClassImageClassifierMixin(ABC):
                 (predicted_targets, targets)), dtype='uint32').toarray()
         return matrix
 
-    def get_classification_accuracy(self, data_generator=None,
+    def get_classification_accuracy(self, data_generator=None, feed=None,
             cache_results=True):
-        if data_generator is None:
-            data_generator = self.test_data_generator
+        if data_generator is not None:
+            print_deprecation_warning()
+            feed = data_generator
 
-        matrix = self.get_confusion_matrix(data_generator=data_generator,
-                cache_results=cache_results)
+        if feed is None:
+            feed = self.validation_feed
+
+        matrix = self.get_confusion_matrix(feed=feed, cache_results=cache_results)
         num_correct = np.trace(matrix)
-        return num_correct / data_generator.num_samples
+        return num_correct / feed.num_samples
 
-    def plot_confusion_matrix(self, data_generator=None, **heatmap_kwargs):
-        if data_generator is None:
-            data_generator = self.test_data_generator
+    def plot_confusion_matrix(self, data_generator=None, feed=None, **heatmap_kwargs):
+        if data_generator is not None:
+            print_deprecation_warning()
+            feed = data_generator
 
-        matrix = self.get_confusion_matrix(data_generator=data_generator)
+        if feed is None:
+            feed = self.validation_feed
 
-        dataset = data_generator.dataset
+        matrix = self.get_confusion_matrix(feed=feed)
+
+        dataset = feed.dataset
         defaults = {'cmap': 'YlGnBu', 'annot': True, 'fmt': 'd',
                     'xticklabels': dataset.classes,
                     'yticklabels': dataset.classes}
@@ -56,6 +67,7 @@ class SingleClassImageClassifierMixin(ABC):
     def plot_samples(self, predicted_class,
             true_class=None,
             data_generator=None,
+            feed=None,
             sort_by='rising predicted class score',
             num_samples=7,
             num_cols=7,
@@ -68,8 +80,9 @@ class SingleClassImageClassifierMixin(ABC):
         Arguments:
             predicted_class (int or string): the class string or the index of the class that was predicted by the model.
             true_class (int or string): the class string or the index of the class that the image actually belongs to.
-            data_generator (:py:class:`~sconce.data_generators.base.SingleClassImageDataGenerator`): the data generator
-                to use to find the samples.
+            data_generator (:py:class:`~sconce.data_generators.base.SingleClassImageDataGenerator`): DEPRECATED,
+                use feed argument instead.
+            feed (:py:class:`~sconce.data_feeds.base.DataFeed`): the DataFeed to use to find the samples.
             sort_by (string): one of the sort_by strings, see note below.
             num_samples (int): the number of sample images to plot.
             num_cols (int): the number of columns to plot, one image per column.
@@ -89,14 +102,18 @@ class SingleClassImageClassifierMixin(ABC):
                 - "falling true class score": samples are plotted in order of the higest true class score to
                   the lowest true class score.
         """
-        if data_generator is None:
-            data_generator = self.test_data_generator
+        if data_generator is not None:
+            print_deprecation_warning()
+            feed = data_generator
 
-        dataset = data_generator.dataset
+        if feed is None:
+            feed = self.validation_feed
+
+        dataset = feed.dataset
         predicted_class = self._convert_to_class_index(predicted_class, dataset)
         true_class = self._convert_to_class_index(true_class, dataset, default=predicted_class)
 
-        run_model_results = self._run_model_on_generator(data_generator,
+        run_model_results = self._run_model_on_feed(feed,
                 cache_results=cache_results)
 
         images = run_model_results['inputs']

@@ -52,7 +52,7 @@ class Monitor(ABC):
 
         Arguments:
             data (dict): the output of the training/evaluation step.  The keys
-                may include, but are not limited to: {'training_loss', 'test_loss',
+                may include, but are not limited to: {'training_loss', 'validation_loss',
                 'learning_rate'}.
             step (float): (0.0, inf) the step that was just completed.
                 Fractional steps are possible (see batch_multiplier option on
@@ -71,7 +71,7 @@ class CompositeMonitor(Monitor):
     method and have it use all of the composed monitors.  Composed monitors can be accessed using their name like so:
 
         >>> from sconce import monitors
-        >>> metric_names = {'training_loss': 'loss', 'test_loss': 'val_loss'}
+        >>> metric_names = {'training_loss': 'loss', 'validation_loss': 'val_loss'}
         >>> stdout_monitor = monitors.StdoutMonitor(metric_names=metric_names)
         >>> dataframe_monitor = monitors.DataframeMonitor()
         >>> monitor = dataframe_monitor + stdout_monitor

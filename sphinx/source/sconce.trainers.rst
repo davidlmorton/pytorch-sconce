@@ -16,8 +16,3 @@ sconce.trainers.single\_class\_image\_classifier\_trainer module
     :members:
     :undoc-members:
     :show-inheritance:
-
-sconce.trainers.classifier\_trainer module (deprecated)
--------------------------------------------------------
-
-.. automodule:: sconce.trainers.classifier_trainer
