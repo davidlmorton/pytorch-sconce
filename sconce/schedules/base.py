@@ -1,3 +1,4 @@
+from pprint import pformat as pf
 from abc import ABC, abstractmethod
 
 
@@ -50,6 +51,11 @@ class ScheduledMixin:
         if not hasattr(self, set_method_name):
             raise RuntimeError(f'Cannot set schedule for attribute named ({name}), because no set'
                 f'method ({set_method_name}) is defined on this class ({self.__class__.__name__})')
+
+        # if they just passed in a value, make it a constant schedule instead
+        if not isinstance(schedule, Schedule):
+            schedule = Constant(value=schedule)
+
         self.schedules[name] = schedule
         return self.schedules
 
@@ -70,3 +76,23 @@ class ScheduledMixin:
             set_method(value)
             hyperparameters[name] = value
         return hyperparameters
+
+
+class Constant(Schedule):
+    """
+    A schedule where the value is always the same.
+
+    Arguments:
+        value (float): the value of the hyperparameter.
+    """
+    def __init__(self, value):
+        self.value = value
+
+    def __repr__(self):
+        return f'{self.__class__.__name__}(value={pf(self.value)})'
+
+    def set_num_steps(self, num_steps):
+        self.num_steps = num_steps
+
+    def _get_value(self, step, current_state):
+        return self.value
