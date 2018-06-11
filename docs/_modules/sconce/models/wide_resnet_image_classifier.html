@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                master (1.2.0 )
+                master (1.2.1 )
               </div>
             
           
@@ -221,6 +221,9 @@
 <div class="viewcode-block" id="WideResnetBlock_3x3"><a class="viewcode-back" href="../../../sconce.models.html#sconce.models.WideResnetBlock_3x3">[docs]</a><span class="k">class</span> <span class="nc">WideResnetBlock_3x3</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">in_channels</span><span class="p">,</span> <span class="n">out_channels</span><span class="p">,</span> <span class="n">stride</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">in_channels</span> <span class="o">=</span> <span class="n">in_channels</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">out_channels</span> <span class="o">=</span> <span class="n">out_channels</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stride</span> <span class="o">=</span> <span class="n">stride</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">conv1</span> <span class="o">=</span> <span class="n">Convolution2dLayer</span><span class="p">(</span>
                 <span class="n">in_channels</span><span class="o">=</span><span class="n">in_channels</span><span class="p">,</span>
@@ -261,6 +264,10 @@
 <div class="viewcode-block" id="WideResnetGroup_3x3"><a class="viewcode-back" href="../../../sconce.models.html#sconce.models.WideResnetGroup_3x3">[docs]</a><span class="k">class</span> <span class="nc">WideResnetGroup_3x3</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">in_channels</span><span class="p">,</span> <span class="n">out_channels</span><span class="p">,</span> <span class="n">stride</span><span class="p">,</span> <span class="n">num_blocks</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">in_channels</span> <span class="o">=</span> <span class="n">in_channels</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">out_channels</span> <span class="o">=</span> <span class="n">out_channels</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stride</span> <span class="o">=</span> <span class="n">stride</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_blocks</span> <span class="o">=</span> <span class="n">num_blocks</span>
 
         <span class="n">blocks</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_blocks</span><span class="p">):</span>
@@ -308,6 +315,10 @@
             <span class="n">widening_factor</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
             <span class="n">num_categories</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">image_channels</span> <span class="o">=</span> <span class="n">image_channels</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">depth</span> <span class="o">=</span> <span class="n">depth</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">widening_factor</span> <span class="o">=</span> <span class="n">widening_factor</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_categories</span> <span class="o">=</span> <span class="n">num_categories</span>
 
         <span class="k">assert</span> <span class="p">(</span><span class="n">depth</span> <span class="o">-</span> <span class="mi">4</span><span class="p">)</span> <span class="o">%</span> <span class="mi">6</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;&quot;depth&quot; parameter should be 6n + 4&#39;</span>
         <span class="n">n</span> <span class="o">=</span> <span class="p">(</span><span class="n">depth</span> <span class="o">-</span> <span class="mi">4</span><span class="p">)</span> <span class="o">//</span> <span class="mi">6</span>
