@@ -9,6 +9,9 @@ import numpy as np
 class WideResnetBlock_3x3(nn.Module):
     def __init__(self, in_channels, out_channels, stride):
         super().__init__()
+        self.in_channels = in_channels
+        self.out_channels = out_channels
+        self.stride = stride
 
         self.conv1 = Convolution2dLayer(
                 in_channels=in_channels,
@@ -49,6 +52,10 @@ class WideResnetBlock_3x3(nn.Module):
 class WideResnetGroup_3x3(nn.Module):
     def __init__(self, in_channels, out_channels, stride, num_blocks):
         super().__init__()
+        self.in_channels = in_channels
+        self.out_channels = out_channels
+        self.stride = stride
+        self.num_blocks = num_blocks
 
         blocks = []
         for i in range(num_blocks):
@@ -96,6 +103,10 @@ class WideResnetImageClassifier(Model):
             widening_factor=10,
             num_categories=10):
         super().__init__()
+        self.image_channels = image_channels
+        self.depth = depth
+        self.widening_factor = widening_factor
+        self.num_categories = num_categories
 
         assert (depth - 4) % 6 == 0, '"depth" parameter should be 6n + 4'
         n = (depth - 4) // 6
