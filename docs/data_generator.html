@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                master (1.2.1 )
+                master (1.2.2 )
               </div>
             
           
@@ -220,18 +220,18 @@
 <dl class="class">
 <dt id="sconce.data_generators.DataGenerator">
 <em class="property">class </em><code class="descclassname">sconce.data_generators.</code><code class="descname">DataGenerator</code><span class="sig-paren">(</span><em>data_loader</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/data_generators/base.html#DataGenerator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.data_generators.DataGenerator" title="Permalink to this definition">¶</a></dt>
-<dd><p>A thin wrapper around a <a class="reference external" href="https://pytorch.org/docs/master/data.html#torch.utils.data.DataLoader" title="(in PyTorch vmaster (0.5.0a0+9b1480a ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataLoader</span></code></a> that
-automatically yields tuples of <a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (0.5.0a0+9b1480a ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">torch.Tensor</span></code></a> (that
+<dd><p>A thin wrapper around a <a class="reference external" href="https://pytorch.org/docs/master/data.html#torch.utils.data.DataLoader" title="(in PyTorch vmaster (0.5.0a0+50392cc ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataLoader</span></code></a> that
+automatically yields tuples of <a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (0.5.0a0+50392cc ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">torch.Tensor</span></code></a> (that
 live on cpu or on cuda).
 A DataGenerator will iterate endlessly.</p>
-<p>Like the underlying <a class="reference external" href="https://pytorch.org/docs/master/data.html#torch.utils.data.DataLoader" title="(in PyTorch vmaster (0.5.0a0+9b1480a ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataLoader</span></code></a>, a
+<p>Like the underlying <a class="reference external" href="https://pytorch.org/docs/master/data.html#torch.utils.data.DataLoader" title="(in PyTorch vmaster (0.5.0a0+50392cc ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataLoader</span></code></a>, a
 DataGenerator’s <code class="docutils literal notranslate"><span class="pre">__next__</span></code> method yields two values, which we refer to as
 the <cite>inputs</cite> and the <cite>targets</cite>.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>data_loader</strong> (<a class="reference external" href="https://pytorch.org/docs/master/data.html#torch.utils.data.DataLoader" title="(in PyTorch vmaster (0.5.0a0+9b1480a ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataLoader</span></code></a>) – the wrapped
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>data_loader</strong> (<a class="reference external" href="https://pytorch.org/docs/master/data.html#torch.utils.data.DataLoader" title="(in PyTorch vmaster (0.5.0a0+50392cc ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataLoader</span></code></a>) – the wrapped
 data_loader.</td>
 </tr>
 </tbody>
@@ -256,10 +256,10 @@ specified device.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>device</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.6)"><em>bool</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.6)"><em>dict</em></a>) – if int or bool, sets the behavior for
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>device</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)"><em>dict</em></a>) – if int or bool, sets the behavior for
 both <cite>inputs</cite> and <cite>targets</cite>. To set them individually, pass a
 dictionary with keys {‘inputs’, ‘targets’} instead. See
-<a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor.cuda" title="(in PyTorch vmaster (0.5.0a0+9b1480a ))"><code class="xref py py-meth docutils literal notranslate"><span class="pre">torch.Tensor.cuda()</span></code></a> for details.</td>
+<a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor.cuda" title="(in PyTorch vmaster (0.5.0a0+50392cc ))"><code class="xref py py-meth docutils literal notranslate"><span class="pre">torch.Tensor.cuda()</span></code></a> for details.</td>
 </tr>
 </tbody>
 </table>
@@ -290,7 +290,7 @@ dictionary with keys {‘inputs’, ‘targets’} instead. See
 <dl class="attribute">
 <dt id="sconce.data_generators.DataGenerator.dataset">
 <code class="descname">dataset</code><a class="headerlink" href="#sconce.data_generators.DataGenerator.dataset" title="Permalink to this definition">¶</a></dt>
-<dd><p>the wrapped data_loader’s <a class="reference external" href="https://pytorch.org/docs/master/data.html#torch.utils.data.Dataset" title="(in PyTorch vmaster (0.5.0a0+9b1480a ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dataset</span></code></a></p>
+<dd><p>the wrapped data_loader’s <a class="reference external" href="https://pytorch.org/docs/master/data.html#torch.utils.data.Dataset" title="(in PyTorch vmaster (0.5.0a0+50392cc ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dataset</span></code></a></p>
 </dd></dl>
 
 <dl class="classmethod">
@@ -302,13 +302,13 @@ dictionary with keys {‘inputs’, ‘targets’} instead. See
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>dataset</strong> (<a class="reference external" href="https://pytorch.org/docs/master/data.html#torch.utils.data.Dataset" title="(in PyTorch vmaster (0.5.0a0+9b1480a ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dataset</span></code></a>) – the pytorch
+<li><strong>dataset</strong> (<a class="reference external" href="https://pytorch.org/docs/master/data.html#torch.utils.data.Dataset" title="(in PyTorch vmaster (0.5.0a0+50392cc ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dataset</span></code></a>) – the pytorch
 dataset.</li>
-<li><strong>split</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.6)"><em>float</em></a><em>, </em><em>optional</em>) – If not <code class="docutils literal notranslate"><span class="pre">None</span></code>, it specifies the fraction of the dataset that should be placed
+<li><strong>split</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em>, </em><em>optional</em>) – If not <code class="docutils literal notranslate"><span class="pre">None</span></code>, it specifies the fraction of the dataset that should be placed
 into the first of two data_generators.  The remaining data is used for the second data_generator.  Both
 data_generators will be returned.</li>
 <li><strong>**kwargs</strong> – passed directly to the
-<a class="reference external" href="https://pytorch.org/docs/master/data.html#torch.utils.data.DataLoader" title="(in PyTorch vmaster (0.5.0a0+9b1480a ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataLoader</span></code></a>) constructor.</li>
+<a class="reference external" href="https://pytorch.org/docs/master/data.html#torch.utils.data.DataLoader" title="(in PyTorch vmaster (0.5.0a0+50392cc ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataLoader</span></code></a>) constructor.</li>
 </ul>
 </td>
 </tr>
@@ -320,7 +320,7 @@ data_generators will be returned.</li>
 <dt id="sconce.data_generators.DataGenerator.num_samples">
 <code class="descname">num_samples</code><a class="headerlink" href="#sconce.data_generators.DataGenerator.num_samples" title="Permalink to this definition">¶</a></dt>
 <dd><p>the <code class="docutils literal notranslate"><span class="pre">len</span></code> of the wrapped data_loader’s
-<a class="reference external" href="https://pytorch.org/docs/master/data.html#torch.utils.data.Dataset" title="(in PyTorch vmaster (0.5.0a0+9b1480a ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dataset</span></code></a></p>
+<a class="reference external" href="https://pytorch.org/docs/master/data.html#torch.utils.data.Dataset" title="(in PyTorch vmaster (0.5.0a0+50392cc ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dataset</span></code></a></p>
 </dd></dl>
 
 <dl class="method">
@@ -368,10 +368,10 @@ specified device.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>device</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.6)"><em>bool</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.6)"><em>dict</em></a>) – if int or bool, sets the behavior for
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>device</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)"><em>dict</em></a>) – if int or bool, sets the behavior for
 both <cite>inputs</cite> and <cite>targets</cite>. To set them individually, pass a
 dictionary with keys {‘inputs’, ‘targets’} instead. See
-<a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor.cuda" title="(in PyTorch vmaster (0.5.0a0+9b1480a ))"><code class="xref py py-meth docutils literal notranslate"><span class="pre">torch.Tensor.cuda()</span></code></a> for details.</td>
+<a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor.cuda" title="(in PyTorch vmaster (0.5.0a0+50392cc ))"><code class="xref py py-meth docutils literal notranslate"><span class="pre">torch.Tensor.cuda()</span></code></a> for details.</td>
 </tr>
 </tbody>
 </table>
@@ -402,7 +402,7 @@ dictionary with keys {‘inputs’, ‘targets’} instead. See
 <dl class="attribute">
 <dt id="sconce.data_generators.SingleClassImageDataGenerator.dataset">
 <code class="descname">dataset</code><a class="headerlink" href="#sconce.data_generators.SingleClassImageDataGenerator.dataset" title="Permalink to this definition">¶</a></dt>
-<dd><p>the wrapped data_loader’s <a class="reference external" href="https://pytorch.org/docs/master/data.html#torch.utils.data.Dataset" title="(in PyTorch vmaster (0.5.0a0+9b1480a ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dataset</span></code></a></p>
+<dd><p>the wrapped data_loader’s <a class="reference external" href="https://pytorch.org/docs/master/data.html#torch.utils.data.Dataset" title="(in PyTorch vmaster (0.5.0a0+50392cc ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dataset</span></code></a></p>
 </dd></dl>
 
 <dl class="classmethod">
@@ -414,13 +414,13 @@ dictionary with keys {‘inputs’, ‘targets’} instead. See
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>dataset</strong> (<a class="reference external" href="https://pytorch.org/docs/master/data.html#torch.utils.data.Dataset" title="(in PyTorch vmaster (0.5.0a0+9b1480a ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dataset</span></code></a>) – the pytorch
+<li><strong>dataset</strong> (<a class="reference external" href="https://pytorch.org/docs/master/data.html#torch.utils.data.Dataset" title="(in PyTorch vmaster (0.5.0a0+50392cc ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dataset</span></code></a>) – the pytorch
 dataset.</li>
-<li><strong>split</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.6)"><em>float</em></a><em>, </em><em>optional</em>) – If not <code class="docutils literal notranslate"><span class="pre">None</span></code>, it specifies the fraction of the dataset that should be placed
+<li><strong>split</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em>, </em><em>optional</em>) – If not <code class="docutils literal notranslate"><span class="pre">None</span></code>, it specifies the fraction of the dataset that should be placed
 into the first of two data_generators.  The remaining data is used for the second data_generator.  Both
 data_generators will be returned.</li>
 <li><strong>**kwargs</strong> – passed directly to the
-<a class="reference external" href="https://pytorch.org/docs/master/data.html#torch.utils.data.DataLoader" title="(in PyTorch vmaster (0.5.0a0+9b1480a ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataLoader</span></code></a>) constructor.</li>
+<a class="reference external" href="https://pytorch.org/docs/master/data.html#torch.utils.data.DataLoader" title="(in PyTorch vmaster (0.5.0a0+50392cc ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataLoader</span></code></a>) constructor.</li>
 </ul>
 </td>
 </tr>
@@ -431,15 +431,15 @@ data_generators will be returned.</li>
 <dl class="classmethod">
 <dt id="sconce.data_generators.SingleClassImageDataGenerator.from_image_folder">
 <em class="property">classmethod </em><code class="descname">from_image_folder</code><span class="sig-paren">(</span><em>root</em>, <em>loader_kwargs=None</em>, <em>**dataset_kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/data_generators/single_class_image_data_generator.html#SingleClassImageDataGenerator.from_image_folder"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.data_generators.SingleClassImageDataGenerator.from_image_folder" title="Permalink to this definition">¶</a></dt>
-<dd><p>Create a DataGenerator from a folder of images.  See <a class="reference external" href="https://pytorch.org/docs/master/torchvision/datasets.html#torchvision.datasets.ImageFolder" title="(in PyTorch vmaster (0.5.0a0+9b1480a ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">torchvision.datasets.ImageFolder</span></code></a>.</p>
+<dd><p>Create a DataGenerator from a folder of images.  See <a class="reference external" href="https://pytorch.org/docs/master/torchvision/datasets.html#torchvision.datasets.ImageFolder" title="(in PyTorch vmaster (0.5.0a0+50392cc ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">torchvision.datasets.ImageFolder</span></code></a>.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>root</strong> (<em>path</em>) – the root directory path.</li>
-<li><strong>loader_kwargs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.6)"><em>dict</em></a>) – keyword args provided to the DataLoader constructor.</li>
-<li><strong>**dataset_kwargs</strong> – keyword args provided to the <a class="reference external" href="https://pytorch.org/docs/master/torchvision/datasets.html#torchvision.datasets.ImageFolder" title="(in PyTorch vmaster (0.5.0a0+9b1480a ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">torchvision.datasets.ImageFolder</span></code></a> constructor.</li>
+<li><strong>loader_kwargs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)"><em>dict</em></a>) – keyword args provided to the DataLoader constructor.</li>
+<li><strong>**dataset_kwargs</strong> – keyword args provided to the <a class="reference external" href="https://pytorch.org/docs/master/torchvision/datasets.html#torchvision.datasets.ImageFolder" title="(in PyTorch vmaster (0.5.0a0+50392cc ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">torchvision.datasets.ImageFolder</span></code></a> constructor.</li>
 </ul>
 </td>
 </tr>
@@ -456,7 +456,7 @@ data_generators will be returned.</li>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>batch_size</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) – how large the yielded <cite>inputs</cite> and <cite>targets</cite>
+<li><strong>batch_size</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – how large the yielded <cite>inputs</cite> and <cite>targets</cite>
 should be. See <code class="xref py py-class docutils literal notranslate"><span class="pre">DataLoader</span></code> for details.</li>
 <li><strong>data_location</strong> (<em>path</em>) – where downloaded dataset should be stored.  If
 <code class="docutils literal notranslate"><span class="pre">None</span></code> a system dependent temporary location will be used.</li>
@@ -464,16 +464,16 @@ should be. See <code class="xref py py-class docutils literal notranslate"><span
 constructor arguments {‘root’, ‘train’, ‘download’,
 ‘transform’}. For example, MNIST, FashionMnist, CIFAR10, or
 CIFAR100.</li>
-<li><strong>fraction</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.6)"><em>float</em></a>) – (0.0 - 1.0] how much of the original dataset’s
+<li><strong>fraction</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – (0.0 - 1.0] how much of the original dataset’s
 data to use.</li>
-<li><strong>num_workers</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) – how many subprocesses to use for data loading.
+<li><strong>num_workers</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – how many subprocesses to use for data loading.
 See <code class="xref py py-class docutils literal notranslate"><span class="pre">DataLoader</span></code> for details.</li>
-<li><strong>pin_memory</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.6)"><em>bool</em></a>) – if <code class="docutils literal notranslate"><span class="pre">True</span></code>, the data loader will copy tensors
+<li><strong>pin_memory</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a>) – if <code class="docutils literal notranslate"><span class="pre">True</span></code>, the data loader will copy tensors
 into CUDA pinned memory before returning them. See
 <code class="xref py py-class docutils literal notranslate"><span class="pre">DataLoader</span></code> for details.</li>
-<li><strong>shuffle</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.6)"><em>bool</em></a>) – set to <code class="docutils literal notranslate"><span class="pre">True</span></code> to have the data reshuffled at every
+<li><strong>shuffle</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a>) – set to <code class="docutils literal notranslate"><span class="pre">True</span></code> to have the data reshuffled at every
 epoch. See <code class="xref py py-class docutils literal notranslate"><span class="pre">DataLoader</span></code> for details.</li>
-<li><strong>train</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.6)"><em>bool</em></a>) – if <code class="docutils literal notranslate"><span class="pre">True</span></code>, creates dataset from training set,
+<li><strong>train</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a>) – if <code class="docutils literal notranslate"><span class="pre">True</span></code>, creates dataset from training set,
 otherwise creates from test set.</li>
 <li><strong>transform</strong> (<em>callable</em>) – a function/transform that takes in an PIL
 image and returns a transformed version.</li>
@@ -506,7 +506,7 @@ image and returns a transformed version.</li>
 <dt id="sconce.data_generators.SingleClassImageDataGenerator.num_samples">
 <code class="descname">num_samples</code><a class="headerlink" href="#sconce.data_generators.SingleClassImageDataGenerator.num_samples" title="Permalink to this definition">¶</a></dt>
 <dd><p>the <code class="docutils literal notranslate"><span class="pre">len</span></code> of the wrapped data_loader’s
-<a class="reference external" href="https://pytorch.org/docs/master/data.html#torch.utils.data.Dataset" title="(in PyTorch vmaster (0.5.0a0+9b1480a ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dataset</span></code></a></p>
+<a class="reference external" href="https://pytorch.org/docs/master/data.html#torch.utils.data.Dataset" title="(in PyTorch vmaster (0.5.0a0+50392cc ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dataset</span></code></a></p>
 </dd></dl>
 
 <dl class="method">
@@ -530,14 +530,14 @@ image and returns a transformed version.</li>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>index</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) – the index of the image to plot.</li>
-<li><strong>num_samples</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a><em>, </em><em>optional</em>) – the number of times to plot the image (1 original, n - 1 transformed
+<li><strong>index</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – the index of the image to plot.</li>
+<li><strong>num_samples</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>optional</em>) – the number of times to plot the image (1 original, n - 1 transformed
 variations).</li>
-<li><strong>num_cols</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) – the number of columns in the plot grid.</li>
+<li><strong>num_cols</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – the number of columns in the plot grid.</li>
 <li><strong>num_cols</strong> – the number of columns to plot, one image per column.</li>
-<li><strong>figure_width</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.6)"><em>float</em></a>) – the size, in matplotlib-inches, for the width of the whole figure.</li>
-<li><strong>image_height</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.6)"><em>float</em></a>) – the size, in matplotlib-inches, for the height of a single image.</li>
-<li><strong>return_fig</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.6)"><em>bool</em></a>) – return the generated matplotlib figure or not.</li>
+<li><strong>figure_width</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – the size, in matplotlib-inches, for the width of the whole figure.</li>
+<li><strong>image_height</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – the size, in matplotlib-inches, for the height of a single image.</li>
+<li><strong>return_fig</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a>) – return the generated matplotlib figure or not.</li>
 </ul>
 </td>
 </tr>
@@ -578,10 +578,10 @@ specified device.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>device</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.6)"><em>bool</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.6)"><em>dict</em></a>) – if int or bool, sets the behavior for
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>device</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)"><em>dict</em></a>) – if int or bool, sets the behavior for
 both <cite>inputs</cite> and <cite>targets</cite>. To set them individually, pass a
 dictionary with keys {‘inputs’, ‘targets’} instead. See
-<a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor.cuda" title="(in PyTorch vmaster (0.5.0a0+9b1480a ))"><code class="xref py py-meth docutils literal notranslate"><span class="pre">torch.Tensor.cuda()</span></code></a> for details.</td>
+<a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor.cuda" title="(in PyTorch vmaster (0.5.0a0+50392cc ))"><code class="xref py py-meth docutils literal notranslate"><span class="pre">torch.Tensor.cuda()</span></code></a> for details.</td>
 </tr>
 </tbody>
 </table>
@@ -612,7 +612,7 @@ dictionary with keys {‘inputs’, ‘targets’} instead. See
 <dl class="attribute">
 <dt id="sconce.data_generators.MultiClassImageDataGenerator.dataset">
 <code class="descname">dataset</code><a class="headerlink" href="#sconce.data_generators.MultiClassImageDataGenerator.dataset" title="Permalink to this definition">¶</a></dt>
-<dd><p>the wrapped data_loader’s <a class="reference external" href="https://pytorch.org/docs/master/data.html#torch.utils.data.Dataset" title="(in PyTorch vmaster (0.5.0a0+9b1480a ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dataset</span></code></a></p>
+<dd><p>the wrapped data_loader’s <a class="reference external" href="https://pytorch.org/docs/master/data.html#torch.utils.data.Dataset" title="(in PyTorch vmaster (0.5.0a0+50392cc ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dataset</span></code></a></p>
 </dd></dl>
 
 <dl class="classmethod">
@@ -624,13 +624,13 @@ dictionary with keys {‘inputs’, ‘targets’} instead. See
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>dataset</strong> (<a class="reference external" href="https://pytorch.org/docs/master/data.html#torch.utils.data.Dataset" title="(in PyTorch vmaster (0.5.0a0+9b1480a ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dataset</span></code></a>) – the pytorch
+<li><strong>dataset</strong> (<a class="reference external" href="https://pytorch.org/docs/master/data.html#torch.utils.data.Dataset" title="(in PyTorch vmaster (0.5.0a0+50392cc ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dataset</span></code></a>) – the pytorch
 dataset.</li>
-<li><strong>split</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.6)"><em>float</em></a><em>, </em><em>optional</em>) – If not <code class="docutils literal notranslate"><span class="pre">None</span></code>, it specifies the fraction of the dataset that should be placed
+<li><strong>split</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em>, </em><em>optional</em>) – If not <code class="docutils literal notranslate"><span class="pre">None</span></code>, it specifies the fraction of the dataset that should be placed
 into the first of two data_generators.  The remaining data is used for the second data_generator.  Both
 data_generators will be returned.</li>
 <li><strong>**kwargs</strong> – passed directly to the
-<a class="reference external" href="https://pytorch.org/docs/master/data.html#torch.utils.data.DataLoader" title="(in PyTorch vmaster (0.5.0a0+9b1480a ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataLoader</span></code></a>) constructor.</li>
+<a class="reference external" href="https://pytorch.org/docs/master/data.html#torch.utils.data.DataLoader" title="(in PyTorch vmaster (0.5.0a0+50392cc ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataLoader</span></code></a>) constructor.</li>
 </ul>
 </td>
 </tr>
@@ -660,7 +660,7 @@ data_generators will be returned.</li>
 <dt id="sconce.data_generators.MultiClassImageDataGenerator.num_samples">
 <code class="descname">num_samples</code><a class="headerlink" href="#sconce.data_generators.MultiClassImageDataGenerator.num_samples" title="Permalink to this definition">¶</a></dt>
 <dd><p>the <code class="docutils literal notranslate"><span class="pre">len</span></code> of the wrapped data_loader’s
-<a class="reference external" href="https://pytorch.org/docs/master/data.html#torch.utils.data.Dataset" title="(in PyTorch vmaster (0.5.0a0+9b1480a ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dataset</span></code></a></p>
+<a class="reference external" href="https://pytorch.org/docs/master/data.html#torch.utils.data.Dataset" title="(in PyTorch vmaster (0.5.0a0+50392cc ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dataset</span></code></a></p>
 </dd></dl>
 
 <dl class="method">
@@ -684,14 +684,14 @@ data_generators will be returned.</li>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>index</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) – the index of the image to plot.</li>
-<li><strong>num_samples</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a><em>, </em><em>optional</em>) – the number of times to plot the image (1 original, n - 1 transformed
+<li><strong>index</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – the index of the image to plot.</li>
+<li><strong>num_samples</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>optional</em>) – the number of times to plot the image (1 original, n - 1 transformed
 variations).</li>
-<li><strong>num_cols</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) – the number of columns in the plot grid.</li>
+<li><strong>num_cols</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – the number of columns in the plot grid.</li>
 <li><strong>num_cols</strong> – the number of columns to plot, one image per column.</li>
-<li><strong>figure_width</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.6)"><em>float</em></a>) – the size, in matplotlib-inches, for the width of the whole figure.</li>
-<li><strong>image_height</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.6)"><em>float</em></a>) – the size, in matplotlib-inches, for the height of a single image.</li>
-<li><strong>return_fig</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.6)"><em>bool</em></a>) – return the generated matplotlib figure or not.</li>
+<li><strong>figure_width</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – the size, in matplotlib-inches, for the width of the whole figure.</li>
+<li><strong>image_height</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – the size, in matplotlib-inches, for the height of a single image.</li>
+<li><strong>return_fig</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a>) – return the generated matplotlib figure or not.</li>
 </ul>
 </td>
 </tr>

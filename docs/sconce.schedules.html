@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                master (1.2.1 )
+                master (1.2.2 )
               </div>
             
           
@@ -224,7 +224,7 @@
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>value</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.6)"><em>float</em></a>) – the value of the hyperparameter.</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>value</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – the value of the hyperparameter.</td>
 </tr>
 </tbody>
 </table>
@@ -238,7 +238,7 @@
 <dl class="class">
 <dt id="sconce.schedules.base.Schedule">
 <em class="property">class </em><code class="descclassname">sconce.schedules.base.</code><code class="descname">Schedule</code><a class="reference internal" href="_modules/sconce/schedules/base.html#Schedule"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.schedules.base.Schedule" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/abc.html#abc.ABC" title="(in Python v3.6)"><code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></a></p>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/abc.html#abc.ABC" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></a></p>
 <p>The base class for all schedules in Sconce.  It is only an interface, describing what must be implemented
 if you want to define a schedule.</p>
 <dl class="method">
@@ -250,10 +250,10 @@ if you want to define a schedule.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>step</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.6)"><em>float</em></a>) – (0.0, inf) the training step that is about to be completed.
+<li><strong>step</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – (0.0, inf) the training step that is about to be completed.
 Fractional steps are possible (see batch_multiplier option on
 <a class="reference internal" href="trainers.html#sconce.trainer.Trainer.train" title="sconce.trainer.Trainer.train"><code class="xref py py-meth docutils literal notranslate"><span class="pre">sconce.trainer.Trainer.train()</span></code></a>).</li>
-<li><strong>current_state</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.6)"><em>dict</em></a>) – a dictionary describing the current training state.</li>
+<li><strong>current_state</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)"><em>dict</em></a>) – a dictionary describing the current training state.</li>
 </ul>
 </td>
 </tr>
@@ -275,7 +275,7 @@ Fractional steps are possible (see batch_multiplier option on
 <dl class="class">
 <dt id="sconce.schedules.base.ScheduledMixin">
 <em class="property">class </em><code class="descclassname">sconce.schedules.base.</code><code class="descname">ScheduledMixin</code><a class="reference internal" href="_modules/sconce/schedules/base.html#ScheduledMixin"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.schedules.base.ScheduledMixin" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.6)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>This mixin defines the interface for scheduled objects in Sconce.</p>
 <dl class="method">
 <dt id="sconce.schedules.base.ScheduledMixin.prepare_for_step">
@@ -313,8 +313,8 @@ from [0, pi].  It will begin at &lt;initial_value&gt; and end at &lt;final_value
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>initial_value</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.6)"><em>float</em></a>) – the initial value of the hyperparameter.</li>
-<li><strong>final_value</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.6)"><em>float</em></a>) – the final value of the hyperparameter.</li>
+<li><strong>initial_value</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – the initial value of the hyperparameter.</li>
+<li><strong>final_value</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – the final value of the hyperparameter.</li>
 </ul>
 </td>
 </tr>
@@ -341,9 +341,9 @@ to &lt;final_value&gt;, over &lt;num_steps&gt;.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>initial_value</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.6)"><em>float</em></a>) – the initial value of the hyperparameter.</li>
-<li><strong>final_value</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.6)"><em>float</em></a>) – the final value of the hyperparameter.</li>
-<li><strong>stop_factor</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.6)"><em>float</em></a><em>, </em><em>optional</em>) – a StopTrainingError will be raised if &lt;loss_key&gt; rises to
+<li><strong>initial_value</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – the initial value of the hyperparameter.</li>
+<li><strong>final_value</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – the final value of the hyperparameter.</li>
+<li><strong>stop_factor</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em>, </em><em>optional</em>) – a StopTrainingError will be raised if &lt;loss_key&gt; rises to
 &lt;stop_factor&gt; above it’s observed minimum value so far.</li>
 <li><strong>loss_key</strong> (<em>string</em><em>, </em><em>optional</em>) – the name of the quantity (in <code class="docutils literal notranslate"><span class="pre">current_state</span></code>) to observe for &lt;stop_factor&gt;.</li>
 </ul>
@@ -376,8 +376,8 @@ to &lt;final_value&gt;, over &lt;num_steps&gt;.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>initial_value</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.6)"><em>float</em></a>) – the initial value of the hyperparameter.</li>
-<li><strong>final_value</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.6)"><em>float</em></a>) – the final value of the hyperparameter.</li>
+<li><strong>initial_value</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – the initial value of the hyperparameter.</li>
+<li><strong>final_value</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – the final value of the hyperparameter.</li>
 </ul>
 </td>
 </tr>
@@ -404,9 +404,9 @@ course of &lt;num_steps&gt; to a final value of &lt;final_value&gt;.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>initial_value</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.6)"><em>float</em></a>) – the initial value of the hyperparameter.</li>
-<li><strong>final_value</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.6)"><em>float</em></a>) – the final value of the hyperparameter.</li>
-<li><strong>num_changes</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a><em>, </em><em>optional</em>) – [1, &lt;num_steps&gt;-1] the number of times the hyperparameter’s value will change.</li>
+<li><strong>initial_value</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – the initial value of the hyperparameter.</li>
+<li><strong>final_value</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – the final value of the hyperparameter.</li>
+<li><strong>num_changes</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>optional</em>) – [1, &lt;num_steps&gt;-1] the number of times the hyperparameter’s value will change.</li>
 </ul>
 </td>
 </tr>
@@ -438,9 +438,9 @@ and then back to &lt;initial_value&gt; by the end of &lt;num_steps&gt;.  Peak va
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>initial_value</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.6)"><em>float</em></a>) – the initial value of the hyperparameter.</li>
-<li><strong>peak_value</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.6)"><em>float</em></a>) – the value of the hyperparameter at it’s peak (maximum or minimum).</li>
-<li><strong>peak_fraction</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.6)"><em>float</em></a><em>, </em><em>optional</em>) – (0.0, 1.0) used to determine the number of steps before the hyperparameter’s
+<li><strong>initial_value</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – the initial value of the hyperparameter.</li>
+<li><strong>peak_value</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – the value of the hyperparameter at it’s peak (maximum or minimum).</li>
+<li><strong>peak_fraction</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em>, </em><em>optional</em>) – (0.0, 1.0) used to determine the number of steps before the hyperparameter’s
 value will become &lt;peak_value&gt;.</li>
 </ul>
 </td>

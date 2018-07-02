@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                master (1.2.1 )
+                master (1.2.2 )
               </div>
             
           
@@ -229,14 +229,14 @@
                 <span class="n">in_channels</span><span class="o">=</span><span class="n">in_channels</span><span class="p">,</span>
                 <span class="n">out_channels</span><span class="o">=</span><span class="n">out_channels</span><span class="p">,</span>
                 <span class="n">stride</span><span class="o">=</span><span class="n">stride</span><span class="p">,</span>
-                <span class="n">inplace_activation</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                <span class="n">activation</span><span class="o">=</span><span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
                 <span class="n">preactivate</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">conv2</span> <span class="o">=</span> <span class="n">Convolution2dLayer</span><span class="p">(</span>
                 <span class="n">in_channels</span><span class="o">=</span><span class="n">out_channels</span><span class="p">,</span>
                 <span class="n">out_channels</span><span class="o">=</span><span class="n">out_channels</span><span class="p">,</span>
                 <span class="n">stride</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-                <span class="n">inplace_activation</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                <span class="n">activation</span><span class="o">=</span><span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
                 <span class="n">preactivate</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">in_channels</span> <span class="o">=</span> <span class="n">in_channels</span>
@@ -248,7 +248,7 @@
                     <span class="n">in_channels</span><span class="o">=</span><span class="n">in_channels</span><span class="p">,</span>
                     <span class="n">out_channels</span><span class="o">=</span><span class="n">out_channels</span><span class="p">,</span>
                     <span class="n">stride</span><span class="o">=</span><span class="n">stride</span><span class="p">,</span>
-                    <span class="n">inplace_activation</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                    <span class="n">activation</span><span class="o">=</span><span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
                     <span class="n">preactivate</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <div class="viewcode-block" id="WideResnetBlock_3x3.forward"><a class="viewcode-back" href="../../../sconce.models.html#sconce.models.WideResnetBlock_3x3.forward">[docs]</a>    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x_in</span><span class="p">):</span>
@@ -329,7 +329,7 @@
                 <span class="n">in_channels</span><span class="o">=</span><span class="n">image_channels</span><span class="p">,</span>
                 <span class="n">out_channels</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span>
                 <span class="n">stride</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-                <span class="n">inplace_activation</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                <span class="n">activation</span><span class="o">=</span><span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
                 <span class="n">preactivate</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">group1</span> <span class="o">=</span> <span class="n">WideResnetGroup_3x3</span><span class="p">(</span><span class="n">in_channels</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span>
@@ -353,13 +353,13 @@
                 <span class="n">in_channels</span><span class="o">=</span><span class="n">widths</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
                 <span class="n">out_channels</span><span class="o">=</span><span class="n">num_categories</span><span class="p">,</span>
                 <span class="n">stride</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-                <span class="n">inplace_activation</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                <span class="n">activation</span><span class="o">=</span><span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
                 <span class="n">preactivate</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">pool</span> <span class="o">=</span> <span class="n">AdaptiveAveragePooling2dLayer</span><span class="p">(</span>
                 <span class="n">in_channels</span><span class="o">=</span><span class="n">num_categories</span><span class="p">,</span>
                 <span class="n">output_size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-                <span class="n">inplace_activation</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                <span class="n">activation</span><span class="o">=</span><span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
                 <span class="n">preactivate</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">log_softmax</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">LogSoftmax</span><span class="p">(</span><span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>

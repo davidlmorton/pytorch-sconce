@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                master (1.2.1 )
+                master (1.2.2 )
               </div>
             
           
@@ -228,7 +228,7 @@ object.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.6)"><em>str</em></a>) – used to gain access to a monitor when it has been composed together into a
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – used to gain access to a monitor when it has been composed together into a
 <a class="reference internal" href="sconce.monitors.html#sconce.monitors.base.CompositeMonitor" title="sconce.monitors.base.CompositeMonitor"><code class="xref py py-class docutils literal notranslate"><span class="pre">CompositeMonitor</span></code></a>.</td>
 </tr>
 </tbody>
@@ -256,7 +256,7 @@ object.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>num_steps</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) – [1, inf) the number of update/evaluation steps to expect.</li>
+<li><strong>num_steps</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – [1, inf) the number of update/evaluation steps to expect.</li>
 <li><strong>**kwargs</strong> – must be accepted to allow for future use cases.</li>
 </ul>
 </td>
@@ -275,10 +275,10 @@ training/evaluation session just after the training/evaluation step.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>data</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.6)"><em>dict</em></a>) – the output of the training/evaluation step.  The keys
+<li><strong>data</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)"><em>dict</em></a>) – the output of the training/evaluation step.  The keys
 may include, but are not limited to: {‘training_loss’, ‘validation_loss’,
 ‘learning_rate’}.</li>
-<li><strong>step</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.6)"><em>float</em></a>) – (0.0, inf) the step that was just completed.
+<li><strong>step</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – (0.0, inf) the step that was just completed.
 Fractional steps are possible (see batch_multiplier option on
 <a class="reference internal" href="trainers.html#sconce.trainer.Trainer.train" title="sconce.trainer.Trainer.train"><code class="xref py py-meth docutils literal notranslate"><span class="pre">sconce.trainer.Trainer.train()</span></code></a>).</li>
 <li><strong>**kwargs</strong> – must be accepted to allow for future use cases.</li>

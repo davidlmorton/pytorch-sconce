@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                master (1.2.1 )
+                master (1.2.2 )
               </div>
             
           
@@ -246,10 +246,10 @@
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>image_height</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) – image height in pixels.</li>
-<li><strong>image_width</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) – image width in pixels.</li>
-<li><strong>hidden_size</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) – the number of activations in each of the 4 hidden layers.</li>
-<li><strong>latent_size</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) – the number of activations in the latent representation (encoder output).</li>
+<li><strong>image_height</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – image height in pixels.</li>
+<li><strong>image_width</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – image width in pixels.</li>
+<li><strong>hidden_size</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – the number of activations in each of the 4 hidden layers.</li>
+<li><strong>latent_size</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – the number of activations in the latent representation (encoder output).</li>
 </ul>
 </td>
 </tr>
@@ -297,14 +297,14 @@ connected layers.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>image_height</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) – image height in pixels.</li>
-<li><strong>image_width</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) – image width in pixels.</li>
-<li><strong>image_channels</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) – number of channels in the input images.</li>
-<li><strong>convolutional_layer_kwargs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.6)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.6)"><em>dict</em></a><em>]</em>) – a list of dictionaries describing the convolutional layers. See
+<li><strong>image_height</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – image height in pixels.</li>
+<li><strong>image_width</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – image width in pixels.</li>
+<li><strong>image_channels</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – number of channels in the input images.</li>
+<li><strong>convolutional_layer_kwargs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.7)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)"><em>dict</em></a><em>]</em>) – a list of dictionaries describing the convolutional layers. See
 <a class="reference internal" href="sconce.models.layers.html#sconce.models.layers.convolution2d_layer.Convolution2dLayer" title="sconce.models.layers.convolution2d_layer.Convolution2dLayer"><code class="xref py py-class docutils literal notranslate"><span class="pre">Convolution2dLayer</span></code></a> for details.</li>
-<li><strong>fully_connected_layer_kwargs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.6)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.6)"><em>dict</em></a><em>]</em>) – a list of dictionaries describing the fully connected layers. See
+<li><strong>fully_connected_layer_kwargs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.7)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)"><em>dict</em></a><em>]</em>) – a list of dictionaries describing the fully connected layers. See
 <a class="reference internal" href="sconce.models.layers.html#sconce.models.layers.fully_connected_layer.FullyConnectedLayer" title="sconce.models.layers.fully_connected_layer.FullyConnectedLayer"><code class="xref py py-class docutils literal notranslate"><span class="pre">FullyConnectedLayer</span></code></a> for details.</li>
-<li><strong>num_categories</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) – [2, inf) the number of different image classes.</li>
+<li><strong>num_categories</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – [2, inf) the number of different image classes.</li>
 </ul>
 </td>
 </tr>
@@ -416,12 +416,12 @@ for more details.</td>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>image_height</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) – image height in pixels.</li>
-<li><strong>image_width</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) – image width in pixels.</li>
-<li><strong>image_channels</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) – number of channels in the input images.</li>
-<li><strong>layer_kwargs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.6)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.6)"><em>dict</em></a><em>]</em>) – a list of dictionaries describing layers. See
+<li><strong>image_height</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – image height in pixels.</li>
+<li><strong>image_width</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – image width in pixels.</li>
+<li><strong>image_channels</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – number of channels in the input images.</li>
+<li><strong>layer_kwargs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.7)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)"><em>dict</em></a><em>]</em>) – a list of dictionaries describing layers. See
 <a class="reference internal" href="sconce.models.layers.html#sconce.models.layers.fully_connected_layer.FullyConnectedLayer" title="sconce.models.layers.fully_connected_layer.FullyConnectedLayer"><code class="xref py py-class docutils literal notranslate"><span class="pre">FullyConnectedLayer</span></code></a> for details.</li>
-<li><strong>num_categories</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) – [2, inf) the number of different image classes.</li>
+<li><strong>num_categories</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – [2, inf) the number of different image classes.</li>
 </ul>
 </td>
 </tr>
@@ -530,12 +530,12 @@ for more details.</td>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>image_channels</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) – number of channels in the input images.</li>
-<li><strong>depth</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) – total number of convolutional layers in the network.  This
+<li><strong>image_channels</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – number of channels in the input images.</li>
+<li><strong>depth</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – total number of convolutional layers in the network.  This
 should be divisible by (6n + 4) where n is a positive integer.</li>
-<li><strong>widening_factor</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) – [1, inf) determines how many convolutional
+<li><strong>widening_factor</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – [1, inf) determines how many convolutional
 channels are in the network (see paper above for details).</li>
-<li><strong>num_categories</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) – [2, inf) the number of different image classes.</li>
+<li><strong>num_categories</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – [2, inf) the number of different image classes.</li>
 </ul>
 </td>
 </tr>

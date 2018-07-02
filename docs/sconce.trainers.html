@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                master (1.2.1 )
+                master (1.2.2 )
               </div>
             
           
@@ -218,7 +218,7 @@
 <dl class="class">
 <dt id="sconce.trainers.autoencoder_trainer.AutoencoderMixin">
 <em class="property">class </em><code class="descclassname">sconce.trainers.autoencoder_trainer.</code><code class="descname">AutoencoderMixin</code><a class="reference internal" href="_modules/sconce/trainers/autoencoder_trainer.html#AutoencoderMixin"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.trainers.autoencoder_trainer.AutoencoderMixin" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/abc.html#abc.ABC" title="(in Python v3.6)"><code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></a></p>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/abc.html#abc.ABC" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></a></p>
 <dl class="method">
 <dt id="sconce.trainers.autoencoder_trainer.AutoencoderMixin.plot_input_output_pairs">
 <code class="descname">plot_input_output_pairs</code><span class="sig-paren">(</span><em>title='A Sampling of Autoencoder Results'</em>, <em>num_cols=10</em>, <em>figsize=(15</em>, <em>3.2)</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/trainers/autoencoder_trainer.html#AutoencoderMixin.plot_input_output_pairs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.trainers.autoencoder_trainer.AutoencoderMixin.plot_input_output_pairs" title="Permalink to this definition">¶</a></dt>
@@ -254,7 +254,7 @@ removed soon.  It will continue to work for now, but please update your code acc
 <dl class="class">
 <dt id="sconce.trainers.single_class_image_classifier_trainer.SingleClassImageClassifierMixin">
 <em class="property">class </em><code class="descclassname">sconce.trainers.single_class_image_classifier_trainer.</code><code class="descname">SingleClassImageClassifierMixin</code><a class="reference internal" href="_modules/sconce/trainers/single_class_image_classifier_trainer.html#SingleClassImageClassifierMixin"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.trainers.single_class_image_classifier_trainer.SingleClassImageClassifierMixin" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/abc.html#abc.ABC" title="(in Python v3.6)"><code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></a></p>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/abc.html#abc.ABC" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></a></p>
 <dl class="method">
 <dt id="sconce.trainers.single_class_image_classifier_trainer.SingleClassImageClassifierMixin.get_classification_accuracy">
 <code class="descname">get_classification_accuracy</code><span class="sig-paren">(</span><em>data_generator=None</em>, <em>feed=None</em>, <em>cache_results=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/trainers/single_class_image_classifier_trainer.html#SingleClassImageClassifierMixin.get_classification_accuracy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.trainers.single_class_image_classifier_trainer.SingleClassImageClassifierMixin.get_classification_accuracy" title="Permalink to this definition">¶</a></dt>
@@ -279,17 +279,17 @@ removed soon.  It will continue to work for now, but please update your code acc
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>predicted_class</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a><em> or </em><em>string</em>) – the class string or the index of the class that was predicted by the model.</li>
-<li><strong>true_class</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a><em> or </em><em>string</em>) – the class string or the index of the class that the image actually belongs to.</li>
+<li><strong>predicted_class</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em> or </em><em>string</em>) – the class string or the index of the class that was predicted by the model.</li>
+<li><strong>true_class</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em> or </em><em>string</em>) – the class string or the index of the class that the image actually belongs to.</li>
 <li><strong>data_generator</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">SingleClassImageDataGenerator</span></code>) – DEPRECATED,
 use feed argument instead.</li>
 <li><strong>feed</strong> (<a class="reference internal" href="sconce.data_feeds.html#sconce.data_feeds.base.DataFeed" title="sconce.data_feeds.base.DataFeed"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFeed</span></code></a>) – the DataFeed to use to find the samples.</li>
 <li><strong>sort_by</strong> (<em>string</em>) – one of the sort_by strings, see note below.</li>
-<li><strong>num_samples</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) – the number of sample images to plot.</li>
-<li><strong>num_cols</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) – the number of columns to plot, one image per column.</li>
-<li><strong>figure_width</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.6)"><em>float</em></a>) – the size, in matplotlib-inches, for the width of the whole figure.</li>
-<li><strong>image_height</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.6)"><em>float</em></a>) – the size, in matplotlib-inches, for the height of a single image.</li>
-<li><strong>cache_results</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.6)"><em>bool</em></a>) – keep the results in memory to make subsequent plots faster.  Beware, that on large
+<li><strong>num_samples</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – the number of sample images to plot.</li>
+<li><strong>num_cols</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – the number of columns to plot, one image per column.</li>
+<li><strong>figure_width</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – the size, in matplotlib-inches, for the width of the whole figure.</li>
+<li><strong>image_height</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – the size, in matplotlib-inches, for the height of a single image.</li>
+<li><strong>cache_results</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a>) – keep the results in memory to make subsequent plots faster.  Beware, that on large
 datasets (like imagenet) this can cause your system to run out of memory.</li>
 </ul>
 </td>

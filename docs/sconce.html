@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                master (1.2.1 )
+                master (1.2.2 )
               </div>
             
           
@@ -235,7 +235,7 @@
 <dl class="class">
 <dt id="sconce.trainer.Trainer">
 <em class="property">class </em><code class="descclassname">sconce.trainer.</code><code class="descname">Trainer</code><span class="sig-paren">(</span><em>*</em>, <em>model</em>, <em>validation_feed=None</em>, <em>training_feed=None</em>, <em>test_data_generator=None</em>, <em>training_data_generator=None</em>, <em>monitor=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/trainer.html#Trainer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.trainer.Trainer" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.6)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>A Class that is used to train sconce models.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -304,9 +304,9 @@ allowing you to analyze training or make plots. If <code class="docutils literal
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>num_cycles</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) – [1, inf) the number of cycles to train for.</li>
-<li><strong>cycle_length</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.6)"><em>float</em></a>) – (0.0, inf) the length (in epochs) of the first cycle.</li>
-<li><strong>cycle_multiplier</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.6)"><em>float</em></a>) – (0.0, inf) a factor used to determine the length of a cycle.  The length of a
+<li><strong>num_cycles</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – [1, inf) the number of cycles to train for.</li>
+<li><strong>cycle_length</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – (0.0, inf) the length (in epochs) of the first cycle.</li>
+<li><strong>cycle_multiplier</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – (0.0, inf) a factor used to determine the length of a cycle.  The length of a
 cycle is equal to the length of the previous cycle (or <code class="docutils literal notranslate"><span class="pre">cycle_length</span></code> if it is the first cycle)
 multiplied by <code class="docutils literal notranslate"><span class="pre">cycle_multiplier</span></code>.</li>
 </ul>
@@ -361,18 +361,18 @@ If <code class="docutils literal notranslate"><span class="pre">None</span></cod
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name" colspan="2">Keyword Arguments:</th></tr>
 <tr class="field-odd field"><td>&#160;</td><td class="field-body"><ul class="first simple">
-<li><strong>num_epochs</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.6)"><em>float</em></a><em>, </em><em>optional</em>) – (0.0, inf) the number of epochs to train the model for.</li>
-<li><strong>min_learning_rate</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.6)"><em>float</em></a><em>, </em><em>optional</em>) – (0.0, inf) the minimum learning rate used in the survey.</li>
-<li><strong>max_learning_rate</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.6)"><em>float</em></a><em>, </em><em>optional</em>) – (0.0, inf) the maximum learning rate used in the survey.</li>
+<li><strong>num_epochs</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em>, </em><em>optional</em>) – (0.0, inf) the number of epochs to train the model for.</li>
+<li><strong>min_learning_rate</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em>, </em><em>optional</em>) – (0.0, inf) the minimum learning rate used in the survey.</li>
+<li><strong>max_learning_rate</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em>, </em><em>optional</em>) – (0.0, inf) the maximum learning rate used in the survey.</li>
 <li><strong>monitor</strong> (<a class="reference internal" href="sconce.monitors.html#sconce.monitors.base.Monitor" title="sconce.monitors.base.Monitor"><code class="xref py py-class docutils literal notranslate"><span class="pre">Monitor</span></code></a>, optional) – the sconce monitor that records data during
 the learning rate survey.  If <code class="docutils literal notranslate"><span class="pre">None</span></code>, a composite monitor consisting of a
 <a class="reference internal" href="sconce.monitors.html#sconce.monitors.stdout_monitor.StdoutMonitor" title="sconce.monitors.stdout_monitor.StdoutMonitor"><code class="xref py py-class docutils literal notranslate"><span class="pre">StdoutMonitor</span></code></a> and a
 <a class="reference internal" href="sconce.monitors.html#sconce.monitors.dataframe_monitor.DataframeMonitor" title="sconce.monitors.dataframe_monitor.DataframeMonitor"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataframeMonitor</span></code></a> will be created for you and used.</li>
-<li><strong>batch_multiplier</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a><em>, </em><em>optional</em>) – [1, inf) determines how often parameter updates will occur during
+<li><strong>batch_multiplier</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>optional</em>) – [1, inf) determines how often parameter updates will occur during
 training.  If greater than 1, this simulates large batch sizes without increasing memory usage.  For
 example, if the batch size were 100 and batch_multipler=10, the effective batch size would be 1,000, but
 the memory usage would be for a batch size of 100.</li>
-<li><strong>stop_factor</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.6)"><em>float</em></a>) – (1.0, inf) determines early stopping.  If the <cite>training loss</cite> rises by more than
+<li><strong>stop_factor</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – (1.0, inf) determines early stopping.  If the <cite>training loss</cite> rises by more than
 this factor from it’s minimum value, the survey will stop.</li>
 </ul>
 </td>
@@ -421,14 +421,14 @@ this testing.  If <code class="docutils literal notranslate"><span class="pre">N
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>num_epochs</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.6)"><em>float</em></a>) – the number of epochs to train the model for.</li>
+<li><strong>num_epochs</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – the number of epochs to train the model for.</li>
 <li><strong>monitor</strong> (<a class="reference internal" href="sconce.monitors.html#sconce.monitors.base.Monitor" title="sconce.monitors.base.Monitor"><code class="xref py py-class docutils literal notranslate"><span class="pre">Monitor</span></code></a>, optional) – a monitor to use for this training session.
 If <code class="docutils literal notranslate"><span class="pre">None</span></code>, then self.monitor will be used.</li>
-<li><strong>test_to_train_ratio</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.6)"><em>float</em></a><em>, </em><em>optional</em>) – [0.0, 1.0] determines how often (relative to training samples) that
+<li><strong>test_to_train_ratio</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em>, </em><em>optional</em>) – [0.0, 1.0] determines how often (relative to training samples) that
 test samples are run through the model during training.  If <code class="docutils literal notranslate"><span class="pre">None</span></code>, then the relative size of the
 training and test datasets is used.  For example, for MNIST with 60,000 training samples and 10,000 test
 samples, the value would be 1/6th.</li>
-<li><strong>batch_multiplier</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a><em>, </em><em>optional</em>) – [1, inf) determines how often parameter updates will occur during
+<li><strong>batch_multiplier</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>optional</em>) – [1, inf) determines how often parameter updates will occur during
 training.  If greater than 1, this simulates large batch sizes without increasing memory usage.  For
 example, if the batch size were 100 and batch_multipler=10, the effective batch size would be 1,000, but
 the memory usage would be for a batch size of 100.</li>
@@ -474,13 +474,13 @@ this testing.  If <code class="docutils literal notranslate"><span class="pre">N
 <dl class="class">
 <dt id="sconce.transforms.NHot">
 <em class="property">class </em><code class="descclassname">sconce.transforms.</code><code class="descname">NHot</code><span class="sig-paren">(</span><em>size</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/transforms.html#NHot"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.transforms.NHot" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.6)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Converts a list of indices to a n-hot encoded vector.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>size</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) – the size of the returned array</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>size</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – the size of the returned array</td>
 </tr>
 </tbody>
 </table>
@@ -499,22 +499,22 @@ this testing.  If <code class="docutils literal notranslate"><span class="pre">N
 <dl class="class">
 <dt id="sconce.utils.Progbar">
 <em class="property">class </em><code class="descclassname">sconce.utils.</code><code class="descname">Progbar</code><span class="sig-paren">(</span><em>target</em>, <em>width=30</em>, <em>verbose=1</em>, <em>interval=0.05</em>, <em>stateful_metrics=None</em>, <em>alpha=0.05</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sconce/utils.html#Progbar"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sconce.utils.Progbar" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.6)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Displays a progress bar.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>target</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) – Total number of steps expected, None if unknown.</li>
-<li><strong>width</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.6)"><em>float</em></a>) – Progress bar width on screen.</li>
-<li><strong>verbose</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) – Verbosity mode, 0 (silent), 1 (verbose), 2 (semi-verbose)</li>
+<li><strong>target</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – Total number of steps expected, None if unknown.</li>
+<li><strong>width</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – Progress bar width on screen.</li>
+<li><strong>verbose</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – Verbosity mode, 0 (silent), 1 (verbose), 2 (semi-verbose)</li>
 <li><strong>stateful_metrics</strong> (<em>list string</em>) – Iterable of string names of metrics that
 should <em>not</em> be averaged over time. Metrics in this list
 will be displayed as-is. All others will be averaged
 by the progbar before display.</li>
-<li><strong>interval</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.6)"><em>float</em></a>) – Minimum visual progress update interval (in seconds).</li>
-<li><strong>alpha</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.6)"><em>float</em></a>) – The coefficient for exponentially weighted moving averages.</li>
+<li><strong>interval</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – Minimum visual progress update interval (in seconds).</li>
+<li><strong>alpha</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – The coefficient for exponentially weighted moving averages.</li>
 </ul>
 </td>
 </tr>
@@ -534,7 +534,7 @@ by the progbar before display.</li>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>current</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) – Index of current step.</li>
+<li><strong>current</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – Index of current step.</li>
 <li><strong>values</strong> (<em>list tuples</em>) – List of tuples like <code class="docutils literal notranslate"><span class="pre">(name,</span> <span class="pre">value_for_last_step)</span></code>.</li>
 </ul>
 </td>
@@ -563,9 +563,9 @@ Else, an average of the metric over time will be displayed.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>parameters</strong> (iterable of <a class="reference external" href="https://pytorch.org/docs/master/nn.html#torch.nn.Parameter" title="(in PyTorch vmaster (0.5.0a0+9b1480a ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.Parameter</span></code></a>) – the parameters you want to group together.</li>
+<li><strong>parameters</strong> (iterable of <a class="reference external" href="https://pytorch.org/docs/master/nn.html#torch.nn.Parameter" title="(in PyTorch vmaster (0.5.0a0+50392cc ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.Parameter</span></code></a>) – the parameters you want to group together.</li>
 <li><strong>name</strong> (<em>string</em>) – your name for this group</li>
-<li><strong>is_active</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.6)"><em>bool</em></a><em>, </em><em>optional</em>) – should this group be considered active (used during training)?</li>
+<li><strong>is_active</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em>, </em><em>optional</em>) – should this group be considered active (used during training)?</li>
 </ul>
 </td>
 </tr>
@@ -596,7 +596,7 @@ optimizer will be used during training.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>optimizer_class</strong> (one of the <a class="reference external" href="https://pytorch.org/docs/master/optim.html#module-torch.optim" title="(in PyTorch vmaster (0.5.0a0+9b1480a ))"><code class="xref py py-mod docutils literal notranslate"><span class="pre">torch.optim</span></code></a> classes) – the class of optimizer to set.</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>optimizer_class</strong> (one of the <a class="reference external" href="https://pytorch.org/docs/master/optim.html#module-torch.optim" title="(in PyTorch vmaster (0.5.0a0+50392cc ))"><code class="xref py py-mod docutils literal notranslate"><span class="pre">torch.optim</span></code></a> classes) – the class of optimizer to set.</td>
 </tr>
 </tbody>
 </table>

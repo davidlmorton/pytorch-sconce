@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                master (1.2.1 )
+                master (1.2.2 )
               </div>
             
           
@@ -234,7 +234,7 @@
 image.</li>
 <li><strong>csv_delimiter</strong> (<em>string</em><em>, </em><em>optional</em>) – the character(s) used to separate fields in the csv file.</li>
 <li><strong>loader</strong> (<em>callable</em><em>, </em><em>optional</em>) – a function to load a sample given its path.</li>
-<li><strong>extensions</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.6)"><em>list</em></a><em>[</em><em>string</em><em>]</em><em>, </em><em>optinoal</em>) – a list of allowed extensions. E.g, <code class="docutils literal notranslate"><span class="pre">['.jpg',</span> <span class="pre">'.tif']</span></code></li>
+<li><strong>extensions</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.7)"><em>list</em></a><em>[</em><em>string</em><em>]</em><em>, </em><em>optinoal</em>) – a list of allowed extensions. E.g, <code class="docutils literal notranslate"><span class="pre">['.jpg',</span> <span class="pre">'.tif']</span></code></li>
 <li><strong>transform</strong> (<em>callable</em><em>, </em><em>optional</em>) – A function/transform that takes in a sample and returns a transformed version.
 E.g, <code class="docutils literal notranslate"><span class="pre">transforms.RandomCrop</span></code> for images.</li>
 <li><strong>target_transform</strong> (<em>callable</em><em>, </em><em>optional</em>) – A function/transform that takes in the target and transforms it.</li>
@@ -242,10 +242,10 @@ E.g, <code class="docutils literal notranslate"><span class="pre">transforms.Ran
 </td>
 </tr>
 <tr class="field-even field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
-<li><strong>class_to_idx</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.6)"><em>dict</em></a>) – a dictionary mapping class names to indices.</li>
-<li><strong>classes</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.6)"><em>list</em></a><em>[</em><em>string</em><em>]</em>) – the human readable names of the classes that images can belong to.</li>
-<li><strong>paths</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.6)"><em>list</em></a><em>[</em><em>string</em><em>]</em>) – for each image, the path to the image on disk.</li>
-<li><strong>targets</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.6)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.6)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a><em>]</em><em>]</em>) – for each image, a list of class indices to which that image belongs.</li>
+<li><strong>class_to_idx</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)"><em>dict</em></a>) – a dictionary mapping class names to indices.</li>
+<li><strong>classes</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.7)"><em>list</em></a><em>[</em><em>string</em><em>]</em>) – the human readable names of the classes that images can belong to.</li>
+<li><strong>paths</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.7)"><em>list</em></a><em>[</em><em>string</em><em>]</em>) – for each image, the path to the image on disk.</li>
+<li><strong>targets</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.7)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.7)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>]</em><em>]</em>) – for each image, a list of class indices to which that image belongs.</li>
 </ul>
 </td>
 </tr>
@@ -266,9 +266,9 @@ E.g, <code class="docutils literal notranslate"><span class="pre">transforms.Ran
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>image_size</strong> (<em>tuple of python:int</em>) – the size of the image (in pixels).</li>
-<li><strong>num_images</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) – the number of images to generate for this dataset.  Best if the sqrt of this number is an
+<li><strong>num_images</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – the number of images to generate for this dataset.  Best if the sqrt of this number is an
 integer.</li>
-<li><strong>circle_radius</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.6)"><em>float</em></a>) – the size of the dot (in pixels).</li>
+<li><strong>circle_radius</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – the size of the dot (in pixels).</li>
 </ul>
 </td>
 </tr>
