@@ -12,7 +12,7 @@ class Deconvolution2dLayer(nn.Module):
     def __init__(self, *, in_channels, out_channels,
             stride=2, kernel_size=3, padding=1,
             output_padding=1,
-            inplace_activation=False,
+            activation=nn.ReLU(),
             preactivate=False,
             with_batchnorm=True):
         super().__init__()
@@ -33,7 +33,6 @@ class Deconvolution2dLayer(nn.Module):
                 kernel_size=self.kernel_size,
                 padding=self.padding,
                 output_padding=output_padding)
-        self.relu = nn.ReLU(inplace=inplace_activation)
 
     @classmethod
     def matching_input_and_output_size(cls, input_size, output_size, **kwargs):
@@ -70,10 +69,10 @@ class Deconvolution2dLayer(nn.Module):
             x = self.bn(x)
 
         if self.preactivate:
-            x = self.relu(x)
+            x = self.activation(x)
             x = self.deconv(x)
         else:
             x = self.deconv(x)
-            x = self.relu(x)
+            x = self.activation(x)
 
         return x

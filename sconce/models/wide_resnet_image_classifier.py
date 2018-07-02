@@ -17,14 +17,14 @@ class WideResnetBlock_3x3(nn.Module):
                 in_channels=in_channels,
                 out_channels=out_channels,
                 stride=stride,
-                inplace_activation=True,
+                activation=nn.ReLU(inplace=True),
                 preactivate=True)
 
         self.conv2 = Convolution2dLayer(
                 in_channels=out_channels,
                 out_channels=out_channels,
                 stride=1,
-                inplace_activation=True,
+                activation=nn.ReLU(inplace=True),
                 preactivate=True)
 
         self.in_channels = in_channels
@@ -36,7 +36,7 @@ class WideResnetBlock_3x3(nn.Module):
                     in_channels=in_channels,
                     out_channels=out_channels,
                     stride=stride,
-                    inplace_activation=True,
+                    activation=nn.ReLU(inplace=True),
                     preactivate=True)
 
     def forward(self, x_in):
@@ -117,7 +117,7 @@ class WideResnetImageClassifier(Model):
                 in_channels=image_channels,
                 out_channels=16,
                 stride=1,
-                inplace_activation=True,
+                activation=nn.ReLU(inplace=True),
                 preactivate=True)
 
         self.group1 = WideResnetGroup_3x3(in_channels=16,
@@ -141,13 +141,13 @@ class WideResnetImageClassifier(Model):
                 in_channels=widths[2],
                 out_channels=num_categories,
                 stride=1,
-                inplace_activation=True,
+                activation=nn.ReLU(inplace=True),
                 preactivate=True)
 
         self.pool = AdaptiveAveragePooling2dLayer(
                 in_channels=num_categories,
                 output_size=1,
-                inplace_activation=True,
+                activation=nn.ReLU(inplace=True),
                 preactivate=True)
 
         self.log_softmax = nn.LogSoftmax(dim=-1)
