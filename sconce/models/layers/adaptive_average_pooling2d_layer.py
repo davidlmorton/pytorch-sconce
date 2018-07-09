@@ -8,6 +8,9 @@ class AdaptiveAveragePooling2dLayer(nn.Module):
             with_batchnorm=True):
         super().__init__()
         self.preactivate = preactivate
+
+        if activation is None:
+            activation = lambda x: x
         self.activation = activation
 
         self.with_batchnorm = with_batchnorm

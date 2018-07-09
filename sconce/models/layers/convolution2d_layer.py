@@ -20,6 +20,10 @@ class Convolution2dLayer(nn.Module):
         self.padding = make_tuple(padding)
         self.out_channels = out_channels
         self.preactivate = preactivate
+
+        if activation is None:
+            activation = lambda x: x
+
         self.activation = activation
 
         self.with_batchnorm = with_batchnorm
