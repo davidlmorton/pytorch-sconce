@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                master (1.2.2 )
+                master (1.2.3 )
               </div>
             
           
@@ -232,6 +232,10 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">padding</span> <span class="o">=</span> <span class="n">make_tuple</span><span class="p">(</span><span class="n">padding</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">out_channels</span> <span class="o">=</span> <span class="n">out_channels</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">preactivate</span> <span class="o">=</span> <span class="n">preactivate</span>
+
+        <span class="k">if</span> <span class="n">activation</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">activation</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span>
+
         <span class="bp">self</span><span class="o">.</span><span class="n">activation</span> <span class="o">=</span> <span class="n">activation</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">with_batchnorm</span> <span class="o">=</span> <span class="n">with_batchnorm</span>
