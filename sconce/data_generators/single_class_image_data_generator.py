@@ -14,11 +14,18 @@ class SingleClassImageDataGenerator(DataGenerator, ImageMixin):
 
     New in 0.10.0
     """
-    def _get_class_df(self):
+    def _get_class_df(self, targets=None):
         dataset = self.dataset
         rows = []
 
-        for target in dataset.targets:
+        if targets is None:
+            if hasattr(dataset, 'targets'):
+                targets = dataset.targets
+            else:
+                raise RuntimeError("No targets were supplied, and the dataset doesn't "
+                                   "have a 'targets' attribute")
+
+        for target in targets:
             row = {}
             for _class in dataset.classes:
                 idx = dataset.class_to_idx[_class]

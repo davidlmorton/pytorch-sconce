@@ -9,13 +9,18 @@ class MultiClassImageDataGenerator(DataGenerator, ImageMixin):
 
     New in 0.10.0
     """
-    def _get_class_df(self, dataset=None):
-        if dataset is None:
-            dataset = self.dataset
-
+    def _get_class_df(self, targets=None):
+        dataset = self.dataset
         rows = []
 
-        for target in dataset.targets:
+        if targets is None:
+            if hasattr(dataset, 'targets'):
+                targets = dataset.targets
+            else:
+                raise RuntimeError("No targets were supplied, and the dataset doesn't "
+                                   "have a 'targets' attribute")
+
+        for target in targets:
             row = {_class: False for _class in dataset.classes}
             for idx in target:
                 _class = dataset.classes[idx]
