@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                master (1.2.3 )
+                master (1.2.4 )
               </div>
             
           
@@ -263,23 +263,23 @@
 
         <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">info_list</span><span class="p">)</span>
 
-<div class="viewcode-block" id="ImageMixin.get_class_df"><a class="viewcode-back" href="../../../sconce.data_generators.html#sconce.data_generators.ImageMixin.get_class_df">[docs]</a>    <span class="k">def</span> <span class="nf">get_class_df</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="ImageMixin.get_class_df"><a class="viewcode-back" href="../../../sconce.data_generators.html#sconce.data_generators.ImageMixin.get_class_df">[docs]</a>    <span class="k">def</span> <span class="nf">get_class_df</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Return a pandas dataframe that contains the classes in the dataset.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;_class_df&#39;</span><span class="p">):</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_class_df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_class_df</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_class_df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_class_df</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_class_df</span></div>
 
     <span class="nd">@abstractmethod</span>
     <span class="k">def</span> <span class="nf">_get_class_df</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">pass</span>
 
-<div class="viewcode-block" id="ImageMixin.plot_class_summary"><a class="viewcode-back" href="../../../sconce.data_generators.html#sconce.data_generators.ImageMixin.plot_class_summary">[docs]</a>    <span class="k">def</span> <span class="nf">plot_class_summary</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="ImageMixin.plot_class_summary"><a class="viewcode-back" href="../../../sconce.data_generators.html#sconce.data_generators.ImageMixin.plot_class_summary">[docs]</a>    <span class="k">def</span> <span class="nf">plot_class_summary</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">targets</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Generate a barchart showing how many images of each class there are.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_class_df</span><span class="p">()</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_class_df</span><span class="p">(</span><span class="n">targets</span><span class="o">=</span><span class="n">targets</span><span class="p">)</span>
         <span class="n">plot_kwargs</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;kind&#39;</span><span class="p">:</span> <span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">}</span>
         <span class="k">return</span> <span class="n">df</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="o">**</span><span class="n">plot_kwargs</span><span class="p">)</span></div>
 
