@@ -4,10 +4,8 @@ A library for training pytorch models
 ## Installation
 
 ```
-pip install --process-dependency-links pytorch-sconce
+pip install pytorch-sconce
 ```
-Unfortunately the --process-dependency-links flag is needed until our contributions to `torchvision` have been merged
-and we can depend on the version released on pypi instead of our fork.
 
 ## Documentation
 
