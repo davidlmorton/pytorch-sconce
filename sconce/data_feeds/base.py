@@ -133,13 +133,14 @@ class DataFeed:
         return self.preprocess(inputs, targets)
 
     @classmethod
-    def from_dataset(cls, dataset, split=None, **kwargs):
+    def from_dataset(cls, dataset, split=None, validation_transform=None, **kwargs):
         """
         Create a DataFeed from an instantiated dataset.
 
         Arguments:
             dataset (:py:class:`~torch.utils.data.Dataset`): the pytorch
                 dataset.
+            validation_transform (callable): override the existing validation transform with this.
             split (float, optional): If not ``None``, it specifies the fraction of the dataset that should be placed
                 into the first of two data_feeds.  The remaining data is used for the second data_feed.  Both
                 data_feeds will be returned.
@@ -153,6 +154,8 @@ class DataFeed:
 
             dataset1 = dataset
             dataset2 = copy.copy(dataset)
+            if validation_transform is not None:
+                dataset2.transform = validation_transform
 
             subset1 = Subset(dataset1, indices=indices[:int(num_samples * split)])
             subset2 = Subset(dataset2, indices=indices[int(num_samples * split):])
@@ -177,4 +180,5 @@ class DataFeed:
         Returns:
             training_feed, validation_feed
         """
-        return self.__class__.from_dataset(dataset=self.dataset, split=split_factor, **kwargs)
+        return self.__class__.from_dataset(dataset=self.dataset, split=split_factor,
+                validation_transform=validation_transform, **kwargs)
