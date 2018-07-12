@@ -163,3 +163,30 @@ class DataFeed:
         else:
             data_loader = data.DataLoader(dataset, **kwargs)
             return cls(data_loader)
+
+    def split(self, split_factor):
+        """
+        Create a training and validation DataFeed from this one.
+
+        Arguments:
+            split_factor (float): [0.0, 1.0] the fraction of the dataset that should be put into the new training feed.
+
+        Returns:
+            training_feed, validation_feed
+        """
+        full_dataset = self.dataset
+        indices = np.arange(0, len(full_dataset))
+        np.random.shuffle(indices)
+
+        split_idx = int(split_factor * len(full_dataset))
+
+        training_indices = indices[:split_idx]
+        validation_indices = indices[split_idx:]
+
+        training_dataset = Subset(full_dataset, indices=training_indices)
+        validation_dataset = Subset(full_dataset, indices=validation_indices)
+
+        training_feed = self.__class__.from_dataset(training_dataset)
+        validation_feed = self.__class__.from_dataset(validation_dataset)
+
+        return training_feed, validation_feed
