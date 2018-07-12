@@ -164,29 +164,17 @@ class DataFeed:
             data_loader = data.DataLoader(dataset, **kwargs)
             return cls(data_loader)
 
-    def split(self, split_factor):
+    def split(self, split_factor, validation_transform=None, **kwargs):
         """
         Create a training and validation DataFeed from this one.
 
         Arguments:
             split_factor (float): [0.0, 1.0] the fraction of the dataset that should be put into the new training feed.
+            validation_transform (callable): override the existing validation transform with this.
+            **kwargs: passed directly to the
+                :py:class:`~torch.utils.data.DataLoader`) constructor.
 
         Returns:
             training_feed, validation_feed
         """
-        full_dataset = self.dataset
-        indices = np.arange(0, len(full_dataset))
-        np.random.shuffle(indices)
-
-        split_idx = int(split_factor * len(full_dataset))
-
-        training_indices = indices[:split_idx]
-        validation_indices = indices[split_idx:]
-
-        training_dataset = Subset(full_dataset, indices=training_indices)
-        validation_dataset = Subset(full_dataset, indices=validation_indices)
-
-        training_feed = self.__class__.from_dataset(training_dataset)
-        validation_feed = self.__class__.from_dataset(validation_dataset)
-
-        return training_feed, validation_feed
+        return self.__class__.from_dataset(dataset=self.dataset, split=split_factor, **kwargs)
