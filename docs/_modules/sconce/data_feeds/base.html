@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                master (1.2.5 )
+                master (1.2.6 )
               </div>
             
           
@@ -345,13 +345,14 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">preprocess</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">targets</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="DataFeed.from_dataset"><a class="viewcode-back" href="../../../sconce.data_feeds.html#sconce.data_feeds.DataFeed.from_dataset">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">from_dataset</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">split</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">from_dataset</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">split</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">validation_transform</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Create a DataFeed from an instantiated dataset.</span>
 
 <span class="sd">        Arguments:</span>
 <span class="sd">            dataset (:py:class:`~torch.utils.data.Dataset`): the pytorch</span>
 <span class="sd">                dataset.</span>
+<span class="sd">            validation_transform (callable): override the existing validation transform with this.</span>
 <span class="sd">            split (float, optional): If not ``None``, it specifies the fraction of the dataset that should be placed</span>
 <span class="sd">                into the first of two data_feeds.  The remaining data is used for the second data_feed.  Both</span>
 <span class="sd">                data_feeds will be returned.</span>
@@ -365,6 +366,8 @@
 
             <span class="n">dataset1</span> <span class="o">=</span> <span class="n">dataset</span>
             <span class="n">dataset2</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">validation_transform</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">dataset2</span><span class="o">.</span><span class="n">transform</span> <span class="o">=</span> <span class="n">validation_transform</span>
 
             <span class="n">subset1</span> <span class="o">=</span> <span class="n">Subset</span><span class="p">(</span><span class="n">dataset1</span><span class="p">,</span> <span class="n">indices</span><span class="o">=</span><span class="n">indices</span><span class="p">[:</span><span class="nb">int</span><span class="p">(</span><span class="n">num_samples</span> <span class="o">*</span> <span class="n">split</span><span class="p">)])</span>
             <span class="n">subset2</span> <span class="o">=</span> <span class="n">Subset</span><span class="p">(</span><span class="n">dataset2</span><span class="p">,</span> <span class="n">indices</span><span class="o">=</span><span class="n">indices</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">num_samples</span> <span class="o">*</span> <span class="n">split</span><span class="p">):])</span>
@@ -389,7 +392,8 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            training_feed, validation_feed</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="n">from_dataset</span><span class="p">(</span><span class="n">dataset</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="p">,</span> <span class="n">split</span><span class="o">=</span><span class="n">split_factor</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="n">from_dataset</span><span class="p">(</span><span class="n">dataset</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="p">,</span> <span class="n">split</span><span class="o">=</span><span class="n">split_factor</span><span class="p">,</span>
+                <span class="n">validation_transform</span><span class="o">=</span><span class="n">validation_transform</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div></div>
 </pre></div>
 
            </div>
