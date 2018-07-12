@@ -51,17 +51,34 @@ class ImageMixin(ABC):
 
         return pd.DataFrame(info_list)
 
-    def get_class_df(self, **kwargs):
+    def reset_class_df_cache(self):
+        del self._class_df
+
+    def get_class_df(self):
         """
         Return a pandas dataframe that contains the classes in the dataset.
         """
         if not hasattr(self, '_class_df'):
-            self._class_df = self._get_class_df(**kwargs)
+            self._class_df = self._get_class_df()
         return self._class_df
 
     @abstractmethod
     def _get_class_df(self):
         pass
+
+    def reset_targets_cache(self):
+        del self._targets
+
+    def get_targets(self):
+        if not hasattr(self, '_targets'):
+            self._targets = self._get_targets()
+        return self._targets
+
+    def _get_targets(self):
+        if hasattr(self.dataset, 'targets'):
+            return self.dataset.targets
+        else:
+            return [item[1] for item in self.dataset]
 
     def plot_class_summary(self, targets=None, **kwargs):
         """

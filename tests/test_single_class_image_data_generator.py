@@ -12,11 +12,7 @@ class TestSingleClassDataGenerator(unittest.TestCase):
         dg = SingleClassImageDataGenerator.from_image_folder(
                 root=os.path.join(THIS_DIR, 'data', 'image_folder'))
 
-        with self.assertRaises(RuntimeError):
-            dg.get_class_df()
-
-        targets = [item[1] for item in dg.dataset]
-        df = dg.get_class_df(targets=targets)
+        df = dg.get_class_df()
 
         expected_df = pd.DataFrame([
             dict(cats=True, dogs=False, toys=False),

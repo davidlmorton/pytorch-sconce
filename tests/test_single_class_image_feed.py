@@ -12,11 +12,7 @@ class TestSingleClassImageFeed(unittest.TestCase):
         feed = SingleClassImageFeed.from_image_folder(
                 root=os.path.join(THIS_DIR, 'data', 'image_folder'))
 
-        with self.assertRaises(RuntimeError):
-            feed.get_class_df()
-
-        targets = [item[1] for item in feed.dataset]
-        df = feed.get_class_df(targets=targets)
+        df = feed.get_class_df()
 
         expected_df = pd.DataFrame([
             dict(cats=True, dogs=False, toys=False),

@@ -45,32 +45,44 @@ class ImageFeed(DataFeed):
 
         return pd.DataFrame(info_list)
 
-    def get_class_df(self, **kwargs):
+    def reset_class_df_cache(self):
+        del self._class_df
+
+    def get_class_df(self):
         """
         Return a pandas dataframe that contains the classes in the dataset.
         """
         if not hasattr(self, '_class_df'):
-            self._class_df = self._get_class_df(**kwargs)
+            self._class_df = self._get_class_df()
         return self._class_df
 
-    def _get_class_df(self, targets=None):
+    def _get_class_df(self):
         dataset = self.dataset
 
-        if targets is None:
-            length = len(dataset)
-        else:
-            length = len(targets)
-
-        rows = [{'unclassified': True} for i in range(length)]
+        rows = [{'unclassified': True} for i in range(len(dataset))]
         return pd.DataFrame(rows)
 
-    def plot_class_summary(self, targets=None, **kwargs):
+    def plot_class_summary(self, **kwargs):
         """
         Generate a barchart showing how many images of each class there are.
         """
-        df = self.get_class_df(targets=targets)
+        df = self.get_class_df()
         plot_kwargs = {'kind': 'bar', **kwargs}
         return df.sum().plot(**plot_kwargs)
+
+    def reset_targets_cache(self):
+        del self._targets
+
+    def get_targets(self):
+        if not hasattr(self, '_targets'):
+            self._targets = self._get_targets()
+        return self._targets
+
+    def _get_targets(self):
+        if hasattr(self.dataset, 'targets'):
+            return self.dataset.targets
+        else:
+            return [item[1] for item in self.dataset]
 
     def plot_image_size_summary(self):
         """
