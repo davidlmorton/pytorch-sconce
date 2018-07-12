@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                master (1.2.4 )
+                master (1.2.5 )
               </div>
             
           
@@ -226,18 +226,11 @@
 
 <span class="sd">    New in 0.10.0</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="nf">_get_class_df</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">targets</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_get_class_df</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">dataset</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset</span>
         <span class="n">rows</span> <span class="o">=</span> <span class="p">[]</span>
 
-        <span class="k">if</span> <span class="n">targets</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="s1">&#39;targets&#39;</span><span class="p">):</span>
-                <span class="n">targets</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">targets</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;No targets were supplied, and the dataset doesn&#39;t &quot;</span>
-                                   <span class="s2">&quot;have a &#39;targets&#39; attribute&quot;</span><span class="p">)</span>
-
-        <span class="k">for</span> <span class="n">target</span> <span class="ow">in</span> <span class="n">targets</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">target</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_targets</span><span class="p">():</span>
             <span class="n">row</span> <span class="o">=</span> <span class="p">{}</span>
             <span class="k">for</span> <span class="n">_class</span> <span class="ow">in</span> <span class="n">dataset</span><span class="o">.</span><span class="n">classes</span><span class="p">:</span>
                 <span class="n">idx</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">class_to_idx</span><span class="p">[</span><span class="n">_class</span><span class="p">]</span>

@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                master (1.2.4 )
+                master (1.2.5 )
               </div>
             
           
@@ -374,7 +374,22 @@
             <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">loader1</span><span class="p">),</span> <span class="bp">cls</span><span class="p">(</span><span class="n">loader2</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">data_loader</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">DataLoader</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-            <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">data_loader</span><span class="p">)</span></div></div>
+            <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">data_loader</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="DataFeed.split"><a class="viewcode-back" href="../../../sconce.data_feeds.html#sconce.data_feeds.DataFeed.split">[docs]</a>    <span class="k">def</span> <span class="nf">split</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">split_factor</span><span class="p">,</span> <span class="n">validation_transform</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create a training and validation DataFeed from this one.</span>
+
+<span class="sd">        Arguments:</span>
+<span class="sd">            split_factor (float): [0.0, 1.0] the fraction of the dataset that should be put into the new training feed.</span>
+<span class="sd">            validation_transform (callable): override the existing validation transform with this.</span>
+<span class="sd">            **kwargs: passed directly to the</span>
+<span class="sd">                :py:class:`~torch.utils.data.DataLoader`) constructor.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            training_feed, validation_feed</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="n">from_dataset</span><span class="p">(</span><span class="n">dataset</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="p">,</span> <span class="n">split</span><span class="o">=</span><span class="n">split_factor</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div></div>
 </pre></div>
 
            </div>
