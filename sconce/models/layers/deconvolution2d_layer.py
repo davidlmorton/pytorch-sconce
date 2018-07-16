@@ -24,6 +24,11 @@ class Deconvolution2dLayer(nn.Module):
         self.out_channels = out_channels
         self.preactivate = preactivate
 
+        if activation is None:
+            activation = lambda x: x
+
+        self.activation = activation
+
         self.with_batchnorm = with_batchnorm
         if with_batchnorm:
             self.bn = nn.BatchNorm2d(num_features=in_channels)
