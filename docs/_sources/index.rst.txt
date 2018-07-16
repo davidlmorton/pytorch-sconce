@@ -12,7 +12,6 @@ Sconce Documentation
    :maxdepth: 2
    :caption: Class Reference
 
-   data_generator
    data_feeds
    datasets
    transforms
