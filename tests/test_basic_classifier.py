@@ -2,7 +2,7 @@
 from sconce.data_generators import ImageDataGenerator
 from sconce.data_feeds import SingleClassImageFeed
 from sconce.schedules import Cosine
-from sconce.trainers import ClassifierTrainer
+from sconce.trainers import SingleClassImageClassifierTrainer
 from sconce.models import BasicClassifier
 from torch import optim
 
@@ -31,7 +31,7 @@ class TestBasicClassifier(unittest.TestCase):
 
         model.set_optimizer(optim.SGD, lr=1e-4, momentum=0.9, weight_decay=1e-4)
 
-        trainer = ClassifierTrainer(model=model,
+        trainer = SingleClassImageClassifierTrainer(model=model,
             training_data_generator=training_generator,
             validation_feed=validation_feed)
 

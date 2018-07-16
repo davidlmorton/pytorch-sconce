@@ -8,7 +8,7 @@ import seaborn as sn
 import numpy as np
 
 
-__all__ = ['ClassifierTrainer', 'SingleClassImageClassifierMixin', 'SingleClassImageClassifierTrainer']
+__all__ = ['SingleClassImageClassifierMixin', 'SingleClassImageClassifierTrainer']
 
 
 class SingleClassImageClassifierMixin(ABC):
@@ -198,15 +198,3 @@ class SingleClassImageClassifierTrainer(Trainer, SingleClassImageClassifierMixin
     New in 0.10.0 (Used to be called ClassifierTrainer)
     """
     pass
-
-
-class ClassifierTrainer(Trainer, SingleClassImageClassifierMixin):
-    """
-    Warning:
-        This class has been deprecated for :py:class:`~sconce.trainers.SingleClassImageClassifierTrainer` and will be
-        removed soon.  It will continue to work for now, but please update your code accordingly.
-    """
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        print('WARNING: ClassifierTrainer is deprecated as of 0.10.0, and will be removed soon.  Use '
-            '"SingleClassImageClassifierTrainer" instead.')

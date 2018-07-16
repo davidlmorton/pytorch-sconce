@@ -33,9 +33,3 @@ Trainers
     :members:
     :show-inheritance:
     :inherited-members:
-
-
-:hidden:`ClassifierTrainer (deprecated)`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. autoclass:: ClassifierTrainer
