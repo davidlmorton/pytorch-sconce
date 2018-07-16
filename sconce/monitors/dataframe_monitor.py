@@ -83,15 +83,9 @@ class DataframeMonitor(Monitor):
                     skip_first=100, smooth_window=50,
                     metrics=['loss'],
                     hyperparameters=['learning_rate'],
-                    test_color=None,
                     validation_color='tomato',
                     training_color='mediumseagreen',
                     fig=None):
-
-        if test_color is not None:
-            print("WARNING: The test_color argument is deprecated as of 1.2.0.  "
-                  "Please use validation_color instead.")
-            validation_color = test_color
 
         if fig is None:
             fig = plt.figure(figsize=figsize)
