@@ -1,7 +1,6 @@
 from abc import ABC
 from matplotlib import pyplot as plt
 from scipy import sparse
-from sconce.data_feeds import print_deprecation_warning
 from sconce.trainer import Trainer
 
 import seaborn as sn
@@ -12,11 +11,7 @@ __all__ = ['SingleClassImageClassifierMixin', 'SingleClassImageClassifierTrainer
 
 
 class SingleClassImageClassifierMixin(ABC):
-    def get_confusion_matrix(self, data_generator=None, feed=None, cache_results=True):
-        if data_generator is not None:
-            print_deprecation_warning()
-            feed = data_generator
-
+    def get_confusion_matrix(self, feed=None, cache_results=True):
         if feed is None:
             feed = self.validation_feed
 
@@ -28,12 +23,8 @@ class SingleClassImageClassifierMixin(ABC):
                 (predicted_targets, targets)), dtype='uint32').toarray()
         return matrix
 
-    def get_classification_accuracy(self, data_generator=None, feed=None,
+    def get_classification_accuracy(self, feed=None,
             cache_results=True):
-        if data_generator is not None:
-            print_deprecation_warning()
-            feed = data_generator
-
         if feed is None:
             feed = self.validation_feed
 
@@ -41,11 +32,7 @@ class SingleClassImageClassifierMixin(ABC):
         num_correct = np.trace(matrix)
         return num_correct / feed.num_samples
 
-    def plot_confusion_matrix(self, data_generator=None, feed=None, **heatmap_kwargs):
-        if data_generator is not None:
-            print_deprecation_warning()
-            feed = data_generator
-
+    def plot_confusion_matrix(self, feed=None, **heatmap_kwargs):
         if feed is None:
             feed = self.validation_feed
 
@@ -66,7 +53,6 @@ class SingleClassImageClassifierMixin(ABC):
 
     def plot_samples(self, predicted_class,
             true_class=None,
-            data_generator=None,
             feed=None,
             sort_by='rising predicted class score',
             num_samples=7,
@@ -80,8 +66,6 @@ class SingleClassImageClassifierMixin(ABC):
         Arguments:
             predicted_class (int or string): the class string or the index of the class that was predicted by the model.
             true_class (int or string): the class string or the index of the class that the image actually belongs to.
-            data_generator (:py:class:`~sconce.data_generators.base.SingleClassImageDataGenerator`): DEPRECATED,
-                use feed argument instead.
             feed (:py:class:`~sconce.data_feeds.base.DataFeed`): the DataFeed to use to find the samples.
             sort_by (string): one of the sort_by strings, see note below.
             num_samples (int): the number of sample images to plot.
@@ -102,10 +86,6 @@ class SingleClassImageClassifierMixin(ABC):
                 - "falling true class score": samples are plotted in order of the higest true class score to
                   the lowest true class score.
         """
-        if data_generator is not None:
-            print_deprecation_warning()
-            feed = data_generator
-
         if feed is None:
             feed = self.validation_feed
 

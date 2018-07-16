@@ -1,6 +1,5 @@
 from sconce import monitors, schedules
 from sconce.exceptions import StopTrainingError
-from sconce.data_feeds import print_deprecation_warning
 
 
 import copy
@@ -16,12 +15,8 @@ class Trainer:
     Keyword Arguments:
         model (:py:class:`~sconce.models.base.Model`): the sconce model to be trained.  See :py:mod:`sconce.models`
             for examples.
-        training_data_generator (:py:class:`~sconce.data_generators.base.DataGenerator`): DEPRECATED, use
-            training_feed argument instead.
         training_feed (:py:class:`~sconce.data_feed.base.DataFeed`): used during training to provide `inputs` and
             `targets`.
-        test_data_generator (:py:class:`~sconce.data_generators.base.DataGenerator`): DEPRECATED, use
-            validation_feed argument instead.
         validation_feed (:py:class:`~sconce.data_feed.base.DataFeed`) used during validation to provide `inputs` and
             `targets`.  These are never used for back-propagation.
         monitor (:py:class:`~sconce.monitors.base.Monitor`, optional): the sconce monitor that records data during
@@ -30,23 +25,8 @@ class Trainer:
             :py:class:`~sconce.monitors.stdout_monitor.StdoutMonitor` and a
             :py:class:`~sconce.monitors.dataframe_monitor.DataframeMonitor` will be created for you and used.
     """
-    def __init__(self, *, model, validation_feed=None, training_feed=None,
-            test_data_generator=None, training_data_generator=None, monitor=None):
+    def __init__(self, *, model, validation_feed=None, training_feed=None, monitor=None):
         self.model = model
-
-        if test_data_generator is None and validation_feed is None:
-            raise TypeError("Missing required keyword argument: 'validation_feed'")
-
-        if test_data_generator is not None:
-            print_deprecation_warning('test_', 'validation_')
-            validation_feed = test_data_generator
-
-        if training_data_generator is None and training_feed is None:
-            raise TypeError("Missing required keyword argument: 'training_feed'")
-
-        if training_data_generator is not None:
-            print_deprecation_warning('training_')
-            training_feed = training_data_generator
 
         self.validation_feed = validation_feed
         self.training_feed = training_feed
@@ -159,11 +139,7 @@ class Trainer:
                 validation_to_train_ratio=validation_to_train_ratio,
                 batch_multiplier=batch_multiplier)
 
-    def get_num_steps(self, num_epochs, data_generator=None, feed=None, batch_multiplier=1):
-        if data_generator is not None:
-            print_deprecation_warning()
-            feed = data_generator
-
+    def get_num_steps(self, num_epochs, feed=None, batch_multiplier=1):
         if feed is None:
             feed = self.training_feed
 
@@ -289,26 +265,6 @@ class Trainer:
         inputs, targets = self.validation_feed.next()
         step_dict = self._do_step(inputs, targets, train=False)
         return {f'validation_{k}': v for k, v in step_dict.items()}
-
-    def test(self, *, monitor=None):
-        """
-        Run all samples of self.validation_feed through the model in test (inference) mode.
-
-        Arguments:
-            monitor (:py:class:`~sconce.monitors.base.Monitor`, optional): the sconce monitor that records data during
-                this testing.  If ``None``, a composite monitor consisting of a
-                :py:class:`~sconce.monitors.stdout_monitor.StdoutMonitor` and a
-                :py:class:`~sconce.monitors.dataframe_monitor.DataframeMonitor` will be created for you and used.
-
-        Returns:
-            monitor (:py:class:`~sconce.monitors.base.Monitor`): the monitor used during this testing.
-
-        Note:
-            This method has been deprecated since 1.2.0.  Please use the ``validate()`` method instead.
-        """
-        print("WARNING: Trainer.test() is deprecated as of 1.2.0.  "
-              "Please use Trainer.validate() instead.")
-        return self.validate(monitor=monitor)
 
     def validate(self, *, monitor=None):
         """

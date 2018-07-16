@@ -1,5 +1,5 @@
 # flake8: noqa
-from sconce.data_generators import SingleClassImageDataGenerator
+from sconce.data_feeds import SingleClassImageFeed
 from sconce.schedules import Triangle
 from sconce.trainers import SingleClassImageClassifierTrainer
 from sconce.models import WideResnetImageClassifier
@@ -15,19 +15,19 @@ class TestWideResnetImageClassifier(unittest.TestCase):
         model = WideResnetImageClassifier(image_channels=1,
                 depth=10, widening_factor=1)
 
-        training_generator = SingleClassImageDataGenerator.from_torchvision()
-        test_generator = SingleClassImageDataGenerator.from_torchvision(train=False)
+        training_feed = SingleClassImageFeed.from_torchvision()
+        validation_feed = SingleClassImageFeed.from_torchvision(train=False)
 
         if torch.cuda.is_available():
             model.cuda()
-            training_generator.cuda()
-            test_generator.cuda()
+            training_feed.cuda()
+            validation_feed.cuda()
 
         model.set_optimizer(optim.SGD, lr=1e-4, momentum=0.9, weight_decay=1e-4)
 
         trainer = SingleClassImageClassifierTrainer(model=model,
-            training_data_generator=training_generator,
-            test_data_generator=test_generator)
+            training_feed=training_feed,
+            validation_feed=validation_feed)
 
         self.assertLess(trainer.get_classification_accuracy(), 0.2)
 

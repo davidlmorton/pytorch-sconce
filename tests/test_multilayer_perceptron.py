@@ -1,5 +1,5 @@
 # flake8: noqa
-from sconce.data_generators import SingleClassImageDataGenerator
+from sconce.data_feeds import SingleClassImageFeed
 from sconce.schedules import Triangle, Cosine
 from sconce.trainers import SingleClassImageClassifierTrainer
 from sconce.models import MultilayerPerceptron
@@ -19,19 +19,19 @@ class TestMultilayerPerceptron(unittest.TestCase):
         filename = self._test_file('multilayer_perceptron.yaml')
         model = MultilayerPerceptron.new_from_yaml_filename(filename)
 
-        training_generator = SingleClassImageDataGenerator.from_torchvision()
-        test_generator = SingleClassImageDataGenerator.from_torchvision(train=False)
+        training_feed = SingleClassImageFeed.from_torchvision()
+        validation_feed = SingleClassImageFeed.from_torchvision(train=False)
 
         if torch.cuda.is_available():
             model.cuda()
-            training_generator.cuda()
-            test_generator.cuda()
+            training_feed.cuda()
+            validation_feed.cuda()
 
         model.set_optimizer(optim.SGD, lr=1e-4, momentum=0.9, weight_decay=1e-4)
 
         trainer = SingleClassImageClassifierTrainer(model=model,
-            training_data_generator=training_generator,
-            test_data_generator=test_generator)
+            training_feed=training_feed,
+            validation_feed=validation_feed)
 
         self.assertLess(trainer.get_classification_accuracy(), 0.2)
 
@@ -47,20 +47,20 @@ class TestMultilayerPerceptron(unittest.TestCase):
         filename = self._test_file('multilayer_perceptron.yaml')
         model = MultilayerPerceptron.new_from_yaml_filename(filename)
 
-        training_generator = SingleClassImageDataGenerator.from_torchvision(batch_size=100)
-        test_generator = SingleClassImageDataGenerator.from_torchvision(batch_size=100,
+        training_feed = SingleClassImageFeed.from_torchvision(batch_size=100)
+        validation_feed = SingleClassImageFeed.from_torchvision(batch_size=100,
                 train=False)
 
         if torch.cuda.is_available():
             model.cuda()
-            training_generator.cuda()
-            test_generator.cuda()
+            training_feed.cuda()
+            validation_feed.cuda()
 
         model.set_optimizer(optim.SGD, lr=1e-4, momentum=0.90, weight_decay=1e-4)
 
         trainer = SingleClassImageClassifierTrainer(model=model,
-            training_data_generator=training_generator,
-            test_data_generator=test_generator)
+            training_feed=training_feed,
+            validation_feed=validation_feed)
 
         survey_monitor = trainer.survey_learning_rate(min_learning_rate=1e-4,
                 max_learning_rate=100)
