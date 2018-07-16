@@ -95,7 +95,6 @@ class Trainer:
         self.model.load_state_dict(torch.load(filename))
 
     def train(self, *, num_epochs, monitor=None,
-            test_to_train_ratio=None,
             validation_to_train_ratio=None,
             batch_multiplier=1):
         """
@@ -105,8 +104,8 @@ class Trainer:
             num_epochs (float): the number of epochs to train the model for.
             monitor (:py:class:`~sconce.monitors.base.Monitor`, optional): a monitor to use for this training session.
                 If ``None``, then self.monitor will be used.
-            test_to_train_ratio (float, optional): [0.0, 1.0] determines how often (relative to training samples) that
-                test samples are run through the model during training.  If ``None``, then the relative size of the
+            validation_to_train_ratio (float, optional): [0.0, 1.0] determines how often (relative to training samples)
+                that test samples are run through the model during training.  If ``None``, then the relative size of the
                 training and test datasets is used.  For example, for MNIST with 60,000 training samples and 10,000 test
                 samples, the value would be 1/6th.
             batch_multiplier (int, optional): [1, inf) determines how often parameter updates will occur during
@@ -119,11 +118,6 @@ class Trainer:
         """
         assert batch_multiplier > 0
         assert int(batch_multiplier) == batch_multiplier
-
-        if test_to_train_ratio is not None:
-            print("WARNING: The test_to_train_ratio argument is deprecated as of 1.2.0.  "
-                  "Please use validation_to_train_ratio instead.")
-            validation_to_train_ratio = test_to_train_ratio
 
         if monitor is None:
             monitor = self.monitor
