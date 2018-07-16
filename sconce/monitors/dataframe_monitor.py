@@ -132,7 +132,7 @@ class DataframeMonitor(Monitor):
                         min_periods=1).mean()
                 val_smooth_df.interpolate().plot(ax=metrics_ax, linewidth=3,
                         color=validation_color, path_effects=my_path_effects,
-                        label='Test')
+                        label='Validation')
 
             metrics_ax.set_ylabel(stringcase.titlecase(metric))
             if i == 0:
