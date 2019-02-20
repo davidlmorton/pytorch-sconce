@@ -1,3 +1,4 @@
+from contextlib import contextmanager
 from sconce import monitors, schedules
 from sconce.exceptions import StopTrainingError
 
@@ -6,6 +7,17 @@ import copy
 import numpy as np
 import tempfile
 import torch
+
+
+@contextmanager
+def freezing(parameter_groups):
+    for pg in parameter_groups:
+        pg.freeze()
+    try:
+        yield parameter_groups
+    finally:
+        for pg in parameter_groups:
+            pg.unfreeze()
 
 
 class Trainer:
@@ -178,7 +190,8 @@ class Trainer:
 
                 iterations_since_test += 1
                 if (1 / iterations_since_test) <= validation_to_train_ratio:
-                    validation_step_dict = self._do_validation_step()
+                    with freezing(self.model.active_parameter_groups):
+                        validation_step_dict = self._do_validation_step()
                     iterations_since_test = 0
 
                     current_state.update({**training_step_dict, **validation_step_dict})
