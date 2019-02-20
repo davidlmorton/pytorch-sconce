@@ -190,8 +190,7 @@ class Trainer:
 
                 iterations_since_test += 1
                 if (1 / iterations_since_test) <= validation_to_train_ratio:
-                    with freezing(self.model.active_parameter_groups):
-                        validation_step_dict = self._do_validation_step()
+                    validation_step_dict = self._do_validation_step()
                     iterations_since_test = 0
 
                     current_state.update({**training_step_dict, **validation_step_dict})
@@ -231,7 +230,11 @@ class Trainer:
         self.model.train(train)
         in_dict = {'inputs': inputs, 'targets': targets}
 
-        out_dict = self.model(**in_dict)
+        if train:
+            out_dict = self.model(**in_dict)
+        else:
+            with freezing(self.model.active_parameter_groups):
+                out_dict = self.model(**in_dict)
         return {**out_dict, **in_dict}
 
     def _run_model_on_feed(self, feed,
