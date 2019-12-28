@@ -185,8 +185,12 @@ class Trainer:
                 loss = step_dict['loss'] / batch_multiplier
                 loss.backward()
 
-                training_step_dict = {f'training_{k}': v
-                        for k, v in step_dict.items()}
+                training_step_dict = {}
+                for k, v in step_dict.items():
+                    # now that we've backpropagated the loss, no need to keep computation graph.
+                    if hasattr(v, 'detach_'):
+                        v.detach_()
+                    training_step_dict[f'training_{k}'] = v
 
                 iterations_since_test += 1
                 if (1 / iterations_since_test) <= validation_to_train_ratio:
