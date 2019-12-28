@@ -106,9 +106,7 @@ class Trainer:
         """
         self.model.load_state_dict(torch.load(filename))
 
-    def train(self, *, num_epochs, monitor=None,
-            validation_to_train_ratio=None,
-            batch_multiplier=1):
+    def train(self, *args, **kwargs):
         """
         Train the model for a given number of epochs.
 
@@ -128,6 +126,34 @@ class Trainer:
         Returns:
             monitor (:py:class:`~sconce.monitors.base.Monitor`): the monitor used during training.
         """
+        for monitor in self.get_training_iterator(*args, **kwargs):
+            continue
+        return monitor
+
+    def get_training_iterator(self, *, num_epochs, monitor=None,
+            validation_to_train_ratio=None, batch_multiplier=1):
+        """
+        Get an iterator to train the model for a given number of epochs.
+
+        Arguments:
+            num_epochs (float): the number of epochs to train the model for.
+            monitor (:py:class:`~sconce.monitors.base.Monitor`, optional): a monitor to use for this training session.
+                If ``None``, then self.monitor will be used.
+            validation_to_train_ratio (float, optional): [0.0, 1.0] determines how often (relative to training samples)
+                that test samples are run through the model during training.  If ``None``, then the relative size of the
+                training and test datasets is used.  For example, for MNIST with 60,000 training samples and 10,000 test
+                samples, the value would be 1/6th.
+            batch_multiplier (int, optional): [1, inf) determines how often parameter updates will occur during
+                training.  If greater than 1, this simulates large batch sizes without increasing memory usage.  For
+                example, if the batch size were 100 and batch_multipler=10, the effective batch size would be 1,000, but
+                the memory usage would be for a batch size of 100.
+
+        Yields:
+            monitor (:py:class:`~sconce.monitors.base.Monitor`): the monitor used during training.
+
+        Returns:
+            monitor (:py:class:`~sconce.monitors.base.Monitor`): the monitor used during training.
+        """
         assert batch_multiplier > 0
         assert int(batch_multiplier) == batch_multiplier
 
@@ -140,26 +166,13 @@ class Trainer:
                 feed=self.training_feed,
                 batch_multiplier=batch_multiplier)
 
-        return self._train(num_steps=num_steps,
+        return self._get_training_iterator(num_steps=num_steps,
                 monitor=monitor,
                 validation_to_train_ratio=validation_to_train_ratio,
                 batch_multiplier=batch_multiplier)
 
-    def get_num_steps(self, num_epochs, feed=None, batch_multiplier=1):
-        if feed is None:
-            feed = self.training_feed
-
-        num_samples = num_epochs * feed.num_samples
-        batch_size = feed.batch_size
-        effective_batch_size = batch_size * batch_multiplier
-        num_steps = int(num_samples / effective_batch_size)
-
-        if num_steps * effective_batch_size < num_samples:
-            return num_steps + 1
-        else:
-            return num_steps
-
-    def _train(self, *, num_steps, monitor, validation_to_train_ratio, batch_multiplier):
+    def _get_training_iterator(self, *, num_steps, monitor, validation_to_train_ratio,
+            batch_multiplier):
         self._reset_cache()
         monitor.start_session(num_steps)
         self.model.start_session(num_steps)
@@ -207,9 +220,25 @@ class Trainer:
             for optimizer in self.model.get_optimizers():
                 optimizer.step()
 
+            yield monitor
+
         monitor.end_session()
 
         return monitor
+
+    def get_num_steps(self, num_epochs, feed=None, batch_multiplier=1):
+        if feed is None:
+            feed = self.training_feed
+
+        num_samples = num_epochs * feed.num_samples
+        batch_size = feed.batch_size
+        effective_batch_size = batch_size * batch_multiplier
+        num_steps = int(num_samples / effective_batch_size)
+
+        if num_steps * effective_batch_size < num_samples:
+            return num_steps + 1
+        else:
+            return num_steps
 
     def _set_current_state(self, desired_state):
         for key, value in desired_state.items():
