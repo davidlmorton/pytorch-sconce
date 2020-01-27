@@ -1,5 +1,5 @@
 from pprint import pformat as pf
-from sconce.exceptions import StopTrainingError
+from sconce.custom_exceptions import StopTrainingError
 from sconce.schedules.base import Schedule
 
 import numpy as np

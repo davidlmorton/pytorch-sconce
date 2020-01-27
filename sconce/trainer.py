@@ -1,6 +1,6 @@
 from contextlib import contextmanager
 from sconce import monitors, schedules
-from sconce.exceptions import StopTrainingError
+from sconce.custom_exceptions import StopTrainingError
 
 
 import copy
