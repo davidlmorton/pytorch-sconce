@@ -1,6 +1,4 @@
-bcolz
 h5py
-losswise
 matplotlib
 numpy_ringbuffer
 pandas

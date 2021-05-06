@@ -1,2 +1,2 @@
-coverage == 4.5.1
-flake8 == 3.5.0
+coverage
+flake8
