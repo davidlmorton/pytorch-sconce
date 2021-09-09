@@ -40,3 +40,35 @@ class TestTrainer(unittest.TestCase):
         val_monitor = trainer.validate()
         val_loss = val_monitor.dataframe_monitor.df['validation_loss'].mean()
         self.assertLess(val_loss, 0.21)
+
+    def test_full_run_with_amp(self):
+
+        model = BasicAutoencoder(image_height=28, image_width=28,
+                hidden_size=200, latent_size=100)
+        training_feed = SingleClassImageFeed.from_torchvision(fraction=1 / 6)
+        validation_feed = SingleClassImageFeed.from_torchvision(train=False, fraction=0.1)
+
+        if torch.cuda.is_available():
+            model.cuda()
+            training_feed.cuda()
+            validation_feed.cuda()
+
+        model.set_optimizer(optim.SGD, lr=1e-4, momentum=0.9, weight_decay=1e-6)
+
+        trainer = Trainer(model=model,
+                training_feed=training_feed,
+                validation_feed=validation_feed)
+
+        survey_monitor = trainer.survey_learning_rate(num_epochs=0.1,
+                min_learning_rate=1e-1, max_learning_rate=1e3)
+        survey_monitor.dataframe_monitor.plot_learning_rate_survey()
+
+        model.set_schedule('learning_rate', Cosine(initial_value=2, final_value=2 / 50))
+        trainer.train(num_epochs=1, amp=True)
+
+        trainer.multi_train(num_cycles=4, amp=True)
+        trainer.monitor.dataframe_monitor.plot()
+
+        val_monitor = trainer.validate()
+        val_loss = val_monitor.dataframe_monitor.df['validation_loss'].mean()
+        self.assertLess(val_loss, 0.21)

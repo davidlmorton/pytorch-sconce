@@ -130,13 +130,14 @@ class Trainer:
             continue
         return monitor
 
-    def get_training_iterator(self, *, num_epochs, monitor=None,
+    def get_training_iterator(self, *, num_epochs, amp=False, monitor=None,
             validation_to_train_ratio=None, batch_multiplier=1):
         """
         Get an iterator to train the model for a given number of epochs.
 
         Arguments:
             num_epochs (float): the number of epochs to train the model for.
+            amp (bool): Use automatic mixed precision training (defaults to False).
             monitor (:py:class:`~sconce.monitors.base.Monitor`, optional): a monitor to use for this training session.
                 If ``None``, then self.monitor will be used.
             validation_to_train_ratio (float, optional): [0.0, 1.0] determines how often (relative to training samples)
@@ -166,13 +167,19 @@ class Trainer:
                 feed=self.training_feed,
                 batch_multiplier=batch_multiplier)
 
+        if amp:
+            scaler = torch.cuda.amp.GradScaler()
+        else:
+            scaler = None
+
         return self._get_training_iterator(num_steps=num_steps,
                 monitor=monitor,
                 validation_to_train_ratio=validation_to_train_ratio,
-                batch_multiplier=batch_multiplier)
+                batch_multiplier=batch_multiplier,
+                scaler=scaler)
 
     def _get_training_iterator(self, *, num_steps, monitor, validation_to_train_ratio,
-            batch_multiplier):
+            batch_multiplier, scaler=None):
         self._reset_cache()
         monitor.start_session(num_steps)
         self.model.start_session(num_steps)
@@ -193,10 +200,18 @@ class Trainer:
 
             for i in range(1, batch_multiplier + 1):
                 inputs, targets = self.training_feed.next()
-                step_dict = self._do_step(inputs, targets, train=True)
+
+                if scaler is not None:
+                    with torch.cuda.amp.autocast():
+                        step_dict = self._do_step(inputs, targets, train=True)
+                else:
+                    step_dict = self._do_step(inputs, targets, train=True)
 
                 loss = step_dict['loss'] / batch_multiplier
-                loss.backward()
+                if scaler is not None:
+                    scaler.scale(loss).backward()
+                else:
+                    loss.backward()
 
                 training_step_dict = {}
                 for k, v in step_dict.items():
@@ -207,7 +222,11 @@ class Trainer:
 
                 iterations_since_test += 1
                 if (1 / iterations_since_test) <= validation_to_train_ratio:
-                    validation_step_dict = self._do_validation_step()
+                    if scaler is not None:
+                        with torch.cuda.amp.autocast():
+                            validation_step_dict = self._do_validation_step()
+                    else:
+                        validation_step_dict = self._do_validation_step()
                     iterations_since_test = 0
 
                     current_state.update({**training_step_dict, **validation_step_dict})
@@ -217,8 +236,15 @@ class Trainer:
                 fraction = i / batch_multiplier
                 monitor.write(data=current_state, step=step - 1 + fraction)
 
-            for optimizer in self.model.get_optimizers():
-                optimizer.step()
+            if scaler is not None:
+                for optimizer in self.model.get_optimizers():
+                    scaler.step(optimizer)
+            else:
+                for optimizer in self.model.get_optimizers():
+                    optimizer.step()
+
+            if scaler is not None:
+                scaler.update()
 
             yield monitor
 
@@ -363,7 +389,8 @@ class Trainer:
             max_learning_rate=10,
             monitor=None,
             batch_multiplier=1,
-            stop_factor=10):
+            stop_factor=10,
+            amp=False):
         """
         Checkpoints a model, then runs a learning rate survey, before restoring the model back.
 
@@ -404,7 +431,8 @@ class Trainer:
         self.train(num_epochs=num_epochs,
                 monitor=monitor,
                 validation_to_train_ratio=0,
-                batch_multiplier=batch_multiplier)
+                batch_multiplier=batch_multiplier,
+                amp=amp)
 
         self.model.load_state_dict(orig_model_state_dict)
         for group, orig_optimizer_state_dict in zip(active_groups, orig_optimizer_state_dicts):

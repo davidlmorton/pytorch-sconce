@@ -1,7 +1,6 @@
 from sconce.models.base import Model
 from sconce.models.layers import FullyConnectedLayer
 from torch import nn
-from torch.nn import functional as F
 
 
 class BasicAutoencoder(Model):
@@ -46,7 +45,9 @@ class BasicAutoencoder(Model):
 
         self.fc6 = FullyConnectedLayer(in_size=hidden_size,
                 out_size=self.num_pixels,
-                activation=nn.Sigmoid())
+                activation=None)
+
+        self.bce_loss = nn.BCEWithLogitsLoss()
 
     def encode(self, inputs, **kwargs):
         encoder_input = inputs.view(-1, self.num_pixels)
@@ -67,6 +68,6 @@ class BasicAutoencoder(Model):
         return {'outputs': outputs}
 
     def calculate_loss(self, inputs, outputs, **kwargs):
-        reconstruction_loss = F.binary_cross_entropy(outputs,
+        reconstruction_loss = self.bce_loss(outputs,
                 inputs.view_as(outputs))
         return {'loss': reconstruction_loss}
